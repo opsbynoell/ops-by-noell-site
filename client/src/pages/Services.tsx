@@ -3,12 +3,12 @@
  * Design: Quiet Editorial Luxury
  * Sections: Hero, 5 Service Deep-Dives, Packages, Closing CTA
  *
- * Color: bg #F5F0EB / alt #E8E2DA / headline #3D3530 / body #7A6F68 / CTA #B8956A
- * Typography: Cormorant Garamond headlines, DM Sans body
+ * Color: bg #0A0A0A / alt #FFFFFF / headline #1A1A1A / body #C8C0B8 / CTA #A78BFA
+ * Typography: Space Grotesk headlines, Inter body
  */
 
 import { Link } from 'wouter';
-import { ArrowRight, Phone, Calendar, Star, MessageSquare, Megaphone, Settings, CheckCircle } from 'lucide-react';
+import { ArrowRight, Phone, Calendar, Star, MessageSquare, Megaphone, Settings, CheckCircle, Mic } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { useFadeIn } from '@/hooks/useFadeIn';
@@ -38,40 +38,40 @@ const services = [
     number: '01',
     title: 'Missed Call Text-Back',
     tagline: 'Never lose a lead to voicemail again.',
-    whatItDoes: 'The moment a call goes unanswered, your system fires an instant, personalized text message to the caller — within seconds. The message acknowledges their call, offers to help, and guides them toward booking. No manual action required.',
-    whyItMatters: 'Studies show 85% of callers who don\'t reach a business on the first try will not call back. They call your competitor. Missed Call Text-Back eliminates that window entirely — keeping leads warm and in conversation before they disappear.',
-    bestFor: 'Any appointment-based business that receives phone calls: massage therapists, med spas, chiropractors, salons, wellness providers, consultants.',
-    bg: '#F5F0EB',
+    whatItDoes: 'The moment a call goes unanswered, your system fires an instant, personalized text message to the caller within seconds. The message acknowledges their call, offers to help, and guides them toward booking. No manual action required.',
+    whyItMatters: 'Studies show 85% of callers who don\'t reach a business on the first try will not call back. They call your competitor. Missed Call Text-Back eliminates that window entirely, keeping leads warm and in conversation before they disappear.',
+    bestFor: 'Solo practitioners, service providers, and any appointment-based business that can\'t answer the phone while with a client.',
+    bg: '#0A0A0A',
   },
   {
     icon: Calendar,
     number: '02',
     title: 'AI Booking + Reminder System',
     tagline: 'Fill your calendar without picking up the phone.',
-    whatItDoes: 'A fully automated booking system that allows clients to schedule appointments 24/7 — from your website, text, or social media. Automated reminders go out via text and email at strategic intervals before each appointment.',
+    whatItDoes: 'A fully automated booking system that allows clients to schedule appointments 24/7 from your website, text, or social media. Automated reminders go out via text and email at strategic intervals before each appointment.',
     whyItMatters: 'No-shows cost local service businesses an estimated 10–15% of annual revenue. Automated reminders reduce no-shows by 30–50%. Combined with 24/7 booking, you capture clients who decide to book at 10pm on a Sunday.',
-    bestFor: 'Any business with a calendar: spas, clinics, salons, wellness studios, consultants, coaches.',
-    bg: '#E8E2DA',
+    bestFor: 'Any service business with a calendar: wellness practices, salons, dental offices, home services, and consultants who book appointments.',
+    bg: '#0A0A0A',
   },
   {
     icon: Star,
     number: '03',
     title: 'Automated Review Generation',
     tagline: 'Turn every satisfied client into a five-star review.',
-    whatItDoes: 'After each appointment, your system automatically sends a review request via text — timed for peak response rates. Clients are guided to your preferred platform (Google, Yelp, etc.) with a frictionless one-tap experience.',
-    whyItMatters: '93% of consumers read online reviews before choosing a local service provider. Businesses with consistent review generation outrank competitors and convert more website visitors. Most businesses never ask — and lose the compounding benefit of social proof.',
-    bestFor: 'Every local service business. Reviews are the single highest-ROI reputation asset you can build.',
-    bg: '#F5F0EB',
+    whatItDoes: 'After each appointment, your system automatically sends a review request via text, timed for peak response rates. Clients are guided to your preferred platform (Google, Yelp, etc.) with a frictionless one-tap experience.',
+    whyItMatters: '93% of consumers read online reviews before choosing a local service provider. Businesses with consistent review generation outrank competitors and convert more website visitors. Most businesses never ask, and lose the compounding benefit of social proof.',
+    bestFor: 'Every service business with an online presence. Reviews are the single highest-ROI reputation asset you can build.',
+    bg: '#0A0A0A',
   },
   {
     icon: MessageSquare,
     number: '04',
     title: 'Lead Follow-Up Automation',
     tagline: 'Most businesses follow up once. We follow up until it converts.',
-    whatItDoes: 'Multi-touch follow-up sequences that activate when a lead doesn\'t book, when a client hasn\'t returned, or when a prospect goes cold. Personalized messages go out at the right intervals — via text, email, or both.',
-    whyItMatters: '80% of sales require 5+ follow-up touches. Most businesses follow up once, if at all. Automated follow-up sequences recover revenue that would otherwise be permanently lost — from leads who were interested but got busy.',
-    bestFor: 'Businesses with longer sales cycles, high-value services, or clients who need multiple touchpoints before committing.',
-    bg: '#E8E2DA',
+    whatItDoes: 'Follow-up sequences that activate when a lead doesn\'t book, when a client hasn\'t returned, or when a prospect goes cold. Personalized messages go out at the right intervals via text, email, or both.',
+    whyItMatters: '80% of sales require 5+ follow-up touches. Most businesses follow up once, if at all. Automated follow-up sequences recover revenue that would otherwise be permanently lost from leads who were interested but got busy.',
+    bestFor: 'Service businesses with high-value offerings where prospects need multiple touches before booking: med spas, dental practices, home services, and professional services.',
+    bg: '#0A0A0A',
   },
   {
     icon: Megaphone,
@@ -79,24 +79,66 @@ const services = [
     title: 'Marketing Automation',
     tagline: 'Stay top of mind without lifting a finger.',
     whatItDoes: 'Automated campaigns that re-engage past clients, promote seasonal offers, and keep your brand present between appointments. Includes birthday messages, win-back sequences, referral requests, and consistent outreach to your existing client base.',
-    whyItMatters: 'Acquiring a new client costs 5–7x more than retaining an existing one. Your past clients are your most valuable asset — and most businesses never market to them systematically. Marketing automation turns your client list into a recurring revenue engine.',
-    bestFor: 'Established businesses with an existing client base looking to increase lifetime value and referrals.',
-    bg: '#F5F0EB',
+    whyItMatters: 'Acquiring a new client costs 5–7x more than retaining an existing one. Your past clients are your most valuable asset, and most businesses never market to them systematically. Marketing automation turns your client list into a recurring revenue engine.',
+    bestFor: 'Established service businesses with an existing client base looking to increase rebooking rates, lifetime value, and referrals.',
+    bg: '#0A0A0A',
+  },
+  {
+    icon: Mic,
+    number: '06',
+    title: 'AI Voice Agent',
+    tagline: 'Your phone, answered by AI. 24/7. Sounds human.',
+    whatItDoes: 'A trained AI voice agent that answers every inbound call, handles FAQs, books appointments, takes messages, and transfers to you when needed. All in a natural, conversational voice. Configured specifically for your business, your services, and your tone.',
+    whyItMatters: "The average local service business misses 27% of inbound calls. Each missed call is a potential client who called your competitor next. An AI voice agent eliminates that gap entirely, answering every call instantly, 24 hours a day, 7 days a week, even when you're with a client or asleep. At a fraction of the cost of a human receptionist.",
+    bestFor: 'High-volume appointment businesses where a missed call means a missed booking. At a fraction of the cost of a human receptionist.',
+    bg: '#0A0A0A',
+    highlight: true,
   },
   {
     icon: Settings,
-    number: '06',
+    number: '07',
     title: 'Custom Operations Buildout',
     tagline: 'If it\'s a repeatable process, it can be automated.',
-    whatItDoes: 'Your business doesn\'t fit a template. We scope and build exactly what you need — internal process automation, team workflows, client onboarding systems, reporting, integrations, and beyond. Every custom buildout starts with a deep-dive into your current operations to identify every manual step that can be systematized.',
-    whyItMatters: 'Most automation agencies stop at lead capture. We go further. The real leverage in a growing business is in the back office — the handoffs, the follow-through, the reporting, the onboarding. When those run automatically, you scale without adding headcount.',
-    bestFor: 'Growing businesses with complex operations, multiple team members, or unique workflows that off-the-shelf tools can\'t handle.',
-    bg: '#E8E2DA',
+    whatItDoes: 'Your business doesn\'t fit a template. We scope and build exactly what you need: internal process automation, team workflows, client onboarding systems, reporting, integrations, and beyond. Every custom buildout starts with a deep-dive into your current operations to identify every manual step that can be systematized.',
+    whyItMatters: 'Most automation agencies stop at lead capture. We go further. The real leverage in a growing business is in the back office: the handoffs, the follow-through, the reporting, the onboarding. When those run automatically, you scale without adding headcount.',
+    bestFor: 'Growing businesses with multiple team members, complex scheduling, or unique workflows that standard automation can\'t handle.',
+    bg: '#0A0A0A',
     highlight: true,
   },
 ];
 
 const packages = [
+  {
+    name: 'Revenue Audit',
+    subtitle: 'Paid Discovery (Recommended Starting Point)',
+    description: 'A deep-dive into your operation. We map every gap, quantify the monthly revenue impact, and hand you a clear roadmap of exactly what to build and in what order. Most clients find this pays for itself immediately in clarity alone.',
+    includes: [
+      'Full lead flow & operations review',
+      'Revenue impact quantification per gap',
+      'Custom automation roadmap',
+      'System design recommendations',
+      'Priority ranking: biggest wins first',
+    ],
+    note: 'Credited toward any setup fee. The recommended starting point.',
+    price: '$497 one-time' as string | undefined,
+    highlight: false,
+    customCta: 'Book Intro Call to Get Started' as string | undefined,
+  },
+  {
+    name: 'Activation Sprint',
+    subtitle: 'Prove ROI in Two Weeks',
+    description: 'We implement ONE high-impact automation system, your biggest opportunity identified in the Revenue Audit. Fixed scope. Fixed price. Fixed timeline.',
+    includes: [
+      'One core automation system (missed call text-back, review generation, or AI booking)',
+      'Full setup and configuration',
+      '2-week implementation timeline',
+      'One optimization check-in after launch',
+    ],
+    note: 'Most clients see results within 14 days and upgrade to a monthly retainer.',
+    price: '$1,500 flat' as string | undefined,
+    highlight: false,
+    customCta: 'Book Intro Call to Get Started' as string | undefined,
+  },
   {
     name: 'Starter',
     subtitle: 'Lead Capture + Booking Fix',
@@ -107,27 +149,47 @@ const packages = [
       'Onboarding & setup included',
       'Ongoing management & maintenance',
     ],
-    note: 'Pricing available on audit call.',
+    note: 'One-time $1,500 setup fee (credited if you completed an Activation Sprint).',
+    price: '$797/mo' as string | undefined,
     highlight: false,
   },
   {
     name: 'Growth',
     subtitle: 'Full AI Back Office',
-    description: 'The complete operational transformation. Every system working together to capture, convert, retain, and grow — on autopilot.',
+    description: 'The full build. Every system connected and working together: follow-up, bookings, reminders, reviews, and reactivation. Built once, running always.',
     includes: [
       'Everything in Starter',
       'Automated Review Generation',
       'Lead Follow-Up Automation',
       'Marketing Automation',
+      'Monthly strategy call included',
       'Priority support & optimization',
     ],
-    note: 'Pricing available on audit call.',
+    note: 'One-time $2,500 setup fee.',
+    price: '$1,197/mo' as string | undefined,
     highlight: true,
+    badge: 'Most Popular' as string | undefined,
+  },
+  {
+    name: 'Scale',
+    subtitle: 'Full AI Operations System',
+    description: 'Everything in Growth plus the full AI operations stack. Built for businesses ready to run on autopilot.',
+    includes: [
+      'Everything in Growth',
+      'AI voice receptionist (24/7 inbound call handling, appointment booking by phone, FAQ handling, call transfers)',
+      'Advanced integrations with your existing practice management software',
+      'Priority support with same-day response',
+      'AI-powered content creation for social media and email',
+      'Dedicated monthly optimization and reporting',
+    ],
+    note: 'One-time $2,500 setup fee.',
+    price: '$1,497/mo' as string | undefined,
+    highlight: false,
   },
   {
     name: 'Website Add-On',
     subtitle: 'Professional Web Presence',
-    description: 'A clean, conversion-focused website designed to work with your automation systems — not just look good.',
+    description: 'A clean, conversion-focused website designed to work with your automation systems, not just look good.',
     includes: [
       'Custom website design & build',
       'Booking integration included',
@@ -135,13 +197,14 @@ const packages = [
       'SEO foundation',
     ],
     note: 'Available as add-on to any package.',
+    price: undefined as string | undefined,
     highlight: false,
     customCta: undefined as string | undefined,
   },
   {
     name: 'Custom',
     subtitle: 'Full Operations Buildout',
-    description: 'For businesses with complex or unique operational needs. We scope, build, and manage a fully custom automation stack — internal workflows, integrations, team systems, and beyond. Pricing scoped after audit.',
+    description: 'We scope and build a fully custom automation stack around how your business actually operates: internal workflows, integrations, and systems designed specifically for you. Pricing scoped after audit.',
     includes: [
       'Deep-dive operations scoping',
       'Custom workflow & process automation',
@@ -150,7 +213,8 @@ const packages = [
       'Reporting & data pipelines',
       'Ongoing management & iteration',
     ],
-    note: 'Pricing scoped on audit call. No templates.',
+    note: 'Pricing scoped on intro call. No templates.',
+    price: undefined as string | undefined,
     highlight: false,
     customCta: 'Book a Scoping Call' as string | undefined,
   },
@@ -158,81 +222,63 @@ const packages = [
 
 export default function Services() {
   return (
-    <div style={{ backgroundColor: '#F5F0EB', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'transparent' }}>
       <Nav />
 
       {/* ─── PAGE HERO ─── */}
       <section style={{
-        paddingTop: '140px',
-        paddingBottom: '5rem',
-        backgroundColor: '#F5F0EB',
+        paddingTop: '110px',
+        paddingBottom: '3rem',
+        backgroundColor: 'transparent',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '40%',
-          height: '100%',
-          backgroundImage: `url(${PLASTER})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.2,
-        }} />
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(90deg, #F5F0EB 60%, transparent 100%)',
-        }} />
+
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <FadeItem delay={0}>
             <p className="eyebrow" style={{ marginBottom: '1rem' }}>Done-for-You · Built for Your Business</p>
           </FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-              fontWeight: 400,
-              color: '#3D3530',
+              fontWeight: 700,
+              color: '#F5F0EB',
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               maxWidth: '700px',
               marginBottom: '1.5rem',
             }}>
-We build the back office your business has been running without.
+Missed calls answered. Leads followed up. Appointments booked. Reviews collected.
             </h1>
           </FadeItem>
           <FadeItem delay={0.2}>
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '1.0625rem',
-              color: '#7A6F68',
+              color: '#C8C0B8',
               lineHeight: 1.75,
               maxWidth: '580px',
               marginBottom: '1.25rem',
             }}>
-We don't hand you software and wish you luck. We design, install, manage, and maintain complete automation systems — built specifically for your business, covering every part of your operation from the first missed call to the five-star review.
+Every system on this page is built for you, installed by us, and running before you know it. No software to learn. No setup on your end.
             </p>
           </FadeItem>
           <FadeItem delay={0.25}>
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '1.0625rem',
-              color: '#7A6F68',
+              color: '#C8C0B8',
               lineHeight: 1.75,
               maxWidth: '580px',
               marginBottom: '2.5rem',
             }}>
-You focus on the work. The infrastructure runs itself.
+You serve your clients. We automate everything around it.
             </p>
           </FadeItem>
           <FadeItem delay={0.3}>
             <a href="/book" className="btn-primary">
-              Book Your Free Audit
+              Book Free Intro Call
               <ArrowRight size={14} />
             </a>
           </FadeItem>
@@ -257,17 +303,17 @@ You focus on the work. The infrastructure runs itself.
               <FadeItem delay={0} style={{ gridColumn: 'span 1' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1rem' }} className="lg:col-span-2">
                   <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
+                    fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: '5rem',
-                    fontWeight: 300,
-                    color: 'rgba(61,53,48,0.08)',
+                    fontWeight: 700,
+                    color: 'rgba(167,139,250,0.55)',
                     lineHeight: 1,
                     letterSpacing: '-0.03em',
                   }}>
                     {service.number}
                   </span>
-                  <div style={{ width: '40px', height: '40px', backgroundColor: '#B8956A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <service.icon size={18} color="#FDFAF7" />
+                  <div style={{ width: '40px', height: '40px', backgroundColor: '#A78BFA', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <service.icon size={18} color="#1A1A1A" />
                   </div>
                 </div>
               </FadeItem>
@@ -277,10 +323,10 @@ You focus on the work. The infrastructure runs itself.
                 <div className="lg:col-span-10">
                   <p className="eyebrow" style={{ marginBottom: '0.75rem' }}>{service.tagline}</p>
                   <h2 style={{
-                    fontFamily: "'Cormorant Garamond', serif",
+                    fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: 'clamp(2rem, 3.5vw, 2.875rem)',
-                    fontWeight: 400,
-                    color: '#3D3530',
+                    fontWeight: 700,
+                    color: '#F5F0EB',
                     lineHeight: 1.1,
                     marginBottom: '2.5rem',
                   }}>
@@ -299,19 +345,19 @@ You focus on the work. The infrastructure runs itself.
                     ].map((col, j) => (
                       <div key={j}>
                         <p style={{
-                          fontFamily: "'DM Sans', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: '0.6875rem',
                           fontWeight: 500,
                           letterSpacing: '0.16em',
                           textTransform: 'uppercase',
-                          color: '#B8956A',
+                          color: '#A78BFA',
                           marginBottom: '0.875rem',
                           paddingBottom: '0.875rem',
-                          borderBottom: '1px solid #C9BFB8',
+                          borderBottom: '1px solid #2A2A2A',
                         }}>
                           {col.label}
                         </p>
-                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9375rem', color: '#7A6F68', lineHeight: 1.75 }}>
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.9375rem', color: '#C8C0B8', lineHeight: 1.75 }}>
                           {col.content}
                         </p>
                       </div>
@@ -322,30 +368,30 @@ You focus on the work. The infrastructure runs itself.
             </div>
           </div>
           {/* Divider */}
-          <div style={{ height: '1px', backgroundColor: '#C9BFB8', marginTop: '5rem', maxWidth: '1320px', margin: '5rem auto 0', padding: '0 3rem' }}>
-            <div style={{ height: '1px', backgroundColor: '#C9BFB8' }} />
+          <div style={{ height: '1px', backgroundColor: '#2A2A2A', marginTop: '5rem', maxWidth: '1320px', margin: '5rem auto 0', padding: '0 3rem' }}>
+            <div style={{ height: '1px', backgroundColor: '#2A2A2A' }} />
           </div>
         </section>
       ))}
 
       {/* ─── PACKAGES ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#3D3530' }}>
+      <section className="section-pad" style={{ backgroundColor: 'rgba(26,26,26,0.55)' }}>
         <div className="container">
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-              <p className="eyebrow" style={{ color: '#B8956A', marginBottom: '1rem' }}>How We Work Together</p>
+              <p className="eyebrow" style={{ color: '#A78BFA', marginBottom: '1rem' }}>How We Work Together</p>
               <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
-                fontWeight: 400,
-                color: '#FDFAF7',
+                fontWeight: 700,
+                color: '#F5F0EB',
                 lineHeight: 1.1,
                 marginBottom: '1rem',
               }}>
                 Start with what matters most. Scale from there.
               </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'rgba(253,250,247,0.65)', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto' }}>
-                Every package is 100% done-for-you. We design it, install it, and manage it ongoing. You don’t touch a setting.
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '1rem', color: 'rgba(245,237,216,0.65)', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto' }}>
+                Every package is 100% done-for-you. We build it, connect it to your business, and once it's live, it runs. You don’t touch a setting.
               </p>
             </div>
           </FadeItem>
@@ -354,79 +400,80 @@ You focus on the work. The infrastructure runs itself.
             display: 'grid',
             gridTemplateColumns: '1fr',
             gap: '1.5px',
-            backgroundColor: 'rgba(201,191,184,0.2)',
+            backgroundColor: 'rgba(255,255,255,0.2)',
           }} className="md:grid-cols-2 lg:grid-cols-4">
             {packages.map((pkg, i) => (
               <FadeItem key={i} delay={i * 0.12}>
                 <div style={{
-                  backgroundColor: pkg.highlight ? '#B8956A' : 'rgba(253,250,247,0.05)',
+                  backgroundColor: pkg.highlight ? '#A78BFA' : 'rgba(245,237,216,0.05)',
                   padding: '2.5rem',
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
                 }}>
-                  {pkg.highlight && (
+                  {(pkg as any).badge && (
                     <div style={{
                       position: 'absolute',
                       top: '-1px',
                       left: '50%',
                       transform: 'translateX(-50%)',
-                      backgroundColor: '#FDFAF7',
+                      backgroundColor: pkg.highlight ? 'rgba(10,10,10,0.55)' : 'rgba(167,139,250,0.15)',
                       padding: '0.25rem 1rem',
                     }}>
-                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.625rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8956A' }}>
-                        Most Popular
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.625rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: pkg.highlight ? '#0A0A0A' : '#A78BFA' }}>
+                        {(pkg as any).badge}
+                      </p>
+                    </div>
+                  )}
+
+                  {(pkg as any).price && (
+                    <div style={{ marginBottom: '1rem' }}>
+                      <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '2.5rem', fontWeight: 700, color: '#A78BFA', lineHeight: 1 }}>
+                        {(pkg as any).price}
+                      </p>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', color: 'rgba(245,237,216,0.5)', letterSpacing: '0.08em', marginTop: '0.25rem' }}>
+                        {pkg.name === 'Revenue Audit' ? 'one-time · credited toward setup fee' : pkg.name === 'Activation Sprint' ? 'flat fee · fixed scope' : 'per month · cancel anytime'}
                       </p>
                     </div>
                   )}
 
                   <div style={{ marginBottom: '1.5rem' }}>
                     <h3 style={{
-                      fontFamily: "'Cormorant Garamond', serif",
+                      fontFamily: "'Space Grotesk', sans-serif",
                       fontSize: '2rem',
-                      fontWeight: 400,
-                      color: pkg.highlight ? '#FDFAF7' : '#FDFAF7',
+                      fontWeight: 700,
+                      color: pkg.highlight ? '#1A1A1A' : '#F5F0EB',
                       lineHeight: 1,
                       marginBottom: '0.375rem',
                     }}>
                       {pkg.name}
                     </h3>
                     <p style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: '0.75rem',
                       fontWeight: 500,
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: pkg.highlight ? 'rgba(253,250,247,0.8)' : '#B8956A',
+                      color: pkg.highlight ? 'rgba(245,237,216,0.8)' : '#A78BFA',
                     }}>
                       {pkg.subtitle}
                     </p>
                   </div>
 
-                  <p style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.9375rem',
-                    color: pkg.highlight ? 'rgba(253,250,247,0.85)' : 'rgba(253,250,247,0.65)',
-                    lineHeight: 1.7,
-                    marginBottom: '2rem',
-                  }}>
-                    {pkg.description}
-                  </p>
-
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', flexGrow: 1 }}>
                     {pkg.includes.map((item, j) => (
                       <div key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                        <CheckCircle size={15} color={pkg.highlight ? 'rgba(253,250,247,0.9)' : '#B8956A'} style={{ flexShrink: 0, marginTop: '2px' }} />
-                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.875rem', color: pkg.highlight ? 'rgba(253,250,247,0.85)' : 'rgba(253,250,247,0.7)', lineHeight: 1.5 }}>
+                        <CheckCircle size={15} color={pkg.highlight ? 'rgba(245,237,216,0.9)' : '#A78BFA'} style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.875rem', color: pkg.highlight ? 'rgba(245,237,216,0.85)' : 'rgba(245,237,216,0.7)', lineHeight: 1.5 }}>
                           {item}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  <div style={{ borderTop: `1px solid ${pkg.highlight ? 'rgba(253,250,247,0.2)' : 'rgba(201,191,184,0.2)'}`, paddingTop: '1.25rem', marginBottom: '1.5rem' }}>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8125rem', color: pkg.highlight ? 'rgba(253,250,247,0.6)' : 'rgba(201,191,184,0.6)', fontStyle: 'italic' }}>
+                  <div style={{ borderTop: `1px solid ${pkg.highlight ? 'rgba(245,237,216,0.2)' : 'rgba(255,255,255,0.2)'}`, paddingTop: '1.25rem', marginBottom: '1.5rem' }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.8125rem', color: pkg.highlight ? '#8A8480' : 'rgba(255,255,255,0.6)', }}>
                       {pkg.note}
                     </p>
                   </div>
@@ -437,10 +484,10 @@ You focus on the work. The infrastructure runs itself.
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem',
-                      backgroundColor: pkg.highlight ? '#FDFAF7' : pkg.customCta ? '#B8956A' : 'transparent',
-                      color: pkg.highlight ? '#B8956A' : '#FDFAF7',
-                      border: pkg.highlight ? 'none' : pkg.customCta ? 'none' : '1px solid rgba(201,191,184,0.4)',
-                      fontFamily: "'DM Sans', sans-serif",
+                      backgroundColor: pkg.highlight ? '#1A1A1A' : pkg.customCta ? '#A78BFA' : 'transparent',
+                      color: pkg.highlight ? '#A78BFA' : '#F5F0EB',
+                      border: pkg.highlight ? 'none' : pkg.customCta ? 'none' : '1px solid rgba(255,255,255,0.4)',
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: '0.75rem',
                       fontWeight: 500,
                       letterSpacing: '0.1em',
@@ -450,7 +497,7 @@ You focus on the work. The infrastructure runs itself.
                       transition: 'all 0.2s ease',
                     }}
                   >
-                    {pkg.customCta ?? 'Book Your Free Audit'} <ArrowRight size={12} />
+                    {pkg.customCta ?? 'Book Free Intro Call'} <ArrowRight size={12} />
                   </a>
                 </div>
               </FadeItem>
@@ -460,34 +507,34 @@ You focus on the work. The infrastructure runs itself.
       </section>
 
       {/* ─── CLOSING CTA ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#E8E2DA' }}>
+      <section className="section-pad" style={{ backgroundColor: 'transparent' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <FadeItem delay={0}>
             <p className="eyebrow" style={{ marginBottom: '1rem' }}>The First Step Is Free.</p>
             <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
-              fontWeight: 400,
-              color: '#3D3530',
+              fontWeight: 700,
+              color: '#F5F0EB',
               lineHeight: 1.1,
               marginBottom: '1.25rem',
               maxWidth: '640px',
               margin: '0 auto 1.25rem',
             }}>
-              The free audit shows you exactly where your business is losing revenue — and what to fix first.
+              Not sure where to start? Let's talk for 15 minutes.
             </h2>
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '1rem',
-              color: '#7A6F68',
+              color: '#C8C0B8',
               lineHeight: 1.75,
               maxWidth: '500px',
               margin: '0 auto 2.5rem',
             }}>
-              In 30 minutes, we map every operational gap — missed calls, weak follow-up, no-shows, missing reviews, inconsistent marketing — and give you a plain-language estimate of what each one is costing you monthly. No pitch. No obligation.
+              A free intro call is the lowest-risk way to find out if automation is right for your business. No pitch. No pressure. Just a real conversation about where you are and what's possible.
             </p>
             <a href="/book" className="btn-primary">
-              Book Your Free Audit
+              Book Free Intro Call
               <ArrowRight size={14} />
             </a>
           </FadeItem>

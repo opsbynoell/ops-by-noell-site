@@ -2,14 +2,18 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
-import { insertChatLead, getBotFunnelStats, getBotDailyStats, getBotInterestStats, getBotContactMethodStats, getBotSourceStats, getRecentBotLeads } from "./db";
+import { chatRouter } from "./routers/chat";
+import { insertChatLead, getBotFunnelStats, getBotDailyStats, getBotInterestStats, getBotContactMethodStats, getBotSourceStats, getRecentBotLeads, upsertChatSession, getChatSession, getAllChatSessions, insertChatMessage, getSessionMessages, markSessionRead, setHumanTakeover, insertNewsletterSubscriber, getNewsletterSubscriberCount, markNewsletterWelcomed } from "./db";
 import { notifyOwner } from "./_core/notification";
+import { sendContactFormEmail, sendNewsletterWelcomeEmail, sendNewsletterOwnerNotification } from "./email";
 import { sendTelegram, formatTelegramMessage } from "./telegram";
+import { createGHLContact } from "./ghl";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 export const appRouter = router({
   system: systemRouter,
+  chat: chatRouter,
 
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
@@ -32,6 +36,7 @@ export const appRouter = router({
           name: z.string().min(1).max(128),
           email: z.string().email().max(320),
           businessType: z.string().min(1).max(256),
+          phone: z.string().max(32).optional(),
           question: z.string().max(2000).optional(),
           page: z.string().max(256).optional(),
         })
@@ -52,6 +57,7 @@ export const appRouter = router({
           ``,
           `Name: ${input.name}`,
           `Email: ${input.email}`,
+          `Phone: ${input.phone ?? "(not provided)"}`,
           `Business Type: ${input.businessType}`,
           `Question Asked: ${input.question ?? "(none recorded)"}`,
           `Page: ${input.page ?? "unknown"}`,
@@ -159,7 +165,114 @@ export const appRouter = router({
       }),
   }),
 
-  // ─── Bot Analytics ────────────────────────────────────────────────────────
+  // ─── Contact Form ──────────────────────────────────────────────────────────
+  contact: router({
+    /**
+     * Called when a visitor submits the contact form on the Book page.
+     * Fires owner notification and Telegram alert.
+     */
+    submit: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1).max(128),
+          email: z.string().email().max(320),
+          phone: z.string().min(7).max(30),
+          message: z.string().min(10).max(4000),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const emailContent = [
+          `A visitor submitted the contact form on the Ops by Noell website.`,
+          ``,
+          `Name: ${input.name}`,
+          `Email: ${input.email}`,
+          `Phone: ${input.phone}`,
+          ``,
+          `Message:`,
+          input.message,
+          ``,
+          `Reply directly to ${input.email} to follow up.`,
+        ].join("\n");
+
+        await Promise.allSettled([
+          // Direct email to noell@opsbynoell.com via Resend
+          sendContactFormEmail({
+            name: input.name,
+            email: input.email,
+            phone: input.phone,
+            message: input.message,
+          }),
+          // Manus platform notification (backup)
+          notifyOwner({
+            title: `📬 New Contact Form: ${input.name}`,
+            content: emailContent,
+          }),
+          // Telegram alert (backup)
+          sendTelegram(
+            formatTelegramMessage("New Contact Form 📬", {
+              Name: input.name,
+              Email: input.email,
+              Phone: input.phone,
+              Message: input.message.slice(0, 300) + (input.message.length > 300 ? "..." : ""),
+            })
+          ),
+          // GHL contact creation
+          createGHLContact({
+            name: input.name,
+            email: input.email,
+            phone: input.phone,
+            source: "Website Contact Form",
+          }),
+        ]);
+
+        return { success: true };
+      }),
+  }),
+
+  // ─── Newsletter ───────────────────────────────────────────────────────────────────
+  newsletter: router({
+    /**
+     * Subscribe an email to The Ops Brief newsletter.
+     * Stores the subscriber, sends a welcome email, and notifies the owner.
+     */
+    subscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email().max(320),
+          source: z.string().max(256).optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        // 1. Insert subscriber (unique constraint handles duplicates gracefully)
+        const { id: subscriberId, isDuplicate } = await insertNewsletterSubscriber({
+          email: input.email,
+          source: input.source ?? '/newsletter',
+        });
+
+        if (isDuplicate) {
+          return { success: true, alreadySubscribed: true };
+        }
+
+        // 2. Get total count for owner notification
+        const totalCount = await getNewsletterSubscriberCount();
+
+        // 3. Fire welcome email + owner notification in parallel
+        const [welcomed] = await Promise.allSettled([
+          sendNewsletterWelcomeEmail(input.email),
+          sendNewsletterOwnerNotification(input.email, totalCount),
+        ]);
+
+        // 4. Mark welcomed in DB
+        const welcomedSuccess = welcomed.status === 'fulfilled' && welcomed.value === true;
+        if (welcomedSuccess && subscriberId) {
+          await markNewsletterWelcomed(subscriberId);
+        }
+
+        return { success: true, alreadySubscribed: false };
+      }),
+  }),
+
+  // ─── Bot Analytics ───────────────────────────────────────────────────────────────────
   // All analytics procedures are protected — only the logged-in owner can access them.
   analytics: router({
     /** Conversion funnel: how many sessions are at each step. */

@@ -33,12 +33,12 @@ import {
 import { ArrowLeft, Users, TrendingUp, CheckCircle, Phone, Mail } from "lucide-react";
 
 // ─── Brand colors ────────────────────────────────────────────────────────────
-const GOLD = "#B8956A";
-const DARK = "#3D3530";
-const MUTED = "#7A6F68";
-const CREAM = "#F5F0EB";
-const ALT = "#E8E2DA";
-const TELEGRAM_BLUE = "#229ED9";
+const GOLD = "#A78BFA";
+const DARK = "#1A1A1A";
+const MUTED = "#8A8480";
+const CREAM = "#0A0A0A";
+const ALT = "#2A2A2A";
+const TELEGRAM_BLUE = "#6366F1";
 
 const STEP_ORDER = [
   "start",
@@ -58,7 +58,7 @@ const STEP_LABELS: Record<string, string> = {
   complete: "Completed",
 };
 
-const PIE_COLORS = [GOLD, TELEGRAM_BLUE, DARK, "#C9BFB8", MUTED];
+const PIE_COLORS = [GOLD, TELEGRAM_BLUE, DARK, "#2A2A2A", MUTED];
 
 // ─── Stat card ───────────────────────────────────────────────────────────────
 function StatCard({
@@ -77,8 +77,8 @@ function StatCard({
   return (
     <Card
       style={{
-        backgroundColor: accent ? DARK : "#FDFAF7",
-        border: `1px solid ${accent ? "transparent" : "#E8E2DA"}`,
+        backgroundColor: accent ? "#A78BFA" : "#1A1A1A",
+        border: `1px solid ${accent ? "transparent" : "#2A2A2A"}`,
       }}
     >
       <CardContent style={{ padding: "1.5rem" }}>
@@ -86,12 +86,12 @@ function StatCard({
           <div>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.6875rem",
                 fontWeight: 500,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: accent ? "rgba(253,250,247,0.6)" : MUTED,
+                color: accent ? "rgba(10,10,10,0.7)" : MUTED,
                 marginBottom: "0.5rem",
               }}
             >
@@ -99,10 +99,10 @@ function StatCard({
             </p>
             <p
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 fontSize: "2.25rem",
                 fontWeight: 400,
-                color: accent ? "#FDFAF7" : DARK,
+                color: accent ? "#0A0A0A" : "#F5F0EB",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
               }}
@@ -112,9 +112,9 @@ function StatCard({
             {sub && (
               <p
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.75rem",
-                  color: accent ? "rgba(253,250,247,0.5)" : MUTED,
+                  color: accent ? "rgba(10,10,10,0.6)" : MUTED,
                   marginTop: "0.375rem",
                 }}
               >
@@ -211,7 +211,7 @@ export default function BotAnalytics() {
           justifyContent: "center",
         }}
       >
-        <p style={{ fontFamily: "'DM Sans', sans-serif", color: MUTED }}>Loading…</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", color: MUTED }}>Loading…</p>
       </div>
     );
   }
@@ -236,17 +236,17 @@ export default function BotAnalytics() {
       >
         <p
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             fontSize: "2rem",
             color: DARK,
           }}
         >
           Access Restricted
         </p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", color: MUTED }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", color: MUTED }}>
           This page is only available to admins.
         </p>
-        <Link href="/" style={{ color: GOLD, fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem" }}>
+        <Link href="/" style={{ color: GOLD, fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}>
           ← Back to Home
         </Link>
       </div>
@@ -260,7 +260,7 @@ export default function BotAnalytics() {
         style={{
           backgroundColor: DARK,
           padding: "1.5rem 0",
-          borderBottom: `1px solid rgba(201,191,184,0.15)`,
+          borderBottom: `1px solid rgba(255,255,255,0.08)`,
         }}
       >
         <div className="container" style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
@@ -270,29 +270,29 @@ export default function BotAnalytics() {
               display: "inline-flex",
               alignItems: "center",
               gap: "0.375rem",
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.75rem",
               fontWeight: 500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(253,250,247,0.5)",
+              color: "#8A8480",
               textDecoration: "none",
               transition: "color 0.2s",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(253,250,247,0.85)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(253,250,247,0.5)"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#F5F0EB"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#8A8480"; }}
           >
             <ArrowLeft size={12} />
             Back to Site
           </Link>
-          <div style={{ width: "1px", height: "16px", backgroundColor: "rgba(201,191,184,0.2)" }} />
+          <div style={{ width: "1px", height: "16px", backgroundColor: "rgba(255,255,255,0.1)" }} />
           <div>
             <p
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 fontSize: "1.375rem",
                 fontWeight: 400,
-                color: "#FDFAF7",
+                color: "#F5F0EB",
                 lineHeight: 1,
               }}
             >
@@ -300,9 +300,9 @@ export default function BotAnalytics() {
             </p>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.6875rem",
-                color: "rgba(253,250,247,0.45)",
+                color: "#8A8480",
                 letterSpacing: "0.06em",
                 marginTop: "0.25rem",
               }}
@@ -315,7 +315,7 @@ export default function BotAnalytics() {
               style={{
                 backgroundColor: TELEGRAM_BLUE,
                 color: "#fff",
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.6875rem",
                 letterSpacing: "0.06em",
               }}
@@ -375,11 +375,11 @@ export default function BotAnalytics() {
           className="lg:grid-cols-2"
         >
           {/* Conversion Funnel */}
-          <Card style={{ backgroundColor: "#FDFAF7", border: "1px solid #E8E2DA" }}>
+          <Card style={{ backgroundColor: "#111111", border: "1px solid #2A2A2A" }}>
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -387,17 +387,17 @@ export default function BotAnalytics() {
               >
                 Conversion Funnel
               </CardTitle>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: MUTED }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: MUTED }}>
                 Sessions at each step of the bot flow
               </p>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={260}>
                 <BarChart data={funnelData} layout="vertical" margin={{ left: 8, right: 16 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E8E2DA" horizontal={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#2A2A2A" horizontal={false} />
                   <XAxis
                     type="number"
-                    tick={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fill: MUTED }}
+                    tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: MUTED }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -405,16 +405,16 @@ export default function BotAnalytics() {
                     type="category"
                     dataKey="step"
                     width={110}
-                    tick={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fill: DARK }}
+                    tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: DARK }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <Tooltip
                     contentStyle={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.75rem",
-                      backgroundColor: "#FDFAF7",
-                      border: "1px solid #E8E2DA",
+                      backgroundColor: "#111111",
+                      border: "1px solid #2A2A2A",
                       borderRadius: 0,
                     }}
                   />
@@ -425,11 +425,11 @@ export default function BotAnalytics() {
           </Card>
 
           {/* Daily Trend */}
-          <Card style={{ backgroundColor: "#FDFAF7", border: "1px solid #E8E2DA" }}>
+          <Card style={{ backgroundColor: "#111111", border: "1px solid #2A2A2A" }}>
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -437,33 +437,33 @@ export default function BotAnalytics() {
               >
                 Daily Sessions
               </CardTitle>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: MUTED }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: MUTED }}>
                 New bot interactions over the last {days} days
               </p>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={260}>
                 <LineChart data={dailyData} margin={{ left: 0, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E8E2DA" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#2A2A2A" />
                   <XAxis
                     dataKey="date"
-                    tick={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fill: MUTED }}
+                    tick={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fill: MUTED }}
                     axisLine={false}
                     tickLine={false}
                     interval={Math.floor(dailyData.length / 6)}
                   />
                   <YAxis
-                    tick={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fill: MUTED }}
+                    tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: MUTED }}
                     axisLine={false}
                     tickLine={false}
                     allowDecimals={false}
                   />
                   <Tooltip
                     contentStyle={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.75rem",
-                      backgroundColor: "#FDFAF7",
-                      border: "1px solid #E8E2DA",
+                      backgroundColor: "#111111",
+                      border: "1px solid #2A2A2A",
                       borderRadius: 0,
                     }}
                   />
@@ -493,11 +493,11 @@ export default function BotAnalytics() {
           className="lg:grid-cols-2"
         >
           {/* Interest Breakdown */}
-          <Card style={{ backgroundColor: "#FDFAF7", border: "1px solid #E8E2DA" }}>
+          <Card style={{ backgroundColor: "#111111", border: "1px solid #2A2A2A" }}>
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -505,7 +505,7 @@ export default function BotAnalytics() {
               >
                 Interest Breakdown
               </CardTitle>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: MUTED }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: MUTED }}>
                 What completed leads came for
               </p>
             </CardHeader>
@@ -519,7 +519,7 @@ export default function BotAnalytics() {
                     justifyContent: "center",
                   }}
                 >
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: MUTED }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: MUTED }}>
                     No completed leads yet
                   </p>
                 </div>
@@ -541,10 +541,10 @@ export default function BotAnalytics() {
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.75rem",
-                        backgroundColor: "#FDFAF7",
-                        border: "1px solid #E8E2DA",
+                        backgroundColor: "#111111",
+                        border: "1px solid #2A2A2A",
                         borderRadius: 0,
                       }}
                     />
@@ -563,7 +563,7 @@ export default function BotAnalytics() {
                         />
                         <p
                           style={{
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "'Inter', sans-serif",
                             fontSize: "0.8125rem",
                             color: DARK,
                           }}
@@ -572,7 +572,7 @@ export default function BotAnalytics() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'Cormorant Garamond', serif",
+                            fontFamily: "'Space Grotesk', sans-serif",
                             fontSize: "1rem",
                             color: GOLD,
                             marginLeft: "auto",
@@ -590,11 +590,11 @@ export default function BotAnalytics() {
           </Card>
 
           {/* Contact Method Split */}
-          <Card style={{ backgroundColor: "#FDFAF7", border: "1px solid #E8E2DA" }}>
+          <Card style={{ backgroundColor: "#111111", border: "1px solid #2A2A2A" }}>
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -602,7 +602,7 @@ export default function BotAnalytics() {
               >
                 Contact Method
               </CardTitle>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: MUTED }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: MUTED }}>
                 How completed leads prefer to be reached
               </p>
             </CardHeader>
@@ -616,7 +616,7 @@ export default function BotAnalytics() {
                     justifyContent: "center",
                   }}
                 >
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: MUTED }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: MUTED }}>
                     No completed leads yet
                   </p>
                 </div>
@@ -644,7 +644,7 @@ export default function BotAnalytics() {
                             )}
                             <p
                               style={{
-                                fontFamily: "'DM Sans', sans-serif",
+                                fontFamily: "'Inter', sans-serif",
                                 fontSize: "0.875rem",
                                 fontWeight: 500,
                                 color: DARK,
@@ -656,7 +656,7 @@ export default function BotAnalytics() {
                           </div>
                           <p
                             style={{
-                              fontFamily: "'Cormorant Garamond', serif",
+                              fontFamily: "'Space Grotesk', sans-serif",
                               fontSize: "1.125rem",
                               color: GOLD,
                             }}
@@ -692,11 +692,11 @@ export default function BotAnalytics() {
         </div>
 
         {/* ─── Recent Leads Table ─── */}
-        <Card style={{ backgroundColor: "#FDFAF7", border: "1px solid #E8E2DA" }}>
+        <Card style={{ backgroundColor: "#111111", border: "1px solid #2A2A2A" }}>
           <CardHeader style={{ paddingBottom: "0.5rem" }}>
             <CardTitle
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 fontSize: "1.25rem",
                 fontWeight: 400,
                 color: DARK,
@@ -704,7 +704,7 @@ export default function BotAnalytics() {
             >
               Recent Completed Leads
             </CardTitle>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: MUTED }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: MUTED }}>
               Last {recentLeads.length} leads who completed the bot flow
             </p>
           </CardHeader>
@@ -721,14 +721,14 @@ export default function BotAnalytics() {
               >
                 <p
                   style={{
-                    fontFamily: "'Cormorant Garamond', serif",
+                    fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: "1.5rem",
                     color: DARK,
                   }}
                 >
                   No leads yet
                 </p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: MUTED }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: MUTED }}>
                   Completed bot sessions will appear here once visitors engage with the flow.
                 </p>
               </div>
@@ -736,14 +736,14 @@ export default function BotAnalytics() {
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                   <thead>
-                    <tr style={{ borderBottom: "1px solid #E8E2DA" }}>
+                    <tr style={{ borderBottom: "1px solid #2A2A2A" }}>
                       {["Name", "Interest", "Contact", "Value", "Source", "Date"].map((h) => (
                         <th
                           key={h}
                           style={{
                             padding: "0.75rem 1.25rem",
                             textAlign: "left",
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "'Inter', sans-serif",
                             fontSize: "0.6875rem",
                             fontWeight: 500,
                             letterSpacing: "0.1em",
@@ -768,7 +768,7 @@ export default function BotAnalytics() {
                         <td style={{ padding: "0.875rem 1.25rem" }}>
                           <p
                             style={{
-                              fontFamily: "'DM Sans', sans-serif",
+                              fontFamily: "'Inter', sans-serif",
                               fontSize: "0.875rem",
                               fontWeight: 500,
                               color: DARK,
@@ -779,7 +779,7 @@ export default function BotAnalytics() {
                           {lead.telegramUsername && (
                             <p
                               style={{
-                                fontFamily: "'DM Sans', sans-serif",
+                                fontFamily: "'Inter', sans-serif",
                                 fontSize: "0.75rem",
                                 color: MUTED,
                               }}
@@ -803,7 +803,7 @@ export default function BotAnalytics() {
                                   : lead.interest === "Freelance Work"
                                   ? TELEGRAM_BLUE
                                   : DARK,
-                              fontFamily: "'DM Sans', sans-serif",
+                              fontFamily: "'Inter', sans-serif",
                               fontSize: "0.6875rem",
                               fontWeight: 500,
                               border: "none",
@@ -821,7 +821,7 @@ export default function BotAnalytics() {
                             ) : null}
                             <p
                               style={{
-                                fontFamily: "'DM Sans', sans-serif",
+                                fontFamily: "'Inter', sans-serif",
                                 fontSize: "0.8125rem",
                                 color: DARK,
                                 textTransform: "capitalize",
@@ -834,7 +834,7 @@ export default function BotAnalytics() {
                         <td style={{ padding: "0.875rem 1.25rem" }}>
                           <p
                             style={{
-                              fontFamily: "'DM Sans', sans-serif",
+                              fontFamily: "'Inter', sans-serif",
                               fontSize: "0.8125rem",
                               color: DARK,
                               fontWeight: 500,
@@ -851,7 +851,7 @@ export default function BotAnalytics() {
                                   ? "rgba(184,149,106,0.12)"
                                   : "rgba(61,53,48,0.06)",
                               color: lead.source === "website" ? GOLD : MUTED,
-                              fontFamily: "'DM Sans', sans-serif",
+                              fontFamily: "'Inter', sans-serif",
                               fontSize: "0.6875rem",
                               border: "none",
                             }}
@@ -862,7 +862,7 @@ export default function BotAnalytics() {
                         <td style={{ padding: "0.875rem 1.25rem" }}>
                           <p
                             style={{
-                              fontFamily: "'DM Sans', sans-serif",
+                              fontFamily: "'Inter', sans-serif",
                               fontSize: "0.75rem",
                               color: MUTED,
                             }}
@@ -875,7 +875,7 @@ export default function BotAnalytics() {
                           </p>
                           <p
                             style={{
-                              fontFamily: "'DM Sans', sans-serif",
+                              fontFamily: "'Inter', sans-serif",
                               fontSize: "0.6875rem",
                               color: "rgba(122,111,104,0.6)",
                             }}

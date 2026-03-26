@@ -29,6 +29,27 @@
       "when": 1773973108036,
       "tag": "0003_dizzy_harry_osborn",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1774249918526,
+      "tag": "0004_cold_quentin_quire",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1774255222750,
+      "tag": "0005_real_terror",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1774383808397,
+      "tag": "0006_amazing_reavers",
+      "breakpoints": true
     }
   ]
 }

@@ -84,3 +84,58 @@ export const botSessions = mysqlTable("botSessions", {
 
 export type BotSession = typeof botSessions.$inferSelect;
 export type InsertBotSession = typeof botSessions.$inferInsert;
+
+// ─── Website Chat Sessions ───────────────────────────────────────────────────
+// One row per visitor chat session on the website widget.
+export const chatSessions = mysqlTable("chatSessions", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Random UUID assigned to the visitor's browser session */
+  sessionId: varchar("sessionId", { length: 64 }).notNull().unique(),
+  visitorName: varchar("visitorName", { length: 128 }),
+  visitorEmail: varchar("visitorEmail", { length: 320 }),
+  businessType: varchar("businessType", { length: 256 }),
+  /** Visitor IP address captured on first message */
+  visitorIp: varchar("visitorIp", { length: 64 }),
+  /** Approximate location from IP (e.g. "Los Angeles, CA, US") */
+  visitorLocation: varchar("visitorLocation", { length: 256 }),
+  /** Whether a human has taken over this conversation */
+  humanTakeover: int("humanTakeover").default(0).notNull(), // 0 = bot, 1 = human
+  /** Number of unread messages from visitor (for admin badge) */
+  unreadCount: int("unreadCount").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ChatSession = typeof chatSessions.$inferSelect;
+export type InsertChatSession = typeof chatSessions.$inferInsert;
+
+// ─── Website Chat Messages ───────────────────────────────────────────────────
+// Every message exchanged in the website chat widget.
+export const chatMessages = mysqlTable("chatMessages", {
+  id: int("id").autoincrement().primaryKey(),
+  sessionId: varchar("sessionId", { length: 64 }).notNull(),
+  /** 'visitor' = sent by website user, 'bot' = Nova auto-response, 'human' = admin reply */
+  role: mysqlEnum("role", ["visitor", "bot", "human"]).notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ChatMessage = typeof chatMessages.$inferSelect;
+export type InsertChatMessage = typeof chatMessages.$inferInsert;
+
+// ─── Newsletter Subscribers ──────────────────────────────────────────────────
+// Captures every email that subscribes via The Ops Brief newsletter form.
+export const newsletterSubscribers = mysqlTable("newsletterSubscribers", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  /** Optional first name if captured */
+  name: varchar("name", { length: 128 }),
+  /** Source page (e.g. "/newsletter", "/") */
+  source: varchar("source", { length: 256 }).default("/newsletter"),
+  /** Whether the welcome email was sent successfully */
+  welcomed: int("welcomed").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
+export type InsertNewsletterSubscriber = typeof newsletterSubscribers.$inferInsert;

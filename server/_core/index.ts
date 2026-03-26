@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
 import net from "net";
+import path from "path";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
@@ -31,6 +32,22 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 async function startServer() {
   const app = express();
   const server = createServer(app);
+
+  // 301 redirect: non-www → www (production only)
+  // Consolidates SEO authority on www.opsbynoell.com
+  app.use((req, res, next) => {
+    const host = req.headers.host || "";
+    if (
+      process.env.NODE_ENV === "production" &&
+      !host.startsWith("www.") &&
+      host.includes("opsbynoell.com")
+    ) {
+      const wwwUrl = `https://www.${host}${req.originalUrl}`;
+      return res.redirect(301, wwwUrl);
+    }
+    next();
+  });
+
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -46,6 +63,20 @@ async function startServer() {
       createContext,
     })
   );
+  // Serve static HTML legal pages at clean URLs (crawler-accessible, no JS required)
+  app.get("/privacy-policy", (_req, res) => {
+    const htmlPath = process.env.NODE_ENV === "production"
+      ? path.join(import.meta.dirname, "public", "privacy-policy.html")
+      : path.join(import.meta.dirname, "../..", "client", "public", "privacy-policy.html");
+    res.sendFile(htmlPath);
+  });
+  app.get("/terms", (_req, res) => {
+    const htmlPath = process.env.NODE_ENV === "production"
+      ? path.join(import.meta.dirname, "public", "terms.html")
+      : path.join(import.meta.dirname, "../..", "client", "public", "terms.html");
+    res.sendFile(htmlPath);
+  });
+
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);

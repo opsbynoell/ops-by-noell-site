@@ -1,21 +1,22 @@
 /*
- * OPS BY NOELL — GLOBAL DESIGN SYSTEM
- * Design Philosophy: Quiet Editorial Luxury
- * Inspired by late-era Wallpaper* magazine meets bespoke consultancy
+ * OPS BY NOELL — GLOBAL DESIGN SYSTEM v7 (DARK · VIOLET)
+ * Design Philosophy: Premium Black · Warm Cream · Soft Violet
  *
  * Color Palette:
- *   Background:    #F5F0EB  (warm cream — high-quality paper)
- *   Headline:      #3D3530  (deep espresso)
- *   Body:          #7A6F68  (muted taupe)
- *   CTA:           #B8956A  (burnished gold)
- *   Alt sections:  #E8E2DA
- *   Highlight card:#FDFAF7 / border #C9BFB8
- *   Dividers:      #C9BFB8 (thin taupe)
+ *   Primary bg:    #0A0A0A  (near-black)
+ *   Card bg:       #141414
+ *   Alt section:   #1A1A1A
+ *   Primary text:  #F5F0EB  (warm off-white)
+ *   Muted text:    #8A8480
+ *   Accent:        #A78BFA  (soft violet — premium AI)
+ *   Border:        #2A2A2A
+ *   Btn primary:   #A78BFA bg, #0A0A0A text
+ *   Btn secondary: transparent bg, #F5F0EB border and text
  *
  * Typography:
- *   Headlines:     Cormorant Garamond (serif, 300–500)
- *   Body:          DM Sans (clean modern sans)
- *   Labels:        DM Sans 500, uppercase, tracked
+ *   Headings:  Space Grotesk 700 (geometric, matches logo energy)
+ *   Body/Nav:  Inter 400–600
+ *   Labels:    Inter 600, uppercase, tracked
  */
 
 @import "tailwindcss";
@@ -61,51 +62,55 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Brand custom tokens */
-  --color-brand-bg: #F5F0EB;
-  --color-brand-alt: #E8E2DA;
-  --color-brand-headline: #3D3530;
-  --color-brand-body: #7A6F68;
-  --color-brand-cta: #B8956A;
-  --color-brand-divider: #C9BFB8;
-  --color-brand-card: #FDFAF7;
-  --color-brand-card-border: #C9BFB8;
+  /* Brand dark tokens */
+  --color-brand-bg:        #0A0A0A;
+  --color-brand-card:      #141414;
+  --color-brand-surface:   #1A1A1A;
+  --color-brand-headline:  #F5F0EB;
+  --color-brand-body:      #C8C0B8;
+  --color-brand-muted:     #8A8480;
+  --color-brand-accent:    #A78BFA;
+  --color-brand-accent-h:  #8B6EE8;
+  --color-brand-accent-bg: rgba(167,139,250,0.12);
+  --color-brand-secondary: #F5F0EB;
+  --color-brand-border:    #2A2A2A;
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.965 0.008 65);
-  --foreground: oklch(0.235 0.015 40);
-  --card: oklch(0.99 0.005 65);
-  --card-foreground: oklch(0.235 0.015 40);
-  --popover: oklch(0.99 0.005 65);
-  --popover-foreground: oklch(0.235 0.015 40);
-  --primary: oklch(0.65 0.08 55);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.91 0.01 65);
-  --secondary-foreground: oklch(0.4 0.015 40);
-  --muted: oklch(0.91 0.01 65);
-  --muted-foreground: oklch(0.52 0.02 45);
-  --accent: oklch(0.91 0.01 65);
-  --accent-foreground: oklch(0.235 0.015 40);
+  --radius: 0.5rem;
+  /* Dark theme */
+  --background: oklch(0.07 0 0);
+  --foreground: oklch(0.96 0.008 60);
+  --card: oklch(0.10 0 0);
+  --card-foreground: oklch(0.96 0.008 60);
+  --popover: oklch(0.10 0 0);
+  --popover-foreground: oklch(0.96 0.008 60);
+  --primary: oklch(0.72 0.18 290);
+  --primary-foreground: oklch(0.07 0 0);
+  --secondary: oklch(0.14 0 0);
+  --secondary-foreground: oklch(0.96 0.008 60);
+  --muted: oklch(0.14 0 0);
+  --muted-foreground: oklch(0.57 0.015 60);
+  --accent: oklch(0.14 0 0);
+  --accent-foreground: oklch(0.96 0.008 60);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.82 0.015 55);
-  --input: oklch(0.82 0.015 55);
-  --ring: oklch(0.65 0.08 55);
-  --chart-1: oklch(0.65 0.08 55);
-  --chart-2: oklch(0.55 0.06 45);
-  --chart-3: oklch(0.45 0.05 40);
-  --chart-4: oklch(0.75 0.06 65);
-  --chart-5: oklch(0.85 0.04 70);
-  --sidebar: oklch(0.965 0.008 65);
-  --sidebar-foreground: oklch(0.235 0.015 40);
-  --sidebar-primary: oklch(0.65 0.08 55);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.91 0.01 65);
-  --sidebar-accent-foreground: oklch(0.235 0.015 40);
-  --sidebar-border: oklch(0.82 0.015 55);
-  --sidebar-ring: oklch(0.65 0.08 55);
+  --border: oklch(0.20 0 0);
+  --input: oklch(0.20 0 0);
+  --ring: oklch(0.72 0.18 290);
+  --chart-1: oklch(0.72 0.18 290);
+  --chart-2: oklch(0.60 0.18 200);
+  --chart-3: oklch(0.70 0.15 160);
+  --chart-4: oklch(0.65 0.20 300);
+  --chart-5: oklch(0.55 0.18 30);
+  --sidebar: oklch(0.07 0 0);
+  --sidebar-foreground: oklch(0.96 0.008 60);
+  --sidebar-primary: oklch(0.72 0.18 290);
+  --sidebar-primary-foreground: oklch(0.07 0 0);
+  --sidebar-accent: oklch(0.14 0 0);
+  --sidebar-accent-foreground: oklch(0.96 0.008 60);
+  --sidebar-border: oklch(0.20 0 0);
+  --sidebar-ring: oklch(0.72 0.18 290);
 }
 
 @layer base {
@@ -118,9 +123,9 @@
   }
 
   body {
-    background-color: #F5F0EB;
-    color: #3D3530;
-    font-family: 'DM Sans', sans-serif;
+    background-color: transparent;
+    color: #F5F0EB;
+    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -135,11 +140,16 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
-    color: #3D3530;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #F5F0EB;
     line-height: 1.1;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  /* Cap H1 at 72px max */
+  h1 {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
   }
 }
 
@@ -168,103 +178,107 @@
     .container {
       padding-left: 3rem;
       padding-right: 3rem;
-      max-width: 1320px;
+      max-width: 1280px;
     }
   }
 
-  /* Editorial eyebrow label */
+  /* Eyebrow label */
   .eyebrow {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #B8956A;
+    color: #A78BFA;
   }
 
-  /* Thin taupe divider */
+  /* Divider */
   .divider {
     width: 100%;
     height: 1px;
-    background-color: #C9BFB8;
+    background-color: #2A2A2A;
   }
 
-  /* Primary CTA button */
+  /* Primary CTA button — violet on near-black */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: #B8956A;
-    color: #FDFAF7;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.875rem 2rem;
+    background-color: #A78BFA;
+    color: #0A0A0A;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding: 0.75rem 1.75rem;
     border: none;
-    transition: background-color 0.25s ease, transform 0.2s ease;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     text-decoration: none;
     cursor: pointer;
+    box-shadow: 0 1px 3px rgba(167,139,250,0.25), 0 4px 16px rgba(167,139,250,0.15);
   }
 
   .btn-primary:hover {
-    background-color: #a07d58;
+    background-color: #8B6EE8;
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(167,139,250,0.35), 0 8px 24px rgba(167,139,250,0.2);
   }
 
-  /* Ghost / outline button */
+  /* Secondary / outline button — warm white border */
   .btn-ghost {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     background-color: transparent;
-    color: #3D3530;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.875rem 1.5rem;
-    border: 1px solid #C9BFB8;
-    transition: border-color 0.25s ease, color 0.25s ease;
+    color: #F5F0EB;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0.75rem 1.75rem;
+    border: 1.5px solid #F5F0EB;
+    border-radius: 0.5rem;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
     text-decoration: none;
     cursor: pointer;
   }
 
   .btn-ghost:hover {
-    border-color: #B8956A;
-    color: #B8956A;
+    border-color: #A78BFA;
+    color: #A78BFA;
+    background-color: rgba(167,139,250,0.08);
   }
 
-  /* Section padding */
+  /* Section padding — max 100px top/bottom */
   .section-pad {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   @media (min-width: 1024px) {
     .section-pad {
-      padding-top: 8rem;
-      padding-bottom: 8rem;
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
     }
   }
 
-  /* Highlight card */
+  /* Card styles */
   .highlight-card {
-    background-color: #FDFAF7;
-    border: 1px solid #C9BFB8;
+    background-color: rgba(20,20,20,0.6);
+    border: 1px solid #2A2A2A;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
   }
 
-  /* Standard editorial card */
   .editorial-card {
-    background-color: #FDFAF7;
-    border: 1px solid #E8E2DA;
+    background-color: rgba(26,26,26,0.6);
+    border: 1px solid #2A2A2A;
+    border-radius: 0.75rem;
   }
 }
 
 /* ─── Global responsive grid utilities ─── */
-/* These handle the responsive grids used across all pages */
 .grid-1 { display: grid; grid-template-columns: 1fr; }
 
 @media (min-width: 640px) {
@@ -304,7 +318,7 @@
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -313,7 +327,7 @@
 }
 
 .fade-up {
-  animation: fadeUp 0.65s ease-out forwards;
+  animation: fadeUp 0.55s ease-out forwards;
 }
 
 .fade-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
@@ -321,3 +335,14 @@
 .fade-up-delay-3 { animation-delay: 0.3s; opacity: 0; }
 .fade-up-delay-4 { animation-delay: 0.4s; opacity: 0; }
 .fade-up-delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  border-color: #A78BFA !important;
+}
+

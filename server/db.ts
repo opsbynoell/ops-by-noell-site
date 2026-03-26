@@ -1,6 +1,6 @@
 import { eq, sql, gte, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, chatLeads, InsertChatLead, botSessions, BotSession } from "../drizzle/schema";
+import { InsertUser, users, chatLeads, InsertChatLead, botSessions, BotSession, chatSessions, chatMessages, ChatSession, ChatMessage } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -228,4 +228,108 @@ export async function getRecentBotLeads(limit = 50): Promise<BotSession[]> {
     .where(eq(botSessions.step, "complete"))
     .orderBy(desc(botSessions.updatedAt))
     .limit(limit);
+}
+
+// ─── Website Chat Sessions + Messages ───────────────────────────────────────────────────
+
+export async function upsertChatSession(
+  sessionId: string,
+  data: { visitorName?: string; visitorEmail?: string; businessType?: string; visitorIp?: string; visitorLocation?: string }
+): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  await db
+    .insert(chatSessions)
+    .values({ sessionId, ...data })
+    .onDuplicateKeyUpdate({ set: { ...data, updatedAt: new Date() } });
+}
+
+export async function getChatSession(sessionId: string): Promise<ChatSession | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db.select().from(chatSessions).where(eq(chatSessions.sessionId, sessionId)).limit(1);
+  return result[0] ?? null;
+}
+
+export async function getAllChatSessions(limit = 100): Promise<ChatSession[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(chatSessions).orderBy(desc(chatSessions.updatedAt)).limit(limit);
+}
+
+export async function insertChatMessage(
+  sessionId: string,
+  role: 'visitor' | 'bot' | 'human',
+  content: string
+): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  await db.insert(chatMessages).values({ sessionId, role, content });
+  // Increment unread count for visitor messages
+  if (role === 'visitor') {
+    await db
+      .update(chatSessions)
+      .set({ unreadCount: sql`${chatSessions.unreadCount} + 1`, updatedAt: new Date() })
+      .where(eq(chatSessions.sessionId, sessionId));
+  }
+}
+
+export async function getSessionMessages(sessionId: string): Promise<ChatMessage[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(chatMessages)
+    .where(eq(chatMessages.sessionId, sessionId))
+    .orderBy(chatMessages.createdAt);
+}
+
+export async function markSessionRead(sessionId: string): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(chatSessions).set({ unreadCount: 0 }).where(eq(chatSessions.sessionId, sessionId));
+}
+
+export async function setHumanTakeover(sessionId: string, active: boolean): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(chatSessions).set({ humanTakeover: active ? 1 : 0 }).where(eq(chatSessions.sessionId, sessionId));
+}
+
+// ─── Newsletter Subscribers ──────────────────────────────────────────────────
+import { newsletterSubscribers, InsertNewsletterSubscriber } from "../drizzle/schema";
+
+export async function insertNewsletterSubscriber(
+  data: Pick<InsertNewsletterSubscriber, 'email' | 'source'>
+): Promise<{ id: number | null; isDuplicate: boolean }> {
+  const db = await getDb();
+  if (!db) return { id: null, isDuplicate: false };
+  try {
+    const result = await db.insert(newsletterSubscribers).values({
+      email: data.email,
+      source: data.source ?? '/newsletter',
+      welcomed: 0,
+    });
+    const insertId = (result as any)[0]?.insertId ?? null;
+    return { id: insertId ? Number(insertId) : null, isDuplicate: false };
+  } catch (err: any) {
+    // MySQL duplicate entry error code
+    if (err?.code === 'ER_DUP_ENTRY' || err?.errno === 1062) {
+      return { id: null, isDuplicate: true };
+    }
+    throw err;
+  }
+}
+
+export async function getNewsletterSubscriberCount(): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const result = await db.select({ count: sql`COUNT(*)` }).from(newsletterSubscribers);
+  return Number((result[0] as any)?.count ?? 0);
+}
+
+export async function markNewsletterWelcomed(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(newsletterSubscribers).set({ welcomed: 1 }).where(eq(newsletterSubscribers.id, id));
 }

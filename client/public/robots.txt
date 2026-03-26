@@ -1,0 +1,12 @@
+# robots.txt — Ops by Noell (www.opsbynoell.com)
+
+User-agent: *
+Allow: /
+
+# Block private and admin routes from indexing
+Disallow: /admin/
+Disallow: /analytics
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.opsbynoell.com/sitemap.xml

@@ -1,14 +1,10 @@
 /*
  * RevenueCalculator — Interactive Cost of Inaction Calculator
- * Inputs: missed calls/week, avg service value, weekly appointments, no-show rate
- * Outputs: per-gap monthly cost estimates + running total
- * Design: dark charcoal (#1A1714) with gold accents, matching the homepage CoI section
+ * Design: Matches site design system — #0A0A0A bg, #A78BFA accent, Space Grotesk + Inter
  */
 
 import { useState, useCallback } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function fmt(n: number): string {
   return '$' + Math.round(n).toLocaleString();
@@ -32,25 +28,25 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
         <div>
           <span style={{
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: '0.8125rem',
-            color: 'rgba(253,250,247,0.75)',
-            letterSpacing: '0.02em',
+            color: 'rgba(245,240,235,0.7)',
+            letterSpacing: '0.01em',
           }}>{label}</span>
           {sublabel && (
             <span style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '0.6875rem',
-              color: 'rgba(253,250,247,0.35)',
+              color: 'rgba(245,240,235,0.35)',
               marginLeft: '0.5rem',
             }}>{sublabel}</span>
           )}
         </div>
         <span style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '1.25rem',
-          color: '#B8956A',
-          fontWeight: 400,
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '1.125rem',
+          color: '#A78BFA',
+          fontWeight: 600,
           minWidth: '4rem',
           textAlign: 'right',
         }}>
@@ -58,14 +54,13 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
         </span>
       </div>
       <div style={{ position: 'relative', height: '4px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '2px' }}>
-        {/* Filled track */}
         <div style={{
           position: 'absolute',
           left: 0,
           top: 0,
           height: '100%',
           width: `${pct}%`,
-          backgroundColor: '#B8956A',
+          backgroundColor: '#A78BFA',
           borderRadius: '2px',
           transition: 'width 0.1s ease',
         }} />
@@ -88,7 +83,6 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
             margin: 0,
           }}
         />
-        {/* Thumb */}
         <div style={{
           position: 'absolute',
           top: '50%',
@@ -97,9 +91,9 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
           width: '14px',
           height: '14px',
           borderRadius: '50%',
-          backgroundColor: '#B8956A',
-          border: '2px solid #1A1714',
-          boxShadow: '0 0 0 2px rgba(184,149,106,0.3)',
+          backgroundColor: '#A78BFA',
+          border: '2px solid #0A0A0A',
+          boxShadow: '0 0 0 2px rgba(167,139,250,0.3)',
           pointerEvents: 'none',
           transition: 'left 0.1s ease',
         }} />
@@ -107,8 +101,6 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
     </div>
   );
 }
-
-// ─── Cost Pill ────────────────────────────────────────────────────────────────
 
 interface CostPillProps {
   label: string;
@@ -126,34 +118,40 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
-          backgroundColor: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(184,149,106,0.2)',
-          padding: '0.5rem 0.875rem',
+          backgroundColor: 'rgba(255,255,255,0.03)',
+          border: '1px solid rgba(167,139,250,0.15)',
+          borderRadius: '0.375rem',
+          padding: '0.625rem 0.875rem',
           cursor: 'pointer',
           textAlign: 'left',
           width: '100%',
-          transition: 'border-color 0.2s ease',
+          transition: 'border-color 0.2s ease, background-color 0.2s ease',
         }}
-        onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(184,149,106,0.5)')}
-        onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(184,149,106,0.2)')}
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(167,139,250,0.4)';
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(167,139,250,0.06)';
+        }}
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(167,139,250,0.15)';
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(255,255,255,0.03)';
+        }}
       >
         <span style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: '0.6875rem',
-          color: 'rgba(253,250,247,0.5)',
-          letterSpacing: '0.06em',
+          fontFamily: "'Inter', sans-serif",
+          fontSize: '0.8125rem',
+          color: 'rgba(245,240,235,0.55)',
           flexGrow: 1,
         }}>{label}</span>
         <span style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '1.125rem',
-          color: '#B8956A',
-          fontWeight: 400,
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '1rem',
+          color: '#A78BFA',
+          fontWeight: 600,
           transition: 'all 0.2s ease',
         }}>{fmt(cost)}</span>
         {showTip
-          ? <ChevronUp size={10} color="rgba(184,149,106,0.5)" />
-          : <ChevronDown size={10} color="rgba(184,149,106,0.3)" />}
+          ? <ChevronUp size={10} color="rgba(167,139,250,0.5)" />
+          : <ChevronDown size={10} color="rgba(167,139,250,0.3)" />}
       </button>
       {showTip && (
         <div style={{
@@ -161,15 +159,16 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           bottom: 'calc(100% + 6px)',
           left: 0,
           right: 0,
-          backgroundColor: '#2A2420',
-          border: '1px solid rgba(184,149,106,0.25)',
+          backgroundColor: '#1A1A1A',
+          border: '1px solid rgba(167,139,250,0.2)',
           padding: '0.625rem 0.875rem',
+          borderRadius: '0.375rem',
           zIndex: 10,
         }}>
           <p style={{
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: '0.6875rem',
-            color: 'rgba(253,250,247,0.55)',
+            color: 'rgba(245,240,235,0.5)',
             lineHeight: 1.6,
           }}>{assumption}</p>
         </div>
@@ -178,117 +177,91 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
-
 export default function RevenueCalculator() {
-  // Inputs
   const [missedCallsPerWeek, setMissedCallsPerWeek] = useState(6);
   const [avgServiceValue, setAvgServiceValue] = useState(120);
   const [weeklyAppointments, setWeeklyAppointments] = useState(20);
-  const [noShowRate, setNoShowRate] = useState(15); // percent
-  const [conversionRate, setConversionRate] = useState(30); // percent of follow-up leads that convert
+  const [noShowRate, setNoShowRate] = useState(15);
+  const [conversionRate, setConversionRate] = useState(30);
 
-  // ─── Calculations ──────────────────────────────────────────────────────────
   const calc = useCallback(() => {
     const weeksPerMonth = 4.33;
-
-    // 1. Missed calls: each missed call = a potential new client lost
-    //    Assume 40% of callers would have booked if answered
     const missedCallsMonthly = missedCallsPerWeek * weeksPerMonth;
     const missedCallLoss = missedCallsMonthly * 0.4 * avgServiceValue;
-
-    // 2. No follow-up: existing leads that went cold
-    //    Assume 2× weekly appts worth of leads in pipeline, conversionRate% would book with follow-up
     const coldLeadsMonthly = weeklyAppointments * weeksPerMonth * 0.5;
     const followUpLoss = coldLeadsMonthly * (conversionRate / 100) * avgServiceValue;
-
-    // 3. No-shows: direct lost revenue from appointments that don't show
     const noShowsMonthly = weeklyAppointments * weeksPerMonth * (noShowRate / 100);
     const noShowLoss = noShowsMonthly * avgServiceValue;
-
-    // 4. Weak reviews: lower star rating = fewer new clients
-    //    Estimate: 1 missed review request per 3 appointments → 15% of those would have booked again
     const missedReviewsMonthly = (weeklyAppointments * weeksPerMonth) / 3;
     const reviewLoss = missedReviewsMonthly * 0.15 * avgServiceValue;
-
-    // 5. Inconsistent marketing: no re-engagement = past clients don't return
-    //    Estimate: 10% of monthly client base would rebook with a nudge
     const monthlyClients = weeklyAppointments * weeksPerMonth;
     const marketingLoss = monthlyClients * 0.1 * avgServiceValue;
-
     const total = missedCallLoss + followUpLoss + noShowLoss + reviewLoss + marketingLoss;
-
-    return {
-      missedCallLoss,
-      followUpLoss,
-      noShowLoss,
-      reviewLoss,
-      marketingLoss,
-      total,
-    };
+    return { missedCallLoss, followUpLoss, noShowLoss, reviewLoss, marketingLoss, total };
   }, [missedCallsPerWeek, avgServiceValue, weeklyAppointments, noShowRate, conversionRate]);
 
   const costs = calc();
 
   return (
-    <section style={{ backgroundColor: '#1A1714', padding: '4rem 0', position: 'relative', overflow: 'hidden' }}>
-      {/* Top gold rule */}
+    <section style={{ backgroundColor: '#0A0A0A', padding: '5rem 0', position: 'relative', overflow: 'hidden', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
+      {/* Top purple glow line */}
       <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-        background: 'linear-gradient(90deg, transparent, #B8956A 30%, #B8956A 70%, transparent)',
-        opacity: 0.5,
+        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.4) 30%, rgba(167,139,250,0.4) 70%, transparent)',
       }} />
 
       <div className="container">
 
         {/* Header */}
         <div style={{ marginBottom: '3rem', maxWidth: '560px' }}>
-          <p className="eyebrow" style={{ color: '#B8956A', marginBottom: '0.75rem' }}>
+          <p className="eyebrow" style={{ marginBottom: '0.75rem' }}>
             The Cost of Waiting
           </p>
           <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-            fontWeight: 400,
-            color: '#FDFAF7',
-            lineHeight: 1.15,
+            fontWeight: 800,
+            color: '#F5F0EB',
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
             marginBottom: '0.875rem',
           }}>
             Enter your numbers. See exactly what inaction is costing you.
           </h2>
           <p style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: '0.875rem',
-            color: 'rgba(253,250,247,0.45)',
-            lineHeight: 1.7,
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '0.9375rem',
+            color: '#8A8480',
+            lineHeight: 1.75,
           }}>
-            Adjust the sliders to match your business. The estimates update instantly. Click any cost pill to see the assumption behind the number.
+            Adjust the sliders to match your business. The estimates update instantly. Click any cost row to see the assumption behind the number.
           </p>
         </div>
 
-        {/* Two-column layout: sliders left, results right */}
+        {/* Two-column layout */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: '3rem',
+          gap: '2.5rem',
           alignItems: 'start',
         }} className="lg:grid-cols-2">
 
-          {/* ─── LEFT: Sliders ─── */}
+          {/* LEFT: Sliders */}
           <div style={{
-            backgroundColor: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(184,149,106,0.12)',
+            backgroundColor: '#111111',
+            border: '1px solid #2A2A2A',
+            borderRadius: '0.75rem',
             padding: '2rem',
           }}>
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '0.625rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: 'rgba(184,149,106,0.5)',
+              color: 'rgba(167,139,250,0.5)',
               marginBottom: '1.75rem',
             }}>
-              Your Business — Adjust to Match
+              Your Business: Adjust to Match
             </p>
 
             <Slider
@@ -343,37 +316,36 @@ export default function RevenueCalculator() {
             />
 
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: '0.625rem',
-              color: 'rgba(253,250,247,0.2)',
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '0.6875rem',
+              color: 'rgba(245,240,235,0.2)',
               lineHeight: 1.6,
               marginTop: '1.5rem',
               borderTop: '1px solid rgba(255,255,255,0.05)',
               paddingTop: '1rem',
             }}>
-              These are conservative estimates based on industry averages. Your actual Revenue Leak Audit will give you the precise numbers for your specific business.
+              These are conservative estimates based on industry averages. A Revenue Audit gives you the precise numbers specific to your business, your market, and your gaps.
             </p>
           </div>
 
-          {/* ─── RIGHT: Results ─── */}
+          {/* RIGHT: Results */}
           <div>
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '0.625rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: 'rgba(184,149,106,0.5)',
+              color: 'rgba(167,139,250,0.5)',
               marginBottom: '1.75rem',
             }}>
               Estimated Monthly Revenue Loss
             </p>
 
-            {/* Cost pills — clickable for assumption detail */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
               <CostPill
                 label="Missed Calls"
                 cost={costs.missedCallLoss}
-                assumption={`Based on ${Math.round(missedCallsPerWeek * 4.33)} missed calls/month × 40% booking rate × $${avgServiceValue} avg service value.`}
+                assumption={`Based on ${Math.round(missedCallsPerWeek * 4.33)} missed calls/month x 40% booking rate x $${avgServiceValue} avg service value.`}
               />
               <CostPill
                 label="No Follow-Up"
@@ -383,7 +355,7 @@ export default function RevenueCalculator() {
               <CostPill
                 label="No-Shows"
                 cost={costs.noShowLoss}
-                assumption={`Based on ${noShowRate}% no-show rate × ${Math.round(weeklyAppointments * 4.33)} monthly appointments × $${avgServiceValue} per appointment.`}
+                assumption={`Based on ${noShowRate}% no-show rate x ${Math.round(weeklyAppointments * 4.33)} monthly appointments x $${avgServiceValue} per appointment.`}
               />
               <CostPill
                 label="Weak Reviews"
@@ -399,8 +371,9 @@ export default function RevenueCalculator() {
 
             {/* Total */}
             <div style={{
-              backgroundColor: 'rgba(184,149,106,0.06)',
-              border: '1px solid rgba(184,149,106,0.3)',
+              backgroundColor: 'rgba(167,139,250,0.06)',
+              border: '1px solid rgba(167,139,250,0.25)',
+              borderRadius: '0.75rem',
               padding: '1.5rem 1.75rem',
               display: 'flex',
               alignItems: 'center',
@@ -409,46 +382,46 @@ export default function RevenueCalculator() {
             }}>
               <div>
                 <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: '0.625rem',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: 'rgba(184,149,106,0.6)',
+                  color: 'rgba(167,139,250,0.6)',
                   marginBottom: '0.25rem',
                 }}>
                   Total estimated monthly loss
                 </p>
                 <p style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-                  fontWeight: 400,
-                  color: '#FDFAF7',
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
+                  fontWeight: 800,
+                  color: '#F5F0EB',
                   lineHeight: 1,
-                  letterSpacing: '-0.02em',
+                  letterSpacing: '-0.03em',
                   transition: 'all 0.3s ease',
                 }}>
                   {fmt(costs.total)}
                 </p>
                 <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: '0.6875rem',
-                  color: 'rgba(253,250,247,0.3)',
+                  color: 'rgba(245,240,235,0.3)',
                   marginTop: '0.25rem',
                 }}>
-                  per month · conservative estimate
+                  per month, conservative estimate
                 </p>
               </div>
               <div style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(2rem, 3vw, 2.75rem)',
-                fontWeight: 300,
-                color: 'rgba(184,149,106,0.15)',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
+                fontWeight: 700,
+                color: 'rgba(167,139,250,0.2)',
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}>
                 {fmt(costs.total * 12)}<br />
-                <span style={{ fontSize: '0.5em', color: 'rgba(184,149,106,0.25)', letterSpacing: '0.05em', fontFamily: "'DM Sans', sans-serif", fontWeight: 400 }}>
+                <span style={{ fontSize: '0.5em', color: 'rgba(167,139,250,0.3)', letterSpacing: '0.05em', fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
                   / year
                 </span>
               </div>
@@ -457,36 +430,36 @@ export default function RevenueCalculator() {
             {/* CTA */}
             <div>
               <p style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '0.875rem',
-                color: 'rgba(253,250,247,0.5)',
-                lineHeight: 1.7,
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '0.9375rem',
+                color: '#8A8480',
+                lineHeight: 1.75,
                 marginBottom: '1.25rem',
               }}>
-                Your free audit gives you the real numbers — specific to your business, your market, and your gaps.
+                Start with a free 15-minute intro call. If we're a fit, a Revenue Audit gives you the real numbers specific to your business, your market, and your gaps.
               </p>
               <a
-                href="#booking"
+                href="/book"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.625rem',
-                  backgroundColor: '#B8956A',
-                  color: '#FDFAF7',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.75rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  padding: '1rem 2rem',
+                  backgroundColor: '#A78BFA',
+                  color: '#0A0A0A',
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '0.9375rem',
+                  fontWeight: 700,
+                  letterSpacing: '-0.01em',
+                  padding: '0.9375rem 2rem',
+                  borderRadius: '0.5rem',
                   textDecoration: 'none',
                   transition: 'background-color 0.2s ease',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#A07D58')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#B8956A')}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#9370e8')}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#A78BFA')}
               >
-                Get My Real Numbers — Free
-                <ArrowRight size={13} />
+                Get My Real Numbers, Free
+                <ArrowRight size={15} />
               </a>
             </div>
           </div>
@@ -494,11 +467,10 @@ export default function RevenueCalculator() {
         </div>
       </div>
 
-      {/* Bottom gold rule */}
+      {/* Bottom glow line */}
       <div style={{
-        position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px',
-        background: 'linear-gradient(90deg, transparent, #B8956A 30%, #B8956A 70%, transparent)',
-        opacity: 0.5,
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.4) 30%, rgba(167,139,250,0.4) 70%, transparent)',
       }} />
     </section>
   );

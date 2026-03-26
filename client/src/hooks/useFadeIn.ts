@@ -5,13 +5,20 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-export function useFadeIn(threshold = 0.15) {
+export function useFadeIn(threshold = 0.05) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Check immediately — if already in viewport on mount, show right away
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -20,7 +27,7 @@ export function useFadeIn(threshold = 0.15) {
           observer.unobserve(el);
         }
       },
-      { threshold }
+      { threshold, rootMargin: '0px 0px 120px 0px' }
     );
 
     observer.observe(el);

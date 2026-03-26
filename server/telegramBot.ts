@@ -15,7 +15,7 @@ import type { Express, Request, Response } from "express";
 import { getBotSession, upsertBotSession } from "./db";
 import { formatTelegramMessage } from "./telegram";
 
-const CALENDLY_URL = "https://calendly.com/opsbynoell";
+const CALENDLY_URL = "https://calendly.com/opsbynoell/30-minute-meeting-clone?hide_event_type_details=1&hide_gdpr_banner=1";
 const TELEGRAM_API = "https://api.telegram.org";
 
 function getToken(): string {

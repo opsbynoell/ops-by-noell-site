@@ -1,23 +1,20 @@
 /*
  * OPS BY NOELL — Home Page
- * Design: Quiet Editorial Luxury
+ * Design: Sharp, Clean, AI-Forward (Stripe/Linear/Vercel)
  * Sections: Hero, Proof Bar, Problem, Solution, Services Overview,
- *           How It Works, Case Study Preview, Closing CTA
+ *           How It Works, Marketing Spotlight, Case Study Preview,
+ *           Cost of Inaction, Closing CTA
  *
- * Color: bg #F5F0EB / alt #E8E2DA / headline #3D3530 / body #7A6F68 / CTA #B8956A
- * Typography: Cormorant Garamond headlines, DM Sans body
+ * Color: bg #0A0A0A / surface #FFFFFF / border #2A2A2A / headline #1A1A1A / body #8A8480 / accent #A78BFA
+ * Typography: Inter throughout — 700/600 headlines, 400/500 body
  */
 
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
-import { ArrowRight, Phone, Calendar, Star, MessageSquare, Megaphone, Settings, ChevronRight } from 'lucide-react';
+import { ArrowRight, Phone, Calendar, Star, MessageSquare, Megaphone, Settings, ChevronRight, Check } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { useFadeIn } from '@/hooks/useFadeIn';
-
-const HERO_TEXTURE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663120940829/n7rBKSsjtvarmxAHpVkZmb/hero-light-motion-m2RtUgSKb9cHxo2CrwfdUd.webp';
-const INTERIOR_ARCH = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663120940829/n7rBKSsjtvarmxAHpVkZmb/dark-light-streams-52XeQV8Dryep9vHreBR7tQ.webp';
-const STONE_TEXTURE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663120940829/n7rBKSsjtvarmxAHpVkZmb/warm-bokeh-abstract-75quxs3Jprciw75FwvUqW6.webp';
 
 // Fade-in wrapper component
 function FadeSection({ children, className = '', style = {} }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
@@ -28,8 +25,8 @@ function FadeSection({ children, className = '', style = {} }: { children: React
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(28px)',
-        transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+        transform: visible ? 'translateY(0)' : 'translateY(24px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
         ...style,
       }}
     >
@@ -38,7 +35,6 @@ function FadeSection({ children, className = '', style = {} }: { children: React
   );
 }
 
-// Staggered fade for child items
 function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   const { ref, visible } = useFadeIn(0.1);
   return (
@@ -46,8 +42,8 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
       ref={ref}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 0.65s ease-out ${delay}s, transform 0.65s ease-out ${delay}s`,
+        transform: visible ? 'translateY(0)' : 'translateY(20px)',
+        transition: `opacity 0.55s ease-out ${delay}s, transform 0.55s ease-out ${delay}s`,
         ...style,
       }}
     >
@@ -58,145 +54,136 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: '#F5F0EB', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh' }}>
       <Nav />
 
       {/* ─── HERO ─── */}
       <section
         style={{
           position: 'relative',
-          minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          paddingTop: '72px',
+          paddingTop: '64px',
+          backgroundColor: 'transparent',
         }}
       >
-        {/* Background texture — right half */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: '50%',
-            height: '100%',
-            backgroundImage: `url(${HERO_TEXTURE})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.35,
-          }}
-        />
-        {/* Gradient overlay */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'linear-gradient(90deg, #F5F0EB 55%, rgba(245,240,235,0.2) 100%)',
-          }}
-        />
+        <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '4rem', paddingBottom: '3.5rem' }}>
+          <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4rem', alignItems: 'center' }}>
+          <div>
 
-        <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '6rem' }}>
-          <div style={{ maxWidth: '660px' }}>
-            <FadeItem delay={0}>
-              <p className="eyebrow" style={{ marginBottom: '1.5rem' }}>
-                Done-for-You Automation · Ops by Noell
-              </p>
-            </FadeItem>
-
-            <FadeItem delay={0.1}>
+            <FadeItem delay={0.08}>
               <h1 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-                fontWeight: 400,
-                color: '#3D3530',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                fontWeight: 800,
+                color: '#F5F0EB',
                 lineHeight: 1.05,
-                letterSpacing: '-0.02em',
-                marginBottom: '1.75rem',
+                letterSpacing: '-0.03em',
+                marginBottom: '1.5rem',
               }}>
-                Your business is losing clients every day.{' '}
-                <em style={{ fontStyle: 'italic', color: '#B8956A' }}>We fix that.</em>
+                We build the systems.{' '}
+                <span style={{ color: '#A78BFA' }}>Automation runs them. You get your time back.</span>
               </h1>
             </FadeItem>
 
-            <FadeItem delay={0.2}>
+            <FadeItem delay={0.16}>
               <p style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '1.0625rem',
-                color: '#7A6F68',
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '1.125rem',
+                color: '#C8C0B8',
                 lineHeight: 1.75,
                 marginBottom: '2.5rem',
-                maxWidth: '520px',
+                maxWidth: '580px',
+                fontWeight: 400,
               }}>
-                Your craft is excellent. The systems behind it should be too. We build done-for-you automation infrastructure — from the first call to the five-star review.
+                Follow-up. Bookings. Reminders. Reviews. AI receptionist. We build done-for-you automation systems for service businesses, so you can get back to doing what you do best.
               </p>
             </FadeItem>
 
-            <FadeItem delay={0.3}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+            <FadeItem delay={0.24}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.875rem', alignItems: 'center' }}>
                 <a href="/book" className="btn-primary">
-                  Book Your Free Audit
+                  Book Free Intro Call
                   <ArrowRight size={14} />
                 </a>
-                <a
-                  href="https://t.me/opsbynoell_web_alerts_bot?start=website"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: '#FDFAF7',
-                    backgroundColor: '#229ED9',
-                    padding: '0.75rem 1.5rem',
-                    textDecoration: 'none',
-                    transition: 'opacity 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0.85'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1'; }}
+
+                {/* Lower-friction CTA for colder visitors */}
+                <Link href="/solutions" style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.375rem',
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: '#8A8480',
+                  textDecoration: 'none',
+                  transition: 'color 0.15s ease',
+                }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#A78BFA'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#8A8480'; }}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.627l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.888.932z"/></svg>
-                  Book a Call
-                </a>
-                <Link href="/services" className="btn-ghost">
-                  See What We Build
-                  <ArrowRight size={14} />
+                  See How It Works <ArrowRight size={13} />
                 </Link>
               </div>
             </FadeItem>
+          </div>
+
           </div>
         </div>
 
         {/* Scroll indicator */}
         <div style={{
           position: 'absolute',
-          bottom: '2.5rem',
+          bottom: '1.75rem',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.5rem',
+          gap: '0.3rem',
+          zIndex: 2,
+          cursor: 'pointer',
           opacity: 0.5,
-        }}>
+        }}
+          onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
+        >
           <div style={{
-            width: '1px',
-            height: '48px',
-            backgroundColor: '#B8956A',
-            animation: 'scrollPulse 2s ease-in-out infinite',
-          }} />
+            width: '1.125rem',
+            height: '1.875rem',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: 'rgba(245,240,235,0.3)',
+            borderRadius: '999px',
+            display: 'flex',
+            justifyContent: 'center',
+            paddingTop: '0.25rem',
+          }}>
+            <div style={{
+              width: '2px',
+              height: '5px',
+              backgroundColor: '#A78BFA',
+              borderRadius: '999px',
+              animation: 'scrollBob 1.8s ease-in-out infinite',
+            }} />
+          </div>
+          <style>{`
+            @keyframes scrollBob {
+              0%, 100% { transform: translateY(0); opacity: 1; }
+              50% { transform: translateY(6px); opacity: 0.3; }
+            }
+            @media (max-width: 767px) {
+              .hero-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem !important;
+              }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* ─── PROOF BAR ─── */}
-      <section style={{ backgroundColor: '#3D3530', padding: '2.5rem 0' }}>
+      <section style={{ backgroundColor: 'transparent', borderTop: '1px solid #2A2A2A', borderBottom: '1px solid #2A2A2A', padding: '2.5rem 0' }}>
         <div className="container">
           <div style={{
             display: 'grid',
@@ -204,39 +191,40 @@ export default function Home() {
             gap: '0',
           }} className="lg:grid-cols-4">
             {[
+              { stat: '2 weeks', label: 'Average time from audit to live systems' },
+              { stat: '30–50%', label: 'Typical no-show reduction with reminders' },
               { stat: '< 10 sec', label: 'Missed call response time' },
-              { stat: '30–50%', label: 'Average no-show reduction' },
-              { stat: '100%', label: 'Done for you — we build and manage it all' },
-              { stat: '24 / 7', label: 'Systems running without you' },
+              { stat: '0 hrs/week', label: 'Your time managing it after we build it' },
             ].map((item, i) => (
               <div
                 key={i}
                 style={{
                   padding: '1.5rem 2rem',
-                  borderRight: i < 3 ? '1px solid rgba(201,191,184,0.2)' : 'none',
-                  borderBottom: i < 2 ? '1px solid rgba(201,191,184,0.2)' : 'none',
+                  borderRight: i < 3 ? '1px solid #2A2A2A' : 'none',
+                  borderBottom: i < 2 ? '1px solid #2A2A2A' : 'none',
                   textAlign: 'center',
                 }}
                 className="lg:border-b-0"
               >
                 <p style={{
-                  fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: '2rem',
-                  fontWeight: 400,
-                  color: '#B8956A',
+                  fontWeight: 700,
+                  color: '#FFFFFF',
                   lineHeight: 1,
                   marginBottom: '0.5rem',
-                  letterSpacing: '-0.01em',
+                  letterSpacing: '-0.02em',
                 }}>
                   {item.stat}
                 </p>
                 <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: '0.6875rem',
-                  color: 'rgba(253,250,247,0.65)',
-                  letterSpacing: '0.08em',
+                  color: '#8A8480',
+                  letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   lineHeight: 1.5,
+                  fontWeight: 500,
                 }}>
                   {item.label}
                 </p>
@@ -246,96 +234,113 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── SOCIAL PROOF BAR ─── */}
+      <section style={{ backgroundColor: 'transparent', borderBottom: '1px solid #2A2A2A', padding: '1.25rem 0' }}>
+        <div className="container">
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '0.75rem',
+            fontWeight: 500,
+            color: '#8A8480',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+          }}>
+            Trusted by service businesses across Orange County
+          </p>
+        </div>
+      </section>
+
       {/* ─── THE PROBLEM ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#F5F0EB' }}>
+      <section className="section-pad" style={{ backgroundColor: 'transparent' }}>
         <div className="container">
           <FadeSection>
-            <div style={{ maxWidth: '560px', marginBottom: '4rem' }}>
-                <p className="eyebrow" style={{ marginBottom: '1rem' }}>The Problem</p>
+            <div style={{ maxWidth: '580px', marginBottom: '4rem' }}>
+              <p className="eyebrow" style={{ marginBottom: '1rem' }}>The Problem</p>
               <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
-                fontWeight: 400,
-                color: '#3D3530',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 800,
+                color: '#F5F0EB',
                 lineHeight: 1.1,
+                letterSpacing: '-0.03em',
                 marginBottom: '1.25rem',
               }}>
-                You're losing revenue to broken processes. Not a bad business.
+                The work is great. The follow-through is where things fall apart.
               </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: '#7A6F68', lineHeight: 1.75 }}>
-                Every missed call is a potential client who went somewhere else. Every manual follow-up that never happened is a lead that went cold. Every client who visited once and never heard from you again is recurring revenue you left on the table. These aren't marketing problems — they're operational gaps. And they're fixable.
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '1rem', color: '#C8C0B8', lineHeight: 1.8 }}>
+                Every missed call is a potential client who went somewhere else. Every manual follow-up that never happened is a lead that went cold. These aren't marketing problems. They're systems problems. And they're fixable.
               </p>
             </div>
           </FadeSection>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5px', backgroundColor: '#C9BFB8' }} className="md:grid-cols-3">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }} className="md:grid-cols-3">
             {[
               {
                 number: '01',
-                title: 'Missed Calls & Leads',
-                body: 'The first business to follow up wins the client. 38% of calls to local businesses go unanswered — and every one of those is a booking that went to a competitor.',
+                title: 'Missed Leads',
+                body: 'When someone calls and hits voicemail, they hang up and call the next person on the list. That next person gets the job. It happens every day.',
                 icon: Phone,
               },
               {
                 number: '02',
-                title: 'Weak Follow-Up',
-                body: 'Most businesses follow up once, if at all. 80% of bookings require five or more touchpoints. Without a system, warm leads go cold and revenue quietly disappears.',
-                icon: MessageSquare,
-              },
-              {
-                number: '03',
-                title: 'Manual Booking',
-                body: 'Back-and-forth scheduling by phone wastes hours and creates friction. Clients who can\'t book instantly often don\'t book at all — especially after hours.',
+                title: 'Manual Processes',
+                body: "Scheduling by phone, reminders by hand, follow-up by memory. Every manual task is a bottleneck, and a liability when you're busy.",
                 icon: Calendar,
               },
               {
-                number: '04',
-                title: 'No-Shows',
-                body: 'No-shows cost appointment-based businesses an estimated 10–15% of annual revenue. Without automated reminders, you\'re absorbing that loss every single week.',
-                icon: Star,
-              },
-              {
-                number: '05',
-                title: 'Poor Review Generation',
-                body: '93% of clients read reviews before choosing a local provider. Most businesses never ask — and lose the compounding benefit of social proof to competitors who do.',
-                icon: ArrowRight,
-              },
-              {
-                number: '06',
-                title: 'Inconsistent Marketing',
-                body: 'Acquiring a new client costs 5–7x more than retaining one. Without a system to re-engage past clients, promote offers, and stay top of mind, your best revenue source sits idle.',
-                icon: Megaphone,
+                number: '03',
+                title: 'No Follow-Up System',
+                body: 'One-time clients who never return. No review requests. No re-engagement. The relationship ends when the appointment does.',
+                icon: MessageSquare,
               },
             ].map((card, i) => (
-              <FadeItem key={i} delay={i * 0.12}>
+              <FadeItem key={i} delay={i * 0.1}>
                 <div style={{
-                  backgroundColor: '#FDFAF7',
-                  padding: '2.5rem',
+                  backgroundColor: 'transparent',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderColor: '#2A2A2A',
+                  borderRadius: '0.75rem',
+                  padding: '2rem',
                   height: '100%',
-                }}>
+                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = '#A78BFA';
+                    (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(167,139,250,0.08)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = '#2A2A2A';
+                    (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                  }}
+                >
                   <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
                     <span style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: '3.5rem',
-                      fontWeight: 300,
-                      color: '#E8E2DA',
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontSize: '3rem',
+                      fontWeight: 800,
+                      color: 'rgba(167,139,250,0.35)',
                       lineHeight: 1,
-                      letterSpacing: '-0.02em',
+                      letterSpacing: '-0.03em',
                     }}>
                       {card.number}
                     </span>
-                    <card.icon size={20} color="#B8956A" />
+                    <div style={{ width: '36px', height: '36px', backgroundColor: 'rgba(167,139,250,0.12)', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <card.icon size={18} color="#A78BFA" />
+                    </div>
                   </div>
                   <h3 style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1.625rem',
-                    fontWeight: 400,
-                    color: '#3D3530',
-                    marginBottom: '0.875rem',
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '1.125rem',
+                    fontWeight: 700,
+                    color: '#F5F0EB',
+                    marginBottom: '0.75rem',
+                    lineHeight: 1.3,
                   }}>
                     {card.title}
                   </h3>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.875rem', color: '#7A6F68', lineHeight: 1.75 }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.875rem', color: '#8A8480', lineHeight: 1.8 }}>
                     {card.body}
                   </p>
                 </div>
@@ -346,210 +351,214 @@ export default function Home() {
       </section>
 
       {/* ─── THE SOLUTION ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#E8E2DA' }}>
+      <section className="section-pad" style={{ backgroundColor: 'transparent', borderTop: '1px solid #2A2A2A', borderBottom: '1px solid #2A2A2A' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }} className="lg:grid-cols-2">
-            {/* Image */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '5rem', alignItems: 'center', maxWidth: '760px' }}>
+            {/* Left: Copy */}
             <FadeItem delay={0}>
-              <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
-                <img
-                  src={INTERIOR_ARCH}
-                  alt="Refined interior space"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-                {/* Overlay card */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '1.5rem',
-                  right: '-1.5rem',
-                  backgroundColor: '#3D3530',
-                  padding: '1.5rem 2rem',
-                  maxWidth: '240px',
-                  display: 'none',
-                }} className="lg:block">
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.25rem', color: '#FDFAF7', lineHeight: 1.3, marginBottom: '0.5rem' }}>
-                    "Most clients are live within 2 weeks."
-                  </p>
-                  <p className="eyebrow" style={{ color: '#B8956A' }}>Ops by Noell</p>
-                </div>
-              </div>
-            </FadeItem>
-
-            {/* Copy */}
-            <FadeItem delay={0.15}>
               <div>
-                <p className="eyebrow" style={{ marginBottom: '1rem' }}>What We Do</p>
+                <p className="eyebrow" style={{ marginBottom: '1rem' }}>The Solution</p>
                 <h2 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                  fontWeight: 400,
-                  color: '#3D3530',
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: 800,
+                  color: '#F5F0EB',
                   lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
                   marginBottom: '1.5rem',
                 }}>
-                  We install your AI-powered back office. It runs 24/7 without you.
+                  We build the behind-the-scenes systems that make your business run. And then they run themselves.
                 </h2>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: '#7A6F68', lineHeight: 1.75, marginBottom: '1.5rem' }}>
-                  Ops by Noell builds and manages automation systems for local businesses. Lead capture. Follow-up. Booking. Reminders. Review generation. Marketing automation. All of it running automatically — so you stop losing revenue between clients.
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '1rem', color: '#C8C0B8', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+                  We don't sell software or hand you a login and wish you luck. We build your complete automation system from scratch: designed around your specific business, connected to your tools, and running from day one.
                 </p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: '#7A6F68', lineHeight: 1.75, marginBottom: '2.5rem' }}>
-                  Think of it as replacing a full-time front desk and marketing coordinator at a fraction of the cost — with faster response times and zero days off. No new software to learn. No team to manage. A system that works in the background while you focus on your business.
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '1rem', color: '#C8C0B8', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+                  From the moment a lead calls to the moment they leave a five-star review, every step is automated, optimized, and running. Whether you're with a client or asleep.
                 </p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem', marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2.5rem' }}>
                   {[
-                    'We design the system around your specific business and workflow',
-                    'We install and configure every component — you touch nothing',
-                    'We manage and maintain it ongoing, month after month',
-                    'You focus on delivery. The system handles the rest.',
+                    'We design the system around your specific business',
+                    'We install and configure every component',
+                    'We monitor it and adjust as your business grows',
+                    'You see results, not dashboards.',
                   ].map((item, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem' }}>
-                      <div style={{ width: '20px', height: '20px', backgroundColor: '#B8956A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                        <ChevronRight size={12} color="#FDFAF7" />
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                      <div style={{ width: '20px', height: '20px', backgroundColor: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px', borderRadius: '4px' }}>
+                        <Check size={11} color="#A78BFA" strokeWidth={2.5} />
                       </div>
-                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9375rem', color: '#3D3530', lineHeight: 1.6 }}>{item}</p>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.9375rem', color: '#8A8480', lineHeight: 1.6 }}>{item}</p>
                     </div>
                   ))}
                 </div>
 
-                <a href="/services" className="btn-primary">
-                  See the Full System
+                <a href="/book" className="btn-primary">
+                  Book Free Intro Call
                   <ArrowRight size={14} />
                 </a>
               </div>
             </FadeItem>
+
+
           </div>
         </div>
       </section>
 
       {/* ─── SERVICES OVERVIEW ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#F5F0EB' }}>
+      <section className="section-pad" style={{ backgroundColor: 'transparent' }}>
         <div className="container">
           <FadeSection>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '4rem' }} className="lg:flex-row lg:items-end lg:justify-between">
-              <div style={{ maxWidth: '480px' }}>
-                <p className="eyebrow" style={{ marginBottom: '1rem' }}>The System</p>
-                <h2 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                  fontWeight: 400,
-                  color: '#3D3530',
-                  lineHeight: 1.1,
-                }}>
-                  We automate the operations of your business. All of it.
-                </h2>
-              </div>
-              <Link href="/services" className="btn-ghost" style={{ marginTop: '1.5rem', flexShrink: 0 }}>
-                View All Services
-                <ArrowRight size={14} />
-              </Link>
+            <div style={{ maxWidth: '560px', marginBottom: '4rem' }}>
+              <p className="eyebrow" style={{ marginBottom: '1rem' }}>What We Build</p>
+              <h2 style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 800,
+                color: '#F5F0EB',
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+                marginBottom: '1rem',
+              }}>
+                Six systems. Built once. Running always.
+              </h2>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '1rem', color: '#C8C0B8', lineHeight: 1.8 }}>
+                Each system is custom-built for your business and runs automatically: follow-up, bookings, reviews, and more. No lifting a finger required.
+              </p>
             </div>
           </FadeSection>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1px', backgroundColor: '#C9BFB8' }} className="md:grid-cols-2 lg:grid-cols-3">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }} className="md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Phone,
+                number: '01',
                 title: 'Missed Call Text-Back',
-                body: 'Client calls. You\'re busy. They get an instant text with your booking link. Lead captured. First to respond wins — now you always respond first.',
                 tag: 'Lead Capture',
+                body: 'Every missed call triggers an instant automated text in under 10 seconds. The lead stays warm. Your competitor doesn\'t get the chance.',
+                icon: Phone,
+                accent: false,
               },
               {
+                number: '02',
+                title: 'Automatic Booking + Reminders',
+                tag: 'Scheduling',
+                body: '24/7 AI-driven booking without phone tag. Smart reminders that cut no-shows by 30–50%.',
                 icon: Calendar,
-                title: 'AI Booking + Reminders',
-                body: 'Clients book online 24/7. Automatic confirmations and reminders cut no-shows by up to 50%. No back-and-forth. No manual scheduling.',
-                tag: 'Booking',
+                accent: false,
               },
               {
-                icon: Star,
-                title: 'Review Generation',
-                body: 'Post-visit texts go out automatically asking for a Google review. Direct link. One tap. More reviews, better rankings, more inbound — on autopilot.',
+                number: '03',
+                title: 'Review Requests on Autopilot',
                 tag: 'Reputation',
+                body: 'Automated review requests after every interaction. More 5-star reviews, higher ranking, more inbound leads.',
+                icon: Star,
+                accent: false,
               },
               {
+                number: '04',
+                title: 'Follow-Up That Actually Happens',
+                tag: 'Conversion',
+                body: 'Most businesses follow up once. Our AI follows up until it converts. Intelligent sequences that turn cold leads into booked clients.',
                 icon: MessageSquare,
-                title: 'Lead Follow-Up',
-                body: 'Leads that don\'t convert immediately get an automated follow-up sequence. Past clients get re-engagement messages at the right intervals. All automated. All personal.',
-                tag: 'Follow-Up',
+                accent: false,
               },
               {
-                icon: Megaphone,
-                title: 'Marketing Automation',
-                body: 'Email campaigns, promotional sequences, and outreach — built and managed by us. Consistent marketing output without you managing it or hiring a team.',
-                tag: 'Marketing',
-              },
-              {
+                number: '05',
+                title: 'Bring Back Lost Clients',
+                tag: 'Retention',
+                body: 'AI-powered campaigns that identify and re-activate lapsed clients before they\'re gone for good.',
                 icon: Settings,
-                title: 'Custom Operations Buildout',
-                body: 'Your business doesn\'t fit a template. We scope and build exactly what you need — internal workflows, team processes, client onboarding, reporting, integrations, and beyond.',
-                tag: 'Custom',
+                accent: false,
               },
               {
-                icon: ArrowRight,
-                title: 'Free Revenue Leak Audit',
-                body: 'We audit your current setup and identify exactly where you\'re losing revenue. Clear picture of your top gaps. Quantified cost of each one. No jargon.',
-                tag: 'Free',
-                highlight: true,
+                number: '06',
+                title: 'Stay in Touch Without Thinking About It',
+                tag: 'Growth',
+                body: 'Seasonal promotions, personalized outreach, referral pipelines. Enterprise-level marketing automation, done for you.',
+                icon: Megaphone,
+                accent: true,
               },
             ].map((service, i) => (
-              <FadeItem key={i} delay={i * 0.08}>
+              <FadeItem key={i} delay={i * 0.07}>
                 <div style={{
-                  backgroundColor: service.highlight ? '#3D3530' : '#FDFAF7',
-                  padding: '2.25rem',
+                  backgroundColor: service.accent ? 'rgba(167,139,250,0.08)' : '#0A0A0A',
+                  border: service.accent ? '1px solid rgba(167,139,250,0.45)' : '1px solid #2A2A2A',
+                  boxShadow: service.accent ? '0 0 32px rgba(167,139,250,0.12), inset 0 0 20px rgba(167,139,250,0.04)' : 'none',
+                  borderRadius: '0.75rem',
+                  padding: '2rem',
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
-                  transition: 'background-color 0.2s ease',
-                }}>
+                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                }}
+                  onMouseEnter={(e) => {
+                    if (!service.accent) {
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(167,139,250,0.3)';
+                      (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(167,139,250,0.08)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!service.accent) {
+                      (e.currentTarget as HTMLElement).style.borderColor = '#2A2A2A';
+                      (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                    }
+                  }}
+                >
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-                    <service.icon size={20} color={service.highlight ? '#B8956A' : '#B8956A'} />
+                    <div style={{
+                      width: '36px', height: '36px',
+                      backgroundColor: service.accent ? 'rgba(167,139,250,0.15)' : '#FDF4E3',
+                      borderRadius: '0.5rem',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}>
+                      <service.icon size={18} color={service.accent ? '#A78BFA' : '#A78BFA'} />
+                    </div>
                     <span style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: '0.625rem',
-                      fontWeight: 500,
-                      letterSpacing: '0.15em',
+                      fontWeight: 600,
+                      letterSpacing: '0.12em',
                       textTransform: 'uppercase',
-                      color: service.highlight ? 'rgba(253,250,247,0.5)' : '#B8956A',
-                      border: `1px solid ${service.highlight ? 'rgba(184,149,106,0.4)' : '#C9BFB8'}`,
+                      color: service.accent ? '#A78BFA' : '#8A8480',
+                      border: `1px solid ${service.accent ? 'rgba(167,139,250,0.35)' : '#2A2A2A'}`,
                       padding: '0.25rem 0.625rem',
+                      borderRadius: '100px',
                     }}>
                       {service.tag}
                     </span>
                   </div>
                   <h3 style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1.5rem',
-                    fontWeight: 400,
-                    color: service.highlight ? '#FDFAF7' : '#3D3530',
-                    marginBottom: '0.75rem',
-                    lineHeight: 1.2,
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '1.0625rem',
+                    fontWeight: 700,
+                    color: '#F5F0EB',
+                    marginBottom: '0.625rem',
+                    lineHeight: 1.3,
                   }}>
                     {service.title}
                   </h3>
                   <p style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: '0.875rem',
-                    color: service.highlight ? 'rgba(253,250,247,0.7)' : '#7A6F68',
-                    lineHeight: 1.75,
+                    color: '#8A8480',
+                    lineHeight: 1.8,
                     flexGrow: 1,
                   }}>
                     {service.body}
                   </p>
-                  {service.highlight && (
+                  {service.accent && (
                     <a href="/book" style={{
                       marginTop: '1.5rem',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem',
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: '0.75rem',
-                      fontWeight: 500,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      color: '#B8956A',
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '0.8125rem',
+                      fontWeight: 700,
+                      color: '#A78BFA',
                       textDecoration: 'none',
+                      opacity: 1,
                     }}>
-                      Book Free Audit <ArrowRight size={12} />
+                      Book Free Intro Call <ArrowRight size={13} />
                     </a>
                   )}
                 </div>
@@ -559,69 +568,181 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── HOW IT WORKS — Dark Premium Section ─── */}
-      <section className="section-pad" style={{
-        backgroundColor: '#1A1714',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        {/* Subtle texture overlay */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `url(${STONE_TEXTURE})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.06,
-        }} />
-        {/* Top gold rule */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '2px',
-          background: 'linear-gradient(90deg, transparent, #B8956A 30%, #B8956A 70%, transparent)',
-          opacity: 0.6,
-        }} />
+      {/* ─── INDUSTRIES WE SERVE ─── */}
+      <section id="industries" className="section-pad" style={{ backgroundColor: 'transparent', borderTop: '1px solid #2A2A2A' }}>
+        <div className="container">
+          <FadeSection>
+            <div style={{ textAlign: 'center', maxWidth: '560px', margin: '0 auto 3.5rem' }}>
+              <p className="eyebrow" style={{ marginBottom: '1rem' }}>Industries We Serve</p>
+              <h2 style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(1.875rem, 3.5vw, 2.75rem)',
+                fontWeight: 800,
+                color: '#F5F0EB',
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}>
+                We build AI automation for appointment-based service businesses.
+              </h2>
+            </div>
+          </FadeSection>
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }} className="md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: 'Med Spas & Wellness',
+                body: 'AI receptionist, treatment follow-up, and review generation that fills your calendar and builds your online reputation.',
+              },
+              {
+                title: 'Massage & Bodywork',
+                body: 'Missed call text-back, automated booking and reminders, and client reactivation campaigns that bring lapsed clients back.',
+              },
+              {
+                title: 'Salons & Spas',
+                body: '24/7 AI booking, no-show reduction, and automated review requests that keep your chairs full and your ratings high.',
+              },
+              {
+                title: 'Dental & Healthcare',
+                body: 'AI-powered patient intake, appointment reminders, recall campaigns, and review generation for your practice.',
+              },
+            ].map((industry, i) => (
+              <FadeItem key={i} delay={i * 0.08}>
+                <div style={{
+                  backgroundColor: '#0A0A0A',
+                  border: '1px solid #2A2A2A',
+                  borderRadius: '0.75rem',
+                  padding: '2rem',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'border-color 0.2s ease',
+                }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(167,139,250,0.4)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#2A2A2A'; }}
+                >
+                  <h3 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                    color: '#F5F0EB',
+                    marginBottom: '0.75rem',
+                    lineHeight: 1.3,
+                  }}>
+                    {industry.title}
+                  </h3>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '0.875rem',
+                    color: '#8A8480',
+                    lineHeight: 1.8,
+                    flexGrow: 1,
+                    marginBottom: '1.5rem',
+                  }}>
+                    {industry.body}
+                  </p>
+                  <a href="/book" style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.375rem',
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '0.8125rem',
+                    fontWeight: 600,
+                    color: '#A78BFA',
+                    textDecoration: 'none',
+                  }}>
+                    Book Free Intro Call <ArrowRight size={12} />
+                  </a>
+                </div>
+              </FadeItem>
+            ))}
+          </div>
+
+          <FadeSection>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '0.9375rem',
+              color: '#8A8480',
+              textAlign: 'center',
+              marginTop: '2.5rem',
+              lineHeight: 1.7,
+            }}>
+              Don't see your industry? We work with any appointment-based service business.{' '}
+              <a href="/book" style={{ color: '#A78BFA', textDecoration: 'none', fontWeight: 500 }}>Book a free intro call</a>{' '}
+              and we'll show you what we can build.
+            </p>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* ─── TECH STACK / POWERED BY ─── */}
+      <section style={{ backgroundColor: 'rgba(20,20,20,0.55)', borderTop: '1px solid #2A2A2A', borderBottom: '1px solid #2A2A2A', padding: '3.5rem 0' }}>
+        <div className="container">
+            <FadeSection>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '0.6875rem',
+                fontWeight: 700,
+                color: '#8A8480',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                marginBottom: '1.25rem',
+              }}>Built on enterprise-grade AI infrastructure</p>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '1rem',
+                color: '#C8C0B8',
+                lineHeight: 1.75,
+                maxWidth: '560px',
+                margin: '0 auto',
+              }}>
+                Every system we build runs on enterprise-grade AI infrastructure, the same platforms powering thousands of fast-growing service businesses, configured specifically for yours. We handle the setup, the connections, and the ongoing monitoring so you never have to.
+              </p>
+            </div>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* ─── HOW IT WORKS ─── */}
+      <section className="section-pad" style={{ backgroundColor: 'transparent', borderTop: '1px solid #2A2A2A', borderBottom: '1px solid #2A2A2A' }}>
+        <div className="container">
           <FadeSection>
             <div style={{ maxWidth: '560px', marginBottom: '4.5rem' }}>
-              <p className="eyebrow" style={{ color: '#B8956A', marginBottom: '1rem' }}>The Process</p>
+              <p className="eyebrow" style={{ marginBottom: '1rem' }}>The Process</p>
               <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                fontWeight: 400,
-                color: '#FDFAF7',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 800,
+                color: '#F5F0EB',
                 lineHeight: 1.1,
+                letterSpacing: '-0.03em',
                 marginBottom: '1rem',
               }}>
                 From audit to automation in as little as{' '}
-                <em style={{ fontStyle: 'italic', color: '#B8956A' }}>two weeks.</em>
+                <span style={{ color: '#A78BFA' }}>two weeks.</span>
               </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9375rem', color: 'rgba(253,250,247,0.6)', lineHeight: 1.75 }}>
-                Most clients are fully live within 2 weeks of their audit. You don't change how you work — the system adapts to you.
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.9375rem', color: '#C8C0B8', lineHeight: 1.8 }}>
+                Most clients are fully live within 2 weeks of their audit. You don't change how you work. The system adapts to you.
               </p>
             </div>
           </FadeSection>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1px', backgroundColor: 'rgba(184,149,106,0.15)' }} className="md:grid-cols-4">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }} className="md:grid-cols-4">
             {[
               {
                 step: '01',
-                title: 'Free Automation Audit',
-                body: 'We audit your current setup and identify exactly where you\'re losing revenue. Clear picture of your top gaps. No pitch. No obligation. Just clarity.',
+                title: 'Free 15-Min Intro Call',
+                body: 'We learn about your business, answer your questions, and see if we\'re a fit. No pitch. No pressure. Just a real conversation.',
               },
               {
                 step: '02',
                 title: 'System Design',
-                body: 'We build your automation stack to fit your business and workflow. Configured specifically for you — not a generic template.',
+                body: 'We build your automation stack to fit your business and workflow. Configured specifically for you, not a generic template.',
               },
               {
                 step: '03',
                 title: 'Installation',
-                body: 'We install and test everything. Most clients are fully live within two weeks. You don\'t change how you work. The system adapts to you.',
+                body: 'We install and test everything. Most clients are fully live within two weeks. Once your system is live, Nova (our AI assistant) is available around the clock to answer your questions. And when something needs a human, The Noells are here.',
               },
               {
                 step: '04',
@@ -629,50 +750,47 @@ export default function Home() {
                 body: 'Leads get captured. Follow-up runs. Reviews come in. Clients come back. You focus on delivery. The system handles the rest.',
               },
             ].map((step, i) => (
-              <FadeItem key={i} delay={i * 0.12}>
+              <FadeItem key={i} delay={i * 0.1}>
                 <div style={{
-                  padding: '2.5rem',
-                  backgroundColor: 'rgba(255,255,255,0.03)',
-                  position: 'relative',
+                  backgroundColor: 'transparent',
+                  borderTop: i === 3 ? '3px solid #A78BFA' : '1px solid #2A2A2A',
+                  borderRight: '1px solid #2A2A2A',
+                  borderBottom: '1px solid #2A2A2A',
+                  borderLeft: '1px solid #2A2A2A',
+                  borderRadius: '0.75rem',
+                  padding: '2rem',
                   height: '100%',
-                  borderTop: i === 3 ? '2px solid #B8956A' : 'none',
-                  transition: 'background-color 0.2s ease',
+                  position: 'relative',
                 }}>
-                  {/* Gold step number */}
                   <div style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '5rem',
-                    fontWeight: 300,
-                    color: 'rgba(184,149,106,0.12)',
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: '4rem',
+                    fontWeight: 800,
+                    color: 'rgba(167,139,250,0.4)',
                     lineHeight: 1,
-                    marginBottom: '-1rem',
-                    letterSpacing: '-0.03em',
+                    marginBottom: '-0.5rem',
+                    letterSpacing: '-0.04em',
                   }}>
                     {step.step}
                   </div>
-                  {/* Gold accent line */}
                   <div style={{
                     width: '24px',
-                    height: '2px',
-                    backgroundColor: '#B8956A',
+                    height: '3px',
+                    backgroundColor: '#A78BFA',
                     marginBottom: '1rem',
                     marginTop: '0.5rem',
-                    position: 'relative',
-                    zIndex: 1,
                   }} />
                   <h3 style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1.5rem',
-                    fontWeight: 400,
-                    color: '#FDFAF7',
-                    marginBottom: '0.875rem',
-                    lineHeight: 1.2,
-                    position: 'relative',
-                    zIndex: 1,
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                    color: '#F5F0EB',
+                    marginBottom: '0.75rem',
+                    lineHeight: 1.3,
                   }}>
                     {step.title}
                   </h3>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.875rem', color: 'rgba(253,250,247,0.55)', lineHeight: 1.75 }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.875rem', color: '#8A8480', lineHeight: 1.8 }}>
                     {step.body}
                   </p>
                 </div>
@@ -682,186 +800,109 @@ export default function Home() {
 
           <FadeSection style={{ marginTop: '3.5rem', textAlign: 'center' }}>
             <a href="/book" className="btn-primary">
-              Start Your Free Audit
+              Book Free Intro Call
               <ArrowRight size={14} />
             </a>
           </FadeSection>
         </div>
-
-        {/* Bottom gold rule */}
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '2px',
-          background: 'linear-gradient(90deg, transparent, #B8956A 30%, #B8956A 70%, transparent)',
-          opacity: 0.6,
-        }} />
       </section>
 
-      {/* ─── INCONSISTENT MARKETING SPOTLIGHT ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#E8E2DA' }}>
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '4rem',
-            alignItems: 'center',
-          }} className="lg:grid-cols-2">
-
-            {/* Left: Copy */}
-            <FadeItem delay={0}>
-              <div>
-                <p className="eyebrow" style={{ marginBottom: '1rem' }}>Revenue Gap #6</p>
-                <h2 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                  fontWeight: 400,
-                  color: '#3D3530',
-                  lineHeight: 1.1,
-                  marginBottom: '1.5rem',
-                }}>
-                  Your best clients are already in your database.{' '}
-                  <em style={{ fontStyle: 'italic', color: '#B8956A' }}>You're just not marketing to them.</em>
-                </h2>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: '#7A6F68', lineHeight: 1.75, marginBottom: '1.25rem' }}>
-                  Inconsistent marketing is the most expensive gap most local businesses have — and the least visible. It's not about running ads or posting on social media. It's about systematically staying in front of the people who already trust you.
-                </p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: '#7A6F68', lineHeight: 1.75, marginBottom: '2.5rem' }}>
-                  Ops by Noell builds and manages your marketing automation — re-engagement campaigns, seasonal promotions, birthday messages, referral requests, and win-back sequences. Consistent outreach, zero manual effort.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem', marginBottom: '2.5rem' }}>
-                  {[
-                    'Automated re-engagement for past clients',
-                    'Seasonal promotions sent at the right time',
-                    'Birthday and milestone messages',
-                    'Referral request sequences',
-                    'Win-back campaigns for lapsed clients',
-                  ].map((item, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem' }}>
-                      <div style={{ width: '20px', height: '20px', backgroundColor: '#B8956A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                        <ChevronRight size={12} color="#FDFAF7" />
-                      </div>
-                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9375rem', color: '#3D3530', lineHeight: 1.6 }}>{item}</p>
-                    </div>
-                  ))}
-                </div>
-                <a href="/services" className="btn-primary">
-                  See Marketing Automation
-                  <ArrowRight size={14} />
-                </a>
-              </div>
-            </FadeItem>
-
-            {/* Right: Stat callout */}
-            <FadeItem delay={0.15}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5px', backgroundColor: '#C9BFB8' }}>
-                {[
-                  {
-                    stat: '5–7×',
-                    label: 'More expensive to acquire a new client than retain an existing one',
-                  },
-                  {
-                    stat: '67%',
-                    label: 'Of lost clients leave due to indifference — not price or quality',
-                  },
-                  {
-                    stat: '$0',
-                    label: 'Additional ad spend required — your client list is the asset',
-                  },
-                ].map((item, i) => (
-                  <div key={i} style={{
-                    backgroundColor: '#FDFAF7',
-                    padding: '2.5rem',
-                    borderLeft: '3px solid #B8956A',
-                  }}>
-                    <p style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: '3rem',
-                      fontWeight: 400,
-                      color: '#B8956A',
-                      lineHeight: 1,
-                      marginBottom: '0.625rem',
-                      letterSpacing: '-0.02em',
-                    }}>
-                      {item.stat}
-                    </p>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.875rem', color: '#7A6F68', lineHeight: 1.65 }}>
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </FadeItem>
-
-          </div>
+      {/* ─── REAL RESULTS + CASE STUDY PREVIEW ─── */}
+      <section className="section-pad" style={{ backgroundColor: 'rgba(20,20,20,0.55)', borderTop: '1px solid #2A2A2A', borderBottom: '1px solid #2A2A2A' }}>
+        <div className="container" style={{ marginBottom: '3rem' }}>
+          <FadeSection>
+            <div style={{ textAlign: 'center' }}>
+              <p className="eyebrow" style={{ marginBottom: '1rem' }}>Real Results</p>
+              <h2 style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                fontWeight: 800,
+                color: '#F5F0EB',
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                marginBottom: '1.25rem',
+              }}>We build the system. You see the results.</h2>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '1rem', color: '#C8C0B8', lineHeight: 1.75, maxWidth: '560px', margin: '0 auto' }}>
+                Every client we take on gets a custom-built system designed around their specific business. Here's what that looks like in practice.
+              </p>
+            </div>
+          </FadeSection>
         </div>
-      </section>
-
-      {/* ─── CASE STUDY PREVIEW ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#F5F0EB' }}>
         <div className="container">
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr',
             gap: '0',
-            backgroundColor: '#3D3530',
+            backgroundColor: 'transparent',
             overflow: 'hidden',
+            border: '1px solid #2A2A2A',
+            borderRadius: '1rem',
           }} className="lg:grid-cols-2">
-            {/* Image */}
-            <div style={{ position: 'relative', minHeight: '360px', overflow: 'hidden' }}>
-              <img
-                src={STONE_TEXTURE}
-                alt="Stone texture"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }}
-              />
+            {/* Left: Visual */}
+            <div style={{
+              position: 'relative',
+              minHeight: '280px',
+              backgroundColor: 'rgba(26,26,26,0.55)',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '2.5rem',
+            }}>
+              {/* Abstract blue grid overlay */}
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(135deg, rgba(61,53,48,0.7) 0%, rgba(61,53,48,0.2) 100%)',
+                backgroundImage: `
+                  linear-gradient(rgba(167,139,250,0.15) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(167,139,250,0.15) 1px, transparent 1px)
+                `,
+                backgroundSize: '32px 32px',
               }} />
-              <div style={{ position: 'absolute', bottom: '2rem', left: '2rem' }}>
-                <p className="eyebrow" style={{ color: '#B8956A', marginBottom: '0.5rem' }}>Case Study</p>
+              <div style={{
+                position: 'absolute',
+                inset: 0
+              }} />
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <p className="eyebrow" style={{ marginBottom: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>Case Study</p>
                 <p style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#FDFAF7',
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: '2rem',
+                  fontWeight: 800,
+                  color: '#FFFFFF',
                   lineHeight: 1.1,
-                  letterSpacing: '-0.01em',
+                  letterSpacing: '-0.03em',
                 }}>
                   25 years of expertise.<br />Zero infrastructure.
                 </p>
               </div>
             </div>
 
-            {/* Copy */}
+            {/* Right: Copy */}
             <FadeItem delay={0.15}>
               <div style={{ padding: '3rem 2.5rem' }}>
                 <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: '0.6875rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.18em',
+                  fontWeight: 600,
+                  letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: 'rgba(201,191,184,0.7)',
+                  color: '#8A8480',
                   marginBottom: '1.25rem',
                 }}>
                   Laguna Niguel, CA · Massage Therapy
                 </p>
                 <h3 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '1.875rem',
-                  fontWeight: 400,
-                  color: '#FDFAF7',
-                  lineHeight: 1.2,
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '1.375rem',
+                  fontWeight: 700,
+                  color: '#F5F0EB',
+                  lineHeight: 1.3,
+                  letterSpacing: '-0.015em',
                   marginBottom: '1.25rem',
                 }}>
-                  A 25-year massage therapist with zero digital infrastructure — transformed in two weeks.
+                  A 25-year massage therapist with zero digital infrastructure. Transformed in two weeks.
                 </h3>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9375rem', color: 'rgba(253,250,247,0.7)', lineHeight: 1.75, marginBottom: '2rem' }}>
-                  No website. No online booking. Calls going to voicemail. No reminders, no reviews, no follow-up. Santa had built a loyal clientele through 25 years of exceptional work — and was losing new clients every day to operational gaps she didn't even know existed.
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.9375rem', color: '#C8C0B8', lineHeight: 1.8, marginBottom: '2rem' }}>
+                  As our founding client partner, Santa gave us the chance to prove what AI automation could do for a service business with zero digital infrastructure. The results speak for themselves.
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '2.5rem' }}>
@@ -873,13 +914,13 @@ export default function Home() {
                     'Repeat client follow-up running',
                   ].map((item, i) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#B8956A', flexShrink: 0 }} />
-                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.875rem', color: 'rgba(253,250,247,0.75)' }}>{item}</p>
+                      <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#A78BFA', flexShrink: 0 }} />
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.875rem', color: '#8A8480' }}>{item}</p>
                     </div>
                   ))}
                 </div>
 
-                <Link href="/case-study" className="btn-primary" style={{ backgroundColor: '#B8956A' }}>
+                <Link href="/case-study" className="btn-primary">
                   Read the Full Case Study
                   <ArrowRight size={14} />
                 </Link>
@@ -889,293 +930,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── COST OF INACTION ─── */}
-      <section className="section-pad" style={{ backgroundColor: '#1A1714', position: 'relative', overflow: 'hidden' }}>
-        {/* Top gold rule */}
-        <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-          background: 'linear-gradient(90deg, transparent, #B8956A 30%, #B8956A 70%, transparent)',
-          opacity: 0.6,
-        }} />
-
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          {/* Header */}
-          <FadeSection>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem', marginBottom: '4rem', alignItems: 'flex-end' }} className="lg:grid-cols-2">
-              <div>
-                <p className="eyebrow" style={{ color: '#B8956A', marginBottom: '1rem' }}>The Cost of Inaction</p>
-                <h2 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                  fontWeight: 400,
-                  color: '#FDFAF7',
-                  lineHeight: 1.1,
-                }}>
-                  Every gap in your operation has a{' '}
-                  <em style={{ fontStyle: 'italic', color: '#B8956A' }}>monthly price tag.</em>
-                </h2>
-              </div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9375rem', color: 'rgba(253,250,247,0.55)', lineHeight: 1.75 }}>
-                These are conservative estimates based on typical appointment-based local service businesses. Your actual numbers may be higher. The audit tells you exactly.
-              </p>
-            </div>
-          </FadeSection>
-
-          {/* Cost rows */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5px', backgroundColor: 'rgba(184,149,106,0.12)', marginBottom: '1.5px' }}>
-            {[
-              {
-                gap: 'Missed Calls & Leads',
-                assumption: '5 missed calls/week · avg. $120 booking value · 40% conversion rate',
-                monthly: '$960',
-                icon: '01',
-              },
-              {
-                gap: 'Weak Follow-Up',
-                assumption: '10 warm leads/month that go cold · 30% could convert with follow-up',
-                monthly: '$360',
-                icon: '02',
-              },
-              {
-                gap: 'Manual Booking Friction',
-                assumption: '3 clients/month who don\'t book due to friction or after-hours unavailability',
-                monthly: '$360',
-                icon: '03',
-              },
-              {
-                gap: 'No-Shows',
-                assumption: '4 no-shows/month · avg. $120 appointment value · no rebooking system',
-                monthly: '$480',
-                icon: '04',
-              },
-              {
-                gap: 'Poor Review Generation',
-                assumption: 'Fewer reviews = lower ranking = 2 fewer inbound leads/month',
-                monthly: '$240',
-                icon: '05',
-              },
-              {
-                gap: 'Inconsistent Marketing',
-                assumption: '5 lapsed clients/month who could be reactivated · avg. $120 value',
-                monthly: '$600',
-                icon: '06',
-              },
-            ].map((row, i) => (
-              <FadeItem key={i} delay={i * 0.08}>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '2rem 1fr auto',
-                  gap: '1.5rem',
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(255,255,255,0.03)',
-                  padding: '1.5rem 2rem',
-                  borderLeft: '3px solid transparent',
-                  transition: 'border-color 0.2s ease, background-color 0.2s ease',
-                }} className="cost-row">
-                  <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1rem',
-                    fontWeight: 300,
-                    color: 'rgba(184,149,106,0.4)',
-                    lineHeight: 1,
-                  }}>
-                    {row.icon}
-                  </span>
-                  <div>
-                    <p style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: '1.25rem',
-                      fontWeight: 400,
-                      color: '#FDFAF7',
-                      marginBottom: '0.25rem',
-                      lineHeight: 1.2,
-                    }}>
-                      {row.gap}
-                    </p>
-                    <p style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: '0.75rem',
-                      color: 'rgba(253,250,247,0.35)',
-                      lineHeight: 1.5,
-                    }}>
-                      {row.assumption}
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                    <p style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: '1.75rem',
-                      fontWeight: 400,
-                      color: '#B8956A',
-                      lineHeight: 1,
-                      letterSpacing: '-0.01em',
-                    }}>
-                      {row.monthly}
-                    </p>
-                    <p style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: '0.5625rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(184,149,106,0.5)',
-                      marginTop: '0.125rem',
-                    }}>
-                      / month
-                    </p>
-                  </div>
-                </div>
-              </FadeItem>
-            ))}
-          </div>
-
-          {/* Total row */}
-          <FadeItem delay={0.5}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '2rem 1fr auto',
-              gap: '1.5rem',
-              alignItems: 'center',
-              backgroundColor: 'rgba(184,149,106,0.08)',
-              padding: '2rem',
-              borderLeft: '3px solid #B8956A',
-              borderTop: '1px solid rgba(184,149,106,0.3)',
-              marginBottom: '3.5rem',
-            }}>
-              <span />
-              <div>
-                <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.6875rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(184,149,106,0.7)',
-                  marginBottom: '0.375rem',
-                }}>
-                  Conservative Monthly Estimate
-                </p>
-                <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.8125rem',
-                  color: 'rgba(253,250,247,0.4)',
-                  lineHeight: 1.5,
-                }}>
-                  Based on 5 missed calls/week, 10 cold leads, 4 no-shows, and 5 lapsed clients/month.
-                  <br />Your actual number is likely higher.
-                </p>
-              </div>
-              <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                <p style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '3rem',
-                  fontWeight: 400,
-                  color: '#FDFAF7',
-                  lineHeight: 1,
-                  letterSpacing: '-0.02em',
-                }}>
-                  $3,000
-                </p>
-                <p style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '0.5625rem',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(253,250,247,0.35)',
-                  marginTop: '0.25rem',
-                }}>
-                  / month in lost revenue
-                </p>
-              </div>
-            </div>
-          </FadeItem>
-
-          {/* CTA bridge */}
-          <FadeSection style={{ textAlign: 'center' }}>
-            <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-              fontWeight: 400,
-              color: '#FDFAF7',
-              lineHeight: 1.2,
-              marginBottom: '1rem',
-              maxWidth: '560px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}>
-              These are estimates. Your Revenue Leak Audit gives you{' '}
-              <em style={{ fontStyle: 'italic', color: '#B8956A' }}>the real number.</em>
-            </p>
-            <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: '0.9375rem',
-              color: 'rgba(253,250,247,0.5)',
-              lineHeight: 1.75,
-              maxWidth: '440px',
-              margin: '0 auto 2.5rem',
-            }}>
-              In 30 minutes, we map every gap in your operation and quantify exactly what each one is costing you monthly.
-            </p>
-            <a href="/book" className="btn-primary">
-              Get Your Free Revenue Leak Audit
-              <ArrowRight size={14} />
-            </a>
-          </FadeSection>
-        </div>
-
-        {/* Bottom gold rule */}
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px',
-          background: 'linear-gradient(90deg, transparent, #B8956A 30%, #B8956A 70%, transparent)',
-          opacity: 0.6,
-        }} />
-      </section>
-
       {/* ─── CLOSING CTA ─── */}
-      <section
-        className="section-pad"
-        style={{
-          backgroundColor: '#F5F0EB',
-          backgroundImage: `url(${HERO_TEXTURE})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          position: 'relative',
-        }}
-      >
+      <section className="section-pad" style={{ backgroundColor: 'rgba(26,26,26,0.55)', position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle blue grid */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(245,240,235,0.92)',
+          backgroundImage: `
+            linear-gradient(rgba(167,139,250,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(167,139,250,0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+          pointerEvents: 'none',
         }} />
+        {/* Blue glow center */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '800px',
+          height: '400px',
+          pointerEvents: 'none',
+        }} />
+
         <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <FadeSection>
-            <p className="eyebrow" style={{ marginBottom: '1.25rem' }}>Ready to Stop Losing Revenue?</p>
+            <p className="eyebrow" style={{ marginBottom: '1.25rem', color: 'rgba(255,255,255,0.65)' }}>Ready to Stop Losing Revenue?</p>
             <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              fontWeight: 400,
-              color: '#3D3530',
-              lineHeight: 1.1,
+              fontWeight: 800,
+              color: '#FFFFFF',
+              lineHeight: 1.05,
+              letterSpacing: '-0.03em',
               marginBottom: '1.5rem',
-              maxWidth: '680px',
+              maxWidth: '700px',
               marginLeft: 'auto',
               marginRight: 'auto',
             }}>
-              Your business is losing revenue to broken processes.{' '}
-              <em style={{ fontStyle: 'italic', color: '#B8956A' }}>Let's fix that.</em>
+              Ready to stop doing it all manually?{' '}
+              <span style={{ color: '#A78BFA' }}>Let's talk.</span>
             </h2>
             <p style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: '1rem',
-              color: '#7A6F68',
-              lineHeight: 1.75,
+              color: 'rgba(255,255,255,0.75)',
+              lineHeight: 1.8,
               maxWidth: '520px',
               margin: '0 auto 2.5rem',
             }}>
-              The free automation audit takes 30 minutes. We identify your top revenue leaks — missed calls, weak follow-up, no-shows, missing reviews, inconsistent marketing — and show you exactly what to fix first. No pitch. No obligation.
+              It starts with a free 15-minute call. We learn about your business, you learn about us, and we figure out together if automation is the right move. No pitch. No pressure.
             </p>
-            <a href="/book" className="btn-primary" style={{ fontSize: '0.875rem', padding: '1rem 2.5rem' }}>
-              Book Your Free Automation Audit
-              <ArrowRight size={14} />
+            <a href="/book" className="btn-primary" style={{ fontSize: '0.9375rem', padding: '1rem 2.5rem' }}>
+              Book Free Intro Call
+              <ArrowRight size={15} />
             </a>
           </FadeSection>
         </div>
@@ -1185,8 +994,8 @@ export default function Home() {
 
       <style>{`
         @keyframes scrollPulse {
-          0%, 100% { transform: scaleY(1); opacity: 0.5; }
-          50% { transform: scaleY(0.6); opacity: 0.2; }
+          0%, 100% { transform: scaleY(1); opacity: 0.4; }
+          50% { transform: scaleY(0.6); opacity: 0.15; }
         }
         .lg\\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
         .lg\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
