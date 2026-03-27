@@ -5,7 +5,7 @@
  */
 
 import { useEffect, useRef } from 'react';
-import { ArrowRight, Clock, FileSearch, TrendingDown, Calculator, MessageSquare, Shield } from 'lucide-react';
+import { ArrowRight, Clock, TrendingDown, Shield } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { useFadeIn } from '@/hooks/useFadeIn';
@@ -33,33 +33,18 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
 const expectations = [
   {
     icon: Clock,
-    title: '30 minutes',
-    detail: 'Video or phone, your choice. Relaxed, conversational, no slides or sales deck.',
-  },
-  {
-    icon: FileSearch,
-    title: 'We learn about your business',
-    detail: 'Lead flow, internal processes, team workflows, and client experience. We listen first and ask the right questions.',
+    title: '30 minutes, no pitch',
+    detail: 'Video or phone, your choice. Relaxed, conversational, no slides or sales deck. We listen first and ask the right questions.',
   },
   {
     icon: TrendingDown,
-    title: 'Top revenue leaks identified',
-    detail: 'Even in 30 minutes, we can usually identify 2-3 operational gaps that are costing you the most right now.',
-  },
-  {
-    icon: Calculator,
-    title: 'Quantified monthly cost',
-    detail: 'We calculate a plain-language estimate of what each gap is costing you per month.',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Plain-language recommendation',
-    detail: 'We tell you exactly what we\'d build for your business and why. No jargon.',
+    title: 'Revenue leaks identified',
+    detail: 'Even in 30 minutes, we can usually identify 2-3 operational gaps costing you the most, and estimate what each one costs per month.',
   },
   {
     icon: Shield,
     title: 'Zero pressure',
-    detail: 'This is a diagnostic call, not a sales call. You leave with clarity regardless of what you decide.',
+    detail: 'This is a diagnostic call, not a sales call. We tell you exactly what we\'d build and why. You leave with clarity regardless of what you decide.',
   },
 ];
 
@@ -211,37 +196,6 @@ export default function Book() {
               </div>
             </FadeItem>
           </div>
-        </div>
-      </section>
-
-      {/* ─── REASSURANCE STRIP ─── */}
-      <section style={{ backgroundColor: 'transparent', padding: '3rem 0' }}>
-        <div className="container">
-          <FadeItem delay={0}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem' }}>
-              {[
-                { label: '30 minutes', sub: 'That\'s all it takes' },
-                { label: 'No obligation', sub: 'Zero pressure, ever' },
-                { label: 'Always free', sub: 'The intro call costs nothing' },
-                { label: 'Anywhere', sub: 'Based in OC, built for all' },
-              ].map((item, i) => (
-                <div key={i} style={{ textAlign: 'center' }}>
-                  <p style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    color: '#F5F0EC',
-                    marginBottom: '0.25rem',
-                  }}>
-                    {item.label}
-                  </p>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#868583', letterSpacing: '0.06em' }}>
-                    {item.sub}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </FadeItem>
         </div>
       </section>
 
