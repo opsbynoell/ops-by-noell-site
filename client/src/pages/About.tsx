@@ -125,7 +125,7 @@ export default function About() {
                   We come from operations. We build what actually works.
                 </h2>
                 <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-                  We're Nikki and James Noell, a husband-and-wife team from Lake Forest, California. We've spent years inside fast-growing companies building systems, managing operations, and fixing what was broken. That's just how we're wired.
+                  We're Nikki and James Noell, a husband-and-wife team from Mission Viejo, California. We've spent years inside fast-growing companies building systems, managing operations, and fixing what was broken. That's just how we're wired.
                 </p>
                 <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.8, marginBottom: '1.25rem' }}>
                   We kept seeing the same thing: talented people running great businesses, losing clients not because of bad service, but because nothing happened after the call. No follow-up. No reminder. No review request. The work was excellent. The systems behind it were nonexistent.
@@ -145,7 +145,7 @@ export default function About() {
             <FadeItem delay={0.15}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'rgba(167,139,250,0.12)', borderRadius: '8px', overflow: 'hidden' }}>
                 {[
-                  { label: 'Founded', value: '2025', sub: 'Lake Forest, CA' },
+                  { label: 'Founded', value: '2025', sub: 'Mission Viejo, CA' },
                   { label: 'Avg. Time to Live', value: '2 wks', sub: 'From audit to launch' },
                   { label: 'No-Show Reduction', value: '30–50%', sub: 'With automated reminders' },
                   { label: 'Response Time', value: '< 10 sec', sub: 'Missed call text-back' },
@@ -174,78 +174,6 @@ export default function About() {
                 ))}
               </div>
             </FadeItem>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WHY WE BUILT THIS / PROCESS ─── */}
-      <section style={{ padding: '6rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
-        <div className="container">
-          <FadeItem delay={0}>
-            <div style={{ maxWidth: '760px', margin: '0 auto', textAlign: 'center', marginBottom: '4rem' }}>
-              <div style={{ marginBottom: '1.25rem' }}>
-                <SectionBadge>Why We Built This</SectionBadge>
-              </div>
-              <h2 style={{
-                fontFamily: "'Satoshi', sans-serif",
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 700, color: '#ffffff',
-                lineHeight: 1.1, marginBottom: '1.5rem',
-              }}>
-                Most automation stops at the surface. We go deeper.
-              </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', lineHeight: 1.8 }}>
-                Most hand you a login and call it done. We built Ops by Noell because we believed businesses deserved something different: a partner who builds the system, runs it, and stands behind it.
-              </p>
-            </div>
-          </FadeItem>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }} className="md:grid-cols-3">
-            {[
-              {
-                step: '01',
-                title: 'Intro Call',
-                body: 'A free 30-minute conversation. We learn about your business, you learn about us, and we figure out if automation is the right move. No pitch. No pressure.',
-              },
-              {
-                step: '02',
-                title: 'Revenue Audit',
-                body: 'A paid deep-dive into your operation. We map every gap, quantify the monthly revenue impact, and design your custom system. You see the full picture before committing to a build.',
-              },
-              {
-                step: '03',
-                title: 'Manage',
-                body: "We monitor your systems, optimize what's working, and adjust as your business grows. And when you have questions, Nova (our AI assistant) is available around the clock. When something needs us directly, we're here.",
-              },
-            ].map((item, i) => (
-              <FadeItem key={i} delay={i * 0.12}>
-                <div className="feature-card" style={{ padding: '2.5rem', height: '100%', position: 'relative', overflow: 'hidden' }}>
-                  {/* Large faded step number */}
-                  <span style={{
-                    position: 'absolute', top: '-10px', right: '1.5rem',
-                    fontFamily: "'Satoshi', sans-serif",
-                    fontSize: '7rem', fontWeight: 800, lineHeight: 1,
-                    background: 'linear-gradient(179deg, rgb(71,85,102) 0%, rgba(30,38,47,0.7) 56%, rgba(0,0,0,0) 74%)',
-                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                    userSelect: 'none', pointerEvents: 'none',
-                  }}>
-                    {item.step}
-                  </span>
-                  <h3 style={{
-                    fontFamily: "'Satoshi', sans-serif",
-                    fontSize: '1.375rem', fontWeight: 700,
-                    color: '#ffffff', marginBottom: '0.875rem',
-                    lineHeight: 1.2, position: 'relative', zIndex: 1,
-                    marginTop: '2.5rem',
-                  }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.75, position: 'relative', zIndex: 1 }}>
-                    {item.body}
-                  </p>
-                </div>
-              </FadeItem>
-            ))}
           </div>
         </div>
       </section>
