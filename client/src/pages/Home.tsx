@@ -152,7 +152,7 @@ export default function Home() {
             color: '#868583', lineHeight: 1.75,
             maxWidth: '600px', margin: '0 auto 2.5rem',
           }}>
-            We design, install, and manage AI automation systems for local service businesses. Lead capture, booking, follow-up, reviews. All running automatically so you never miss revenue again.
+            We build the systems. Automation runs them. You get your time back.<br /><br />Follow-up. Bookings. Reminders. Reviews. AI receptionist and more. We build done-for-you automation systems for service businesses, so you can get back to doing what you do best.
           </p>
 
           {/* CTAs */}
