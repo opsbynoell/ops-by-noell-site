@@ -78,7 +78,7 @@ export default function Newsletter() {
           </FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
               fontWeight: 700,
               color: '#F5F0EC',
@@ -130,7 +130,7 @@ export default function Newsletter() {
               }}>
                 <CheckCircle size={32} color="#A78BFA" style={{ margin: '0 auto 1rem' }} />
                 <h3 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '1.25rem',
                   fontWeight: 700,
                   color: '#F5F0EC',

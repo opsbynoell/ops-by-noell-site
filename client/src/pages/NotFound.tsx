@@ -18,7 +18,7 @@ export default function NotFound() {
         <div style={{ textAlign: 'center', maxWidth: '560px' }}>
           {/* Large 404 */}
           <p style={{
-            fontFamily: "'Satoshi', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(6rem, 20vw, 12rem)',
             fontWeight: 800,
             color: 'rgba(167,139,250,0.12)',
@@ -31,7 +31,7 @@ export default function NotFound() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Satoshi', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             fontWeight: 800,
             color: '#F5F0EC',

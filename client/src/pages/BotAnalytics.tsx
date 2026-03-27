@@ -99,7 +99,7 @@ function StatCard({
             </p>
             <p
               style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: "2.25rem",
                 fontWeight: 400,
                 color: accent ? "#0A0A0A" : "#F5F0EC",
@@ -236,7 +236,7 @@ export default function BotAnalytics() {
       >
         <p
           style={{
-            fontFamily: "'Satoshi', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: "2rem",
             color: DARK,
           }}
@@ -289,7 +289,7 @@ export default function BotAnalytics() {
           <div>
             <p
               style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: "1.375rem",
                 fontWeight: 400,
                 color: "#F5F0EC",
@@ -379,7 +379,7 @@ export default function BotAnalytics() {
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -429,7 +429,7 @@ export default function BotAnalytics() {
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -497,7 +497,7 @@ export default function BotAnalytics() {
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -572,7 +572,7 @@ export default function BotAnalytics() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'Satoshi', sans-serif",
+                            fontFamily: "'Nicholas', serif",
                             fontSize: "1rem",
                             color: GOLD,
                             marginLeft: "auto",
@@ -594,7 +594,7 @@ export default function BotAnalytics() {
             <CardHeader style={{ paddingBottom: "0.5rem" }}>
               <CardTitle
                 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: "1.25rem",
                   fontWeight: 400,
                   color: DARK,
@@ -656,7 +656,7 @@ export default function BotAnalytics() {
                           </div>
                           <p
                             style={{
-                              fontFamily: "'Satoshi', sans-serif",
+                              fontFamily: "'Nicholas', serif",
                               fontSize: "1.125rem",
                               color: GOLD,
                             }}
@@ -696,7 +696,7 @@ export default function BotAnalytics() {
           <CardHeader style={{ paddingBottom: "0.5rem" }}>
             <CardTitle
               style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: "1.25rem",
                 fontWeight: 400,
                 color: DARK,
@@ -721,7 +721,7 @@ export default function BotAnalytics() {
               >
                 <p
                   style={{
-                    fontFamily: "'Satoshi', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: "1.5rem",
                     color: DARK,
                   }}

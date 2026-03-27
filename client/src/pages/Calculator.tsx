@@ -34,7 +34,7 @@ export default function Calculator() {
             Revenue Calculator
           </p>
           <h1 style={{
-            fontFamily: "'Satoshi', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700, color: '#ffffff',
             lineHeight: 1.1, marginBottom: '1rem',

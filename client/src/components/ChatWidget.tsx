@@ -616,10 +616,10 @@ export default function ChatWidget() {
               justifyContent: 'center',
               flexShrink: 0,
             }}>
-              <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '0.875rem', color: '#0A0A0A', fontWeight: 700 }}>N</span>
+              <span style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#0A0A0A', fontWeight: 700 }}>N</span>
             </div>
             <div>
-              <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '0.875rem', fontWeight: 700, color: '#F5F0EC', lineHeight: 1.2 }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', fontWeight: 700, color: '#F5F0EC', lineHeight: 1.2 }}>
                 Ops by Noell
               </p>
               <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.625rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#868583' }}>

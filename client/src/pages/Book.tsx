@@ -105,7 +105,7 @@ export default function Book() {
           </FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
               fontWeight: 700,
               color: '#F5F0EC',
@@ -205,7 +205,7 @@ export default function Book() {
           <FadeItem delay={0}>
             <p className="eyebrow" style={{ marginBottom: '1rem' }}>Still Have Questions?</p>
             <h2 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2rem, 3.5vw, 3rem)',
               fontWeight: 700,
               color: '#F5F0EC',

@@ -43,7 +43,7 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
           )}
         </div>
         <span style={{
-          fontFamily: "'Satoshi', sans-serif",
+          fontFamily: "'Nicholas', serif",
           fontSize: '1.125rem',
           color: '#A78BFA',
           fontWeight: 600,
@@ -143,7 +143,7 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           flexGrow: 1,
         }}>{label}</span>
         <span style={{
-          fontFamily: "'Satoshi', sans-serif",
+          fontFamily: "'Nicholas', serif",
           fontSize: '1rem',
           color: '#A78BFA',
           fontWeight: 600,
@@ -218,7 +218,7 @@ export default function RevenueCalculator() {
             The Cost of Waiting
           </p>
           <h2 style={{
-            fontFamily: "'Satoshi', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
             fontWeight: 800,
             color: '#F5F0EC',
@@ -392,7 +392,7 @@ export default function RevenueCalculator() {
                   Total estimated monthly loss
                 </p>
                 <p style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 800,
                   color: '#F5F0EC',
@@ -412,7 +412,7 @@ export default function RevenueCalculator() {
                 </p>
               </div>
               <div style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
                 fontWeight: 700,
                 color: 'rgba(167,139,250,0.2)',

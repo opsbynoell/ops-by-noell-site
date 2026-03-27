@@ -1,6 +1,6 @@
 /*
  * OPS BY NOELL — About Page (NeuraFlas Design System)
- * - Background: #010509, Satoshi headings, Sora body, #A78BFA accent
+ * - Background: #010509, Nicholas headings, Sora body, #A78BFA accent
  * - Sections: Hero, Who We Are, Why We Built This, Differentiators, CTA
  */
 
@@ -88,7 +88,7 @@ export default function About() {
           </FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)',
               fontWeight: 800, lineHeight: 1.0, letterSpacing: '-0.04em',
               maxWidth: '800px', marginBottom: '1.75rem', color: '#ffffff',
@@ -117,7 +117,7 @@ export default function About() {
                   <SectionBadge>Who We Are</SectionBadge>
                 </div>
                 <h2 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: 'clamp(2rem, 3.5vw, 3rem)',
                   fontWeight: 700, color: '#ffffff',
                   lineHeight: 1.1, marginBottom: '1.75rem',
@@ -152,7 +152,7 @@ export default function About() {
                 ].map((stat, i) => (
                   <div key={i} style={{ background: 'rgba(167,139,250,0.03)', padding: '2rem 1.5rem' }}>
                     <p style={{
-                      fontFamily: "'Satoshi', sans-serif",
+                      fontFamily: "'Nicholas', serif",
                       fontSize: '2rem', fontWeight: 700,
                       color: '#ffffff', lineHeight: 1,
                       marginBottom: '0.375rem', letterSpacing: '-0.02em',
@@ -187,7 +187,7 @@ export default function About() {
                 <SectionBadge>Why Ops by Noell</SectionBadge>
               </div>
               <h2 style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(2rem, 3.5vw, 3rem)',
                 fontWeight: 700, color: '#ffffff', lineHeight: 1.1,
               }}>
@@ -230,7 +230,7 @@ export default function About() {
                     <d.icon size={22} color="#A78BFA" />
                   </div>
                   <h3 style={{
-                    fontFamily: "'Satoshi', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: '1.25rem', fontWeight: 700,
                     color: '#ffffff', lineHeight: 1.2, marginBottom: '1rem',
                   }}>
@@ -272,7 +272,7 @@ export default function About() {
               <SectionBadge>Work With Us</SectionBadge>
             </div>
             <h2 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em',
               marginBottom: '1.25rem', maxWidth: '600px', margin: '0 auto 1.25rem',

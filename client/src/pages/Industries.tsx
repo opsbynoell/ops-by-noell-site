@@ -95,7 +95,7 @@ export default function Industries() {
             </span>
           </FadeItem>
           <FadeItem delay={0.1}>
-            <h1 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)', fontWeight: 800, lineHeight: 1.0, letterSpacing: '-0.04em', maxWidth: '800px', marginBottom: '1.75rem' }}>
+            <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)', fontWeight: 800, lineHeight: 1.0, letterSpacing: '-0.04em', maxWidth: '800px', marginBottom: '1.75rem' }}>
               <span style={{ color: '#F5F0EC' }}>Built for appointment-based</span>{' '}
               <span className="gradient-text-purple">businesses.</span>
             </h1>
@@ -139,7 +139,7 @@ export default function Industries() {
                     </div>
                     <div>
                       <h2 style={{
-                        fontFamily: "'Satoshi', sans-serif",
+                        fontFamily: "'Nicholas', serif",
                         fontSize: '1.75rem',
                         fontWeight: 700,
                         color: '#F5F0EC',
@@ -213,7 +213,7 @@ export default function Industries() {
               <span className="pill-badge-dot" />
               Ready to Get Started?
             </span>
-            <h2 className="gradient-text" style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.25rem', maxWidth: '600px', margin: '0 auto 1.25rem', display: 'block' }}>
+            <h2 className="gradient-text" style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.25rem', maxWidth: '600px', margin: '0 auto 1.25rem', display: 'block' }}>
               Don't see your industry? Let's talk anyway.
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#A09890', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.5rem' }}>

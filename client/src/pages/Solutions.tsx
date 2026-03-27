@@ -77,7 +77,7 @@ function FAQSection() {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <p className="eyebrow" style={{ marginBottom: '1rem' }}>FAQ</p>
             <h2 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
               fontWeight: 800,
               color: '#F5F0EC',
@@ -237,7 +237,7 @@ export default function Solutions() {
 
           <FadeItem delay={0.08}>
             <h1 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)',
               fontWeight: 800,
               lineHeight: 1.0,
@@ -383,7 +383,7 @@ export default function Solutions() {
                 Don't see what you need?
               </span>
               <h2 className="gradient-text" style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
                 fontWeight: 800,
                 lineHeight: 1.05,

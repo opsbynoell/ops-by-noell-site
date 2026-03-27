@@ -1,5 +1,5 @@
 /*
- * OPS BY NOELL — GLOBAL DESIGN SYSTEM v7 (DARK · VIOLET)
+ * OPS BY NOELL — GLOBAL DESIGN SYSTEM v8 (DARK · VIOLET)
  * Design Philosophy: Premium Black · Warm Cream · Soft Violet
  *
  * Color Palette:
@@ -14,10 +14,47 @@
  *   Btn secondary: transparent bg, #F5F0EC border and text
  *
  * Typography:
- *   Headings:  Satoshi 700 (NeuraFlas design system)
+ *   Headings:  Nicholas (licensed serif — premium display)
  *   Body/Nav:  Sora 400–600
  *   Labels:    Sora 600, uppercase, tracked
  */
+
+/* Nicholas — licensed web font (Font Bros order #FB305745) */
+@font-face {
+  font-family: 'Nicholas';
+  src: url('/fonts/nicholas-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nicholas';
+  src: url('/fonts/nicholas-italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nicholas';
+  src: url('/fonts/nicholas-semi-bold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nicholas';
+  src: url('/fonts/nicholas-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nicholas';
+  src: url('/fonts/nicholas-extra-bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -141,7 +178,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Satoshi', sans-serif;
+    font-family: 'Nicholas', serif;
     color: #F5F0EC;
     line-height: 1.1;
     font-weight: 700;
@@ -614,7 +651,7 @@
 }
 
 /* ─── NEURAFLAS DESIGN SYSTEM ADDITIONS ─────────────────────────── */
-.font-satoshi { font-family: 'Satoshi', sans-serif; }
+.font-satoshi { font-family: 'Nicholas', serif; }
 .font-sora    { font-family: 'Sora', sans-serif; }
 
 .hero-gradient-bg {
@@ -622,7 +659,7 @@
 }
 
 .section-heading {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Nicholas', serif;
   font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 700;
   color: #ffffff;
@@ -632,7 +669,7 @@
 
 /* Giant faded step numbers — NeuraFlas How It Works */
 .step-number {
-  font-family: 'Satoshi', sans-serif;
+  font-family: 'Nicholas', serif;
   font-size: clamp(6rem, 12vw, 11.25rem);
   font-weight: 700;
   line-height: 1;

@@ -12,7 +12,7 @@ const SECTION_STYLE: React.CSSProperties = {
 };
 
 const H2_STYLE: React.CSSProperties = {
-  fontFamily: "'Satoshi', sans-serif",
+  fontFamily: "'Nicholas', serif",
   fontSize: '1.25rem',
   fontWeight: 700,
   color: '#F5F0EC',
@@ -59,7 +59,7 @@ export default function TermsOfService() {
         <div className="container">
           <p className="eyebrow" style={{ color: '#A78BFA', marginBottom: '1rem' }}>Legal</p>
           <h1 style={{
-            fontFamily: "'Satoshi', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 800,
             color: '#F5F0EC',

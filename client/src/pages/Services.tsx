@@ -186,7 +186,7 @@ export default function Services() {
             </div>
           </FadeItem>
           <FadeItem delay={0.08}>
-            <h1 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(2.75rem, 6vw, 4.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
+            <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.75rem, 6vw, 4.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
               Missed calls answered.{' '}
               <GradientText>Leads followed up.</GradientText>
             </h1>
@@ -214,7 +214,7 @@ export default function Services() {
         <div className="container" style={{ paddingTop: '6rem', paddingBottom: '2rem' }}>
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <SectionBadge>The Full Service Stack</SectionBadge>
-            <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
               Six systems. <GradientText>One integrated operation.</GradientText>
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
@@ -243,7 +243,7 @@ export default function Services() {
                 {/* Content */}
                 <div>
                   <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#A78BFA', marginBottom: '0.5rem' }}>{tagline}</p>
-                  <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, marginBottom: '2rem', letterSpacing: '-0.02em' }}>{title}</h3>
+                  <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, marginBottom: '2rem', letterSpacing: '-0.02em' }}>{title}</h3>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem' }}>
                     {[
                       { label: 'What It Does', content: whatItDoes },
@@ -268,7 +268,7 @@ export default function Services() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <SectionBadge>Who We Serve</SectionBadge>
-            <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
               Built for <GradientText>appointment-based businesses.</GradientText>
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', maxWidth: '500px', margin: '0 auto', lineHeight: 1.7 }}>
@@ -282,7 +282,7 @@ export default function Services() {
                 <div className="feature-card" style={{ padding: '2rem', height: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div className="icon-box"><Icon size={20} style={{ color: '#A78BFA' }} /></div>
                   <div>
-                    <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.25rem' }}>{name}</h3>
+                    <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.25rem' }}>{name}</h3>
                     <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', fontWeight: 600, color: '#A78BFA' }}>{tagline}</p>
                   </div>
                   <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9rem', color: '#868583', lineHeight: 1.7, flex: 1 }}>{desc}</p>
@@ -301,7 +301,7 @@ export default function Services() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <SectionBadge>How We Work Together</SectionBadge>
-            <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
               Start with what matters most. <GradientText>Scale from there.</GradientText>
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
@@ -319,10 +319,10 @@ export default function Services() {
                     </div>
                   )}
                   <div style={{ marginTop: featured ? '1rem' : 0, flex: 1 }}>
-                    <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.25rem' }}>{name}</h3>
+                    <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.25rem' }}>{name}</h3>
                     <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', fontWeight: 600, color: '#A78BFA', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '1rem' }}>{subtitle}</p>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.375rem', marginBottom: '0.375rem' }}>
-                      <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '2.25rem', fontWeight: 800, color: '#ffffff' }}>{price}</span>
+                      <span style={{ fontFamily: "'Nicholas', serif", fontSize: '2.25rem', fontWeight: 800, color: '#ffffff' }}>{price}</span>
                       <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583' }}>{period}</span>
                     </div>
                     <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#868583', lineHeight: 1.6, marginBottom: '1.5rem' }}>{desc}</p>
@@ -350,7 +350,7 @@ export default function Services() {
         <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <SectionBadge>FAQ</SectionBadge>
-            <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
               Common questions, <GradientText>honest answers.</GradientText>
             </h2>
           </div>
@@ -359,7 +359,7 @@ export default function Services() {
             <div key={i} className="faq-item">
               <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.5rem 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: '1rem' }}>
-                <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '1.0625rem', fontWeight: 600, color: openFaq === i ? '#ffffff' : '#e2e8f0', lineHeight: 1.4 }}>{q}</span>
+                <span style={{ fontFamily: "'Nicholas', serif", fontSize: '1.0625rem', fontWeight: 600, color: openFaq === i ? '#ffffff' : '#e2e8f0', lineHeight: 1.4 }}>{q}</span>
                 <ChevronDown size={18} style={{ color: '#A78BFA', flexShrink: 0, transition: 'transform 0.25s ease', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)' }} />
               </button>
               {openFaq === i && (
@@ -377,7 +377,7 @@ export default function Services() {
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse at center, rgba(167,139,250,0.12) 0%, transparent 65%)' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '660px', margin: '0 auto' }}>
           <SectionBadge>The First Step Is Free</SectionBadge>
-          <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 'clamp(2rem, 5vw, 3.25rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.25rem' }}>
+          <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 5vw, 3.25rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.25rem' }}>
             Not sure where to start?<br /><GradientText>Let's talk for 30 minutes.</GradientText>
           </h2>
           <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', maxWidth: '480px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>

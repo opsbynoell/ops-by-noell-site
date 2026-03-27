@@ -1,6 +1,6 @@
 /*
  * OPS BY NOELL — Case Study Page (NeuraFlas Design System)
- * - Background: #010509, Satoshi headings, Sora body, #A78BFA accent
+ * - Background: #010509, Nicholas headings, Sora body, #A78BFA accent
  * - Client: Santa, licensed massage therapist, Laguna Niguel
  */
 
@@ -86,7 +86,7 @@ export default function CaseStudy() {
           </FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)',
               fontWeight: 800, lineHeight: 1.0, letterSpacing: '-0.04em',
               maxWidth: '860px', marginBottom: '2.5rem',
@@ -107,7 +107,7 @@ export default function CaseStudy() {
                   <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.625rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#A78BFA', marginBottom: '0.25rem' }}>
                     {item.label}
                   </p>
-                  <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '1rem', fontWeight: 700, color: '#ffffff' }}>
+                  <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', fontWeight: 700, color: '#ffffff' }}>
                     {item.value}
                   </p>
                 </div>
@@ -127,7 +127,7 @@ export default function CaseStudy() {
                   <SectionBadge>The Client</SectionBadge>
                 </div>
                 <h2 style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: 'clamp(2rem, 3.5vw, 3rem)',
                   fontWeight: 700, color: '#ffffff',
                   lineHeight: 1.1, marginBottom: '1.5rem',
@@ -155,7 +155,7 @@ export default function CaseStudy() {
                 padding: '3rem',
               }}>
                 <p style={{
-                  fontFamily: "'Satoshi', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: 'clamp(1.25rem, 2vw, 1.625rem)',
                   fontWeight: 600, color: '#ffffff',
                   lineHeight: 1.5, marginBottom: '1.5rem',
@@ -180,7 +180,7 @@ export default function CaseStudy() {
                 <SectionBadge>The Gaps</SectionBadge>
               </div>
               <h2 style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(2rem, 3.5vw, 3rem)',
                 fontWeight: 700, color: '#ffffff',
                 lineHeight: 1.1, marginBottom: '1rem',
@@ -205,7 +205,7 @@ export default function CaseStudy() {
                     }}>
                       <X size={12} color="#ff6b6b" />
                     </div>
-                    <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff' }}>
+                    <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff' }}>
                       {gap.label}
                     </h3>
                   </div>
@@ -228,7 +228,7 @@ export default function CaseStudy() {
                 <SectionBadge>What We Built</SectionBadge>
               </div>
               <h2 style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(2rem, 3.5vw, 3rem)',
                 fontWeight: 700, color: '#ffffff',
                 lineHeight: 1.1, marginBottom: '1rem',
@@ -257,7 +257,7 @@ export default function CaseStudy() {
                     <Check size={16} color="#A78BFA" />
                   </div>
                   <div>
-                    <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.375rem' }}>
+                    <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.375rem' }}>
                       {item.item}
                     </h3>
                     <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.7 }}>
@@ -280,7 +280,7 @@ export default function CaseStudy() {
                 <SectionBadge>The Result</SectionBadge>
               </div>
               <h2 style={{
-                fontFamily: "'Satoshi', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
                 fontWeight: 700, color: '#ffffff',
                 lineHeight: 1.1, marginBottom: '1rem',
@@ -380,7 +380,7 @@ export default function CaseStudy() {
               <SectionBadge>Your Turn</SectionBadge>
             </div>
             <h2 style={{
-              fontFamily: "'Satoshi', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em',
               marginBottom: '1.25rem', maxWidth: '600px', margin: '0 auto 1.25rem',
