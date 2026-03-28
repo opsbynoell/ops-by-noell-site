@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200px" height="1200px" viewBox="0 0 1200 1200">
     <g id="8763ae67-1089-409e-9a49-15141bd0b43c">
-<rect style="stroke: rgb(193,193,193); stroke-opacity: 1.00; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-opacity: 1.00; fill-rule: nonzero; opacity: 1;" x="-600" y="-600" rx="0" ry="0" width="1200" height="1200" transform="matrix(1 0 0 1 600 600)"></rect>
+<rect style="stroke: rgb(193,193,193); stroke-opacity: 1.00; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: none; fill-opacity: 0; fill-rule: nonzero; opacity: 1;" x="-600" y="-600" rx="0" ry="0" width="1200" height="1200" transform="matrix(1 0 0 1 600 600)"></rect>
 </g>
 <g id="52480733-1cb8-47b5-a310-150939b51dd1">
 <g style="">
@@ -15,7 +15,7 @@
 <g id="6edd8b85-dd0c-4b46-a848-624fd243438b">
 <g style="">
 		<g id="6edd8b85-dd0c-4b46-a848-624fd243438b-child-0">
-<path style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-opacity: 1.00; fill-rule: nonzero; opacity: 1;" d="M210.89352,1390.09027v-200.00002h200.00002v200.00002z" stroke-linecap="round"></path>
+<path style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: none; fill-opacity: 0; fill-rule: nonzero; opacity: 1;" d="M210.89352,1390.09027v-200.00002h200.00002v200.00002z" stroke-linecap="round"></path>
 </g>
 </g>
 </g>
