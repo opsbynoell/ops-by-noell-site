@@ -29,6 +29,14 @@ import ChatInbox from "./pages/ChatInbox";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Calculator from "./pages/Calculator";
+// Vertical landing pages
+import MassageTherapistAutomation from "./pages/MassageTherapistAutomation";
+import MedSpaAutomation from "./pages/MedSpaAutomation";
+import SalonAutomation from "./pages/SalonAutomation";
+import DentalAutomation from "./pages/DentalAutomation";
+import HomeServicesAutomation from "./pages/HomeServicesAutomation";
+// Dedicated case study pages
+import MassageTherapistCaseStudy from "./pages/MassageTherapistCaseStudy";
 
 // SEO meta per page — descriptions kept to 50–160 chars; keywords are page-specific
 const pageMeta: Record<string, { title: string; description: string; keywords: string }> = {
@@ -70,7 +78,7 @@ const pageMeta: Record<string, { title: string; description: string; keywords: s
   "/book": {
     title: "Book a Free Revenue Audit Call | Ops by Noell",
     description:
-      "Book a free 30-minute intro call. We will map your revenue gaps and show you exactly how AI automation can recover lost leads and bookings.",
+      "Book a free 15-minute intro call with Nikki. We map your revenue gaps and show you exactly how AI automation can recover lost leads and bookings.",
     keywords:
       "book free automation audit, revenue leak audit, free AI consultation, automation discovery call, local business revenue gaps, missed lead recovery, book Ops by Noell, free intro call",
   },
@@ -102,6 +110,48 @@ const pageMeta: Record<string, { title: string; description: string; keywords: s
     title: "Terms of Service | Ops by Noell",
     description: "Read the Ops by Noell terms of service covering website use, AI automation services, payment terms, and governing law.",
     keywords: "Ops by Noell terms of service, AI automation terms, service agreement, California governing law",
+  },
+  "/massage-therapist-automation": {
+    title: "AI Automation for Massage Therapists | Ops by Noell",
+    description:
+      "Done-for-you AI automation for massage therapists. Missed call text-back, 24/7 booking, appointment reminders, and review generation. Live in 2 weeks.",
+    keywords:
+      "massage therapist automation, AI booking for massage therapists, missed call text-back, appointment reminders, review generation, massage practice automation, Orange County",
+  },
+  "/med-spa-automation": {
+    title: "AI Automation for Med Spas | Ops by Noell",
+    description:
+      "Done-for-you AI automation for med spas. Recover missed calls instantly, automate booking, reduce no-shows, and generate 5-star reviews consistently.",
+    keywords:
+      "med spa automation, AI for med spas, missed call recovery, automated appointment booking, med spa no-show reduction, review generation, Orange County med spa",
+  },
+  "/salon-automation": {
+    title: "AI Automation for Salons | Ops by Noell",
+    description:
+      "Done-for-you AI automation for salons and hair studios. Fill your chair, cut no-shows, and re-engage lapsed clients automatically.",
+    keywords:
+      "salon automation, hair salon AI, automated booking for salons, no-show reduction salon, re-engagement sequences, salon review generation, Orange County salon",
+  },
+  "/dental-automation": {
+    title: "AI Automation for Dental Offices | Ops by Noell",
+    description:
+      "Done-for-you AI automation for dental practices. Automate recall, cut no-shows, and fill your schedule without adding to your front desk workload.",
+    keywords:
+      "dental office automation, AI for dental practices, automated recall, dental no-show reduction, patient re-engagement, dental appointment reminders, Orange County dental",
+  },
+  "/home-services-automation": {
+    title: "AI Automation for Home Service Businesses | Ops by Noell",
+    description:
+      "Done-for-you AI automation for HVAC, plumbing, electrical, and contractor businesses. Never miss a job request again with instant missed call response.",
+    keywords:
+      "home services automation, HVAC automation, plumber AI automation, contractor missed call, home service lead follow-up, estimate follow-up automation, Orange County",
+  },
+  "/case-study/massage-therapist": {
+    title: "Case Study: Massage Therapist AI Automation | Ops by Noell",
+    description:
+      "How a 25-year massage therapist in Laguna Niguel went from zero digital infrastructure to a fully automated practice in 14 days. No-shows dropped from 4 to less than 1 per week.",
+    keywords:
+      "massage therapist automation case study, AI automation results, no-show reduction, Laguna Niguel massage, Ops by Noell case study, local business automation proof",
   },
 };
 
@@ -183,6 +233,14 @@ function Router() {
         <Route path="/admin/inbox" component={ChatInbox} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms" component={TermsOfService} />
+        {/* Vertical landing pages */}
+        <Route path="/massage-therapist-automation" component={MassageTherapistAutomation} />
+        <Route path="/med-spa-automation" component={MedSpaAutomation} />
+        <Route path="/salon-automation" component={SalonAutomation} />
+        <Route path="/dental-automation" component={DentalAutomation} />
+        <Route path="/home-services-automation" component={HomeServicesAutomation} />
+        {/* Dedicated case study pages */}
+        <Route path="/case-study/massage-therapist" component={MassageTherapistCaseStudy} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

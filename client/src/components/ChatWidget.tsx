@@ -63,7 +63,7 @@ const QA_PAIRS: Array<{ keywords: string[]; answer: string }> = [
   },
   {
     keywords: ['how do i start', 'next step', 'how to begin', 'sign up', 'book', 'schedule', 'call', 'consult', 'audit', 'intro'],
-    answer: "The easiest way is to book a free 30-minute intro call at opsbynoell.com/book. It's a quick conversation, no pitch, no pressure. We just want to understand your business and see if we're a good fit.",
+    answer: "The easiest way is to book a free 15-minute intro call at opsbynoell.com/book. It's a quick conversation, no pitch, no pressure. We just want to understand your business and see if we're a good fit.",
   },
   {
     keywords: ['different', 'unique', 'why you', 'why ops by noell', 'what makes you', 'stand out', 'better than', 'compared to', 'versus'],
@@ -115,11 +115,11 @@ const QA_PAIRS: Array<{ keywords: string[]; answer: string }> = [
   },
   {
     keywords: ['thank you', 'thanks', 'appreciate', 'helpful', 'great'],
-    answer: "Of course, happy to help! If anything else comes up, just ask. And whenever you're ready to take the next step, you can book a free 30-minute call at opsbynoell.com/book.",
+    answer: "Of course, happy to help! If anything else comes up, just ask. And whenever you're ready to take the next step, you can book a free 15-minute call at opsbynoell.com/book.",
   },
 ];
 
-const FALLBACK_RESPONSE = "That's a good one. I want to make sure you get a real answer on that, so let me connect you with Nikki directly. You can book a free 30-minute call at opsbynoell.com/book, or drop your email and she'll reach out to you. What works best?";
+const FALLBACK_RESPONSE = "That's a good one. I want to make sure you get a real answer on that, so let me connect you with Nikki directly. You can book a free 15-minute call at opsbynoell.com/book, or drop your email and she'll reach out to you. What works best?";
 
 const HUMAN_HANDOFF_KEYWORDS = [
   'talk to a person', 'talk to someone', 'speak to a person', 'speak to someone',

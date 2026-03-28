@@ -13,8 +13,8 @@ import Footer from '@/components/Footer';
 const STEPS = [
   {
     number: '01',
-    title: 'Free Intro Call',
-    desc: 'A free 30-minute conversation about your business. We learn what\'s working, what isn\'t, and tell you honestly whether automation is the right fit.',
+    title: 'Free 15-Minute Intro Call',
+    desc: 'A free 15-minute conversation about your business. We learn what\'s working, what isn\'t, and tell you honestly whether automation is the right fit.',
   },
   {
     number: '02',
@@ -140,9 +140,9 @@ export default function Home() {
             fontWeight: 800, color: '#ffffff',
             lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.5rem',
           }}>
-            Your Business Runs{' '}
-            <GradientText>24/7.</GradientText>
-            <br />Even When You Don't.
+            Done-for-you AI automation for{' '}
+            <GradientText>appointment-based</GradientText>
+            {' '}and service businesses.
           </h1>
 
           {/* Sub */}
@@ -150,15 +150,15 @@ export default function Home() {
             fontFamily: "'Sora', sans-serif",
             fontSize: 'clamp(1rem, 2vw, 1.175rem)',
             color: '#868583', lineHeight: 1.75,
-            maxWidth: '600px', margin: '0 auto 2.5rem',
+            maxWidth: '640px', margin: '0 auto 2.5rem',
           }}>
-            We build the systems. Automation runs them. You get your time back.<br /><br />Follow-up. Bookings. Reminders. Reviews. AI receptionist and more. We build done-for-you automation systems for service businesses, so you can get back to doing what you do best.
+            We build and manage the systems that capture leads, book appointments, reduce no-shows, and follow up automatically — so your business runs even when you're busy.
           </p>
 
           {/* CTAs */}
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
             <a href="/book" className="btn-gradient" style={{ padding: '1rem 2rem', fontSize: '1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Book Free Intro Call <ArrowRight size={16} />
+              Book Free 15-Minute Intro Call <ArrowRight size={16} />
             </a>
             <a href="/services" className="btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
               See How It Works
@@ -262,6 +262,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ INDUSTRIES ════════════════════════════════════════════ */}
+      <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <SectionBadge>Industries We Serve</SectionBadge>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+              Explore how this works{' '}<GradientText>for your business</GradientText>
+            </h2>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', maxWidth: '520px', margin: '0 auto', lineHeight: 1.75 }}>
+              Every appointment-based business has the same core revenue gaps. We've built the fixes for all of them.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+            {[
+              { label: 'Med Spas', href: '/med-spa-automation', desc: 'High-value appointments, zero missed calls' },
+              { label: 'Salons', href: '/salon-automation', desc: 'Fill your chair. Keep it full.' },
+              { label: 'Massage Therapists', href: '/massage-therapist-automation', desc: 'From zero infrastructure to automated' },
+              { label: 'Dental Offices', href: '/dental-automation', desc: 'Reduce no-shows, automate recall' },
+              { label: 'Home Services', href: '/home-services-automation', desc: 'Never miss a job request again' },
+            ].map(({ label, href, desc }) => (
+              <a
+                key={label}
+                href={href}
+                style={{
+                  display: 'block',
+                  padding: '1.75rem',
+                  background: 'rgba(167,139,250,0.04)',
+                  border: '1px solid rgba(167,139,250,0.15)',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  transition: 'border-color 0.2s ease, background 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(167,139,250,0.4)';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(167,139,250,0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(167,139,250,0.15)';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(167,139,250,0.04)';
+                }}
+              >
+                <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.375rem' }}>
+                  {label}
+                </div>
+                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', lineHeight: 1.5 }}>
+                  {desc}
+                </div>
+                <div style={{ marginTop: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#A78BFA', fontWeight: 600 }}>
+                  Learn more <ArrowRight size={12} />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ FINAL CTA ══════════════════════════════════════════════ */}
       <section style={{ padding: '8rem 0', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{
@@ -274,11 +331,11 @@ export default function Home() {
             Stop losing leads to{' '}<GradientText>slow follow-up.</GradientText>
           </h2>
           <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.125rem', color: '#868583', maxWidth: '500px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
-            30 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
+            15 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="/book" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Book Free Intro Call <ArrowRight size={17} />
+              Book Free 15-Minute Intro Call <ArrowRight size={17} />
             </a>
             <a href="/case-study" className="btn-outline" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem' }}>
               See Our Results

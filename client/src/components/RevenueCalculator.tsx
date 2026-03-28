@@ -436,7 +436,7 @@ export default function RevenueCalculator() {
                 lineHeight: 1.75,
                 marginBottom: '1.25rem',
               }}>
-                Start with a free 30-minute intro call. If we're a fit, a Revenue Audit gives you the real numbers specific to your business, your market, and your gaps.
+                Start with a free 15-minute intro call. If we're a fit, a Revenue Audit gives you the real numbers specific to your business, your market, and your gaps.
               </p>
               <a
                 href="/book"

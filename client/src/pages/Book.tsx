@@ -33,13 +33,13 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
 const expectations = [
   {
     icon: Clock,
-    title: '30 minutes, no pitch',
+    title: '15 minutes, no pitch',
     detail: 'Video or phone, your choice. Relaxed, conversational, no slides or sales deck. We listen first and ask the right questions.',
   },
   {
     icon: TrendingDown,
     title: 'Revenue leaks identified',
-    detail: 'Even in 30 minutes, we can usually identify 2-3 operational gaps costing you the most, and estimate what each one costs per month.',
+    detail: 'Even in 15 minutes, we can usually identify 2-3 operational gaps costing you the most, and estimate what each one costs per month.',
   },
   {
     icon: Shield,
@@ -101,7 +101,7 @@ export default function Book() {
         }} />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <FadeItem delay={0}>
-            <p className="eyebrow" style={{ marginBottom: '1rem' }}>Free 30-Min Intro Call</p>
+            <p className="eyebrow" style={{ marginBottom: '1rem' }}>Free 15-Minute Intro Call</p>
           </FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{
@@ -114,7 +114,7 @@ export default function Book() {
               maxWidth: '680px',
               marginBottom: '1.5rem',
             }}>
-              Let's talk. 30 minutes. No pitch. No pressure.
+              Let's talk. 15 minutes. No pitch. No pressure.
             </h1>
           </FadeItem>
           <FadeItem delay={0.2}>

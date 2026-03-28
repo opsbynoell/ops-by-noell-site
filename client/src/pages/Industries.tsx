@@ -217,7 +217,7 @@ export default function Industries() {
               Don't see your industry? Let's talk anyway.
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#A09890', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.5rem' }}>
-              If your business runs on appointments, phone calls, and repeat clients, we can almost certainly help. Book a free 30-minute intro call and we'll tell you honestly what's possible.
+              If your business runs on appointments, phone calls, and repeat clients, we can almost certainly help. Book a free 15-minute intro call and we'll tell you honestly what's possible.
             </p>
             <a href="/book" className="btn-gradient" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', fontSize: '1rem', padding: '1rem 2.25rem' }}>
               Book Free Intro Call <ArrowRight size={16} />

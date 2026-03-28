@@ -391,7 +391,7 @@ export default function CaseStudy() {
               Ready to close your revenue gaps?
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, maxWidth: '460px', margin: '0 auto 2.5rem' }}>
-              30 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
+              15 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
             </p>
             <a href="/book" className="btn-gradient" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', fontSize: '1rem', padding: '1rem 2.25rem' }}>
               Book Your Free Intro Call <ArrowRight size={16} />

@@ -160,7 +160,7 @@ const FAQS = [
   { q: 'How long does it take to get set up?', a: "Most clients are fully live within 7–14 days of signing. We handle all the technical setup, integrations, and testing. You just need to show up for a 60-minute onboarding call." },
   { q: 'Do I need any technical knowledge?', a: "None at all. We build, manage, and maintain everything. You'll see the results, not the dashboards. If you ever want visibility into performance, we provide clear weekly or monthly reports." },
   { q: 'What if I already use a CRM or booking software?', a: "We integrate with the tools you already use: HubSpot, Calendly, Acuity, Jane App, Mindbody, and more. If you already have a CRM, we'll build around it rather than replace it. We'll scope the integration during your free intro call." },
-  { q: 'How does the process start?', a: "It starts with a free 30-minute intro call. We learn about your business, you learn about us, and we figure out if we're a fit. If it makes sense to move forward, we schedule a Revenue Audit to map your exact gaps and design your system." },
+  { q: 'How does the process start?', a: "It starts with a free 15-minute intro call. We learn about your business, you learn about us, and we figure out if we're a fit. If it makes sense to move forward, we schedule a Revenue Audit to map your exact gaps and design your system." },
   { q: 'Can I upgrade or add more systems later?', a: "Absolutely. Most clients start with one system and add more as they see results. We'll proactively recommend additions when we spot new opportunities in your operation." },
 ];
 
@@ -378,7 +378,7 @@ export default function Services() {
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '660px', margin: '0 auto' }}>
           <SectionBadge>The First Step Is Free</SectionBadge>
           <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 5vw, 3.25rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.25rem' }}>
-            Not sure where to start?<br /><GradientText>Let's talk for 30 minutes.</GradientText>
+            Not sure where to start?<br /><GradientText>Let's talk for 15 minutes.</GradientText>
           </h2>
           <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', maxWidth: '480px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
             A free intro call is the lowest-risk way to find out if automation is right for your business. No pitch. No pressure. Just a real conversation.

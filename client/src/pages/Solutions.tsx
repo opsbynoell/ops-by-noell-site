@@ -60,7 +60,7 @@ const FAQS = [
   },
   {
     q: 'How does the process start?',
-    a: 'It starts with a free 30-minute intro call. We learn about your business, you learn about us, and we figure out if we\'re a fit. If it makes sense to move forward, we schedule a paid Revenue Audit to map your exact gaps and design your system.',
+    a: 'It starts with a free 15-minute intro call. We learn about your business, you learn about us, and we figure out if we\'re a fit. If it makes sense to move forward, we schedule a paid Revenue Audit to map your exact gaps and design your system.',
   },
   {
     q: 'Can I upgrade or add more systems later?',
@@ -394,7 +394,7 @@ export default function Solutions() {
                 We build custom AI systems for your exact workflow.
               </h2>
               <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#A09890', lineHeight: 1.75, marginBottom: '2.5rem' }}>
-                Every business is different. Start with a free 30-minute intro call and we'll show you exactly what we'd build to fix it.
+                Every business is different. Start with a free 15-minute intro call and we'll show you exactly what we'd build to fix it.
               </p>
               <a href="/book" className="btn-gradient" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', fontSize: '1rem', padding: '1rem 2.25rem' }}>
                 Book Free Intro Call <ArrowRight size={16} />
