@@ -79,7 +79,7 @@ const pageMeta: Record<string, { title: string; description: string; keywords: s
     "/book": {
           title: "Book a Free 30-Minute Intro Call | Ops by Noell",
           description:
-                  "Book a free 30-minute intro call with Nikki. We map your revenue gaps and show you exactly how AI automation can recover lost leads and bookings.",
+                  "Book a free 30-minute call with Nikki. We map your revenue gaps and show you exactly how AI automation can recover lost leads and bookings.",
           keywords:
                   "book free automation audit, revenue leak audit, free AI consultation, automation discovery call, local business revenue gaps, missed lead recovery, book Ops by Noell, free intro call",
     },
@@ -213,8 +213,8 @@ function PageLoader() {
                                       animation: "spin 0.7s linear infinite",
                           }}
                         />
-                <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>style>
-          </div>div>
+                <style dangerouslySetInnerHTML={{ __html: "@keyframes spin { to { transform: rotate(360deg); } }" }} />
+          </div>
         );
 }
 
@@ -248,10 +248,10 @@ function Router() {
                                   <Route path="/case-study/massage-therapist" component={MassageTherapistCaseStudy} />
                                   <Route path="/404" component={NotFound} />
                                   <Route component={NotFound} />
-                        </Switch>Switch>
-                </Suspense>Suspense>
+                        </Switch>
+                </Suspense>
             {!isAdminPage && <ChatWidget />}
-          </div>div>
+          </div>
         );
 }
 
@@ -262,11 +262,10 @@ function App() {
                         <TooltipProvider>
                                   <Toaster />
                                   <Router />
-                        </TooltipProvider>TooltipProvider>
-                </ThemeProvider>ThemeProvider>
-          </ErrorBoundary>ErrorBoundary>
+                        </TooltipProvider>
+                </ThemeProvider>
+          </ErrorBoundary>
         );
 }
 
 export default App;
-</div>
