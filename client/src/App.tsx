@@ -1,4 +1,4 @@
-import { Toaster } from "@/components/ui/sonner"; // v2
+import { Toaster } from "@/components/ui/sonner"; // v3
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
