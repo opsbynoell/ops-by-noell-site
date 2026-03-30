@@ -1899,8 +1899,17 @@ function registerOAuthRoutes(app2) {
       name: "Nikki Noell",
       expiresInMs: ONE_YEAR_MS
     });
-    const cookieOptions = getSessionCookieOptions(req);
-    res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+    const maxAgeSeconds = Math.floor(ONE_YEAR_MS / 1e3);
+    const isProduction = process.env.NODE_ENV === "production";
+    const cookieValue = [
+      `${COOKIE_NAME}=${sessionToken}`,
+      `Max-Age=${maxAgeSeconds}`,
+      `Path=/`,
+      `HttpOnly`,
+      `SameSite=Lax`,
+      isProduction ? `Secure` : ""
+    ].filter(Boolean).join("; ");
+    res.setHeader("Set-Cookie", cookieValue);
     res.json({ success: true });
   });
   app2.get("/api/oauth/callback", async (req, res) => {

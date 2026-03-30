@@ -41,8 +41,19 @@ export function registerOAuthRoutes(app: Express) {
       expiresInMs: ONE_YEAR_MS,
     });
 
-    const cookieOptions = getSessionCookieOptions(req);
-    res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+    // Build Set-Cookie header manually to ensure it works in Vercel serverless
+    // (res.cookie() can be silently dropped when Express wraps a Vercel response)
+    const maxAgeSeconds = Math.floor(ONE_YEAR_MS / 1000);
+    const isProduction = process.env.NODE_ENV === "production";
+    const cookieValue = [
+      `${COOKIE_NAME}=${sessionToken}`,
+      `Max-Age=${maxAgeSeconds}`,
+      `Path=/`,
+      `HttpOnly`,
+      `SameSite=Lax`,
+      isProduction ? `Secure` : "",
+    ].filter(Boolean).join("; ");
+    res.setHeader("Set-Cookie", cookieValue);
     res.json({ success: true });
   });
   app.get("/api/oauth/callback", async (req: Request, res: Response) => {
