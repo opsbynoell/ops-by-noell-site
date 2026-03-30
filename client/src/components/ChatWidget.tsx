@@ -158,6 +158,11 @@ const KNOWLEDGE: Array<{ keywords: string[]; answer: string }> = [
     keywords: ['already use', 'existing', 'integrate', 'integration', 'mindbody', 'jane app', 'acuity', 'calendly', 'hubspot', 'square', 'existing software'],
     answer: "We integrate with the tools you already use — Calendly, Acuity, Jane App, Mindbody, HubSpot, and more. If you already have a CRM or booking system, we build around it rather than replace it. We scope the integration during your free intro call.",
   },
+  // Privacy / data
+  {
+    keywords: ['data', 'privacy', 'sell my info', 'sell my data', 'spam', 'mailing list', 'email list', 'safe', 'secure', 'confidential', 'what do you do with my info', 'what do you do with my data'],
+    answer: "We don't sell your data. Ever. We build systems for your business, not a database for ours. Anything you share with us stays between us and is only used to help you. No spam, no lists, no third-party sharing.",
+  },
   // Gratitude
   {
     keywords: ['thank you', 'thanks', 'appreciate', 'helpful', 'great', 'awesome', 'perfect', 'amazing'],
