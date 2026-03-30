@@ -1,7 +1,7 @@
 /*
  * OPS BY NOELL — Services Page (NeuraFlas Design System)
  * Merged: Solutions + Services + Industries
- * Sections: Hero → What We Build (6 builds) → Service Deep-Dives (6) → Who We Serve (6 industries) → Packages → FAQ → CTA
+ * Sections: Hero → What We Build (7 builds) → Service Deep-Dives (7) → Who We Serve (6 industries) → Packages → FAQ → CTA
  */
 
 import { useState } from 'react';
@@ -72,7 +72,13 @@ const SERVICES = [
     bestFor: 'Established businesses with an existing client base looking to increase lifetime value and referrals.',
   },
   {
-    icon: Settings, number: '06', title: 'Custom Operations Buildout', tagline: "If it's a repeatable process, it can be automated.",
+    icon: Zap, number: '06', title: 'AI Voice Receptionist', tagline: 'A real voice. Available 24/7. Never on hold.',
+    whatItDoes: 'A conversational AI voice agent that answers your phone after hours, handles basic FAQs, captures caller information, and routes inquiries, all without a human on the other end. Powered by Synthflow AI and fully integrated into your booking system.',
+    whyItMatters: 'Most missed calls happen outside business hours. An AI receptionist picks up every single time, qualifies the caller, and books them directly into your calendar. No voicemail. No message. No lost lead.',
+    bestFor: 'Practices with high after-hours call volume, solo operators, or any business that wants 24/7 coverage without staffing for it.',
+  },
+  {
+    icon: Settings, number: '07', title: 'Custom Operations Buildout', tagline: "If it's a repeatable process, it can be automated.",
     whatItDoes: "Your business doesn't fit a template. We scope and build exactly what you need: internal process automation, team workflows, client onboarding systems, reporting, integrations, and beyond. Every custom buildout starts with a deep-dive into your current operations to identify every manual step that can be systematized.",
     whyItMatters: 'Most automation agencies stop at lead capture. We go further. The real leverage in a growing business is in the back office: the handoffs, the follow-through, the reporting, the onboarding. When those run automatically, you scale without adding headcount.',
     bestFor: 'Growing businesses with complex operations, multiple team members, or unique workflows that off-the-shelf tools can\'t handle.',
@@ -114,6 +120,16 @@ const INDUSTRIES = [
 
 const PACKAGES = [
   {
+    name: 'Entry',
+    subtitle: 'AI Receptionist — Start Here',
+    price: '$247',
+    period: '/mo · + $297 setup',
+    desc: 'The fastest way to stop losing leads to voicemail. One system, done for you, live in a week. A great first step before committing to a full stack.',
+    includes: ['Missed Call Text-Back', 'AI Voice Receptionist (after-hours)', 'Onboarding & setup included', 'Ongoing management & maintenance'],
+    cta: 'Book Intro Call',
+    featured: false,
+  },
+  {
     name: 'Starter',
     subtitle: 'Lead Capture + Booking Fix',
     price: '$797',
@@ -134,13 +150,13 @@ const PACKAGES = [
     featured: true,
   },
   {
-    name: 'Website Add-On',
-    subtitle: 'Professional Web Presence',
-    price: 'Add-On',
-    period: 'available with any package',
-    desc: 'A clean, conversion-focused website designed to work with your automation systems, not just look good.',
-    includes: ['Custom website design & build', 'Booking integration included', 'Mobile-optimized', 'SEO foundation'],
-    cta: 'Book Intro Call',
+    name: 'Revenue Audit',
+    subtitle: 'Know exactly where you\'re leaking',
+    price: '$497',
+    period: 'one-time',
+    desc: 'A deep-dive into your current operations to identify every revenue leak, prioritize the highest-impact fixes, and build a custom automation roadmap.',
+    includes: ['60-minute operations deep-dive', 'Revenue leak analysis', 'Custom automation roadmap', 'ROI projections per system', 'Credited toward any package'],
+    cta: 'Book Revenue Audit',
     featured: false,
   },
   {
@@ -215,7 +231,7 @@ export default function Services() {
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <SectionBadge>The Full Service Stack</SectionBadge>
             <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-              Six systems. <GradientText>One integrated operation.</GradientText>
+              Seven systems. <GradientText>One integrated operation.</GradientText>
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#868583', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
               Each service is done-for-you from day one — designed, built, and managed by us. You don't touch a single setting.
@@ -309,7 +325,7 @@ export default function Services() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
             {PACKAGES.map(({ name, subtitle, price, period, desc, includes, cta, featured }, i) => (
               <FadeItem key={name} delay={i * 0.1}>
                 <div className={featured ? 'pricing-card featured' : 'pricing-card'} style={{ padding: '2rem', position: 'relative', display: 'flex', flexDirection: 'column', height: '100%' }}>
