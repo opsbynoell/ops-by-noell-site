@@ -1,4 +1,5 @@
 import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
+import { ENV } from "./env";
 import type { Express, Request, Response } from "express";
 import * as db from "../db";
 import { getSessionCookieOptions } from "./cookies";
@@ -10,6 +11,40 @@ function getQueryParam(req: Request, key: string): string | undefined {
 }
 
 export function registerOAuthRoutes(app: Express) {
+  // Simple password login for admin inbox — no OAuth required
+  app.post("/api/admin/login", async (req: Request, res: Response) => {
+    const { password } = req.body;
+    const adminPassword = ENV.adminPassword;
+
+    if (!adminPassword) {
+      res.status(500).json({ error: "ADMIN_PASSWORD not configured" });
+      return;
+    }
+
+    if (!password || password !== adminPassword) {
+      res.status(401).json({ error: "Invalid password" });
+      return;
+    }
+
+    const adminOpenId = "admin-opsbynoell";
+    await db.upsertUser({
+      openId: adminOpenId,
+      name: "Nikki Noell",
+      email: "hello@opsbynoell.com",
+      loginMethod: "password",
+      lastSignedIn: new Date(),
+      role: "admin",
+    });
+
+    const sessionToken = await sdk.createSessionToken(adminOpenId, {
+      name: "Nikki Noell",
+      expiresInMs: ONE_YEAR_MS,
+    });
+
+    const cookieOptions = getSessionCookieOptions(req);
+    res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+    res.json({ success: true });
+  });
   app.get("/api/oauth/callback", async (req: Request, res: Response) => {
     const code = getQueryParam(req, "code");
     const state = getQueryParam(req, "state");
