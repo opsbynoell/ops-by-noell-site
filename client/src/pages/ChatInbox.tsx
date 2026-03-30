@@ -6,8 +6,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { trpc } from '@/lib/trpc';
-import { getLoginUrl } from '@/const';
-import { MessageSquare, Send, User, Bot, UserCheck, RefreshCw, Circle } from 'lucide-react';
+import { MessageSquare, Send, User, Bot, UserCheck, RefreshCw, Circle, Lock } from 'lucide-react';
 
 type Message = {
   id: number;
@@ -74,9 +73,89 @@ export default function ChatInbox() {
     );
   }
 
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginLoading(true);
+    setLoginError('');
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        window.location.reload();
+      } else {
+        const d = await res.json();
+        setLoginError(d.error || 'Invalid password');
+      }
+    } catch {
+      setLoginError('Login failed. Try again.');
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
   if (!user) {
-    window.location.href = getLoginUrl();
-    return null;
+    return (
+      <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: '100%', maxWidth: '380px', padding: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', justifyContent: 'center' }}>
+            <Lock size={20} color="#A78BFA" />
+            <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, color: '#F5F0EC', fontSize: '1.125rem' }}>
+              Nova Chat Inbox
+            </span>
+          </div>
+          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="Admin password"
+              autoFocus
+              style={{
+                backgroundColor: '#141414',
+                border: '1px solid #2A2A2A',
+                borderRadius: '8px',
+                padding: '0.75rem 1rem',
+                fontFamily: "'Sora', sans-serif",
+                fontSize: '0.875rem',
+                color: '#F5F0EC',
+                outline: 'none',
+                width: '100%',
+              }}
+            />
+            {loginError && (
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#F87171', textAlign: 'center' }}>
+                {loginError}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={loginLoading || !password}
+              style={{
+                backgroundColor: password ? '#A78BFA' : '#2A2A2A',
+                color: password ? '#0A0A0A' : '#4A4440',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '0.75rem',
+                fontFamily: "'Sora', sans-serif",
+                fontWeight: 600,
+                fontSize: '0.875rem',
+                cursor: password ? 'pointer' : 'not-allowed',
+              }}
+            >
+              {loginLoading ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
+        </div>
+      </div>
+    );
   }
 
   if (user.role !== 'admin') {
