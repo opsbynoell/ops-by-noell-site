@@ -165,13 +165,14 @@ const KNOWLEDGE: Array<{ keywords: string[]; answer: string }> = [
   },
 ];
 
-const FALLBACK_RESPONSE = "That's a great question and I want to make sure you get a real answer. Let me connect you with Nikki directly — she can walk you through exactly how this would work for your business. Want me to grab your contact info so she can reach out, or would you prefer to book a time at opsbynoell.com/book?";
+const FALLBACK_RESPONSE = "That's a great question and I want to make sure you get a real answer. Let me connect you with James and Nikki directly. They can walk you through exactly how this would work for your business. Want me to grab your contact info so they can reach out, or would you prefer to book a time at opsbynoell.com/book?";
 
 const HUMAN_HANDOFF_KEYWORDS = [
   'talk to a person', 'talk to someone', 'speak to a person', 'speak to someone',
-  'real person', 'human', 'speak to nikki', 'talk to nikki', 'contact you',
+  'real person', 'human', 'speak to nikki', 'talk to nikki', 'speak to james', 'talk to james',
+  'speak to the noells', 'talk to the noells', 'contact you',
   'reach you', 'get in touch', 'someone call me', 'call me back', 'talk to a human',
-  'speak with someone', 'connect me', 'connect with nikki',
+  'speak with someone', 'connect me', 'connect with nikki', 'connect with james',
 ];
 
 function isHumanHandoffRequest(input: string): boolean {
@@ -269,7 +270,7 @@ export default function ChatWidget() {
     if (proactiveTriggered || sessionStorage.getItem(sessionKey)) return;
     const proactiveMessages: Record<string, string> = {
       '/services': "Trying to figure out which plan makes sense for your business? Happy to help you think it through. What type of business do you run?",
-      '/book': "If you have any questions before booking, I'm here. Nikki will walk you through exactly where your revenue gaps are on the call. Anything I can answer first?",
+      '/book': "If you have any questions before booking, I'm here. James and Nikki will walk you through exactly where your revenue gaps are on the call. Anything I can answer first?",
     };
     const message = proactiveMessages[location];
     if (!message) return;
@@ -312,7 +313,7 @@ export default function ChatWidget() {
     setLastUserMessage(triggerMessage);
     setStage('handoff');
     setHandoffStep('name');
-    addBotMessage("Of course — let me get Nikki on this for you.\n\nWhat's your name?");
+    addBotMessage("Of course. Let me get James and Nikki on this for you.\n\nWhat's your name?");
   }
 
   function handleHandoffSubmit() {
@@ -325,7 +326,7 @@ export default function ChatWidget() {
     if (handoffStep === 'name') {
       setHandoffInfo(prev => ({ ...prev, name: value }));
       setHandoffStep('phone');
-      setTimeout(() => addBotMessage(`Got it, ${value}. Best phone number for Nikki to reach you?`), 400);
+      setTimeout(() => addBotMessage(`Got it, ${value}. Best phone number for James or Nikki to reach you?`), 400);
     } else if (handoffStep === 'phone') {
       setHandoffInfo(prev => ({ ...prev, phone: value }));
       setHandoffStep('biz');
