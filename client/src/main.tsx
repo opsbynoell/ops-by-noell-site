@@ -5,20 +5,18 @@ import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
 import superjson from "superjson";
 import App from "./App";
-import { getLoginUrl } from "./const";
 import "./index.css";
 
 const queryClient = new QueryClient();
 
 const redirectToLoginIfUnauthorized = (error: unknown) => {
+  // Auth errors are handled per-page (e.g. ChatInbox shows login form).
+  // We don't redirect globally to avoid breaking public pages.
   if (!(error instanceof TRPCClientError)) return;
-  if (typeof window === "undefined") return;
-
   const isUnauthorized = error.message === UNAUTHED_ERR_MSG;
-
-  if (!isUnauthorized) return;
-
-  window.location.href = getLoginUrl();
+  if (isUnauthorized) {
+    console.warn("[Auth] Unauthenticated request — page should handle login.");
+  }
 };
 
 queryClient.getQueryCache().subscribe(event => {
