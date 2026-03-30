@@ -67,6 +67,16 @@ export const chatRouter = router({
       // Store visitor message
       await insertChatMessage(input.sessionId, "visitor", input.message);
 
+      // Notify owner of every visitor message (fire-and-forget, non-blocking)
+      {
+        const locationStr = visitorLocation ? ` (${visitorLocation})` : '';
+        sendTelegram(
+          `<b>Nova Chat</b>\n` +
+          `<b>From:</b> ${input.visitorName ?? 'Visitor'}${locationStr}\n` +
+          `<b>Message:</b> ${input.message}`
+        ).catch(() => {});
+      }
+
       // Check if human has taken over — if so, just store and notify
       const session = await getChatSession(input.sessionId);
       if (session?.humanTakeover) {
