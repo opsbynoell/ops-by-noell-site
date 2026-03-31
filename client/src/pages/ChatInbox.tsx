@@ -1,6 +1,6 @@
 /**
  * OPS BY NOELL — Admin Chat Inbox
- * Live monitoring: SSE-based real-time typing preview + Nova streaming
+ * Fast polling + simulated Nova typing. No SSE dependency.
  */
 
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -8,10 +8,6 @@ import { useAuth } from '@/_core/hooks/useAuth';
 import { trpc } from '@/lib/trpc';
 import { getLoginUrl } from '@/const';
 import { MessageSquare, Send, User, Bot, UserCheck, Circle, ArrowLeft } from 'lucide-react';
-
-// ─── SSE live state ───────────────────────────────────────────────────────────
-type TypingState = { isTyping: boolean; draft: string };
-type StreamState = { sessionId: string; buffer: string; done: boolean };
 
 type Message = {
   id: number;
@@ -36,23 +32,24 @@ type Session = {
   updatedAt: Date;
 };
 
-// ─── Deep link: parse ?session=ID from URL ────────────────────────────────────
+// ─── Deep link helpers ────────────────────────────────────────────────────────
 function getSessionFromUrl(): string | null {
   if (typeof window === 'undefined') return null;
-  const params = new URLSearchParams(window.location.search);
-  return params.get('session');
+  return new URLSearchParams(window.location.search).get('session');
 }
 
 function setSessionInUrl(sessionId: string | null) {
   if (typeof window === 'undefined') return;
   const url = new URL(window.location.href);
-  if (sessionId) {
-    url.searchParams.set('session', sessionId);
-  } else {
-    url.searchParams.delete('session');
-  }
+  if (sessionId) url.searchParams.set('session', sessionId);
+  else url.searchParams.delete('session');
   window.history.replaceState(null, '', url.toString());
 }
+
+// ─── Nova typing simulation ───────────────────────────────────────────────────
+// When a new visitor message arrives, we show "Nova is typing…" optimistically
+// for a realistic 1.5–3s window, then the actual response appears via polling.
+const NOVA_TYPING_DURATION_MS = 2200;
 
 export default function ChatInbox() {
   const { user, loading } = useAuth();
@@ -62,86 +59,25 @@ export default function ChatInbox() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
 
-  // ─── SSE live state ───────────────────────────────────────────────────────
-  // Map of sessionId → typing state for visitors
-  const [visitorTyping, setVisitorTyping] = useState<Record<string, TypingState>>({});
-  // Nova streaming: one active stream at a time
-  const [novaStream, setNovaStream] = useState<StreamState | null>(null);
-  const [novaTyping, setNovaTyping] = useState<Record<string, boolean>>({});
-  const sseRef = useRef<EventSource | null>(null);
+  // ─── Nova typing simulation state ────────────────────────────────────────
+  // Tracks the last visitor message count we've seen per session.
+  // When count increases → show typing indicator for NOVA_TYPING_DURATION_MS.
+  const prevVisitorCountRef = useRef<Record<string, number>>({});
+  const [novaTypingFor, setNovaTypingFor] = useState<string | null>(null);
+  const novaTypingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    if (!user || user.role !== 'admin') return;
-    const es = new EventSource('/api/chat/events', { withCredentials: true });
-    sseRef.current = es;
+  // ─── Prospect activity state ──────────────────────────────────────────────
+  // updatedAt changes on every message. If session updated < 8s ago and last
+  // message was from visitor, we show "Prospect is active…" in session list.
+  // No tRPC mutation needed — purely derived from session updatedAt + DB messages.
+  const [prospectActiveFor, setProspectActiveFor] = useState<string | null>(null);
 
-    es.addEventListener('visitor_typing', (e) => {
-      try {
-        const { sessionId, isTyping, draft } = JSON.parse(e.data);
-        setVisitorTyping(prev => ({
-          ...prev,
-          [sessionId]: { isTyping, draft: draft ?? '' },
-        }));
-      } catch { /* ignore */ }
-    });
-
-    es.addEventListener('nova_typing', (e) => {
-      try {
-        const { sessionId, isTyping } = JSON.parse(e.data);
-        setNovaTyping(prev => ({ ...prev, [sessionId]: isTyping }));
-        if (isTyping) {
-          setNovaStream({ sessionId, buffer: '', done: false });
-        }
-      } catch { /* ignore */ }
-    });
-
-    es.addEventListener('nova_stream_chunk', (e) => {
-      try {
-        const { sessionId, chunk } = JSON.parse(e.data);
-        setNovaStream(prev =>
-          prev && prev.sessionId === sessionId
-            ? { ...prev, buffer: prev.buffer + chunk }
-            : prev
-        );
-      } catch { /* ignore */ }
-    });
-
-    es.addEventListener('nova_stream_done', (e) => {
-      try {
-        const { sessionId } = JSON.parse(e.data);
-        setNovaStream(prev =>
-          prev && prev.sessionId === sessionId ? { ...prev, done: true } : prev
-        );
-        setNovaTyping(prev => ({ ...prev, [sessionId]: false }));
-        // Clear stream bubble after a short delay then let polling pick up final message
-        setTimeout(() => {
-          setNovaStream(null);
-          refetchMessages();
-        }, 400);
-      } catch { /* ignore */ }
-    });
-
-    es.addEventListener('new_message', () => {
-      refetchMessages();
-      refetchSessions();
-    });
-
-    es.addEventListener('session_updated', () => {
-      refetchSessions();
-    });
-
-    es.onerror = () => { /* SSE will auto-reconnect */ };
-
-    return () => { es.close(); sseRef.current = null; };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
-  // ─── Data fetching (with fallback polling) ────────────────────────────────
+  // ─── Polling: sessions every 2s, messages every 1.5s ─────────────────────
   const { data: sessions, refetch: refetchSessions } = trpc.chat.getSessions.useQuery(
     undefined,
     {
       enabled: !!user && user.role === 'admin',
-      refetchInterval: 3000,
+      refetchInterval: 2000,
     }
   );
 
@@ -149,7 +85,7 @@ export default function ChatInbox() {
     { sessionId: selectedSession! },
     {
       enabled: !!selectedSession,
-      refetchInterval: 2000,
+      refetchInterval: 1500,
     }
   );
 
@@ -168,29 +104,76 @@ export default function ChatInbox() {
     },
   });
 
-  // ─── Phase 3: Sync selected session to/from URL ───────────────────────────
+  // ─── Nova typing simulation: trigger on new visitor message ──────────────
+  useEffect(() => {
+    if (!messages || !selectedSession) return;
+    const visitorCount = messages.filter((m: Message) => m.role === 'visitor').length;
+    const prev = prevVisitorCountRef.current[selectedSession] ?? 0;
+
+    if (visitorCount > prev) {
+      // New visitor message arrived — check if Nova hasn't replied yet
+      const lastMsg = messages[messages.length - 1];
+      const lastIsBotOrHuman = lastMsg?.role === 'bot' || lastMsg?.role === 'human';
+
+      if (!lastIsBotOrHuman) {
+        // Nova hasn't replied yet — show typing indicator
+        setNovaTypingFor(selectedSession);
+        if (novaTypingTimerRef.current) clearTimeout(novaTypingTimerRef.current);
+        novaTypingTimerRef.current = setTimeout(() => {
+          setNovaTypingFor(null);
+        }, NOVA_TYPING_DURATION_MS);
+      }
+    }
+
+    // If Nova's reply just appeared, clear typing immediately
+    if (novaTypingFor === selectedSession) {
+      const lastMsg = messages[messages.length - 1];
+      if (lastMsg?.role === 'bot' || lastMsg?.role === 'human') {
+        if (novaTypingTimerRef.current) clearTimeout(novaTypingTimerRef.current);
+        setNovaTypingFor(null);
+      }
+    }
+
+    prevVisitorCountRef.current[selectedSession] = visitorCount;
+  }, [messages, selectedSession]);
+
+  // ─── Prospect active indicator: derive from session updatedAt ────────────
+  useEffect(() => {
+    if (!sessions || !selectedSession) return;
+    const session = sessions.find((s: Session) => s.sessionId === selectedSession);
+    if (!session) return;
+    const updatedAt = new Date(session.updatedAt).getTime();
+    const ageMs = Date.now() - updatedAt;
+    // Show "active" if session updated within last 8 seconds
+    if (ageMs < 8000) {
+      setProspectActiveFor(selectedSession);
+      const remaining = 8000 - ageMs;
+      const t = setTimeout(() => setProspectActiveFor(null), remaining);
+      return () => clearTimeout(t);
+    }
+  }, [sessions, selectedSession]);
+
+  // ─── URL sync ─────────────────────────────────────────────────────────────
   const selectSession = useCallback((sessionId: string | null) => {
     setSelectedSession(sessionId);
     setSessionInUrl(sessionId);
     if (sessionId) setShowThread(true);
   }, []);
 
-  // On load, if URL has a session param, verify it exists after sessions load
   useEffect(() => {
     const urlSession = getSessionFromUrl();
     if (urlSession && sessions && !sessions.find((s: Session) => s.sessionId === urlSession)) {
-      // Session not found — clear URL param
       setSessionInUrl(null);
       setSelectedSession(null);
     }
   }, [sessions]);
 
-  // Auto-scroll on new messages, typing changes, or stream updates
+  // ─── Auto-scroll ──────────────────────────────────────────────────────────
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, novaStream?.buffer, visitorTyping, novaTyping]);
+  }, [messages, novaTypingFor]);
 
-  // ─── Phase 4: Mobile — detect screen width reactively ────────────────────
+  // ─── Mobile width ─────────────────────────────────────────────────────────
   useEffect(() => {
     const handler = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handler);
@@ -237,14 +220,24 @@ export default function ChatInbox() {
   };
 
   const isMobileView = windowWidth < 768;
-
-  // On mobile: show either list or thread, not both
-  // On desktop: show both side by side
   const showList = !isMobileView || !showThread;
   const showThreadPanel = !isMobileView || showThread;
 
+  // Show Nova typing if: indicator is active AND last message isn't already a bot reply
+  const lastMsg = messages?.[messages.length - 1];
+  const showNovaTyping =
+    novaTypingFor === selectedSession &&
+    !selectedSessionData?.humanTakeover &&
+    lastMsg?.role !== 'bot';
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A', display: 'flex', flexDirection: 'column' }}>
+      {/* CSS keyframes */}
+      <style>{`
+        @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(0.85) } 50% { opacity: 1; transform: scale(1.1) } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: translateY(0) } }
+      `}</style>
+
       {/* Header */}
       <div style={{
         backgroundColor: '#141414',
@@ -256,7 +249,6 @@ export default function ChatInbox() {
         flexShrink: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-          {/* Mobile: back button when in thread view */}
           {isMobileView && showThread && (
             <button
               onClick={() => { setShowThread(false); selectSession(null); }}
@@ -308,65 +300,77 @@ export default function ChatInbox() {
                 No conversations yet.
               </div>
             ) : (
-              sessions.map((session: Session) => (
-                <div
-                  key={session.sessionId}
-                  onClick={() => selectSession(session.sessionId)}
-                  style={{
-                    padding: '0.875rem 1rem',
-                    borderBottom: '1px solid #1A1A1A',
-                    cursor: 'pointer',
-                    backgroundColor: selectedSession === session.sessionId ? '#1A1A1A' : 'transparent',
-                    transition: 'background-color 0.15s ease',
-                    minHeight: '60px', // better tap target on mobile
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.2rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', minWidth: 0 }}>
-                      {session.humanTakeover ? (
-                        <UserCheck size={13} color="#A78BFA" style={{ flexShrink: 0 }} />
-                      ) : (
-                        <Bot size={13} color="#868583" style={{ flexShrink: 0 }} />
-                      )}
-                      <span style={{
-                        fontFamily: "'Sora', sans-serif",
-                        fontSize: '0.8125rem',
-                        fontWeight: 600,
-                        color: '#F5F0EC',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                      }}>
-                        {session.visitorName ?? 'Anonymous'}
-                      </span>
+              sessions.map((session: Session) => {
+                const isActive = prospectActiveFor === session.sessionId;
+                return (
+                  <div
+                    key={session.sessionId}
+                    onClick={() => selectSession(session.sessionId)}
+                    style={{
+                      padding: '0.875rem 1rem',
+                      borderBottom: '1px solid #1A1A1A',
+                      cursor: 'pointer',
+                      backgroundColor: selectedSession === session.sessionId ? '#1A1A1A' : 'transparent',
+                      transition: 'background-color 0.15s ease',
+                      minHeight: '60px',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.2rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', minWidth: 0 }}>
+                        {session.humanTakeover ? (
+                          <UserCheck size={13} color="#A78BFA" style={{ flexShrink: 0 }} />
+                        ) : (
+                          <Bot size={13} color="#868583" style={{ flexShrink: 0 }} />
+                        )}
+                        <span style={{
+                          fontFamily: "'Sora', sans-serif",
+                          fontSize: '0.8125rem',
+                          fontWeight: 600,
+                          color: '#F5F0EC',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}>
+                          {session.visitorName ?? 'Anonymous'}
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', flexShrink: 0 }}>
+                        {session.priority === 'hot' && (
+                          <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5rem', fontWeight: 700, color: '#FF6B6B', backgroundColor: 'rgba(255,107,107,0.12)', borderRadius: '999px', padding: '0.1rem 0.375rem', letterSpacing: '0.06em' }}>HOT</span>
+                        )}
+                        {session.humanTakeover ? (
+                          <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#A78BFA', fontWeight: 600 }}>YOU</span>
+                        ) : null}
+                        {session.unreadCount > 0 && (
+                          <Circle size={7} fill="#A78BFA" color="#A78BFA" />
+                        )}
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', flexShrink: 0 }}>
-                      {session.priority === 'hot' && (
-                        <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5rem', fontWeight: 700, color: '#FF6B6B', backgroundColor: 'rgba(255,107,107,0.12)', borderRadius: '999px', padding: '0.1rem 0.375rem', letterSpacing: '0.06em' }}>HOT</span>
-                      )}
-                      {session.humanTakeover ? (
-                        <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#A78BFA', fontWeight: 600 }}>YOU</span>
-                      ) : null}
-                      {session.unreadCount > 0 && (
-                        <Circle size={7} fill="#A78BFA" color="#A78BFA" />
-                      )}
-                    </div>
+                    {session.visitorEmail && (
+                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#868583', margin: '0 0 0.1rem 0' }}>
+                        {session.visitorEmail}
+                      </p>
+                    )}
+                    {session.businessType && (
+                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#5A5450', margin: 0 }}>
+                        {session.businessType}
+                      </p>
+                    )}
+                    {/* Prospect active pulse */}
+                    {isActive && (
+                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#6EE7B7', marginTop: '0.3rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#6EE7B7', display: 'inline-block', animation: 'pulse 1.2s ease-in-out infinite' }} />
+                        active
+                      </p>
+                    )}
+                    {!isActive && (
+                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#3A3430', marginTop: '0.3rem' }}>
+                        {new Date(session.updatedAt).toLocaleString()}
+                      </p>
+                    )}
                   </div>
-                  {session.visitorEmail && (
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#868583', margin: '0 0 0.1rem 0' }}>
-                      {session.visitorEmail}
-                    </p>
-                  )}
-                  {session.businessType && (
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#5A5450', margin: 0 }}>
-                      {session.businessType}
-                    </p>
-                  )}
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#3A3430', marginTop: '0.3rem' }}>
-                    {new Date(session.updatedAt).toLocaleString()}
-                  </p>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         )}
@@ -403,7 +407,6 @@ export default function ChatInbox() {
                       {selectedSessionData?.visitorLocation ? ` · 📍 ${selectedSessionData.visitorLocation}` : ''}
                     </p>
                   </div>
-                  {/* Takeover toggle — prominent on mobile */}
                   <button
                     onClick={() => setTakeover.mutate({
                       sessionId: selectedSession,
@@ -423,7 +426,7 @@ export default function ChatInbox() {
                       alignItems: 'center',
                       gap: '0.3rem',
                       flexShrink: 0,
-                      minHeight: '36px', // better mobile tap target
+                      minHeight: '36px',
                     }}
                   >
                     <UserCheck size={12} />
@@ -431,7 +434,7 @@ export default function ChatInbox() {
                   </button>
                 </div>
 
-                {/* Takeover status banner — polished, prominent */}
+                {/* Takeover banner */}
                 {selectedSessionData?.humanTakeover ? (
                   <div style={{
                     background: 'linear-gradient(90deg, rgba(167,139,250,0.12) 0%, rgba(167,139,250,0.06) 100%)',
@@ -467,6 +470,7 @@ export default function ChatInbox() {
                           justifyContent: msg.role === 'visitor' ? 'flex-start' : 'flex-end',
                           gap: '0.4rem',
                           alignItems: 'flex-end',
+                          animation: 'fadeIn 0.2s ease',
                         }}
                       >
                         {msg.role === 'visitor' && (
@@ -529,130 +533,52 @@ export default function ChatInbox() {
                     ))
                   )}
 
-                  {/* ── Visitor typing indicator ──────────────────────────── */}
-                  {selectedSession && visitorTyping[selectedSession]?.isTyping && (
-                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.4rem' }}>
+                  {/* ── Nova typing indicator ─────────────────────────────── */}
+                  {showNovaTyping && (
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      alignItems: 'flex-end',
+                      gap: '0.4rem',
+                      animation: 'fadeIn 0.2s ease',
+                    }}>
                       <div style={{
-                        width: '24px', height: '24px', borderRadius: '50%',
-                        backgroundColor: '#1E1E1E', border: '1px solid #2A2A2A',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                        backgroundColor: '#2A2A2A',
+                        borderRadius: '12px 12px 3px 12px',
+                        padding: '0.625rem 0.875rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.25rem',
                       }}>
-                        <User size={12} color="#868583" />
-                      </div>
-                      <div style={{
-                        maxWidth: '78%',
-                        backgroundColor: '#141414',
-                        border: '1px solid #252525',
-                        borderRadius: '12px 12px 12px 3px',
-                        padding: '0.5rem 0.75rem',
-                      }}>
-                        <p style={{
+                        <span style={{
                           fontFamily: "'Sora', sans-serif",
                           fontSize: '0.5625rem',
-                          color: '#5A5450',
-                          margin: '0 0 0.25rem',
+                          color: '#868583',
+                          marginRight: '0.375rem',
                           fontStyle: 'italic',
-                          letterSpacing: '0.02em',
                         }}>
-                          typing…
-                        </p>
-                        {visitorTyping[selectedSession].draft && (
-                          <p style={{
-                            fontFamily: "'Sora', sans-serif",
-                            fontSize: '0.8125rem',
-                            color: 'rgba(245,240,236,0.35)',
-                            lineHeight: 1.5,
-                            whiteSpace: 'pre-wrap',
-                            margin: 0,
-                            fontStyle: 'italic',
-                          }}>
-                            {visitorTyping[selectedSession].draft}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* ── Nova streaming bubble ─────────────────────────────── */}
-                  {selectedSession && !selectedSessionData?.humanTakeover && (
-                    novaTyping[selectedSession] || (novaStream && novaStream.sessionId === selectedSession && !novaStream.done)
-                  ) && (
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '0.4rem' }}>
-                      <div style={{
-                        maxWidth: '78%',
-                        background: 'linear-gradient(135deg, #1E1A2E 0%, #221F30 100%)',
-                        border: '1px solid rgba(167,139,250,0.2)',
-                        borderRadius: '12px 12px 3px 12px',
-                        padding: '0.5rem 0.75rem',
-                        position: 'relative',
-                        overflow: 'hidden',
-                      }}>
-                        {/* Subtle shimmer line at top */}
-                        <div style={{
-                          position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-                          background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.4), transparent)',
-                        }} />
-                        <p style={{
-                          fontFamily: "'Sora', sans-serif",
-                          fontSize: '0.5rem',
-                          fontWeight: 700,
-                          letterSpacing: '0.08em',
-                          textTransform: 'uppercase',
-                          color: 'rgba(167,139,250,0.6)',
-                          marginBottom: '0.2rem',
-                        }}>
-                          Nova
-                        </p>
-                        {novaStream && novaStream.sessionId === selectedSession && novaStream.buffer ? (
-                          <p style={{
-                            fontFamily: "'Sora', sans-serif",
-                            fontSize: '0.8125rem',
-                            color: 'rgba(245,240,236,0.85)',
-                            lineHeight: 1.5,
-                            whiteSpace: 'pre-wrap',
-                            margin: 0,
-                          }}>
-                            {novaStream.buffer}
-                            {/* blinking cursor */}
-                            <span style={{
-                              display: 'inline-block', width: '2px', height: '0.9em',
-                              backgroundColor: 'rgba(167,139,250,0.7)', marginLeft: '1px',
-                              verticalAlign: 'text-bottom',
-                              animation: 'blink 0.9s step-end infinite',
-                            }} />
-                          </p>
-                        ) : (
-                          /* pulse dots while waiting for first chunk */
-                          <div style={{ display: 'flex', gap: '4px', alignItems: 'center', height: '18px' }}>
-                            {[0, 1, 2].map(i => (
-                              <div key={i} style={{
-                                width: '5px', height: '5px', borderRadius: '50%',
-                                backgroundColor: 'rgba(167,139,250,0.5)',
-                                animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite`,
-                              }} />
-                            ))}
-                          </div>
-                        )}
+                          Nova is typing
+                        </span>
+                        {[0, 1, 2].map(i => (
+                          <div key={i} style={{
+                            width: '4px', height: '4px', borderRadius: '50%',
+                            backgroundColor: 'rgba(167,139,250,0.6)',
+                            animation: `pulse 1.1s ease-in-out ${i * 0.18}s infinite`,
+                          }} />
+                        ))}
                       </div>
                       <div style={{
                         width: '24px', height: '24px', borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #2A2040, #1A1A2E)',
-                        border: '1px solid rgba(167,139,250,0.3)',
+                        backgroundColor: '#2A2A2A',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                       }}>
-                        <Bot size={12} color="rgba(167,139,250,0.8)" />
+                        <Bot size={12} color="#868583" />
                       </div>
                     </div>
                   )}
 
                   <div ref={messagesEndRef} />
                 </div>
-
-                {/* CSS keyframes for animations */}
-                <style>{`
-                  @keyframes blink { 0%, 100% { opacity: 1 } 50% { opacity: 0 } }
-                  @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(0.8) } 50% { opacity: 1; transform: scale(1.1) } }
-                `}</style>
 
                 {/* Reply input */}
                 <div style={{

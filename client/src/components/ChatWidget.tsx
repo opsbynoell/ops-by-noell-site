@@ -244,9 +244,7 @@ export default function ChatWidget() {
 
   const submitLead = trpc.leads.submit.useMutation();
   const sendMessageMutation = trpc.chat.sendMessage.useMutation();
-  const visitorTypingMutation = trpc.chat.visitorTyping.useMutation();
   const [sessionId] = useState(() => getSessionId());
-  const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [syncedMessageIds, setSyncedMessageIds] = useState<Set<string>>(new Set());
   const [humanTakeoverActive, setHumanTakeoverActive] = useState(false);
 
@@ -452,9 +450,6 @@ export default function ChatWidget() {
     if (!inputValue.trim()) return;
     const text = inputValue.trim();
     setInputValue('');
-    // Clear typing state immediately on send
-    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-    visitorTypingMutation.mutate({ sessionId, draft: '', isTyping: false });
     setMessages(prev => [...prev, { id: Date.now().toString(), role: 'user', text, timestamp: new Date() }]);
 
     if (stage === 'intro') {
@@ -542,19 +537,9 @@ export default function ChatWidget() {
     ? handleHandoffSubmit
     : handleSendMessage;
 
-  // ─── Typing event handler (only fires for main chat stage) ───────────────
+  // Simple alias — no SSE typing events needed with fast-polling approach
   const handleTypingInput = (value: string) => {
     setActiveInput(value);
-    // Only send typing events during chat stage — not during capture/handoff
-    if (stage !== 'chat') return;
-    visitorTypingMutation.mutate({ sessionId, draft: value, isTyping: value.length > 0 });
-    // Auto-clear typing state after 3s of inactivity
-    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-    if (value.length > 0) {
-      typingTimeoutRef.current = setTimeout(() => {
-        visitorTypingMutation.mutate({ sessionId, draft: '', isTyping: false });
-      }, 3000);
-    }
   };
 
   return (
