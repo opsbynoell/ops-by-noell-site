@@ -2471,6 +2471,7 @@ async function handler(req, res) {
       const resolvedEmail = sess.visitorEmail || extractedEmail;
       const resolvedName = sess.visitorName || "";
       let contactCaptured = false;
+      let ghlContactIdResult = null;
       if (resolvedEmail) {
         try {
           // Upsert: update intent/name if row already exists, always run GHL sync after
@@ -2516,6 +2517,7 @@ async function handler(req, res) {
                 const ghlData = await ghlRes.json();
                 const ghlContactId = ghlData?.contact?.id ?? null;
                 if (ghlContactId) {
+                  ghlContactIdResult = ghlContactId;
                   await qlPool.query(
                     `UPDATE "chatLeads" SET "ghlContactId"=$1, notified='yes' WHERE email=$2 AND "sessionId"=$3`,
                     [ghlContactId, resolvedEmail, qlSessionId]
@@ -2537,7 +2539,8 @@ async function handler(req, res) {
         intent: analysis.intent,
         businessType: analysis.businessType || sess.businessType || null,
         painPoint: analysis.painPoint ?? null,
-        contactCaptured
+        contactCaptured,
+        ghlContactId: ghlContactIdResult || null
       });
     } catch (err) {
       console.error("qualify-lead error:", err);
