@@ -1,12 +1,13 @@
 /**
  * OPS BY NOELL — Admin Chat Inbox
- * View all website chat conversations and reply as Nova (human takeover)
+ * Phases 2–4: SSE real-time, deep linking, mobile-responsive UI
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { trpc } from '@/lib/trpc';
-import { MessageSquare, Send, User, Bot, UserCheck, RefreshCw, Circle, Lock } from 'lucide-react';
+import { getLoginUrl } from '@/const';
+import { MessageSquare, Send, User, Bot, UserCheck, Circle, ArrowLeft } from 'lucide-react';
 
 type Message = {
   id: number;
@@ -30,25 +31,47 @@ type Session = {
   updatedAt: Date;
 };
 
+// ─── Deep link: parse ?session=ID from URL ────────────────────────────────────
+function getSessionFromUrl(): string | null {
+  if (typeof window === 'undefined') return null;
+  const params = new URLSearchParams(window.location.search);
+  return params.get('session');
+}
+
+function setSessionInUrl(sessionId: string | null) {
+  if (typeof window === 'undefined') return;
+  const url = new URL(window.location.href);
+  if (sessionId) {
+    url.searchParams.set('session', sessionId);
+  } else {
+    url.searchParams.delete('session');
+  }
+  window.history.replaceState(null, '', url.toString());
+}
+
 export default function ChatInbox() {
   const { user, loading } = useAuth();
-  const [selectedSession, setSelectedSession] = useState<string | null>(null);
+  const [selectedSession, setSelectedSession] = useState<string | null>(() => getSessionFromUrl());
   const [replyText, setReplyText] = useState('');
+  const [showThread, setShowThread] = useState<boolean>(() => !!getSessionFromUrl());
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  // Login form state — must be declared unconditionally (React hooks rules)
-  const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState('');
-  const [loginLoading, setLoginLoading] = useState(false);
-
-  const { data: sessions, refetch: refetchSessions, isLoading: sessionsLoading } = trpc.chat.getSessions.useQuery(
+  // ─── Data fetching (with fallback polling) ────────────────────────────────
+  const { data: sessions, refetch: refetchSessions } = trpc.chat.getSessions.useQuery(
     undefined,
-    { enabled: !!user && user.role === 'admin', refetchInterval: 10000 }
+    {
+      enabled: !!user && user.role === 'admin',
+      refetchInterval: 30000, // fallback: 30s polling (SSE handles real-time)
+    }
   );
 
   const { data: messages, refetch: refetchMessages } = trpc.chat.getSessionMessages.useQuery(
     { sessionId: selectedSession! },
-    { enabled: !!selectedSession, refetchInterval: 5000 }
+    {
+      enabled: !!selectedSession,
+      refetchInterval: 15000, // fallback polling
+    }
   );
 
   const adminReply = trpc.chat.adminReply.useMutation({
@@ -62,10 +85,70 @@ export default function ChatInbox() {
   const setTakeover = trpc.chat.setTakeover.useMutation({
     onSuccess: () => {
       refetchSessions();
-      refetchMessages();
     },
   });
 
+  // ─── Phase 2: SSE real-time updates ───────────────────────────────────────
+  useEffect(() => {
+    if (!user || user.role !== 'admin') return;
+
+    let es: EventSource | null = null;
+    let retryTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    function connect() {
+      es = new EventSource('/api/chat-sse');
+
+      es.addEventListener('new_message', (e: MessageEvent) => {
+        const payload = JSON.parse(e.data);
+        // If this message belongs to the active thread, refetch messages
+        if (payload.sessionId === selectedSession) {
+          refetchMessages();
+        }
+        // Always refetch sessions list for unread count + ordering
+        refetchSessions();
+      });
+
+      es.addEventListener('session_updated', (e: MessageEvent) => {
+        refetchSessions();
+        const payload = JSON.parse(e.data);
+        if (payload.sessionId === selectedSession) {
+          refetchMessages();
+        }
+      });
+
+      es.onerror = () => {
+        es?.close();
+        // Reconnect after 3s
+        retryTimeout = setTimeout(connect, 3000);
+      };
+    }
+
+    connect();
+
+    return () => {
+      es?.close();
+      if (retryTimeout) clearTimeout(retryTimeout);
+    };
+  }, [user, selectedSession, refetchMessages, refetchSessions]);
+
+  // ─── Phase 3: Sync selected session to/from URL ───────────────────────────
+  const selectSession = useCallback((sessionId: string | null) => {
+    setSelectedSession(sessionId);
+    setSessionInUrl(sessionId);
+    if (sessionId) setShowThread(true);
+  }, []);
+
+  // On load, if URL has a session param, verify it exists after sessions load
+  useEffect(() => {
+    const urlSession = getSessionFromUrl();
+    if (urlSession && sessions && !sessions.find((s: Session) => s.sessionId === urlSession)) {
+      // Session not found — clear URL param
+      setSessionInUrl(null);
+      setSelectedSession(null);
+    }
+  }, [sessions]);
+
+  // Auto-scroll messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -78,85 +161,9 @@ export default function ChatInbox() {
     );
   }
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoginLoading(true);
-    setLoginError('');
-    try {
-      const res = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
-        credentials: 'include',
-      });
-      if (res.ok) {
-        window.location.reload();
-      } else {
-        const d = await res.json();
-        setLoginError(d.error || 'Invalid password');
-      }
-    } catch {
-      setLoginError('Login failed. Try again.');
-    } finally {
-      setLoginLoading(false);
-    }
-  };
-
   if (!user) {
-    return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ width: '100%', maxWidth: '380px', padding: '2rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', justifyContent: 'center' }}>
-            <Lock size={20} color="#A78BFA" />
-            <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, color: '#F5F0EC', fontSize: '1.125rem' }}>
-              Nova Chat Inbox
-            </span>
-          </div>
-          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <input
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="Admin password"
-              autoFocus
-              style={{
-                backgroundColor: '#141414',
-                border: '1px solid #2A2A2A',
-                borderRadius: '8px',
-                padding: '0.75rem 1rem',
-                fontFamily: "'Sora', sans-serif",
-                fontSize: '0.875rem',
-                color: '#F5F0EC',
-                outline: 'none',
-                width: '100%',
-              }}
-            />
-            {loginError && (
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#F87171', textAlign: 'center' }}>
-                {loginError}
-              </p>
-            )}
-            <button
-              type="submit"
-              disabled={loginLoading || !password}
-              style={{
-                backgroundColor: password ? '#A78BFA' : '#2A2A2A',
-                color: password ? '#0A0A0A' : '#4A4440',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '0.75rem',
-                fontFamily: "'Sora', sans-serif",
-                fontWeight: 600,
-                fontSize: '0.875rem',
-                cursor: password ? 'pointer' : 'not-allowed',
-              }}
-            >
-              {loginLoading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
-        </div>
-      </div>
-    );
+    window.location.href = getLoginUrl();
+    return null;
   }
 
   if (user.role !== 'admin') {
@@ -185,175 +192,178 @@ export default function ChatInbox() {
     }
   };
 
+  // ─── Phase 4: Mobile — detect screen width reactively ────────────────────
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  useEffect(() => {
+    const handler = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  const isMobileView = windowWidth < 768;
+
+  // On mobile: show either list or thread, not both
+  // On desktop: show both side by side
+  const showList = !isMobileView || !showThread;
+  const showThreadPanel = !isMobileView || showThread;
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#0A0A0A', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <div style={{
         backgroundColor: '#141414',
         borderBottom: '1px solid #2A2A2A',
-        padding: '1rem 1.5rem',
+        padding: '0.875rem 1rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        flexShrink: 0,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <MessageSquare size={20} color="#A78BFA" />
-          <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, color: '#F5F0EC', fontSize: '1rem' }}>
-            Nova Chat Inbox
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          {/* Mobile: back button when in thread view */}
+          {isMobileView && showThread && (
+            <button
+              onClick={() => { setShowThread(false); selectSession(null); }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#A78BFA', padding: '0.25rem', display: 'flex', alignItems: 'center' }}
+            >
+              <ArrowLeft size={20} />
+            </button>
+          )}
+          <MessageSquare size={18} color="#A78BFA" />
+          <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, color: '#F5F0EC', fontSize: '0.9375rem' }}>
+            {isMobileView && showThread && selectedSessionData
+              ? (selectedSessionData.visitorName ?? 'Visitor')
+              : 'Nova Chat Inbox'}
           </span>
           {totalUnread > 0 && (
             <span style={{
               backgroundColor: '#A78BFA',
               color: '#0A0A0A',
               borderRadius: '999px',
-              padding: '0.125rem 0.5rem',
-              fontSize: '0.6875rem',
+              padding: '0.125rem 0.45rem',
+              fontSize: '0.625rem',
               fontWeight: 700,
               fontFamily: "'Sora', sans-serif",
             }}>
-              {totalUnread} unread
+              {totalUnread}
             </span>
           )}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <button
-            onClick={() => { refetchSessions(); if (selectedSession) refetchMessages(); }}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#868583', display: 'flex', alignItems: 'center', gap: '0.375rem' }}
-          >
-            <RefreshCw size={14} />
-            <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem' }}>Refresh</span>
-          </button>
-          <a href="/" style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#868583', textDecoration: 'none' }}>
-            ← Back to site
-          </a>
-        </div>
+        <a href="/" style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#868583', textDecoration: 'none' }}>
+          ← Site
+        </a>
       </div>
 
       {/* Main layout */}
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', height: 'calc(100vh - 60px)' }}>
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', height: 'calc(100vh - 52px)' }}>
+
         {/* Session list */}
-        <div style={{
-          width: '300px',
-          flexShrink: 0,
-          borderRight: '1px solid #2A2A2A',
-          overflowY: 'auto',
-          backgroundColor: '#0F0F0F',
-        }}>
-          {sessionsLoading ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: '#868583', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem' }}>
-              Loading sessions...
-            </div>
-          ) : !sessions || sessions.length === 0 ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: '#868583', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem' }}>
-              No conversations yet.<br />
-              <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>Chats from the website widget will appear here.</span>
-            </div>
-          ) : (
-            sessions.map((session: Session) => (
-              <div
-                key={session.sessionId}
-                onClick={() => setSelectedSession(session.sessionId)}
-                style={{
-                  padding: '1rem',
-                  borderBottom: '1px solid #1A1A1A',
-                  cursor: 'pointer',
-                  backgroundColor: selectedSession === session.sessionId ? '#1A1A1A' : 'transparent',
-                  transition: 'background-color 0.15s ease',
-                }}
-                onMouseEnter={e => {
-                  if (selectedSession !== session.sessionId)
-                    (e.currentTarget as HTMLDivElement).style.backgroundColor = '#141414';
-                }}
-                onMouseLeave={e => {
-                  if (selectedSession !== session.sessionId)
-                    (e.currentTarget as HTMLDivElement).style.backgroundColor = 'transparent';
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {session.humanTakeover ? (
-                      <UserCheck size={14} color="#A78BFA" />
-                    ) : (
-                      <Bot size={14} color="#868583" />
-                    )}
-                    <span style={{
-                      fontFamily: "'Sora', sans-serif",
-                      fontSize: '0.8125rem',
-                      fontWeight: 600,
-                      color: '#F5F0EC',
-                    }}>
-                      {session.visitorName ?? 'Anonymous Visitor'}
-                    </span>
-                  </div>
-                  {session.unreadCount > 0 && (
-                    <Circle size={8} fill="#A78BFA" color="#A78BFA" />
-                  )}
-                </div>
-                {session.visitorEmail && (
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#868583', marginBottom: '0.125rem' }}>
-                    {session.visitorEmail}
-                  </p>
-                )}
-                {session.businessType && (
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#868583' }}>
-                    {session.businessType}
-                  </p>
-                )}
-                {session.visitorLocation && (
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#5A5450', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                    📍 {session.visitorLocation}
-                  </p>
-                )}
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.625rem', color: '#4A4440', marginTop: '0.375rem' }}>
-                  {new Date(session.updatedAt).toLocaleString()}
-                </p>
+        {showList && (
+          <div style={{
+            width: isMobileView ? '100%' : '300px',
+            flexShrink: 0,
+            borderRight: isMobileView ? 'none' : '1px solid #2A2A2A',
+            overflowY: 'auto',
+            backgroundColor: '#0F0F0F',
+            WebkitOverflowScrolling: 'touch',
+          }}>
+            {!sessions || sessions.length === 0 ? (
+              <div style={{ padding: '2rem', textAlign: 'center', color: '#868583', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem' }}>
+                No conversations yet.
               </div>
-            ))
-          )}
-        </div>
+            ) : (
+              sessions.map((session: Session) => (
+                <div
+                  key={session.sessionId}
+                  onClick={() => selectSession(session.sessionId)}
+                  style={{
+                    padding: '0.875rem 1rem',
+                    borderBottom: '1px solid #1A1A1A',
+                    cursor: 'pointer',
+                    backgroundColor: selectedSession === session.sessionId ? '#1A1A1A' : 'transparent',
+                    transition: 'background-color 0.15s ease',
+                    minHeight: '60px', // better tap target on mobile
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.2rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', minWidth: 0 }}>
+                      {session.humanTakeover ? (
+                        <UserCheck size={13} color="#A78BFA" style={{ flexShrink: 0 }} />
+                      ) : (
+                        <Bot size={13} color="#868583" style={{ flexShrink: 0 }} />
+                      )}
+                      <span style={{
+                        fontFamily: "'Sora', sans-serif",
+                        fontSize: '0.8125rem',
+                        fontWeight: 600,
+                        color: '#F5F0EC',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                      }}>
+                        {session.visitorName ?? 'Anonymous'}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', flexShrink: 0 }}>
+                      {session.humanTakeover ? (
+                        <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#A78BFA', fontWeight: 600 }}>YOU</span>
+                      ) : null}
+                      {session.unreadCount > 0 && (
+                        <Circle size={7} fill="#A78BFA" color="#A78BFA" />
+                      )}
+                    </div>
+                  </div>
+                  {session.visitorEmail && (
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#868583', margin: '0 0 0.1rem 0' }}>
+                      {session.visitorEmail}
+                    </p>
+                  )}
+                  {session.businessType && (
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#5A5450', margin: 0 }}>
+                      {session.businessType}
+                    </p>
+                  )}
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#3A3430', marginTop: '0.3rem' }}>
+                    {new Date(session.updatedAt).toLocaleString()}
+                  </p>
+                </div>
+              ))
+            )}
+          </div>
+        )}
 
         {/* Message thread */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-          {!selectedSession ? (
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
-              <MessageSquare size={40} color="#2A2A2A" />
-              <p style={{ fontFamily: "'Sora', sans-serif", color: '#4A4440', fontSize: '0.875rem' }}>
-                Select a conversation to view messages
-              </p>
-            </div>
-          ) : (
-            <>
-              {/* Thread header */}
-              <div style={{
-                padding: '0.875rem 1.25rem',
-                borderBottom: '1px solid #2A2A2A',
-                backgroundColor: '#141414',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-                <div>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, color: '#F5F0EC', fontSize: '0.875rem' }}>
-                    {selectedSessionData?.visitorName ?? 'Anonymous Visitor'}
-                  </p>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', color: '#868583' }}>
-                    {selectedSessionData?.visitorEmail ?? 'No email'} · {selectedSessionData?.businessType ?? 'Business type unknown'}
-                    {selectedSessionData?.visitorLocation && (
-                      <span style={{ marginLeft: '0.5rem', color: '#5A5450' }}>· 📍 {selectedSessionData.visitorLocation}</span>
-                    )}
-                    {selectedSessionData?.visitorIp && (
-                      <span style={{ marginLeft: '0.5rem', color: '#3A3430', fontSize: '0.625rem' }}>({selectedSessionData.visitorIp})</span>
-                    )}
-                  </p>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontSize: '0.6875rem',
-                    color: selectedSessionData?.humanTakeover ? '#A78BFA' : '#868583',
-                  }}>
-                    {selectedSessionData?.humanTakeover ? 'Human takeover ON' : 'Bot mode'}
-                  </span>
+        {showThreadPanel && (
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', width: isMobileView ? '100%' : 'auto' }}>
+            {!selectedSession ? (
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
+                <MessageSquare size={36} color="#2A2A2A" />
+                <p style={{ fontFamily: "'Sora', sans-serif", color: '#4A4440', fontSize: '0.875rem' }}>
+                  Select a conversation
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* Thread header */}
+                <div style={{
+                  padding: '0.75rem 1rem',
+                  borderBottom: '1px solid #2A2A2A',
+                  backgroundColor: '#141414',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexShrink: 0,
+                }}>
+                  <div style={{ minWidth: 0, flex: 1, marginRight: '0.5rem' }}>
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, color: '#F5F0EC', fontSize: '0.8125rem', margin: 0 }}>
+                      {selectedSessionData?.visitorName ?? 'Anonymous'}
+                    </p>
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.625rem', color: '#868583', margin: '0.125rem 0 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {selectedSessionData?.visitorEmail ?? 'No email'}
+                      {selectedSessionData?.businessType ? ` · ${selectedSessionData.businessType}` : ''}
+                      {selectedSessionData?.visitorLocation ? ` · 📍 ${selectedSessionData.visitorLocation}` : ''}
+                    </p>
+                  </div>
+                  {/* Takeover toggle — prominent on mobile */}
                   <button
                     onClick={() => setTakeover.mutate({
                       sessionId: selectedSession,
@@ -364,157 +374,179 @@ export default function ChatInbox() {
                       color: selectedSessionData?.humanTakeover ? '#0A0A0A' : '#F5F0EC',
                       border: 'none',
                       borderRadius: '6px',
-                      padding: '0.375rem 0.75rem',
+                      padding: '0.5rem 0.75rem',
                       cursor: 'pointer',
                       fontFamily: "'Sora', sans-serif",
                       fontSize: '0.6875rem',
-                      fontWeight: 600,
+                      fontWeight: 700,
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.375rem',
+                      gap: '0.3rem',
+                      flexShrink: 0,
+                      minHeight: '36px', // better mobile tap target
                     }}
                   >
                     <UserCheck size={12} />
-                    {selectedSessionData?.humanTakeover ? 'Hand back to bot' : 'Take over'}
+                    {selectedSessionData?.humanTakeover ? 'Hand back' : 'Take over'}
                   </button>
                 </div>
-              </div>
 
-              {/* Messages */}
-              <div style={{ flex: 1, overflowY: 'auto', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {!messages || messages.length === 0 ? (
-                  <div style={{ textAlign: 'center', color: '#4A4440', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', marginTop: '2rem' }}>
-                    No messages yet
+                {/* Takeover status banner */}
+                {selectedSessionData?.humanTakeover ? (
+                  <div style={{
+                    backgroundColor: 'rgba(167,139,250,0.1)',
+                    borderBottom: '1px solid rgba(167,139,250,0.2)',
+                    padding: '0.5rem 1rem',
+                    fontFamily: "'Sora', sans-serif",
+                    fontSize: '0.6875rem',
+                    color: '#A78BFA',
+                    textAlign: 'center',
+                    flexShrink: 0,
+                  }}>
+                    Human takeover active — AI is paused. You are replying as Nova.
                   </div>
-                ) : (
-                  messages.map((msg: Message) => (
-                    <div
-                      key={msg.id}
-                      style={{
-                        display: 'flex',
-                        justifyContent: msg.role === 'visitor' ? 'flex-start' : 'flex-end',
-                        gap: '0.5rem',
-                        alignItems: 'flex-end',
-                      }}
-                    >
-                      {msg.role === 'visitor' && (
+                ) : null}
+
+                {/* Messages */}
+                <div style={{ flex: 1, overflowY: 'auto', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.625rem', WebkitOverflowScrolling: 'touch' }}>
+                  {!messages || messages.length === 0 ? (
+                    <div style={{ textAlign: 'center', color: '#4A4440', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', marginTop: '2rem' }}>
+                      No messages yet
+                    </div>
+                  ) : (
+                    messages.map((msg: Message) => (
+                      <div
+                        key={msg.id}
+                        style={{
+                          display: 'flex',
+                          justifyContent: msg.role === 'visitor' ? 'flex-start' : 'flex-end',
+                          gap: '0.4rem',
+                          alignItems: 'flex-end',
+                        }}
+                      >
+                        {msg.role === 'visitor' && (
+                          <div style={{
+                            width: '24px', height: '24px', borderRadius: '50%',
+                            backgroundColor: '#2A2A2A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                          }}>
+                            <User size={12} color="#868583" />
+                          </div>
+                        )}
                         <div style={{
-                          width: '28px', height: '28px', borderRadius: '50%',
-                          backgroundColor: '#2A2A2A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                          maxWidth: '78%',
+                          backgroundColor: msg.role === 'visitor' ? '#1A1A1A' : msg.role === 'human' ? '#A78BFA' : '#2A2A2A',
+                          borderRadius: msg.role === 'visitor' ? '12px 12px 12px 3px' : '12px 12px 3px 12px',
+                          padding: '0.5rem 0.75rem',
                         }}>
-                          <User size={14} color="#868583" />
-                        </div>
-                      )}
-                      <div style={{
-                        maxWidth: '70%',
-                        backgroundColor: msg.role === 'visitor' ? '#1A1A1A' : msg.role === 'human' ? '#A78BFA' : '#2A2A2A',
-                        borderRadius: msg.role === 'visitor' ? '12px 12px 12px 4px' : '12px 12px 4px 12px',
-                        padding: '0.625rem 0.875rem',
-                      }}>
-                        {msg.role !== 'visitor' && (
+                          {msg.role !== 'visitor' && (
+                            <p style={{
+                              fontFamily: "'Sora', sans-serif",
+                              fontSize: '0.5rem',
+                              fontWeight: 700,
+                              letterSpacing: '0.08em',
+                              textTransform: 'uppercase',
+                              color: msg.role === 'human' ? 'rgba(10,10,10,0.6)' : '#868583',
+                              marginBottom: '0.2rem',
+                            }}>
+                              {msg.role === 'human' ? 'You (Nova)' : 'Nova Bot'}
+                            </p>
+                          )}
                           <p style={{
                             fontFamily: "'Sora', sans-serif",
-                            fontSize: '0.5625rem',
-                            fontWeight: 600,
-                            letterSpacing: '0.08em',
-                            textTransform: 'uppercase',
-                            color: msg.role === 'human' ? '#0A0A0A' : '#868583',
-                            marginBottom: '0.25rem',
+                            fontSize: '0.8125rem',
+                            color: msg.role === 'human' ? '#0A0A0A' : '#F5F0EC',
+                            lineHeight: 1.5,
+                            whiteSpace: 'pre-wrap',
+                            margin: 0,
                           }}>
-                            {msg.role === 'human' ? 'You (Nova)' : 'Nova Bot'}
+                            {msg.content}
                           </p>
-                        )}
-                        <p style={{
-                          fontFamily: "'Sora', sans-serif",
-                          fontSize: '0.8125rem',
-                          color: msg.role === 'human' ? '#0A0A0A' : '#F5F0EC',
-                          lineHeight: 1.5,
-                          whiteSpace: 'pre-wrap',
-                        }}>
-                          {msg.content}
-                        </p>
-                        <p style={{
-                          fontFamily: "'Sora', sans-serif",
-                          fontSize: '0.5625rem',
-                          color: msg.role === 'human' ? 'rgba(10,10,10,0.5)' : '#4A4440',
-                          marginTop: '0.25rem',
-                          textAlign: 'right',
-                        }}>
-                          {new Date(msg.createdAt).toLocaleTimeString()}
-                        </p>
-                      </div>
-                      {msg.role !== 'visitor' && (
-                        <div style={{
-                          width: '28px', height: '28px', borderRadius: '50%',
-                          backgroundColor: msg.role === 'human' ? '#A78BFA' : '#2A2A2A',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                        }}>
-                          {msg.role === 'human' ? <UserCheck size={14} color="#0A0A0A" /> : <Bot size={14} color="#868583" />}
+                          <p style={{
+                            fontFamily: "'Sora', sans-serif",
+                            fontSize: '0.5rem',
+                            color: msg.role === 'human' ? 'rgba(10,10,10,0.4)' : '#3A3430',
+                            marginTop: '0.2rem',
+                            textAlign: 'right',
+                          }}>
+                            {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </p>
                         </div>
-                      )}
-                    </div>
-                  ))
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* Reply input */}
-              <div style={{
-                borderTop: '1px solid #2A2A2A',
-                padding: '0.875rem 1.25rem',
-                backgroundColor: '#141414',
-                display: 'flex',
-                gap: '0.75rem',
-                alignItems: 'flex-end',
-              }}>
-                <div style={{ flex: 1 }}>
-                  <textarea
-                    value={replyText}
-                    onChange={e => setReplyText(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Reply as Nova (human)... Press Enter to send, Shift+Enter for new line"
-                    rows={2}
-                    style={{
-                      width: '100%',
-                      backgroundColor: '#0A0A0A',
-                      border: '1px solid #2A2A2A',
-                      borderRadius: '8px',
-                      padding: '0.625rem 0.875rem',
-                      fontFamily: "'Sora', sans-serif",
-                      fontSize: '0.8125rem',
-                      color: '#F5F0EC',
-                      resize: 'none',
-                      outline: 'none',
-                      lineHeight: 1.5,
-                    }}
-                    onFocus={e => (e.target as HTMLTextAreaElement).style.borderColor = '#A78BFA'}
-                    onBlur={e => (e.target as HTMLTextAreaElement).style.borderColor = '#2A2A2A'}
-                  />
+                        {msg.role !== 'visitor' && (
+                          <div style={{
+                            width: '24px', height: '24px', borderRadius: '50%',
+                            backgroundColor: msg.role === 'human' ? '#A78BFA' : '#2A2A2A',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                          }}>
+                            {msg.role === 'human' ? <UserCheck size={12} color="#0A0A0A" /> : <Bot size={12} color="#868583" />}
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  )}
+                  <div ref={messagesEndRef} />
                 </div>
-                <button
-                  onClick={handleSendReply}
-                  disabled={!replyText.trim() || adminReply.isPending}
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    backgroundColor: replyText.trim() ? '#A78BFA' : '#2A2A2A',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: replyText.trim() ? 'pointer' : 'not-allowed',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    transition: 'background-color 0.2s ease',
-                  }}
-                  aria-label="Send reply"
-                >
-                  <Send size={16} color={replyText.trim() ? '#0A0A0A' : '#4A4440'} />
-                </button>
-              </div>
-            </>
-          )}
-        </div>
+
+                {/* Reply input */}
+                <div style={{
+                  borderTop: '1px solid #2A2A2A',
+                  padding: '0.75rem',
+                  backgroundColor: '#141414',
+                  display: 'flex',
+                  gap: '0.625rem',
+                  alignItems: 'flex-end',
+                  flexShrink: 0,
+                }}>
+                  <div style={{ flex: 1 }}>
+                    <textarea
+                      value={replyText}
+                      onChange={e => setReplyText(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      placeholder={selectedSessionData?.humanTakeover ? 'Reply as Nikki/James...' : 'Take over first, then reply...'}
+                      rows={2}
+                      style={{
+                        width: '100%',
+                        backgroundColor: '#0A0A0A',
+                        border: '1px solid #2A2A2A',
+                        borderRadius: '8px',
+                        padding: '0.5rem 0.75rem',
+                        fontFamily: "'Sora', sans-serif",
+                        fontSize: '0.8125rem',
+                        color: '#F5F0EC',
+                        resize: 'none',
+                        outline: 'none',
+                        lineHeight: 1.5,
+                        boxSizing: 'border-box',
+                        WebkitAppearance: 'none',
+                        touchAction: 'manipulation',
+                      }}
+                      onFocus={e => (e.target as HTMLTextAreaElement).style.borderColor = '#A78BFA'}
+                      onBlur={e => (e.target as HTMLTextAreaElement).style.borderColor = '#2A2A2A'}
+                    />
+                  </div>
+                  <button
+                    onClick={handleSendReply}
+                    disabled={!replyText.trim() || adminReply.isPending}
+                    style={{
+                      width: '44px',
+                      height: '44px',
+                      backgroundColor: replyText.trim() ? '#A78BFA' : '#2A2A2A',
+                      border: 'none',
+                      borderRadius: '8px',
+                      cursor: replyText.trim() ? 'pointer' : 'not-allowed',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}
+                    aria-label="Send reply"
+                  >
+                    <Send size={16} color={replyText.trim() ? '#0A0A0A' : '#4A4440'} />
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
