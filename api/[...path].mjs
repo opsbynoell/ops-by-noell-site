@@ -2485,11 +2485,13 @@ async function handler(req, res) {
                   nova_intent: analysis.intent
                 }
               };
+              console.error("[QL-GHL] About to call GHL, GHL_KEY_present=" + !!QL_GHL_KEY + " email=" + resolvedEmail + " intent=" + analysis.intent);
               const ghlRes = await fetch("https://rest.gohighlevel.com/v1/contacts/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${QL_GHL_KEY}` },
                 body: JSON.stringify(ghlPayload)
               });
+              console.error("[QL-GHL] Response status=" + ghlRes.status + " ok=" + ghlRes.ok);
               if (ghlRes.ok) {
                 const ghlData = await ghlRes.json();
                 const ghlContactId = ghlData?.contact?.id ?? null;
