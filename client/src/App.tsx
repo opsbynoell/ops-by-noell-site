@@ -18,6 +18,8 @@ const Solutions = lazy(() => import("./pages/Solutions"));
 const Industries = lazy(() => import("./pages/Industries"));
 const Newsletter = lazy(() => import("./pages/Newsletter"));
 const ChatInbox = lazy(() => import("./pages/ChatInbox"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminOpen = lazy(() => import("./pages/AdminOpen"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const Calculator = lazy(() => import("./pages/Calculator"));
@@ -229,7 +231,7 @@ function PageLoader() {
 function Router() {
     const [location] = useLocation();
     const isAdminPage = location.startsWith('/admin') || location === '/analytics';
-  
+
     return (
           <div style={{ minHeight: "100vh", background: "#010509" }}>
                 <MetaUpdater />
@@ -245,6 +247,8 @@ function Router() {
                                   <Route path="/newsletter" component={Newsletter} />
                                   <Route path="/calculator" component={Calculator} />
                                   <Route path="/analytics" component={BotAnalytics} />
+                                  <Route path="/admin/login" component={AdminLogin} />
+                                  <Route path="/admin/open" component={AdminOpen} />
                                   <Route path="/admin/inbox" component={ChatInbox} />
                                   <Route path="/privacy-policy" component={PrivacyPolicy} />
                                   <Route path="/terms" component={TermsOfService} />

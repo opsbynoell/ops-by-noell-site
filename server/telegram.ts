@@ -105,7 +105,11 @@ type AlertPayload = {
 };
 
 function buildInboxUrl(sessionId: string): string {
-  return `https://www.opsbynoell.com/admin/inbox?session=${encodeURIComponent(sessionId)}`;
+  // /admin/open handles auth check first:
+  //   - authenticated  → goes straight to /admin/inbox?session=...
+  //   - unauthenticated → goes to /admin/login?next=... then returns after login
+  // This fixes the loading loop in Telegram's in-app browser.
+  return `https://www.opsbynoell.com/admin/open?session=${encodeURIComponent(sessionId)}`;
 }
 
 function trimMessage(msg: string, maxLen = 180): string {
