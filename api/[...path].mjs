@@ -2376,7 +2376,7 @@ async function handler(req, res) {
     if (!GHL_KEY) { res.status(500).json({ error: "GHL_API_KEY not set" }); return; }
     try {
       const r = await fetch("https://rest.gohighlevel.com/v1/contacts/?limit=1", {
-        headers: { Authorization: \`Bearer \${GHL_KEY}\` }
+        headers: { Authorization: "Bearer " + GHL_KEY }
       });
       const text = await r.text();
       res.status(200).json({ ghlStatus: r.status, ghlBody: text.substring(0, 500), keyPresent: true, keyPrefix: GHL_KEY.substring(0, 8) });
