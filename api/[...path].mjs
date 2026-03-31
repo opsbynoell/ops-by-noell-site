@@ -10830,7 +10830,16 @@ var SDKServer = class {
     }
     const sessionUserId = session.openId;
     const signedInAt = /* @__PURE__ */ new Date();
-    let user = await getUserByOpenId(sessionUserId);
+    let user;
+    try {
+      user = await Promise.race([
+        getUserByOpenId(sessionUserId),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("DB timeout")), 5000))
+      ]);
+    } catch (dbErr) {
+      console.warn("[Auth] DB lookup timed out, using fallback:", dbErr.message);
+      user = undefined;
+    }
     if (!user && sessionUserId === "admin-opsbynoell") {
       return {
         openId: "admin-opsbynoell",
