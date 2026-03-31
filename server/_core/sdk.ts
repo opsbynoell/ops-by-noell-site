@@ -212,12 +212,11 @@ class SDKServer {
       });
       const { openId, appId, name } = payload as Record<string, unknown>;
 
-      if (
-        !isNonEmptyString(openId) ||
-        !isNonEmptyString(appId) ||
-        !isNonEmptyString(name)
-      ) {
-        console.warn("[Auth] Session payload missing required fields");
+      // openId is the only field required to identify the user.
+      // appId may be empty when VITE_APP_ID is not set (password-auth deployments).
+      // name may be empty for admin accounts created without a display name.
+      if (!isNonEmptyString(openId)) {
+        console.warn("[Auth] Session payload missing openId");
         return null;
       }
 
