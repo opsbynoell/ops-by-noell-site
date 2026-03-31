@@ -193,6 +193,8 @@ export default function ChatWidget() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const submitLead = trpc.leads.submit.useMutation();
   const sendMessageMutation = trpc.chat.sendMessage.useMutation();
@@ -272,6 +274,25 @@ export default function ChatWidget() {
 
     return () => clearTimeout(timer);
   }, [location, isOpen, proactiveTriggered]);
+
+  // Outside-click: only collapse if the visitor has NOT yet sent a message.
+  // Once hasEngaged is true, the widget stays open until the X button is clicked.
+  useEffect(() => {
+    function handleOutsideClick(e: MouseEvent) {
+      if (!isOpen) return;
+      const target = e.target as Node;
+      const clickedInsidePanel = panelRef.current?.contains(target);
+      const clickedToggle = toggleRef.current?.contains(target);
+      if (!clickedInsidePanel && !clickedToggle) {
+        const engaged = messages.some(m => m.role === 'user');
+        if (!engaged) {
+          setIsOpen(false);
+        }
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, [isOpen, messages]);
 
   function openChat() {
     setIsOpen(true);
@@ -525,6 +546,7 @@ export default function ChatWidget() {
 
         {/* Chat toggle button */}
         <button
+          ref={toggleRef}
           onClick={() => isOpen ? (!hasEngaged && setIsOpen(false)) : openChat()}
           style={{
             width: '52px',
@@ -574,6 +596,7 @@ export default function ChatWidget() {
 
       {/* ─── Chat Panel ─── */}
       <div
+        ref={panelRef}
         style={{
           position: 'fixed',
           bottom: '6rem',
