@@ -286,7 +286,7 @@ export default function ChatWidget() {
       setIsOpen(true);
       setHasUnread(false);
       setMessages([{ id: 'proactive_1', role: 'bot', text: message, timestamp: new Date() }]);
-      setStage('answer');
+      setStage('chat');
     }, 45000);
     return () => clearTimeout(timer);
   }, [location, isOpen, proactiveTriggered]);
@@ -406,21 +406,27 @@ export default function ChatWidget() {
 
   function handleQuickQuestion(q: string) {
     setShowQuickQ(false);
-    setStage('answer');
+    setStage('chat');
     setMessages(prev => [...prev, { id: Date.now().toString(), role: 'user', text: q, timestamp: new Date() }]);
     sessionStorage.setItem('ops_pending_question', q);
-    const response = getBotResponse(q);
-    setIsTyping(true);
-    setTimeout(() => {
-      setIsTyping(false);
-      const answerId = Date.now().toString();
-      setMessages(prev => [...prev, { id: answerId, role: 'bot', text: response, timestamp: new Date() }]);
-      setTimeout(() => {
-        setStage('capture');
-        setCaptureStep('name');
-        addBotMessage("Before I forget — I'd love to grab your info so Nikki can follow up personally.\n\nWhat's your first name?");
-      }, 800);
-    }, 1200 + Math.random() * 400);
+    // Use LLM for the response so the conversation flows naturally
+    sendMessageMutation.mutate(
+      { sessionId, message: q, visitorName: leadInfo.name, visitorEmail: leadInfo.email, businessType: leadInfo.businessType },
+      {
+        onSuccess: (data) => {
+          if (!data.humanTakeover && data.botReply) {
+            setIsTyping(true);
+            setTimeout(() => {
+              setIsTyping(false);
+              setMessages(prev => [...prev, { id: Date.now().toString(), role: 'bot', text: data.botReply!, timestamp: new Date() }]);
+            }, 1000 + Math.random() * 400);
+          }
+        },
+        onError: () => {
+          addBotMessage(getBotResponse(q));
+        },
+      }
+    );
   }
 
   function handleSendMessage() {
@@ -431,7 +437,7 @@ export default function ChatWidget() {
 
     if (stage === 'intro') {
       setShowQuickQ(false);
-      setStage('answer');
+      setStage('chat');
       sessionStorage.setItem('ops_pending_question', text);
 
       if (isHumanHandoffRequest(text)) {
@@ -439,17 +445,24 @@ export default function ChatWidget() {
         return;
       }
 
-      const response = getBotResponse(text);
-      setIsTyping(true);
-      setTimeout(() => {
-        setIsTyping(false);
-        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'bot', text: response, timestamp: new Date() }]);
-        setTimeout(() => {
-          setStage('capture');
-          setCaptureStep('name');
-          addBotMessage("Before I forget — I'd love to grab your info so Nikki can follow up personally.\n\nWhat's your first name?");
-        }, 800);
-      }, 1200 + Math.random() * 400);
+      // Send through LLM so the full conversation is tracked and natural
+      sendMessageMutation.mutate(
+        { sessionId, message: text, visitorName: leadInfo.name, visitorEmail: leadInfo.email, businessType: leadInfo.businessType },
+        {
+          onSuccess: (data) => {
+            if (!data.humanTakeover && data.botReply) {
+              setIsTyping(true);
+              setTimeout(() => {
+                setIsTyping(false);
+                setMessages(prev => [...prev, { id: Date.now().toString(), role: 'bot', text: data.botReply!, timestamp: new Date() }]);
+              }, 1000 + Math.random() * 400);
+            }
+          },
+          onError: () => {
+            addBotMessage(getBotResponse(text));
+          },
+        }
+      );
       return;
     }
 
