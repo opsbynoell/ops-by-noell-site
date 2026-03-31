@@ -1464,7 +1464,13 @@ async function invokeLLM(params) {
   if (isAnthropic) {
     headers["x-api-key"] = resolveApiKey();
     headers["anthropic-version"] = "2023-06-01";
-    // max_tokens already set correctly above
+    // Anthropic requires system as top-level param, not a message role
+    const systemMsgs = payload.messages.filter(m => m.role === "system");
+    const nonSystemMsgs = payload.messages.filter(m => m.role !== "system");
+    if (systemMsgs.length > 0) {
+      payload.system = systemMsgs.map(m => m.content).join("\n\n");
+    }
+    payload.messages = nonSystemMsgs;
   } else {
     headers["authorization"] = `Bearer ${resolveApiKey()}`;
   }
