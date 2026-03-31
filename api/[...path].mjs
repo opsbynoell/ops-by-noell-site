@@ -2524,7 +2524,9 @@ async function handler(req, res) {
                   );
                 }
               } else {
-                console.error("GHL sync failed:", ghlRes.status, await ghlRes.text());
+                const ghlErrText = await ghlRes.text();
+                console.error("GHL sync failed:", ghlRes.status, ghlErrText);
+                ghlContactIdResult = "ERR:" + ghlRes.status + ":" + ghlErrText.substring(0, 100);
               }
             } catch (ghlErr) {
               console.error("ghl-sync inline error:", ghlErr);
