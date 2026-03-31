@@ -159,28 +159,34 @@ var systemRouter = router({
 
 // server/db.ts
 import { eq, sql, gte, desc } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
 
 // drizzle/schema.ts
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
-var users = mysqlTable("users", {
+import { integer, pgEnum, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+var roleEnum = pgEnum("role", ["user", "admin"]);
+var notifiedEnum = pgEnum("notified", ["yes", "no"]);
+var stepEnum = pgEnum("step", ["start", "awaiting_name", "awaiting_interest", "awaiting_contact_method", "awaiting_phone", "awaiting_email", "complete"]);
+var messageRoleEnum = pgEnum("message_role", ["visitor", "bot", "human"]);
+
+var users = pgTable("users", {
   /**
    * Surrogate primary key. Auto-incremented numeric value managed by the database.
    * Use this for relations between tables.
    */
-  id: int("id").autoincrement().primaryKey(),
+  id: serial("id").primaryKey(),
   /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
   openId: varchar("openId", { length: 64 }).notNull().unique(),
   name: text("name"),
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  role: roleEnum("role").default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull()
 });
-var chatLeads = mysqlTable("chatLeads", {
-  id: int("id").autoincrement().primaryKey(),
+var chatLeads = pgTable("chatLeads", {
+  id: serial("id").primaryKey(),
   name: varchar("name", { length: 128 }).notNull(),
   email: varchar("email", { length: 320 }).notNull(),
   businessType: varchar("businessType", { length: 256 }).notNull(),
@@ -188,11 +194,11 @@ var chatLeads = mysqlTable("chatLeads", {
   // the initial question they asked
   page: varchar("page", { length: 256 }),
   // which page they were on
-  notified: mysqlEnum("notified", ["yes", "no"]).default("no").notNull(),
+  notified: notifiedEnum("notified").default("no").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull()
 });
-var botSessions = mysqlTable("botSessions", {
-  id: int("id").autoincrement().primaryKey(),
+var botSessions = pgTable("botSessions", {
+  id: serial("id").primaryKey(),
   /** Telegram user ID (numeric, stored as string for safety with large IDs) */
   telegramUserId: varchar("telegramUserId", { length: 32 }).notNull().unique(),
   telegramUsername: varchar("telegramUsername", { length: 128 }),
@@ -206,15 +212,7 @@ var botSessions = mysqlTable("botSessions", {
    *   awaiting_email  → waiting for them to type their email address
    *   complete        → flow finished, lead captured
    */
-  step: mysqlEnum("step", [
-    "start",
-    "awaiting_name",
-    "awaiting_interest",
-    "awaiting_contact_method",
-    "awaiting_phone",
-    "awaiting_email",
-    "complete"
-  ]).default("start").notNull(),
+  step: stepEnum("step").default("start").notNull(),
   /** Name the user provided when asked */
   leadName: varchar("leadName", { length: 128 }),
   /** What they selected for interest (Agency Services / Freelance Work / Other) */
@@ -226,10 +224,10 @@ var botSessions = mysqlTable("botSessions", {
   /** Source that triggered the flow (e.g. "website", "direct") */
   source: varchar("source", { length: 64 }).default("direct"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull()
+  updatedAt: timestamp("updatedAt").defaultNow().notNull()
 });
-var chatSessions = mysqlTable("chatSessions", {
-  id: int("id").autoincrement().primaryKey(),
+var chatSessions = pgTable("chatSessions", {
+  id: serial("id").primaryKey(),
   /** Random UUID assigned to the visitor's browser session */
   sessionId: varchar("sessionId", { length: 64 }).notNull().unique(),
   visitorName: varchar("visitorName", { length: 128 }),
@@ -240,30 +238,30 @@ var chatSessions = mysqlTable("chatSessions", {
   /** Approximate location from IP (e.g. "Los Angeles, CA, US") */
   visitorLocation: varchar("visitorLocation", { length: 256 }),
   /** Whether a human has taken over this conversation */
-  humanTakeover: int("humanTakeover").default(0).notNull(),
+  humanTakeover: integer("humanTakeover").default(0).notNull(),
   // 0 = bot, 1 = human
   /** Number of unread messages from visitor (for admin badge) */
-  unreadCount: int("unreadCount").default(0).notNull(),
+  unreadCount: integer("unreadCount").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull()
+  updatedAt: timestamp("updatedAt").defaultNow().notNull()
 });
-var chatMessages = mysqlTable("chatMessages", {
-  id: int("id").autoincrement().primaryKey(),
+var chatMessages = pgTable("chatMessages", {
+  id: serial("id").primaryKey(),
   sessionId: varchar("sessionId", { length: 64 }).notNull(),
   /** 'visitor' = sent by website user, 'bot' = Nova auto-response, 'human' = admin reply */
-  role: mysqlEnum("role", ["visitor", "bot", "human"]).notNull(),
+  role: messageRoleEnum("role").notNull(),
   content: text("content").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull()
 });
-var newsletterSubscribers = mysqlTable("newsletterSubscribers", {
-  id: int("id").autoincrement().primaryKey(),
+var newsletterSubscribers = pgTable("newsletterSubscribers", {
+  id: serial("id").primaryKey(),
   email: varchar("email", { length: 320 }).notNull().unique(),
   /** Optional first name if captured */
   name: varchar("name", { length: 128 }),
   /** Source page (e.g. "/newsletter", "/") */
   source: varchar("source", { length: 256 }).default("/newsletter"),
   /** Whether the welcome email was sent successfully */
-  welcomed: int("welcomed").default(0).notNull(),
+  welcomed: integer("welcomed").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull()
 });
 
@@ -286,7 +284,8 @@ var _db = null;
 async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+      _db = drizzle(pool);
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
@@ -334,9 +333,7 @@ async function upsertUser(user) {
     if (Object.keys(updateSet).length === 0) {
       updateSet.lastSignedIn = /* @__PURE__ */ new Date();
     }
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
-      set: updateSet
-    });
+    await db.insert(users).values(values).onConflictDoUpdate({ target: users.openId, set: updateSet });
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
@@ -357,9 +354,8 @@ async function insertChatLead(lead) {
     console.warn("[Database] Cannot insert chat lead: database not available");
     return null;
   }
-  const result = await db.insert(chatLeads).values(lead);
-  const insertId = result[0]?.insertId ?? null;
-  return insertId;
+  const result = await db.insert(chatLeads).values(lead).returning({ id: chatLeads.id });
+  return result[0]?.id ?? null;
 }
 async function getBotSession(telegramUserId) {
   const db = await getDb();
@@ -373,7 +369,7 @@ async function upsertBotSession(telegramUserId, data) {
     console.warn("[Database] Cannot upsert bot session: database not available");
     return;
   }
-  await db.insert(botSessions).values({ telegramUserId, ...data }).onDuplicateKeyUpdate({ set: { ...data, updatedAt: /* @__PURE__ */ new Date() } });
+  await db.insert(botSessions).values({ telegramUserId, ...data }).onConflictDoUpdate({ target: botSessions.telegramUserId, set: { ...data, updatedAt: /* @__PURE__ */ new Date() } });
 }
 async function getBotFunnelStats() {
   const db = await getDb();
@@ -430,7 +426,7 @@ async function getRecentBotLeads(limit = 50) {
 async function upsertChatSession(sessionId, data) {
   const db = await getDb();
   if (!db) return;
-  await db.insert(chatSessions).values({ sessionId, ...data }).onDuplicateKeyUpdate({ set: { ...data, updatedAt: /* @__PURE__ */ new Date() } });
+  await db.insert(chatSessions).values({ sessionId, ...data }).onConflictDoUpdate({ target: chatSessions.sessionId, set: { ...data, updatedAt: /* @__PURE__ */ new Date() } });
 }
 async function getChatSession(sessionId) {
   const db = await getDb();
@@ -474,11 +470,10 @@ async function insertNewsletterSubscriber(data) {
       email: data.email,
       source: data.source ?? "/newsletter",
       welcomed: 0
-    });
-    const insertId = result[0]?.insertId ?? null;
-    return { id: insertId ? Number(insertId) : null, isDuplicate: false };
+    }).returning({ id: newsletterSubscribers.id });
+    return { id: result[0]?.id ?? null, isDuplicate: false };
   } catch (err) {
-    if (err?.code === "ER_DUP_ENTRY" || err?.errno === 1062) {
+    if (err?.code === "23505") {
       return { id: null, isDuplicate: true };
     }
     throw err;
