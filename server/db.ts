@@ -1,15 +1,19 @@
 import { eq, sql, gte, desc } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
 import { InsertUser, users, chatLeads, InsertChatLead, botSessions, BotSession, chatSessions, chatMessages, ChatSession, ChatMessage } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
-// Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      const pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+      });
+      _db = drizzle(pool);
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
@@ -68,7 +72,8 @@ export async function upsertUser(user: InsertUser): Promise<void> {
       updateSet.lastSignedIn = new Date();
     }
 
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
+    await db.insert(users).values(values).onConflictDoUpdate({
+      target: users.openId,
       set: updateSet,
     });
   } catch (error) {
@@ -96,9 +101,8 @@ export async function insertChatLead(lead: InsertChatLead): Promise<number | nul
     console.warn("[Database] Cannot insert chat lead: database not available");
     return null;
   }
-  const result = await db.insert(chatLeads).values(lead);
-  const insertId = (result as unknown as [{ insertId: number }])[0]?.insertId ?? null;
-  return insertId;
+  const result = await db.insert(chatLeads).values(lead).returning({ id: chatLeads.id });
+  return result[0]?.id ?? null;
 }
 
 export async function getAllChatLeads() {
@@ -136,12 +140,14 @@ export async function upsertBotSession(
   await db
     .insert(botSessions)
     .values({ telegramUserId, ...data })
-    .onDuplicateKeyUpdate({ set: { ...data, updatedAt: new Date() } });
+    .onConflictDoUpdate({
+      target: botSessions.telegramUserId,
+      set: { ...data, updatedAt: new Date() },
+    });
 }
 
 // ─── Bot Analytics ───────────────────────────────────────────────────────────
 
-/** Total sessions per step — used to build the conversion funnel. */
 export async function getBotFunnelStats(): Promise<{ step: string; count: number }[]> {
   const db = await getDb();
   if (!db) return [];
@@ -155,7 +161,6 @@ export async function getBotFunnelStats(): Promise<{ step: string; count: number
   return rows.map(r => ({ step: r.step, count: Number(r.count) }));
 }
 
-/** Sessions per day for the last N days — used for the daily trend chart. */
 export async function getBotDailyStats(days = 30): Promise<{ date: string; count: number }[]> {
   const db = await getDb();
   if (!db) return [];
@@ -174,7 +179,6 @@ export async function getBotDailyStats(days = 30): Promise<{ date: string; count
   return rows.map(r => ({ date: r.date, count: Number(r.count) }));
 }
 
-/** Interest breakdown for completed sessions. */
 export async function getBotInterestStats(): Promise<{ interest: string; count: number }[]> {
   const db = await getDb();
   if (!db) return [];
@@ -189,7 +193,6 @@ export async function getBotInterestStats(): Promise<{ interest: string; count: 
   return rows.map(r => ({ interest: r.interest ?? "Unknown", count: Number(r.count) }));
 }
 
-/** Contact method split for completed sessions. */
 export async function getBotContactMethodStats(): Promise<{ method: string; count: number }[]> {
   const db = await getDb();
   if (!db) return [];
@@ -204,7 +207,6 @@ export async function getBotContactMethodStats(): Promise<{ method: string; coun
   return rows.map(r => ({ method: r.method ?? "Unknown", count: Number(r.count) }));
 }
 
-/** Source breakdown — website vs direct. */
 export async function getBotSourceStats(): Promise<{ source: string; count: number }[]> {
   const db = await getDb();
   if (!db) return [];
@@ -218,7 +220,6 @@ export async function getBotSourceStats(): Promise<{ source: string; count: numb
   return rows.map(r => ({ source: r.source ?? "direct", count: Number(r.count) }));
 }
 
-/** Recent completed leads — for the leads table. */
 export async function getRecentBotLeads(limit = 50): Promise<BotSession[]> {
   const db = await getDb();
   if (!db) return [];
@@ -241,7 +242,10 @@ export async function upsertChatSession(
   await db
     .insert(chatSessions)
     .values({ sessionId, ...data })
-    .onDuplicateKeyUpdate({ set: { ...data, updatedAt: new Date() } });
+    .onConflictDoUpdate({
+      target: chatSessions.sessionId,
+      set: { ...data, updatedAt: new Date() },
+    });
 }
 
 export async function getChatSession(sessionId: string): Promise<ChatSession | null> {
@@ -265,7 +269,6 @@ export async function insertChatMessage(
   const db = await getDb();
   if (!db) return;
   await db.insert(chatMessages).values({ sessionId, role, content });
-  // Increment unread count for visitor messages
   if (role === 'visitor') {
     await db
       .update(chatSessions)
@@ -309,12 +312,10 @@ export async function insertNewsletterSubscriber(
       email: data.email,
       source: data.source ?? '/newsletter',
       welcomed: 0,
-    });
-    const insertId = (result as any)[0]?.insertId ?? null;
-    return { id: insertId ? Number(insertId) : null, isDuplicate: false };
+    }).returning({ id: newsletterSubscribers.id });
+    return { id: result[0]?.id ?? null, isDuplicate: false };
   } catch (err: any) {
-    // MySQL duplicate entry error code
-    if (err?.code === 'ER_DUP_ENTRY' || err?.errno === 1062) {
+    if (err?.code === '23505') {
       return { id: null, isDuplicate: true };
     }
     throw err;
