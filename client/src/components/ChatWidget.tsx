@@ -51,7 +51,7 @@ const QA_PAIRS: Array<{ keywords: string[]; answer: string }> = [
   },
   {
     keywords: ['who do you work with', 'what type of business', 'what businesses', 'industry', 'industries', 'who is this for', 'med spa', 'salon', 'dental', 'massage', 'chiropractor', 'home service'],
-    answer: "We work with local service businesses. Med spas, massage therapists, salons, dental offices, chiropractors, home service companies, and similar. Basically, if your business runs on bookings and phone calls, we can almost certainly help.",
+    answer: "We work with appointment-based service businesses. Med spas, massage therapists, salons, dental offices, chiropractors, home service companies, and similar. Basically, if your business runs on bookings and phone calls, we can almost certainly help.",
   },
   {
     keywords: ['how long', 'timeline', 'setup time', 'how soon', 'when will', 'how fast', 'get started', 'onboard'],
@@ -188,6 +188,12 @@ export default function ChatWidget() {
   const [captureInput, setCaptureInput] = useState('');
   const [showQuickQ, setShowQuickQ] = useState(true);
   const [proactiveTriggered, setProactiveTriggered] = useState(false);
+  // Hover tooltip
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
+  // Auto-open: track if visitor manually closed with X
+  const [hasManuallyClosed, setHasManuallyClosed] = useState(false);
+  const [autoOpenTriggered, setAutoOpenTriggered] = useState(false);
 
   const [location] = useLocation();
 
@@ -275,6 +281,35 @@ export default function ChatWidget() {
     return () => clearTimeout(timer);
   }, [location, isOpen, proactiveTriggered]);
 
+  // Auto-open after 45 seconds if all conditions are met
+  useEffect(() => {
+    if (autoOpenTriggered) return;
+    if (hasManuallyClosed) return;
+    if (hasOpenedOnce) return;
+    if (sessionStorage.getItem('nova_auto_opened')) return;
+
+    const timer = setTimeout(() => {
+      // Re-check at fire time (isOpen could have changed)
+      setIsOpen(currentlyOpen => {
+        if (currentlyOpen) return currentlyOpen; // already open, skip
+        setAutoOpenTriggered(true);
+        sessionStorage.setItem('nova_auto_opened', '1');
+        setHasOpenedOnce(true);
+        setHasUnread(false);
+        setStage('intro');
+        setMessages([{
+          id: 'auto_open_1',
+          role: 'bot',
+          text: `Hey! I'm Nova. Nikki and James set me up to answer questions about Ops by Noell.\n\nWhat's on your mind?`,
+          timestamp: new Date(),
+        }]);
+        return true;
+      });
+    }, 45000);
+
+    return () => clearTimeout(timer);
+  }, [autoOpenTriggered, hasManuallyClosed, hasOpenedOnce]);
+
   // Outside-click: only collapse if the visitor has NOT yet sent a message.
   // Once hasEngaged is true, the widget stays open until the X button is clicked.
   useEffect(() => {
@@ -297,6 +332,8 @@ export default function ChatWidget() {
   function openChat() {
     setIsOpen(true);
     setHasUnread(false);
+    setHasOpenedOnce(true);
+    setAutoOpenTriggered(true); // prevent auto-open from firing if visitor opens manually first
     if (stage === 'intro') {
       setMessages([{
         id: '1',
@@ -544,6 +581,35 @@ export default function ChatWidget() {
           </div>
         )}
 
+        {/* Hover tooltip — shown only before widget has been opened */}
+        {isButtonHovered && !isOpen && !hasOpenedOnce && (
+          <div
+            style={{
+              backgroundColor: '#1F1D28',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderColor: '#A78BFA',
+              borderRadius: '10px',
+              padding: '0.625rem 0.875rem',
+              maxWidth: '210px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+              animation: 'chatTooltipFadeIn 0.18s ease-out',
+              pointerEvents: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <p style={{
+              fontFamily: "'Sora', sans-serif",
+              fontSize: '0.75rem',
+              color: '#F5F0EC',
+              margin: 0,
+              lineHeight: 1.4,
+            }}>
+              Chat with Nova — usually replies instantly.
+            </p>
+          </div>
+        )}
+
         {/* Chat toggle button */}
         <button
           ref={toggleRef}
@@ -563,10 +629,12 @@ export default function ChatWidget() {
             position: 'relative',
           }}
           onMouseEnter={e => {
+            setIsButtonHovered(true);
             (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.08)';
             (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 32px rgba(167,139,250,0.5)';
           }}
           onMouseLeave={e => {
+            setIsButtonHovered(false);
             (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
             (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 24px rgba(167,139,250,0.35)';
           }}
@@ -654,7 +722,7 @@ export default function ChatWidget() {
             </div>
           </div>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={() => { setIsOpen(false); setHasManuallyClosed(true); }}
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', color: '#868583', display: 'flex', alignItems: 'center', borderRadius: '4px', transition: 'color 0.15s ease' }}
             onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.color = '#F5F0EC'}
             onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.color = '#868583'}
@@ -942,6 +1010,10 @@ export default function ChatWidget() {
         }
         @keyframes chatFadeIn {
           from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes chatTooltipFadeIn {
+          from { opacity: 0; transform: translateY(4px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
