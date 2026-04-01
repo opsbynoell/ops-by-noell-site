@@ -30,6 +30,10 @@ const DentalAutomation = lazy(() => import("./pages/DentalAutomation"));
 const HomeServicesAutomation = lazy(() => import("./pages/HomeServicesAutomation"));
 const MassageTherapistCaseStudy = lazy(() => import("./pages/MassageTherapistCaseStudy"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogPostLagunaNoShow = lazy(() => import("./pages/BlogPostLagunaNoShow"));
+const BlogPostMissedCalls = lazy(() => import("./pages/BlogPostMissedCalls"));
+const BlogPost5SignsSalon = lazy(() => import("./pages/BlogPost5SignsSalon"));
+const RevenueCalculatorPage = lazy(() => import("./pages/RevenueCalculatorPage"));
 
 function setMeta(selector: string, attr: string, value: string) {
     let el = document.querySelector(selector);
@@ -164,6 +168,26 @@ const pageMeta: Record<string, { title: string; description: string; keywords: s
           keywords:
                   "AI automation blog, local business automation tips, massage therapist revenue, service business operations, missed call text back, no-show reduction, Ops by Noell blog",
     },
+    "/blog/how-laguna-niguel-massage-therapist-cut-no-shows": {
+          title: "How a Laguna Niguel Massage Therapist Cut No-Shows by 75% | Ops by Noell",
+          description: "Santa had a 21% no-show rate and was losing $600/week. A three-touch reminder sequence cut that to 6% in two weeks. Real numbers, real results.",
+          keywords: "massage therapist no-show reduction, appointment reminders, Laguna Niguel massage, Ops by Noell case study, automated reminders",
+    },
+    "/blog/real-cost-of-missed-calls-oc-service-businesses": {
+          title: "The Real Cost of Missed Calls for OC Service Businesses | Ops by Noell",
+          description: "85% of callers won't call back after voicemail. For a salon in Irvine, that's $40K–$60K in annual lifetime value lost. Here's the math and the fix.",
+          keywords: "missed call cost, missed call text back, Orange County service business, revenue recovery, automated lead response",
+    },
+    "/blog/5-signs-your-salon-needs-automation": {
+          title: "5 Signs Your Salon or Med Spa Needs Automation Right Now | Ops by Noell",
+          description: "Manual reminders, slow lead response, no review system, lapsed clients, admin overhead — five signs automation would pay for itself in your salon or med spa.",
+          keywords: "salon automation, med spa automation, appointment reminder automation, review generation, client reactivation, Orange County salon",
+    },
+    "/resources/revenue-calculator": {
+          title: "Revenue Calculator: What Are Your Gaps Costing You? | Ops by Noell",
+          description: "Free interactive calculator. Enter five numbers and see your annual revenue leak from no-shows and missed calls — takes 3 minutes.",
+          keywords: "revenue calculator, no-show cost calculator, missed call revenue loss, service business revenue audit, free calculator",
+    },
 };
 
 function MetaUpdater() {
@@ -259,6 +283,10 @@ function Router() {
                                   <Route path="/home-services-automation" component={HomeServicesAutomation} />
                                   <Route path="/case-study/massage-therapist" component={MassageTherapistCaseStudy} />
                                   <Route path="/blog" component={Blog} />
+                                  <Route path="/blog/how-laguna-niguel-massage-therapist-cut-no-shows" component={BlogPostLagunaNoShow} />
+                                  <Route path="/blog/real-cost-of-missed-calls-oc-service-businesses" component={BlogPostMissedCalls} />
+                                  <Route path="/blog/5-signs-your-salon-needs-automation" component={BlogPost5SignsSalon} />
+                                  <Route path="/resources/revenue-calculator" component={RevenueCalculatorPage} />
                                   <Route path="/404" component={NotFound} />
                                   <Route component={NotFound} />
                         </Switch>
