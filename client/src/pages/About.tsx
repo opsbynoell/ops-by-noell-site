@@ -162,50 +162,66 @@ export default function About() {
 
             <FadeItem delay={0.15}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {/* Founder photo placeholder */}
-                <div style={{
-                  background: 'rgba(10, 8, 20, 0.85)',
-                  border: '1px solid rgba(167,139,250,0.4)',
-                  borderRadius: '10px',
-                  padding: '2.5rem 2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: '200px',
-                  textAlign: 'center',
-                  gap: '0.75rem',
-                }}>
-                  <div style={{
-                    width: '48px', height: '48px',
-                    borderRadius: '50%',
-                    background: 'rgba(167,139,250,0.12)',
-                    border: '1px solid rgba(167,139,250,0.25)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    marginBottom: '0.25rem',
-                  }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                  </div>
-                  <p style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontSize: '0.875rem',
-                    fontWeight: 600,
-                    color: '#A78BFA',
-                    letterSpacing: '0.04em',
-                  }}>
-                    Photo coming soon
-                  </p>
-                  <p style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontSize: '0.8125rem',
-                    color: '#868583',
-                    lineHeight: 1.5,
-                  }}>
-                    Nikki + James Noell, Founders
-                  </p>
+                {/* Founder photo placeholders — two side by side */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  {[
+                    { name: 'Nikki Noell', role: 'Co-Founder' },
+                    { name: 'James Noell', role: 'Co-Founder' },
+                  ].map((founder, i) => (
+                    <div key={i} style={{
+                      background: 'rgba(10, 8, 20, 0.85)',
+                      border: '1px solid rgba(167,139,250,0.4)',
+                      borderRadius: '10px',
+                      padding: '1.75rem 1.25rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                      gap: '0.625rem',
+                    }}>
+                      <div style={{
+                        width: '56px', height: '56px',
+                        borderRadius: '50%',
+                        background: 'rgba(167,139,250,0.1)',
+                        border: '1px solid rgba(167,139,250,0.25)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        marginBottom: '0.125rem',
+                      }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                          <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                      </div>
+                      <p style={{
+                        fontFamily: "'Nicholas', serif",
+                        fontSize: '0.9375rem',
+                        fontWeight: 700,
+                        color: '#ffffff',
+                        lineHeight: 1.2,
+                      }}>
+                        {founder.name}
+                      </p>
+                      <p style={{
+                        fontFamily: "'Sora', sans-serif",
+                        fontSize: '0.6875rem',
+                        fontWeight: 600,
+                        color: '#A78BFA',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase' as const,
+                      }}>
+                        {founder.role}
+                      </p>
+                      <p style={{
+                        fontFamily: "'Sora', sans-serif",
+                        fontSize: '0.6875rem',
+                        color: '#555351',
+                        letterSpacing: '0.05em',
+                      }}>
+                        Photo coming soon
+                      </p>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Stats grid */}
