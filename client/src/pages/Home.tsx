@@ -379,8 +379,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ LEAD MAGNET — REVENUE CALCULATOR ══════════════════════ */}
+      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', background: 'rgba(167,139,250,0.02)' }}>
+        <div className="container" style={{ maxWidth: '860px', margin: '0 auto' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '2.5rem',
+            flexWrap: 'wrap' as const,
+            background: 'rgba(167,139,250,0.06)',
+            border: '1px solid rgba(167,139,250,0.2)',
+            borderRadius: '20px',
+            padding: 'clamp(2rem, 4vw, 3rem)',
+          }}>
+            <div style={{ flex: '1 1 340px' }}>
+              <span style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.25)', borderRadius: '100px', fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', fontWeight: 600, color: '#C4B5FD', letterSpacing: '0.1em', textTransform: 'uppercase' as const, marginBottom: '1.25rem' }}>
+                Free Calculator
+              </span>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.625rem, 3.5vw, 2.25rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '0.875rem' }}>
+                Find out what your revenue gaps are costing you.
+              </h2>
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, margin: 0 }}>
+                Free calculator — takes 3 minutes.
+              </p>
+            </div>
+            <div style={{ flexShrink: 0 }}>
+              <a
+                href="/resources/revenue-calculator"
+                className="btn-gradient"
+                style={{ padding: '1.125rem 2.25rem', fontSize: '1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' as const }}
+              >
+                Get the Calculator <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       </div>
       <Footer />
     </>
   );
 }
+
