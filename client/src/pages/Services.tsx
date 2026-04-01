@@ -100,7 +100,7 @@ const INDUSTRIES = [
   },
   {
     icon: Smile, name: 'Dental & Med Spa', tagline: 'Every missed call is a missed patient.',
-    href: '/med-spa-automation',
+    href: '/dental-automation',
     desc: 'Dental offices and med spas run on high-value appointments. A single missed call can cost $500–$2,000 in lost revenue. We install systems that respond instantly, confirm appointments automatically, and keep your schedule full.',
     outcome: 'Automated appointment confirmation and recall systems reduce no-shows and recover patients who would otherwise churn silently.',
   },
@@ -128,7 +128,7 @@ const PACKAGES = [
   {
     name: 'Entry',
     subtitle: 'AI Receptionist — Start Here',
-    price: '$247',
+    price: '$197',
     period: '/mo · + $297 setup',
     desc: 'The fastest way to stop losing leads to voicemail. One system, done for you, live in a week. A great first step before committing to a full stack.',
     includes: ['Missed Call Text-Back', 'AI Voice Receptionist (after-hours)', 'Onboarding & setup included', 'Ongoing management & maintenance'],

@@ -268,7 +268,7 @@ export default function Nova() {
 
             {/* CTA */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.875rem' }}>
-              <CtaButton href="/book" large>Get Nova on Your Site — $997 Setup</CtaButton>
+              <CtaButton href="/book" large>Get Nova on Your Site — $497 Setup — Founding Client Rate</CtaButton>
               <p style={{
                 fontFamily: "'Sora', sans-serif",
                 fontSize: '0.875rem',
@@ -491,7 +491,7 @@ export default function Nova() {
               letterSpacing: '-0.02em',
               marginBottom: '3rem',
             }}>
-              Simple pricing. <GradientText>No surprises.</GradientText>
+              Founding Client Pricing <GradientText>— Limited to 5 Businesses</GradientText>
             </h2>
 
             {/* Pricing Card */}
@@ -516,8 +516,9 @@ export default function Nova() {
                   Nova Starter
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.375rem' }}>
-                  <span style={{ fontFamily: "'Nicholas', serif", fontSize: '2.75rem', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>$997</span>
+                  <span style={{ fontFamily: "'Nicholas', serif", fontSize: '2.75rem', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>$497</span>
                   <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9rem', color: '#868583' }}>one-time setup</span>
+                  <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#A78BFA', marginLeft: '0.25rem', opacity: 0.7 }}>save $500</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
                   <span style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 700, color: '#C4B5FD', lineHeight: 1 }}>$297</span>
@@ -566,7 +567,7 @@ export default function Nova() {
               color: '#868583',
               marginTop: '1.25rem',
             }}>
-              No contracts. Cancel anytime.
+              This rate is available to the first 5 businesses who sign up. Regular price is $997 setup.
             </p>
           </div>
         </section>
@@ -611,7 +612,7 @@ export default function Nova() {
               Stop letting leads leave{' '}
               <GradientText>without a conversation.</GradientText>
             </h2>
-            <CtaButton href="/book" large>Get Nova on Your Site — $997 Setup</CtaButton>
+            <CtaButton href="/book" large>Get Nova on Your Site — $497 Setup — Founding Client Rate</CtaButton>
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '0.875rem',

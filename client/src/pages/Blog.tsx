@@ -53,14 +53,6 @@ const POSTS = [
     date: 'March 2026',
     readTime: '5 min read',
   },
-  {
-    slug: '/blog/massage-therapist-revenue-leaks',
-    category: 'Massage Therapy',
-    title: '5 Ways Massage Therapists Lose Revenue Every Week (And How to Fix Them)',
-    excerpt: 'Most massage practices lose 15–20% of potential revenue every week — not from bad reviews or pricing, but from invisible gaps in the client experience.',
-    date: 'March 2026',
-    readTime: '6 min read',
-  },
 ];
 
 export default function Blog() {
