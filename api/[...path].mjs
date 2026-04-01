@@ -2484,44 +2484,44 @@ async function handler(req, res) {
 
       if (resolvedEmail) {
         try {
-          // ── Deduplication: check for existing chatLead by email ──────────────
-          const existingResult = await qlPool.query(
-            `SELECT id, intent, "ghlContactId" FROM "chatLeads" WHERE email=$1 LIMIT 1`,
-            [resolvedEmail]
+          // ── Atomic upsert: INSERT ... ON CONFLICT (email) DO UPDATE ──────────
+          // The unique constraint on chatLeads.email makes this race-safe.
+          // On conflict, only upgrade fields if the new intent outranks the stored one.
+          // Intent rank: hot=2, warm=1, low=0 — encoded inline in SQL CASE.
+          const upsertResult = await qlPool.query(
+            `INSERT INTO "chatLeads" (name, email, "sessionId", "businessType", question, page, notified, intent, "ghlContactId")
+             VALUES ($1,$2,$3,$4,$5,$6,'no',$7,NULL)
+             ON CONFLICT (email) DO UPDATE SET
+               name         = CASE WHEN (CASE $7 WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                        > (CASE "chatLeads".intent WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                   THEN EXCLUDED.name         ELSE "chatLeads".name END,
+               "sessionId"  = CASE WHEN (CASE $7 WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                        > (CASE "chatLeads".intent WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                   THEN EXCLUDED."sessionId"  ELSE "chatLeads"."sessionId" END,
+               "businessType" = CASE WHEN (CASE $7 WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                         > (CASE "chatLeads".intent WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                    THEN EXCLUDED."businessType" ELSE "chatLeads"."businessType" END,
+               question     = CASE WHEN (CASE $7 WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                        > (CASE "chatLeads".intent WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                   THEN EXCLUDED.question     ELSE "chatLeads".question END,
+               intent       = CASE WHEN (CASE $7 WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                        > (CASE "chatLeads".intent WHEN 'hot' THEN 2 WHEN 'warm' THEN 1 ELSE 0 END)
+                                   THEN EXCLUDED.intent       ELSE "chatLeads".intent END
+             RETURNING id, (xmax = 0) AS inserted, "chatLeads".intent AS final_intent`,
+            [
+              resolvedName,
+              resolvedEmail,
+              qlSessionId,
+              analysis.businessType || sess.businessType || "",
+              analysis.painPoint ?? null,
+              null,
+              analysis.intent
+            ]
           );
-          const existingLead = existingResult.rows[0] ?? null;
-
-          if (existingLead) {
-            // Only update if new intent is strictly higher
-            const newRank = QL_INTENT_RANK[analysis.intent] ?? 0;
-            const oldRank = QL_INTENT_RANK[existingLead.intent] ?? 0;
-            if (newRank > oldRank) {
-              await qlPool.query(
-                `UPDATE "chatLeads" SET intent=$1, "businessType"=$2, question=$3, name=$4 WHERE id=$5`,
-                [analysis.intent, analysis.businessType || sess.businessType || "", analysis.painPoint ?? null, resolvedName, existingLead.id]
-              );
-              contactCaptured = true;
-              shouldSyncGHL = true; // intent escalated — re-sync
-            }
-            // Same or lower intent: skip entirely
-          } else {
-            // Fresh insert
-            await qlPool.query(
-              `INSERT INTO "chatLeads" (name, email, "sessionId", "businessType", question, page, notified, intent, "ghlContactId")
-               VALUES ($1,$2,$3,$4,$5,$6,'no',$7,NULL)`,
-              [
-                resolvedName,
-                resolvedEmail,
-                qlSessionId,
-                analysis.businessType || sess.businessType || "",
-                analysis.painPoint ?? null,
-                null,
-                analysis.intent
-              ]
-            );
-            contactCaptured = true;
-            shouldSyncGHL = true;
-          }
+          contactCaptured = true;
+          const upsertRow = upsertResult.rows[0];
+          // Fire GHL sync on fresh insert, or if intent was upgraded (row existed but we updated it)
+          shouldSyncGHL = upsertRow.inserted || (upsertRow.final_intent === analysis.intent && !upsertRow.inserted);
 
           // ── GHL sync (hot/warm guaranteed by Gate 4) ────────────────────────
           if (shouldSyncGHL && QL_GHL_KEY) {
