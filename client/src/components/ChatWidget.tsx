@@ -275,6 +275,7 @@ export default function ChatWidget() {
         visitorName: leadInfo.name,
         visitorEmail: leadInfo.email,
         businessType: leadInfo.businessType,
+        page: typeof window !== 'undefined' ? window.location.pathname : undefined,
       });
       return;
     }
@@ -287,6 +288,7 @@ export default function ChatWidget() {
         visitorName: leadInfo.name,
         visitorEmail: leadInfo.email,
         businessType: leadInfo.businessType,
+        page: typeof window !== 'undefined' ? window.location.pathname : undefined,
       },
       {
         onSuccess: (data) => {
@@ -605,6 +607,7 @@ export default function ChatWidget() {
                     visitorName: leadInfo.name,
                     visitorEmail: leadInfo.email,
                     businessType: leadInfo.businessType,
+                    page: typeof window !== 'undefined' ? window.location.pathname : undefined,
                   });
                 }}
                 style={{
