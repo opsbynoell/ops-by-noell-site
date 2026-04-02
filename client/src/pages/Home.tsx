@@ -15,7 +15,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Phone, MessageSquare, Calendar, Star, Filter, RefreshCw, ArrowRight, Check, Play } from 'lucide-react';
+import { Phone, MessageSquare, Calendar, Star, Filter, RefreshCw, ArrowRight, Check } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 
@@ -215,7 +215,7 @@ export default function Home() {
         background: '#FFFFFF',
         paddingTop: '120px',
         paddingBottom: '5rem',
-        minHeight: '100vh',
+        minHeight: 'calc(100vh - 72px)',
         display: 'flex',
         alignItems: 'center',
       }}>
@@ -239,7 +239,6 @@ export default function Home() {
                 marginBottom: '1.5rem',
                 animation: 'fadeIn 0.5s ease both 0.2s',
                 animationFillMode: 'both',
-                opacity: 0,
               }}>
                 By the time you call back, they've already booked somewhere else.
               </h1>
@@ -254,7 +253,6 @@ export default function Home() {
                 marginBottom: '2rem',
                 animation: 'fadeIn 0.5s ease both 0.4s',
                 animationFillMode: 'both',
-                opacity: 0,
               }}>
                 You're with a client. Your phone rings. Nobody picks up. That lead? Gone.
               </p>
@@ -267,7 +265,6 @@ export default function Home() {
                 marginBottom: '2.5rem',
                 animation: 'fadeIn 0.5s ease both 0.4s',
                 animationFillMode: 'both',
-                opacity: 0,
               }}>
                 Ops by Noell runs your scheduling, follow-ups, and client communication automatically — so your practice is always responding, even when you're not.
               </p>
@@ -280,7 +277,6 @@ export default function Home() {
                 alignItems: 'flex-start',
                 animation: 'fadeIn 0.5s ease both 0.6s',
                 animationFillMode: 'both',
-                opacity: 0,
               }}>
                 <a
                   href="/book"
@@ -700,66 +696,66 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Right — Nova chat (reused) */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <NovaChatMockup />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 6: VIDEO ════════════════════════════════════════ */}
-      <section style={{ background: '#FAFAF8', padding: '5rem 0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
-            See It In Action
-          </span>
-
-          <h2 style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-            fontWeight: 700,
-            color: '#1A1A1A',
-            lineHeight: 1.2,
-            marginBottom: '2.5rem',
-          }}>
-            Watch how it works in a real practice.
-          </h2>
-
-          {/* Video placeholder — 16:9 dark rectangle with play button */}
-          <div style={{
-            position: 'relative',
-            maxWidth: '800px',
-            margin: '0 auto',
-            aspectRatio: '16/9',
-            background: '#1A1A1A',
-            borderRadius: '12px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
-          }}>
-            {/* Play button */}
+            {/* Right — Nova feature card */}
             <div style={{
-              width: '72px',
-              height: '72px',
-              borderRadius: '50%',
-              border: '2px solid rgba(255,255,255,0.6)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '1rem',
+              background: '#F7F4FF',
+              borderRadius: '16px',
+              padding: '2.5rem',
+              border: '1px solid rgba(124,92,252,0.12)',
             }}>
-              <Play size={28} color="#FFFFFF" fill="#FFFFFF" style={{ marginLeft: '4px' }} />
+              <div style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#7C5CFC',
+                marginBottom: '1.5rem',
+              }}>
+                What Nova Handles
+              </div>
+              {[
+                { emoji: '\u{1F4AC}', text: 'Answers inquiries instantly \u2014 even at 11 PM' },
+                { emoji: '\u{1F4C5}', text: 'Books appointments directly into your calendar' },
+                { emoji: '\u{1F50D}', text: 'Qualifies leads before they reach you' },
+                { emoji: '\u{1F5E3}\uFE0F', text: 'Handles objections like a real front desk' },
+                { emoji: '\u{1F4F2}', text: 'Works across web chat, SMS, Instagram DMs, and Google' },
+              ].map((item) => (
+                <div key={item.text} style={{
+                  display: 'flex',
+                  gap: '0.875rem',
+                  alignItems: 'flex-start',
+                  marginBottom: '1.25rem',
+                }}>
+                  <span style={{ fontSize: '1.125rem', flexShrink: 0, lineHeight: 1.5 }}>{item.emoji}</span>
+                  <span style={{
+                    fontFamily: "'Nicholas', serif",
+                    fontSize: '0.9375rem',
+                    color: '#1A1A1A',
+                    lineHeight: 1.6,
+                  }}>
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+              <div style={{
+                marginTop: '1.5rem',
+                padding: '1rem',
+                background: '#FFFFFF',
+                borderRadius: '10px',
+                border: '1px solid rgba(124,92,252,0.08)',
+              }}>
+                <div style={{
+                  fontFamily: "'Nicholas', serif",
+                  fontSize: '0.8125rem',
+                  fontStyle: 'italic',
+                  color: '#555555',
+                  lineHeight: 1.6,
+                }}>
+                  "It's like having a front desk person who never calls in sick, never has a bad day, and works at 2 AM."
+                </div>
+              </div>
             </div>
-            <p style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: '0.875rem',
-              color: 'rgba(255,255,255,0.6)',
-            }}>
-              Product demo — 90 seconds
-            </p>
           </div>
         </div>
       </section>
@@ -1104,9 +1100,18 @@ export default function Home() {
                 fontStyle: 'italic',
                 color: '#FFFFFF',
                 lineHeight: 1.5,
+              }}>
+                "You built this to work with clients.
+              </p>
+              <p style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '0.9375rem',
+                fontStyle: 'italic',
+                color: '#FFFFFF',
+                lineHeight: 1.5,
                 marginBottom: '0.5rem',
               }}>
-                "You built this to work with clients.<br />Not to chase them."
+                Not to chase them."
               </p>
               <p style={{
                 fontFamily: "'Nicholas', serif",

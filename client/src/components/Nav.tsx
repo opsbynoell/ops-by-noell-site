@@ -181,17 +181,17 @@ export default function Nav() {
               href="/book"
               style={{
                 fontFamily: "'Nicholas', serif",
-                fontSize: '0.9375rem',
+                fontSize: '0.875rem',
                 fontWeight: 600,
-                color: '#FFFFFF',
-                background: '#0CA2A2',
-                padding: '0.625rem 1.5rem',
-                borderRadius: '999px',
+                color: '#0CA2A2',
                 textDecoration: 'none',
-                transition: 'background-color 0.15s ease',
+                padding: '0.5rem 1rem',
+                border: '1.5px solid #0CA2A2',
+                borderRadius: '6px',
+                transition: 'background-color 0.15s ease, color 0.15s ease',
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0A8F8F'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0CA2A2'; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(12,162,162,0.06)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; }}
             >
               Book Free Audit
             </a>
