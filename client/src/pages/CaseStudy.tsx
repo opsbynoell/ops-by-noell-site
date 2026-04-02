@@ -73,7 +73,7 @@ export default function CaseStudy() {
         <div style={{ position: 'absolute', top: '80px', right: '-100px', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 65%)', filter: 'blur(80px)', pointerEvents: 'none', zIndex: 0 }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '5.5rem' }}>
-          <FadeItem delay={0}>
+          
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
               <SectionBadge>Case Study · Laguna Niguel, CA</SectionBadge>
               <span style={{
@@ -83,8 +83,8 @@ export default function CaseStudy() {
                 padding: '0.3rem 0.875rem', borderRadius: '99px',
               }}>Founding Client Partner</span>
             </div>
-          </FadeItem>
-          <FadeItem delay={0.1}>
+          
+          
             <h1 style={{
               fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.75rem, 6.5vw, 5.5rem)',
@@ -94,8 +94,8 @@ export default function CaseStudy() {
               <span style={{ background: 'linear-gradient(90deg, #A78BFA 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>25 years of expertise.</span>{' '}
               <span style={{ color: '#ffffff' }}>Zero infrastructure.</span>
             </h1>
-          </FadeItem>
-          <FadeItem delay={0.2}>
+          
+          
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
               {[
                 { label: 'Industry', value: 'Massage Therapy' },
@@ -113,7 +113,7 @@ export default function CaseStudy() {
                 </div>
               ))}
             </div>
-          </FadeItem>
+          
         </div>
       </section>
 
