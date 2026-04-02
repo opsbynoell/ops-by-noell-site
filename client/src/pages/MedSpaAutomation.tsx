@@ -151,7 +151,7 @@ export default function MedSpaAutomation() {
             </h1>
           </FadeItem>
           <FadeItem delay={0.2}>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', color: '#868583', lineHeight: 1.75, maxWidth: '580px', marginBottom: '2.5rem' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '580px', marginBottom: '2.5rem' }}>
               Med spa appointments are high-value and time-sensitive. A slow response or a missed call doesn't just cost you one booking — it costs you the client. We build the AI systems that ensure you're always the first to respond, day or night.
             </p>
           </FadeItem>
@@ -173,7 +173,7 @@ export default function MedSpaAutomation() {
             {stats.map((s, i) => (
               <FadeItem key={i} delay={i * 0.07}>
                 <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 800, color: '#A78BFA', marginBottom: '0.4rem' }}>{s.value}</div>
-                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', lineHeight: 1.5 }}>{s.label}</div>
+                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', lineHeight: 1.5 }}>{s.label}</div>
               </FadeItem>
             ))}
           </div>
@@ -189,7 +189,7 @@ export default function MedSpaAutomation() {
               <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Four systems. One practice that runs itself.
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75 }}>
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
                 Every system is built specifically for the economics of a med spa, where one missed touchpoint can cost hundreds or thousands of dollars in lost revenue.
               </p>
             </div>
@@ -204,7 +204,7 @@ export default function MedSpaAutomation() {
                     </div>
                     <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff' }}>{s.title}</h3>
                   </div>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.75, flex: 1 }}>{s.body}</p>
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.75, flex: 1 }}>{s.body}</p>
                 </div>
               </FadeItem>
             ))}
@@ -252,7 +252,7 @@ export default function MedSpaAutomation() {
                   </h2>
                 </div>
               </div>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75 }}>
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
                 Your AI receptionist picks up missed calls, greets callers by name of your practice, answers questions about services and pricing, and books appointments directly into your calendar — 24 hours a day, 7 days a week. No staff required. No voicemail. No lost bookings.
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
@@ -289,7 +289,7 @@ export default function MedSpaAutomation() {
                     </div>
                     <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.0625rem', fontWeight: 700, color: '#ffffff' }}>{p.title}</h3>
                   </div>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#868583', lineHeight: 1.7 }}>{p.detail}</p>
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7 }}>{p.detail}</p>
                 </div>
               </FadeItem>
             ))}
@@ -317,7 +317,7 @@ export default function MedSpaAutomation() {
                   </div>
                   <div>
                     <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.375rem' }}>{s.item}</h3>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.7 }}>{s.detail}</p>
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.7 }}>{s.detail}</p>
                   </div>
                 </div>
               </FadeItem>
@@ -362,7 +362,7 @@ export default function MedSpaAutomation() {
               <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Simple pricing. No lock-in. Cancel anytime.
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto' }}>
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto' }}>
                 Every plan is month-to-month. We earn your business every month by delivering results.
               </p>
             </div>
@@ -381,11 +381,11 @@ export default function MedSpaAutomation() {
                     <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#A78BFA', marginBottom: '1.25rem' }}>{pkg.subtitle}</div>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.375rem' }}>
                       <span style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 3vw, 2.5rem)', fontWeight: 800, color: '#ffffff' }}>{pkg.price}</span>
-                      <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#868583' }}>{pkg.period}</span>
+                      <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3' }}>{pkg.period}</span>
                     </div>
-                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#868583' }}>{pkg.setup}</div>
+                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#b8b6b3' }}>{pkg.setup}</div>
                   </div>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#868583', lineHeight: 1.7, marginBottom: '1.5rem' }}>{pkg.desc}</p>
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7, marginBottom: '1.5rem' }}>{pkg.desc}</p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', flex: 1 }}>
                     {pkg.includes.map((item, j) => (
                       <div key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem' }}>
@@ -413,7 +413,7 @@ export default function MedSpaAutomation() {
             <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.1, letterSpacing: '-0.03em', marginTop: '1.25rem', marginBottom: '1.25rem' }}>
               Stop losing high-value appointments to slow response times.
             </h2>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.5rem' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.5rem' }}>
               30 minutes. Free. No obligation. We'll map your revenue gaps and show you exactly what we'd build for your practice.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -432,3 +432,4 @@ export default function MedSpaAutomation() {
     </div>
   );
 }
+
