@@ -113,10 +113,10 @@ function FAQSection() {
                   }}
                 >
                   <span style={{
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: '0.9375rem',
                     fontWeight: 600,
-                    color: open === i ? '#A78BFA' : '#F5F0EC',
+                    color: open === i ? '#0CA2A2' : '#F5F0EC',
                     lineHeight: 1.4,
                     transition: 'color 0.2s ease',
                   }}>
@@ -129,7 +129,7 @@ function FAQSection() {
                     borderRadius: '50%',
                     borderWidth: '1px',
                     borderStyle: 'solid',
-                    borderColor: open === i ? '#A78BFA' : '#2A2A2A',
+                    borderColor: open === i ? '#0CA2A2' : '#2A2A2A',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -137,7 +137,7 @@ function FAQSection() {
                     transform: open === i ? 'rotate(45deg)' : 'rotate(0deg)',
                   }}>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path d="M5 2V8M2 5H8" stroke={open === i ? '#A78BFA' : '#868583'} strokeWidth="1.5" strokeLinecap="round" />
+                      <path d="M5 2V8M2 5H8" stroke={open === i ? '#0CA2A2' : '#868583'} strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                   </span>
                 </button>
@@ -147,9 +147,9 @@ function FAQSection() {
                   transition: 'max-height 0.35s ease',
                 }}>
                   <p style={{
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: '0.9rem',
-                    color: '#868583',
+                    color: '#555555',
                     lineHeight: 1.75,
                     paddingBottom: '1.375rem',
                   }}>
@@ -251,7 +251,7 @@ export default function Solutions() {
           </FadeItem>
 
           <FadeItem delay={0.16}>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.1875rem)', color: '#A09890', lineHeight: 1.75, maxWidth: '560px', marginBottom: '2.75rem' }}>
+            <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1rem, 1.4vw, 1.1875rem)', color: '#A09890', lineHeight: 1.75, maxWidth: '560px', marginBottom: '2.75rem' }}>
               Every system below is custom-built and deployed for your specific business. We don't hand you software — we install infrastructure that runs your business while you focus on the work.
             </p>
           </FadeItem>
@@ -261,8 +261,8 @@ export default function Solutions() {
               <a href="/book" className="btn-gradient" style={{ fontSize: '1rem', padding: '1rem 2.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
                 Get a Custom Build <ArrowRight size={16} />
               </a>
-              <Link href="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', fontWeight: 600, color: '#868583', textDecoration: 'none', transition: 'color 0.15s ease' }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#C4B5FD'; }}
+              <Link href="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', fontWeight: 600, color: '#555555', textDecoration: 'none', transition: 'color 0.15s ease' }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#0CA2A2'; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#868583'; }}
               >
                 View Packages <ArrowRight size={14} />
@@ -293,19 +293,19 @@ export default function Solutions() {
                     <div style={{
                       width: '40px',
                       height: '40px',
-                      backgroundColor: 'rgba(167,139,250,0.12)',
+                      backgroundColor: 'rgba(12,162,162,0.12)',
                       borderRadius: '0.5rem',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}>
-                      <build.icon size={18} color="#A78BFA" />
+                      <build.icon size={18} color="#0CA2A2" />
                     </div>
                     <span style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Nicholas', serif",
                       fontSize: '0.6875rem',
                       fontWeight: 700,
-                      color: '#868583',
+                      color: '#555555',
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                     }}>{build.tag}</span>
@@ -313,7 +313,7 @@ export default function Solutions() {
 
                   {/* Title */}
                   <h3 style={{
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: '1.0625rem',
                     fontWeight: 700,
                     color: '#1A1A1A',
@@ -323,9 +323,9 @@ export default function Solutions() {
 
                   {/* Description */}
                   <p style={{
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: '0.875rem',
-                    color: '#868583',
+                    color: '#555555',
                     lineHeight: 1.7,
                     flex: 1,
                   }}>{build.description}</p>
@@ -333,9 +333,9 @@ export default function Solutions() {
                   {/* Perfect for */}
                   {'perfectFor' in build && (
                     <p style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Nicholas', serif",
                       fontSize: '0.8125rem',
-                      color: '#868583',
+                      color: '#555555',
                       lineHeight: 1.6,
                     }}>
                       <span style={{ color: '#0CA2A2', fontWeight: 600 }}>Perfect for: </span>
@@ -345,15 +345,15 @@ export default function Solutions() {
 
                   {/* Outcome */}
                   <div style={{
-                    backgroundColor: 'rgba(167,139,250,0.08)',
+                    backgroundColor: 'rgba(12,162,162,0.08)',
                     borderWidth: '1px',
                     borderStyle: 'solid',
-                    borderColor: 'rgba(167,139,250,0.2)',
+                    borderColor: 'rgba(12,162,162,0.2)',
                     borderRadius: '0.5rem',
                     padding: '0.75rem 1rem',
                   }}>
                     <p style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Nicholas', serif",
                       fontSize: '0.8125rem',
                       fontWeight: 700,
                       color: '#0CA2A2',
@@ -393,7 +393,7 @@ export default function Solutions() {
               }}>
                 We build custom AI systems for your exact workflow.
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#A09890', lineHeight: 1.75, marginBottom: '2.5rem' }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#A09890', lineHeight: 1.75, marginBottom: '2.5rem' }}>
                 Every business is different. Start with a free 30-minute intro call and we'll show you exactly what we'd build to fix it.
               </p>
               <a href="/book" className="btn-gradient" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', fontSize: '1rem', padding: '1rem 2.25rem' }}>
