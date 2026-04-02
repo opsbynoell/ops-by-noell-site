@@ -18,6 +18,10 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
   );
 }
 
+function GradientText({ children }: { children: React.ReactNode }) {
+  return <span style={{ background: 'linear-gradient(90deg, #A78BFA 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{children}</span>;
+}
+
 
 const heroStats = [
   { value: '85%', label: 'Of callers never call back after voicemail' },
