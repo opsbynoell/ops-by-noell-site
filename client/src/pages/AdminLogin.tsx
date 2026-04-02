@@ -74,7 +74,7 @@ export default function AdminLogin() {
           width: 24,
           height: 24,
           border: '2px solid rgba(167,139,250,0.2)',
-          borderTopColor: '#a78bfa',
+          borderTopColor: '#0ca2a2',
           borderRadius: '50%',
           animation: 'spin 0.7s linear infinite',
         }} />
@@ -104,7 +104,7 @@ export default function AdminLogin() {
             fontWeight: 700,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#A78BFA',
+            color: '#0CA2A2',
             marginBottom: '0.5rem',
           }}>
             Ops by Noell
@@ -143,7 +143,7 @@ export default function AdminLogin() {
                 boxSizing: 'border-box',
                 WebkitAppearance: 'none',
               }}
-              onFocus={e => { if (!error) (e.target as HTMLInputElement).style.borderColor = '#A78BFA'; }}
+              onFocus={e => { if (!error) (e.target as HTMLInputElement).style.borderColor = '#0CA2A2'; }}
               onBlur={e => { if (!error) (e.target as HTMLInputElement).style.borderColor = '#2A2A2A'; }}
             />
             {error && (
@@ -163,7 +163,7 @@ export default function AdminLogin() {
             disabled={loading || !password.trim()}
             style={{
               width: '100%',
-              backgroundColor: loading || !password.trim() ? '#2A2A2A' : '#A78BFA',
+              backgroundColor: loading || !password.trim() ? '#2A2A2A' : '#0CA2A2',
               color: loading || !password.trim() ? '#4A4440' : '#0A0A0A',
               border: 'none',
               borderRadius: '8px',
@@ -192,3 +192,4 @@ export default function AdminLogin() {
     </div>
   );
 }
+
