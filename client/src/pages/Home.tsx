@@ -94,7 +94,7 @@ export default function Home() {
             {/* H1 */}
             <h1 style={{
               fontFamily: "'Nicholas', serif",
-              fontSize: 'clamp(2rem, 5.5vw, 4.5rem)',
+              fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
               fontWeight: 800, color: '#ffffff', overflowWrap: 'break-word', wordBreak: 'break-word',
               lineHeight: 1.7, letterSpacing: '-0.03em', marginBottom: '1.5rem',
             }}>
@@ -167,7 +167,7 @@ export default function Home() {
           <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>Client Case Study</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em' }}>
                 From zero infrastructure to{' '}<GradientText>fully automated in 14 days.</GradientText>
               </h2>
             </div>
@@ -255,7 +255,7 @@ export default function Home() {
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
               <SectionBadge>How It Works</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em' }}>
                 From audit to autopilot{' '}<GradientText>in 14 days</GradientText>
               </h2>
             </div>
@@ -327,7 +327,7 @@ export default function Home() {
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>Industries We Serve</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
                 Explore how this works{' '}<GradientText>for your business</GradientText>
               </h2>
               <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.75 }}>
@@ -391,7 +391,7 @@ export default function Home() {
           }} />
           <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '720px', margin: '0 auto' }}>
             <SectionBadge>Get Started Today</SectionBadge>
-            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, color: '#ffffff', overflowWrap: 'break-word', wordBreak: 'break-word', lineHeight: 1.7, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 800, color: '#ffffff', overflowWrap: 'break-word', wordBreak: 'break-word', lineHeight: 1.7, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
               Your practice deserves a back office{' '}<GradientText>that never sleeps.</GradientText>
             </h2>
             <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', color: '#b8b6b3', maxWidth: '500px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
