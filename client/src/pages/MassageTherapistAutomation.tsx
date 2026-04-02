@@ -144,7 +144,7 @@ export default function MassageTherapistAutomation() {
             </h1>
           </FadeItem>
           <FadeItem delay={0.2}>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', color: '#868583', lineHeight: 1.75, maxWidth: '580px', marginBottom: '2.5rem' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '580px', marginBottom: '2.5rem' }}>
               You built your practice on your hands, not on following up leads and chasing no-shows. We build the AI systems that handle every call, every reminder, and every re-engagement — so you can stay focused on your clients.
             </p>
           </FadeItem>
@@ -166,7 +166,7 @@ export default function MassageTherapistAutomation() {
             {heroStats.map((s, i) => (
               <FadeItem key={i} delay={i * 0.07}>
                 <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 800, color: '#A78BFA', marginBottom: '0.4rem' }}>{s.value}</div>
-                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', lineHeight: 1.5 }}>{s.label}</div>
+                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', lineHeight: 1.5 }}>{s.label}</div>
               </FadeItem>
             ))}
           </div>
@@ -186,7 +186,7 @@ export default function MassageTherapistAutomation() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'start' }}>
             <FadeItem delay={0.1}>
               <div>
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#c4c4c4', lineHeight: 1.85, marginBottom: '1.5rem' }}>
+                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#c8cdd6', lineHeight: 1.85, marginBottom: '1.5rem' }}>
                   Santa has been a licensed massage therapist in Laguna Niguel for 25 years. She was losing roughly $600 a week to no-shows and last-minute cancellations. We built a three-touch automated reminder sequence. In two weeks her no-show rate dropped from 21% to 6%.
                 </p>
 
@@ -212,7 +212,7 @@ export default function MassageTherapistAutomation() {
                 {caseStudyStats.map((cs, i) => (
                   <div key={i} style={{ padding: '1.75rem 2rem', background: i === 0 ? 'rgba(167,139,250,0.08)' : 'rgba(167,139,250,0.03)', border: '1px solid rgba(167,139,250,0.15)', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                     <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: '#A78BFA', lineHeight: 1, flexShrink: 0 }}>{cs.value}</div>
-                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#c4c4c4', lineHeight: 1.5 }}>{cs.label}</div>
+                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#c8cdd6', lineHeight: 1.5 }}>{cs.label}</div>
                   </div>
                 ))}
               </div>
@@ -230,7 +230,7 @@ export default function MassageTherapistAutomation() {
               <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Done-for-you automation. We build it. We run it.
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.75 }}>
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.75 }}>
                 Everything below is managed and maintained for you. Zero tech setup required on your end.
               </p>
             </div>
@@ -244,7 +244,7 @@ export default function MassageTherapistAutomation() {
                   </div>
                   <div>
                     <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.375rem' }}>{s.item}</h3>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.7 }}>{s.detail}</p>
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.7 }}>{s.detail}</p>
                   </div>
                 </div>
               </FadeItem>
@@ -269,7 +269,7 @@ export default function MassageTherapistAutomation() {
               <FadeItem key={i} delay={i * 0.1}>
                 <div style={{ padding: '2.5rem 2rem', background: 'rgba(167,139,250,0.04)', border: '1px solid rgba(167,139,250,0.12)', borderRadius: '12px', textAlign: 'center' }}>
                   <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.25rem, 5vw, 3rem)', fontWeight: 800, color: '#A78BFA', marginBottom: '0.75rem', lineHeight: 1 }}>{s.stat}</div>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.65 }}>{s.context}</p>
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.65 }}>{s.context}</p>
                 </div>
               </FadeItem>
             ))}
@@ -286,7 +286,7 @@ export default function MassageTherapistAutomation() {
               <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '0.75rem' }}>
                 Simple, flat-rate pricing. No surprises.
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', maxWidth: '480px', margin: '0 auto', lineHeight: 1.75 }}>
+              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', maxWidth: '480px', margin: '0 auto', lineHeight: 1.75 }}>
                 Every plan includes full setup, ongoing management, and support from our team. You pay one flat rate. We handle everything.
               </p>
             </div>
@@ -304,10 +304,10 @@ export default function MassageTherapistAutomation() {
                     <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: '#A78BFA', marginBottom: '0.625rem' }}>{tier.name}</div>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.25rem' }}>
                       <span style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 4vw, 2.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>{tier.price}</span>
-                      <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583' }}>{tier.period}</span>
+                      <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3' }}>{tier.period}</span>
                     </div>
-                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', marginBottom: '1rem' }}>{tier.setup}</div>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#c4c4c4', lineHeight: 1.65 }}>{tier.description}</p>
+                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', marginBottom: '1rem' }}>{tier.setup}</div>
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#c8cdd6', lineHeight: 1.65 }}>{tier.description}</p>
                   </div>
                   <div style={{ flex: 1, marginBottom: '1.75rem' }}>
                     {tier.features.map((feat, fi) => (
@@ -325,7 +325,7 @@ export default function MassageTherapistAutomation() {
             ))}
           </div>
           <FadeItem delay={0.4}>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', textAlign: 'center', marginTop: '2rem' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', textAlign: 'center', marginTop: '2rem' }}>
               Not sure which plan fits? <a href="/book" style={{ color: '#A78BFA', textDecoration: 'none', fontWeight: 600 }}>Book a free 30-minute call</a> and we will map it out for you.
             </p>
           </FadeItem>
@@ -341,7 +341,7 @@ export default function MassageTherapistAutomation() {
             <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.1, letterSpacing: '-0.03em', marginTop: '1.25rem', marginBottom: '1.25rem' }}>
               Your practice deserves a full calendar, not a full voicemail box.
             </h2>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.5rem' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.5rem' }}>
               30 minutes. Free. No obligation. We will map your revenue gaps and show you exactly what we would build.
             </p>
             <a href="/book" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -355,3 +355,4 @@ export default function MassageTherapistAutomation() {
     </div>
   );
 }
+
