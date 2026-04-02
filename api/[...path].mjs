@@ -1158,7 +1158,7 @@ async function sendNewsletterWelcomeEmail(email) {
                 <li>Honest takes on what AI can and cannot do right now</li>
               </ul>
             </div>
-            <p style="font-size: 15px; color: #C8C0B8; line-height: 1.75; margin: 0 0 28px;">In the meantime, if you want to see what's possible for your business specifically, book a free 15-minute intro call \u2014 no pitch, no pressure.</p>
+            <p style="font-size: 15px; color: #C8C0B8; line-height: 1.75; margin: 0 0 28px;">In the meantime, if you want to see what's possible for your business specifically, book a free 30-minute intro call \u2014 no pitch, no pressure.</p>
             <a href="https://calendly.com/opsbynoell/30-minute-meeting-clone" style="display: inline-block; background: #A78BFA; color: #FFFFFF; font-size: 14px; font-weight: 600; padding: 12px 24px; border-radius: 6px; text-decoration: none;">Book a Free Intro Call</a>
           </div>
           <div style="padding: 20px 32px; border-top: 1px solid #2A2A2A; font-size: 12px; color: #8A8480;">
@@ -1175,7 +1175,7 @@ async function sendNewsletterWelcomeEmail(email) {
         ``,
         `I send it when there's something worth saying. You won't hear from me on a schedule for the sake of it.`,
         ``,
-        `In the meantime, book a free 15-minute intro call: https://calendly.com/opsbynoell/30-minute-meeting-clone`,
+        `In the meantime, book a free 30-minute intro call: https://calendly.com/opsbynoell/30-minute-meeting-clone`,
         ``,
         `\u2014 Nikki`,
         `Ops by Noell \xB7 opsbynoell.com`
