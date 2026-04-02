@@ -1,6 +1,6 @@
 /*
  * RevenueCalculator — Interactive Cost of Inaction Calculator
- * Design: Matches site design system — #0A0A0A bg, #0CA2A2 accent, Space Grotesk + Inter
+ * Design: Light theme — #FFFFFF bg, #0CA2A2 accent, Nicholas serif
  */
 
 import { useState, useCallback } from 'react';
@@ -28,14 +28,14 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
         <div>
           <span style={{
-            fontFamily: "'Sora', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: '0.8125rem',
             color: 'rgba(245,240,235,0.7)',
             letterSpacing: '0.01em',
           }}>{label}</span>
           {sublabel && (
             <span style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.6875rem',
               color: 'rgba(245,240,235,0.35)',
               marginLeft: '0.5rem',
@@ -92,7 +92,7 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
           height: '14px',
           borderRadius: '50%',
           backgroundColor: '#0CA2A2',
-          border: '2px solid #0A0A0A',
+          border: '2px solid #E5E5E5',
           boxShadow: '0 0 0 2px rgba(12,162,162,0.3)',
           pointerEvents: 'none',
           transition: 'left 0.1s ease',
@@ -137,7 +137,7 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
         }}
       >
         <span style={{
-          fontFamily: "'Sora', sans-serif",
+          fontFamily: "'Nicholas', serif",
           fontSize: '0.8125rem',
           color: 'rgba(245,240,235,0.55)',
           flexGrow: 1,
@@ -160,13 +160,13 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           left: 0,
           right: 0,
           backgroundColor: '#1A1A1A',
-          border: '1px solid rgba(12,162,162,0.2)',
+          border: 'none',
           padding: '0.625rem 0.875rem',
           borderRadius: '0.375rem',
           zIndex: 10,
         }}>
           <p style={{
-            fontFamily: "'Sora', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: '0.6875rem',
             color: 'rgba(245,240,235,0.5)',
             lineHeight: 1.6,
@@ -203,7 +203,7 @@ export default function RevenueCalculator() {
   const costs = calc();
 
   return (
-    <section style={{ backgroundColor: '#0A0A0A', padding: '5rem 0', position: 'relative', overflow: 'hidden', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
+    <section style={{ backgroundColor: '#FFFFFF', padding: '5rem 0', position: 'relative', overflow: 'hidden', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
       {/* Top purple glow line */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
@@ -229,7 +229,7 @@ export default function RevenueCalculator() {
             Enter your numbers. See exactly what inaction is costing you.
           </h2>
           <p style={{
-            fontFamily: "'Sora', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: '0.9375rem',
             color: '#868583',
             lineHeight: 1.75,
@@ -248,13 +248,13 @@ export default function RevenueCalculator() {
 
           {/* LEFT: Sliders */}
           <div style={{
-            backgroundColor: '#111111',
-            border: '1px solid #2A2A2A',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E5E5E5',
             borderRadius: '0.75rem',
             padding: '2rem',
           }}>
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.625rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -316,7 +316,7 @@ export default function RevenueCalculator() {
             />
 
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.6875rem',
               color: 'rgba(245,240,235,0.2)',
               lineHeight: 1.6,
@@ -331,7 +331,7 @@ export default function RevenueCalculator() {
           {/* RIGHT: Results */}
           <div>
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.625rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -382,7 +382,7 @@ export default function RevenueCalculator() {
             }}>
               <div>
                 <p style={{
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '0.625rem',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
@@ -403,7 +403,7 @@ export default function RevenueCalculator() {
                   {fmt(costs.total)}
                 </p>
                 <p style={{
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '0.6875rem',
                   color: 'rgba(245,240,235,0.3)',
                   marginTop: '0.25rem',
@@ -421,7 +421,7 @@ export default function RevenueCalculator() {
                 textAlign: 'right',
               }}>
                 {fmt(costs.total * 12)}<br />
-                <span style={{ fontSize: '0.5em', color: 'rgba(12,162,162,0.3)', letterSpacing: '0.05em', fontFamily: "'Sora', sans-serif", fontWeight: 400 }}>
+                <span style={{ fontSize: '0.5em', color: 'rgba(12,162,162,0.3)', letterSpacing: '0.05em', fontFamily: "'Nicholas', serif", fontWeight: 400 }}>
                   / year
                 </span>
               </div>
@@ -430,7 +430,7 @@ export default function RevenueCalculator() {
             {/* CTA */}
             <div>
               <p style={{
-                fontFamily: "'Sora', sans-serif",
+                fontFamily: "'Nicholas', serif",
                 fontSize: '0.9375rem',
                 color: '#868583',
                 lineHeight: 1.75,
@@ -445,8 +445,8 @@ export default function RevenueCalculator() {
                   alignItems: 'center',
                   gap: '0.625rem',
                   backgroundColor: '#0CA2A2',
-                  color: '#0A0A0A',
-                  fontFamily: "'Sora', sans-serif",
+                  color: '#FFFFFF',
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '0.9375rem',
                   fontWeight: 700,
                   letterSpacing: '-0.01em',
