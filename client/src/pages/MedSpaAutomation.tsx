@@ -147,7 +147,7 @@ export default function MedSpaAutomation() {
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '5.5rem' }}>
           <div style={{ marginBottom: '1.5rem' }}><SectionBadge>Med Spa Automation</SectionBadge></div>
           
-            <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.75rem, 6.5vw, 5rem)', fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem' }}>
+            <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem' }}>
               <span style={{ color: '#ffffff' }}>You invested everything in your practice.</span>{' '}<GradientText>Your phone shouldn't be what's costing you clients.</GradientText>
             </h1>
           
@@ -190,7 +190,7 @@ export default function MedSpaAutomation() {
           <FadeItem delay={0}>
             <div style={{ maxWidth: '600px', marginBottom: '3.5rem' }}>
               <SectionBadge>What We Build for Med Spas</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Four systems. One practice that runs itself.
               </h2>
               <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
@@ -284,7 +284,7 @@ export default function MedSpaAutomation() {
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>The Problem</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem' }}>
                 The revenue leaks that add up fast at a med spa
               </h2>
             </div>
@@ -315,7 +315,7 @@ export default function MedSpaAutomation() {
           <FadeItem delay={0}>
             <div style={{ maxWidth: '600px', marginBottom: '3.5rem' }}>
               <SectionBadge>The Solution</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Done-for-you automation. We build it. We run it.
               </h2>
             </div>
@@ -375,7 +375,7 @@ export default function MedSpaAutomation() {
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>Pricing</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.375rem, 4vw, 2.5rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Simple pricing. No lock-in. Cancel anytime.
               </h2>
               <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto' }}>
