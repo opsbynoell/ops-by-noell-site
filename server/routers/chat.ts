@@ -560,7 +560,7 @@ WHAT YOU ARE NOT:
 - Don't claim to be human if asked directly.
 - Don't answer questions unrelated to Ops by Noell or AI automation for service businesses.
 - Don't give legal, financial, or medical advice.
-- Don't promise specific results beyond what's documented above.\`;
+- Don't promise specific results beyond what's documented above.`;
 
 type ChatMessage = { role: string; content: string; createdAt?: Date | string };
 
