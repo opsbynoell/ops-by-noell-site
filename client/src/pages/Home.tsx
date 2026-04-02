@@ -6,6 +6,7 @@
 import { Star, Zap, ArrowRight } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { RevealSection } from '@/components/RevealSection'
 
 /* ─── SHARED BADGE COMPONENT ────────────────────────────────────── */
 function SectionBadge({ children }: { children: React.ReactNode }) {
@@ -145,6 +146,7 @@ export default function Home() {
         </section>
 
         {/* ═══ CASE STUDY ════════════════════════════════════════════ */}
+        <RevealSection>
         <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
           <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -209,8 +211,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </RevealSection>
 
         {/* ═══ CALCULATOR CTA ══════════════════════════════════════════ */}
+        <RevealSection>
         <section style={{ padding: '6rem 0', background: 'rgba(167,139,250,0.015)', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
           <div className="container" style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
             <SectionBadge>Free Tool</SectionBadge>
@@ -225,8 +229,10 @@ export default function Home() {
             </a>
           </div>
         </section>
+        </RevealSection>
 
         {/* ═══ HOW IT WORKS ══════════════════════════════════════════ */}
+        <RevealSection>
         <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -293,8 +299,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </RevealSection>
 
         {/* ═══ INDUSTRIES ════════════════════════════════════════════ */}
+        <RevealSection>
         <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -350,8 +358,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </RevealSection>
 
         {/* ═══ FINAL CTA ══════════════════════════════════════════════ */}
+        <RevealSection>
         <section style={{ padding: '8rem 0', textAlign: 'center', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
           <div style={{
             position: 'absolute', inset: 0, pointerEvents: 'none',
@@ -378,6 +388,7 @@ export default function Home() {
             </p>
           </div>
         </section>
+        </RevealSection>
 
       </div>
       <Footer />
