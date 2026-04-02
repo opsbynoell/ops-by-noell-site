@@ -281,6 +281,17 @@ export default function ChatWidget() {
     }
 
     // All messages go through backend Claude
+    setIsTyping(true);
+
+    // Set a 15-second timeout — if no response, show graceful fallback
+    const timeoutId = setTimeout(() => {
+      setIsTyping(false);
+      addBotMessage(
+        "Looks like I'm running a bit slow right now. " +
+        "You can reach Nikki directly at hello@opsbynoell.com or grab a time at opsbynoell.com/book."
+      );
+    }, 15000);
+
     sendMessageMutation.mutate(
       {
         sessionId,
@@ -292,6 +303,8 @@ export default function ChatWidget() {
       },
       {
         onSuccess: (data) => {
+          clearTimeout(timeoutId);
+          setIsTyping(false);
           if (!data.humanTakeover && data.botReply) {
             const id = Date.now().toString();
             setIsTyping(true);
@@ -303,8 +316,12 @@ export default function ChatWidget() {
           // If humanTakeover, the polling will pick up the human reply
         },
         onError: () => {
-          // If backend fails, show a graceful error
-          addBotMessage("I'm having trouble connecting right now. You can reach Nikki directly at hello@opsbynoell.com or book a time at opsbynoell.com/book.");
+          clearTimeout(timeoutId);
+          setIsTyping(false);
+          addBotMessage(
+            "I'm having a moment — let me get you connected directly. " +
+            "You can reach Nikki at hello@opsbynoell.com or book a time at opsbynoell.com/book."
+          );
         },
       }
     );
