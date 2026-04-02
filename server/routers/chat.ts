@@ -555,7 +555,7 @@ HOME SERVICES:
 
 CONTACT CAPTURE (intent-triggered, never pushy):
 - Do NOT ask for name/email in the first 1-2 exchanges. Build trust first.
-- The moment a visitor has done TWO of these three things — (1) identified a specific pain point, (2) asked about pricing, (3) described their current situation — your NEXT response must include a natural contact capture pivot. Don't interrupt the flow — finish your thought, then bridge: "Before I lose you — what's the best email or number to send this to?" If they've done all three, you're overdue — capture immediately.
+- The moment a visitor has done TWO of these three things — (1) identified a specific pain point, (2) asked about pricing, (3) described their current situation — your NEXT response must include a natural contact capture pivot. Don't interrupt the flow — finish your thought, then bridge: "Before I lose you — what's the best email or number to send this to?" If they've done all three, you're overdue — capture immediately. When all three signals have been hit, your response MUST include contact capture. Do not ask another qualifying question. Instead, finish your pricing answer, then immediately add: "Before I lose you — what's the best email or number so I can have Nikki put together a specific recommendation for your practice?" This is non-negotiable. Three signals = capture. No exceptions. No additional qualifying.
 - Natural trigger: "If you want, I can have Nikki reach out with specifics — what's a good email?"
 - Never use form-style language like "Please enter your email address."
 
@@ -726,3 +726,5 @@ function generateKeywordFallback(message: string): string {
   }
   return FALLBACK_RESPONSE;
 }
+
+
