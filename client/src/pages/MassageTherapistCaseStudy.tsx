@@ -74,16 +74,12 @@ export default function MassageTherapistCaseStudy() {
 
       {/* ─── HERO ─── */}
       <section style={{ position: 'relative', paddingTop: '80px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: '#FFFFFF',
-          /* gradient removed */
-           }} />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '5.5rem' }}>
           <FadeItem delay={0}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
               <SectionBadge>Case Study · Laguna Niguel, CA</SectionBadge>
-              <span style={{ fontFamily: "'Nicholas', serif", fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FFFFFF', background: '#FFFFFF',
-          /* gradient removed */
-          /* _: linear-gradient(135deg, #0CA2A2, #0CA2A2)', padding: '0.3rem 0.875rem', borderRadius: '99px' }}>
+              <span style={{ fontFamily: "'Nicholas', serif", fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FFFFFF', background: '#0CA2A2', padding: '0.3rem 0.875rem', borderRadius: '99px' }}>
                 Founding Client Partner
               </span>
             </div>
