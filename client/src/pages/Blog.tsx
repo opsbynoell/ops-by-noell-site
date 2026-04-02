@@ -19,7 +19,7 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
 
 function GradientText({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ background: 'linear-gradient(90deg, #A78BFA 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+    <span style={{ background: 'linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
       {children}
     </span>
   );
@@ -57,7 +57,7 @@ const POSTS = [
 
 export default function Blog() {
   return (
-    <div style={{ backgroundColor: '#010509', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#FFFFFF', minHeight: '100vh' }}>
       <Nav />
 
       {/* ═══ PAGE HERO ══════════════════════════════════════════════ */}
@@ -65,12 +65,12 @@ export default function Blog() {
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(120,58,237,0.15) 0%, rgba(139,92,246,0.06) 45%, #010509 72%)' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px', margin: '0 auto' }}>
           <FadeItem delay={0}>
-            <span style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(167,139,250,0.1)', border: '1px solid rgba(167,139,250,0.25)', borderRadius: '100px', fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', fontWeight: 600, color: '#C4B5FD', letterSpacing: '0.1em', textTransform: 'uppercase' as const, marginBottom: '1.25rem' }}>
+            <span style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(12,162,162,0.06)', border: '1px solid rgba(167,139,250,0.25)', borderRadius: '100px', fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', fontWeight: 600, color: '#0CA2A2', letterSpacing: '0.1em', textTransform: 'uppercase' as const, marginBottom: '1.25rem' }}>
               The Ops Blog
             </span>
           </FadeItem>
           <FadeItem delay={0.06}>
-            <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.125rem' }}>
+            <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', fontWeight: 800, color: '#1A1A1A', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.125rem' }}>
               Real strategies. <GradientText>Real numbers.</GradientText> No fluff.
             </h1>
           </FadeItem>
@@ -100,10 +100,10 @@ export default function Blog() {
                 >
                   <div
                     className="post-card"
-                    style={{ background: 'rgba(167,139,250,0.03)', border: '1px solid rgba(167,139,250,0.12)', borderRadius: '16px', padding: '2.25rem', transition: 'all 0.2s ease' }}
+                    style={{ background: 'rgba(167,139,250,0.03)', border: '1px solid #E8E8E8', borderRadius: '16px', padding: '2.25rem', transition: 'all 0.2s ease' }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' as const }}>
-                      <span style={{ display: 'inline-block', padding: '0.2rem 0.625rem', background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.22)', borderRadius: '100px', fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', fontWeight: 600, color: '#C4B5FD', letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>
+                      <span style={{ display: 'inline-block', padding: '0.2rem 0.625rem', background: '#E5E5E5', border: '1px solid rgba(167,139,250,0.22)', borderRadius: '100px', fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', fontWeight: 600, color: '#0CA2A2', letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>
                         {post.category}
                       </span>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583' }}>
@@ -113,13 +113,13 @@ export default function Blog() {
                         <Clock size={11} /> {post.readTime}
                       </span>
                     </div>
-                    <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.25rem, 2.5vw, 1.625rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
+                    <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.25rem, 2.5vw, 1.625rem)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
                       {post.title}
                     </h2>
                     <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: '680px' }}>
                       {post.excerpt}
                     </p>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', fontWeight: 600, color: '#A78BFA' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', fontWeight: 600, color: '#0CA2A2' }}>
                       Read post <ArrowRight size={14} />
                     </span>
                   </div>
@@ -131,10 +131,10 @@ export default function Blog() {
       </section>
 
       {/* ═══ CTA STRIP ══════════════════════════════════════════════ */}
-      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', background: 'rgba(167,139,250,0.015)', textAlign: 'center' }}>
+      <section style={{ padding: '5rem 0', borderTop: '1px solid #E5E5E5', background: 'rgba(167,139,250,0.015)', textAlign: 'center' }}>
         <div className="container" style={{ maxWidth: '620px', margin: '0 auto' }}>
           <FadeItem delay={0}>
-            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 800, color: '#1A1A1A', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1rem' }}>
               Ready to see your numbers?
             </h2>
             <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, marginBottom: '2rem' }}>
