@@ -1,6 +1,6 @@
 /*
  * RevenueCalculator — Interactive Cost of Inaction Calculator
- * Design: Matches site design system — #0A0A0A bg, #A78BFA accent, Space Grotesk + Inter
+ * Design: Matches site design system — #0A0A0A bg, #0CA2A2 accent, Space Grotesk + Inter
  */
 
 import { useState, useCallback } from 'react';
@@ -24,18 +24,18 @@ interface SliderProps {
 function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }: SliderProps) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
-    <div style={{ marginBottom: '0.625rem' }}>
+    <div style={{ marginBottom: '1.5rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
         <div>
           <span style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '0.875rem',
+            fontFamily: "'Sora', sans-serif",
+            fontSize: '0.8125rem',
             color: 'rgba(245,240,235,0.7)',
             letterSpacing: '0.01em',
           }}>{label}</span>
           {sublabel && (
             <span style={{
-              fontFamily: "'Nicholas', serif",
+              fontFamily: "'Sora', sans-serif",
               fontSize: '0.6875rem',
               color: 'rgba(245,240,235,0.35)',
               marginLeft: '0.5rem',
@@ -45,7 +45,7 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
         <span style={{
           fontFamily: "'Nicholas', serif",
           fontSize: '1.125rem',
-          color: '#A78BFA',
+          color: '#0CA2A2',
           fontWeight: 600,
           minWidth: '4rem',
           textAlign: 'right',
@@ -60,7 +60,7 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
           top: 0,
           height: '100%',
           width: `${pct}%`,
-          backgroundColor: '#A78BFA',
+          backgroundColor: '#0CA2A2',
           borderRadius: '2px',
           transition: 'width 0.1s ease',
         }} />
@@ -91,9 +91,9 @@ function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }:
           width: '14px',
           height: '14px',
           borderRadius: '50%',
-          backgroundColor: '#A78BFA',
+          backgroundColor: '#0CA2A2',
           border: '2px solid #0A0A0A',
-          boxShadow: '0 0 0 2px rgba(167,139,250,0.3)',
+          boxShadow: '0 0 0 2px rgba(12,162,162,0.3)',
           pointerEvents: 'none',
           transition: 'left 0.1s ease',
         }} />
@@ -119,7 +119,7 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           alignItems: 'center',
           gap: '0.5rem',
           backgroundColor: 'rgba(255,255,255,0.03)',
-          border: '1px solid rgba(167,139,250,0.15)',
+          border: '1px solid rgba(12,162,162,0.15)',
           borderRadius: '0.375rem',
           padding: '0.625rem 0.875rem',
           cursor: 'pointer',
@@ -128,30 +128,30 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           transition: 'border-color 0.2s ease, background-color 0.2s ease',
         }}
         onMouseEnter={e => {
-          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(167,139,250,0.4)';
-          (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(167,139,250,0.06)';
+          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(12,162,162,0.4)';
+          (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(12,162,162,0.06)';
         }}
         onMouseLeave={e => {
-          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(167,139,250,0.15)';
+          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(12,162,162,0.15)';
           (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(255,255,255,0.03)';
         }}
       >
         <span style={{
-          fontFamily: "'Nicholas', serif",
-          fontSize: '0.875rem',
+          fontFamily: "'Sora', sans-serif",
+          fontSize: '0.8125rem',
           color: 'rgba(245,240,235,0.55)',
           flexGrow: 1,
         }}>{label}</span>
         <span style={{
           fontFamily: "'Nicholas', serif",
           fontSize: '1rem',
-          color: '#A78BFA',
+          color: '#0CA2A2',
           fontWeight: 600,
           transition: 'all 0.2s ease',
         }}>{fmt(cost)}</span>
         {showTip
-          ? <ChevronUp size={10} color="rgba(167,139,250,0.5)" />
-          : <ChevronDown size={10} color="rgba(167,139,250,0.3)" />}
+          ? <ChevronUp size={10} color="rgba(12,162,162,0.5)" />
+          : <ChevronDown size={10} color="rgba(12,162,162,0.3)" />}
       </button>
       {showTip && (
         <div style={{
@@ -160,13 +160,13 @@ function CostPill({ label, cost, assumption }: CostPillProps) {
           left: 0,
           right: 0,
           backgroundColor: '#1A1A1A',
-          border: '1px solid rgba(167,139,250,0.2)',
+          border: '1px solid rgba(12,162,162,0.2)',
           padding: '0.625rem 0.875rem',
           borderRadius: '0.375rem',
           zIndex: 10,
         }}>
           <p style={{
-            fontFamily: "'Nicholas', serif",
+            fontFamily: "'Sora', sans-serif",
             fontSize: '0.6875rem',
             color: 'rgba(245,240,235,0.5)',
             lineHeight: 1.6,
@@ -203,17 +203,17 @@ export default function RevenueCalculator() {
   const costs = calc();
 
   return (
-    <section style={{ backgroundColor: '#0A0A0A', padding: '3rem 0', position: 'relative', overflow: 'hidden', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
+    <section style={{ backgroundColor: '#0A0A0A', padding: '5rem 0', position: 'relative', overflow: 'hidden', borderTop: '1px solid #1A1A1A', borderBottom: '1px solid #1A1A1A' }}>
       {/* Top purple glow line */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-        background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.4) 30%, rgba(167,139,250,0.4) 70%, transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(12,162,162,0.4) 30%, rgba(12,162,162,0.4) 70%, transparent)',
       }} />
 
       <div className="container">
 
         {/* Header */}
-        <div style={{ marginBottom: '1.75rem', maxWidth: '560px' }}>
+        <div style={{ marginBottom: '3rem', maxWidth: '560px' }}>
           <p className="eyebrow" style={{ marginBottom: '0.75rem' }}>
             The Cost of Waiting
           </p>
@@ -222,16 +222,16 @@ export default function RevenueCalculator() {
             fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
             fontWeight: 800,
             color: '#F5F0EC',
-            lineHeight: 1.7,
+            lineHeight: 1.1,
             letterSpacing: '-0.02em',
             marginBottom: '0.875rem',
           }}>
             Enter your numbers. See exactly what inaction is costing you.
           </h2>
           <p style={{
-            fontFamily: "'Nicholas', serif",
+            fontFamily: "'Sora', sans-serif",
             fontSize: '0.9375rem',
-            color: '#b8b6b3',
+            color: '#868583',
             lineHeight: 1.75,
           }}>
             Adjust the sliders to match your business. The estimates update instantly. Click any cost row to see the assumption behind the number.
@@ -251,15 +251,15 @@ export default function RevenueCalculator() {
             backgroundColor: '#111111',
             border: '1px solid #2A2A2A',
             borderRadius: '0.75rem',
-            padding: '1.5rem',
+            padding: '2rem',
           }}>
             <p style={{
-              fontFamily: "'Nicholas', serif",
+              fontFamily: "'Sora', sans-serif",
               fontSize: '0.625rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: 'rgba(167,139,250,0.5)',
-              marginBottom: '1.25rem',
+              color: 'rgba(12,162,162,0.5)',
+              marginBottom: '1.75rem',
             }}>
               Your Business: Adjust to Match
             </p>
@@ -316,7 +316,7 @@ export default function RevenueCalculator() {
             />
 
             <p style={{
-              fontFamily: "'Nicholas', serif",
+              fontFamily: "'Sora', sans-serif",
               fontSize: '0.6875rem',
               color: 'rgba(245,240,235,0.2)',
               lineHeight: 1.6,
@@ -331,11 +331,11 @@ export default function RevenueCalculator() {
           {/* RIGHT: Results */}
           <div>
             <p style={{
-              fontFamily: "'Nicholas', serif",
+              fontFamily: "'Sora', sans-serif",
               fontSize: '0.625rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: 'rgba(167,139,250,0.5)',
+              color: 'rgba(12,162,162,0.5)',
               marginBottom: '1.75rem',
             }}>
               Estimated Monthly Revenue Loss
@@ -371,8 +371,8 @@ export default function RevenueCalculator() {
 
             {/* Total */}
             <div style={{
-              backgroundColor: 'rgba(167,139,250,0.06)',
-              border: '1px solid rgba(167,139,250,0.25)',
+              backgroundColor: 'rgba(12,162,162,0.06)',
+              border: '1px solid rgba(12,162,162,0.25)',
               borderRadius: '0.75rem',
               padding: '1.5rem 1.75rem',
               display: 'flex',
@@ -382,11 +382,11 @@ export default function RevenueCalculator() {
             }}>
               <div>
                 <p style={{
-                  fontFamily: "'Nicholas', serif",
+                  fontFamily: "'Sora', sans-serif",
                   fontSize: '0.625rem',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: 'rgba(167,139,250,0.6)',
+                  color: 'rgba(12,162,162,0.6)',
                   marginBottom: '0.25rem',
                 }}>
                   Total estimated monthly loss
@@ -403,7 +403,7 @@ export default function RevenueCalculator() {
                   {fmt(costs.total)}
                 </p>
                 <p style={{
-                  fontFamily: "'Nicholas', serif",
+                  fontFamily: "'Sora', sans-serif",
                   fontSize: '0.6875rem',
                   color: 'rgba(245,240,235,0.3)',
                   marginTop: '0.25rem',
@@ -415,139 +415,28 @@ export default function RevenueCalculator() {
                 fontFamily: "'Nicholas', serif",
                 fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
                 fontWeight: 700,
-                color: 'rgba(167,139,250,0.2)',
+                color: 'rgba(12,162,162,0.2)',
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
                 textAlign: 'right',
               }}>
                 {fmt(costs.total * 12)}<br />
-                <span style={{ fontSize: '0.5em', color: 'rgba(167,139,250,0.3)', letterSpacing: '0.05em', fontFamily: "'Nicholas', serif", fontWeight: 400 }}>
+                <span style={{ fontSize: '0.5em', color: 'rgba(12,162,162,0.3)', letterSpacing: '0.05em', fontFamily: "'Sora', sans-serif", fontWeight: 400 }}>
                   / year
                 </span>
               </div>
             </div>
 
-            {/* Contextual framing */}
-            <p style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: '0.9375rem',
-              color: '#A78BFA',
-              lineHeight: 1.75,
-              marginBottom: '1.5rem',
-              fontStyle: 'italic',
-            }}>
-              At ${'{'}fmt(costs.total){'}'}/month in preventable losses, your revenue leak is larger than the cost of the full automation stack.
-            </p>
-
-            {/* Email capture */}
-            <div style={{
-              background: 'rgba(167,139,250,0.04)',
-              border: '1px solid rgba(167,139,250,0.2)',
-              borderRadius: '10px',
-              padding: '1.5rem',
-              marginBottom: '1.5rem',
-            }}>
-              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', color: '#c4c4c4', lineHeight: 1.7, marginBottom: '1rem' }}>
-                Want a copy of your results? Enter your email and we'll send your personalized revenue leak report.
-              </p>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.currentTarget;
-                  const emailInput = form.elements.namedItem('calc_email') as HTMLInputElement;
-                  const email = emailInput?.value;
-                  if (!email) return;
-
-                  // Fire analytics events on calculator completion
-                  if (typeof window !== 'undefined') {
-                    const annualLeak = Math.round(costs.total * 12);
-                    if (typeof (window as any).fbq === 'function') {
-                      (window as any).fbq('track', 'Lead', {
-                        content_name: 'Revenue Calculator',
-                        value: annualLeak,
-                        currency: 'USD',
-                      });
-                    }
-                    if (typeof (window as any).gtag === 'function') {
-                      (window as any).gtag('event', 'calculator_complete', {
-                        event_category: 'engagement',
-                        event_label: 'revenue_calculator',
-                        value: annualLeak,
-                      });
-                    }
-                  }
-
-                  fetch('/api/leads', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      email,
-                      source: 'revenue_calculator',
-                      calculatorResults: {
-                        total: costs.total,
-                        missedCalls: costs.missedCallLoss,
-                        noShows: costs.noShowLoss,
-                        followUp: costs.followUpLoss,
-                        reviews: costs.reviewLoss,
-                        marketing: costs.marketingLoss,
-                      },
-                    }),
-                  }).catch(() => {});
-                  emailInput.value = '';
-                  emailInput.placeholder = 'Report sent!';
-                  emailInput.disabled = true;
-                  (form.querySelector('button') as HTMLButtonElement).disabled = true;
-                }}
-                style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap' as const }}
-              >
-                <input
-                  type="email"
-                  name="calc_email"
-                  placeholder="your@email.com"
-                  required
-                  style={{
-                    flex: 1,
-                    minWidth: '180px',
-                    padding: '0.75rem 1rem',
-                    background: 'rgba(10,8,20,0.8)',
-                    border: '1px solid rgba(167,139,250,0.25)',
-                    borderRadius: '6px',
-                    color: '#ffffff',
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.875rem',
-                    outline: 'none',
-                  }}
-                />
-                <button
-                  type="submit"
-                  style={{
-                    padding: '0.75rem 1.25rem',
-                    background: '#A78BFA',
-                    color: '#0A0A0A',
-                    border: 'none',
-                    borderRadius: '6px',
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.875rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap' as const,
-                  }}
-                >
-                  Send My Report
-                </button>
-              </form>
-            </div>
-
             {/* CTA */}
             <div>
               <p style={{
-                fontFamily: "'Nicholas', serif",
+                fontFamily: "'Sora', sans-serif",
                 fontSize: '0.9375rem',
-                color: '#b8b6b3',
+                color: '#868583',
                 lineHeight: 1.75,
                 marginBottom: '1.25rem',
               }}>
-                Start with a free 30-minute intro call. If we're a fit, a Revenue Audit gives you the real numbers specific to your business, your market, and your gaps.
+                Start with a free 15-minute intro call. If we're a fit, a Revenue Audit gives you the real numbers specific to your business, your market, and your gaps.
               </p>
               <a
                 href="/book"
@@ -555,9 +444,9 @@ export default function RevenueCalculator() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.625rem',
-                  backgroundColor: '#A78BFA',
+                  backgroundColor: '#0CA2A2',
                   color: '#0A0A0A',
-                  fontFamily: "'Nicholas', serif",
+                  fontFamily: "'Sora', sans-serif",
                   fontSize: '0.9375rem',
                   fontWeight: 700,
                   letterSpacing: '-0.01em',
@@ -567,7 +456,7 @@ export default function RevenueCalculator() {
                   transition: 'background-color 0.2s ease',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#9370e8')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#A78BFA')}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#0CA2A2')}
               >
                 Get My Real Numbers, Free
                 <ArrowRight size={15} />
@@ -581,13 +470,8 @@ export default function RevenueCalculator() {
       {/* Bottom glow line */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px',
-        background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.4) 30%, rgba(167,139,250,0.4) 70%, transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(12,162,162,0.4) 30%, rgba(12,162,162,0.4) 70%, transparent)',
       }} />
     </section>
   );
 }
-
-
-
-
-
