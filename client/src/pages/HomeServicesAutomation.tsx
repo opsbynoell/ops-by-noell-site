@@ -8,6 +8,7 @@ import { ArrowRight, Check, X, Clock, Phone, Calendar } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { useFadeIn } from '@/hooks/useFadeIn';
+import { RevealSection } from '@/components/RevealSection'
 
 function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   const { ref, visible } = useFadeIn(0.1);
@@ -104,6 +105,7 @@ export default function HomeServicesAutomation() {
       </section>
 
       {/* ── SERVICE DETAIL SECTION ── */}
+      <RevealSection>
       <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -132,8 +134,10 @@ export default function HomeServicesAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* ── STAT BLOCK ── */}
+      <RevealSection>
       <section style={{ padding: '5rem 0', background: 'rgba(167,139,250,0.03)', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -156,9 +160,11 @@ export default function HomeServicesAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       
       {/* ─── Santa Testimonial ─── */}
+      <RevealSection>
       <section style={{ padding: '4rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
           <div style={{
@@ -183,8 +189,10 @@ export default function HomeServicesAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* ── PRICING + BOOKING CTA ── */}
+      <RevealSection>
       <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -272,8 +280,10 @@ export default function HomeServicesAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* ── PROBLEM SECTION ── */}
+      <RevealSection>
       <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -301,8 +311,10 @@ export default function HomeServicesAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* ── SOLUTION SECTION ── */}
+      <RevealSection>
       <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -330,8 +342,10 @@ export default function HomeServicesAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* ── FINAL CTA ── */}
+      <RevealSection>
       <section style={{ position: 'relative', padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{ position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)', width: '800px', height: '400px', background: 'radial-gradient(ellipse, rgba(167,139,250,0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto' }}>
@@ -349,6 +363,7 @@ export default function HomeServicesAutomation() {
           </FadeItem>
         </div>
       </section>
+      </RevealSection>
 
       <Footer />
     </div>
