@@ -238,6 +238,33 @@ export default function SalonAutomation() {
       </section>
 
       {/* ── Pricing ── */}
+      
+      {/* ─── Santa Testimonial ─── */}
+      <section style={{ padding: '4rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
+        <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
+          <div style={{
+            background: 'rgba(167,139,250,0.04)',
+            border: '1px solid rgba(167,139,250,0.25)',
+            borderLeft: '4px solid #A78BFA',
+            borderRadius: '12px',
+            padding: '2.5rem 3rem',
+            textAlign: 'center',
+          }}>
+            <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'center', marginBottom: '1.25rem' }}>
+              {[1,2,3,4,5].map((i) => (
+                <svg key={i} width="15" height="15" viewBox="0 0 24 24" fill="#A78BFA" style={{ display: 'inline-block' }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 600, color: '#ffffff', lineHeight: 1.65, marginBottom: '1.25rem', fontStyle: 'italic' }}>
+              "I used to dread Mondays because there would always be gaps I did not expect. Now I open my calendar and it is just full. The reminders go out and people show up. I do not think about it anymore."
+            </p>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
+              Santa M. — Licensed Massage Therapist, Laguna Niguel CA
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section id="pricing" style={{ padding: '6rem 0', background: 'rgba(167,139,250,0.015)', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
