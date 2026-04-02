@@ -17,7 +17,7 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
         background: 'rgba(167,139,250,0.1)',
         border: '1px solid rgba(167,139,250,0.25)',
         borderRadius: '100px',
-        fontFamily: "'Sora', sans-serif",
+        fontFamily: "'Nicholas', serif",
         fontSize: '0.75rem',
         fontWeight: 600,
         color: '#C4B5FD',
@@ -81,8 +81,8 @@ export default function Home() {
                 background: 'rgba(167,139,250,0.12)',
                 border: '1px solid rgba(167,139,250,0.3)',
                 borderRadius: '100px',
-                fontFamily: "'Sora', sans-serif",
-                fontSize: '0.8125rem', fontWeight: 500, color: '#C4B5FD', letterSpacing: '0.02em',
+                fontFamily: "'Nicholas', serif",
+                fontSize: '0.875rem', fontWeight: 500, color: '#C4B5FD', letterSpacing: '0.02em',
               }}>
                 <Zap size={13} style={{ color: '#A78BFA' }} />
                 Done-For-You AI Automation
@@ -94,7 +94,7 @@ export default function Home() {
               fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
               fontWeight: 800, color: '#ffffff',
-              lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.5rem',
+              lineHeight: 1.7, letterSpacing: '-0.03em', marginBottom: '1.5rem',
             }}>
               You're losing clients <span style={{ whiteSpace: 'nowrap' }}>between appointments.</span>{' '}
               <GradientText>We build the systems that stop that.</GradientText>
@@ -102,7 +102,7 @@ export default function Home() {
 
             {/* Sub */}
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: 'clamp(1rem, 2vw, 1.175rem)',
               color: '#b8b6b3', lineHeight: 1.75,
               maxWidth: '640px', margin: '0 auto 2.5rem',
@@ -135,8 +135,8 @@ export default function Home() {
                   { value: '75%', label: 'Fewer no-shows' },
                 ].map(({ value, label }) => (
                   <div key={label} style={{ textAlign: 'center' }}>
-                    <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.1 }}>{value}</div>
-                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', marginTop: '0.25rem' }}>{label}</div>
+                    <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.7 }}>{value}</div>
+                    <div style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', marginTop: '0.25rem' }}>{label}</div>
                   </div>
                 ))}
               </div>
@@ -149,7 +149,7 @@ export default function Home() {
           <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>Client Case Study</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em' }}>
                 From zero infrastructure to{' '}<GradientText>fully automated in 14 days.</GradientText>
               </h2>
             </div>
@@ -168,8 +168,8 @@ export default function Home() {
                   border: '1px solid rgba(167,139,250,0.15)',
                   borderRadius: '10px',
                 }}>
-                  <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 800, color: '#A78BFA', lineHeight: 1.1, marginBottom: '0.375rem' }}>{value}</div>
-                  <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3' }}>{label}</div>
+                  <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 800, color: '#A78BFA', lineHeight: 1.7, marginBottom: '0.375rem' }}>{value}</div>
+                  <div style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3' }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -197,7 +197,7 @@ export default function Home() {
               }}>
                 "I went from no website, no booking system, and 4 no-shows a week to a fully automated practice in 14 days. I didn't have to figure out a single thing."
               </p>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
                 Santa M. — Licensed Massage Therapist, Laguna Niguel CA
               </p>
             </div>
@@ -214,10 +214,10 @@ export default function Home() {
         <section style={{ padding: '6rem 0', background: 'rgba(167,139,250,0.015)', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
           <div className="container" style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
             <SectionBadge>Free Tool</SectionBadge>
-            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 2.75rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 2.75rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
               How much are you actually losing?
             </h2>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.25rem' }}>
+            <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1.0625rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 2.25rem' }}>
               Most practice owners are shocked by the number. Enter a few inputs and see your exact monthly revenue leak before you spend a dollar on automation.
             </p>
             <a href="/resources/revenue-calculator" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -231,7 +231,7 @@ export default function Home() {
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
               <SectionBadge>How It Works</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em' }}>
                 From audit to autopilot{' '}<GradientText>in 14 days</GradientText>
               </h2>
             </div>
@@ -254,15 +254,15 @@ export default function Home() {
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                   marginBottom: '1rem', padding: '0.25rem 0.875rem',
                   background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)',
-                  borderRadius: '100px', fontFamily: "'Sora', sans-serif",
+                  borderRadius: '100px', fontFamily: "'Nicholas', serif",
                   fontSize: '0.75rem', color: '#C4B5FD', fontWeight: 600,
                 }}>
                   Step 1
                 </div>
-                <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.25rem, 2.5vw, 1.625rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.25, marginBottom: '1rem', letterSpacing: '-0.015em' }}>
+                <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.25rem, 2.5vw, 1.625rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, marginBottom: '1rem', letterSpacing: '-0.015em' }}>
                   We audit your gaps.
                 </h3>
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
+                <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
                   Every engagement starts with a free 30-minute call where we map every missed call, no-show, and follow-up gap that's costing you revenue. You see the numbers before you commit to anything.
                 </p>
               </div>
@@ -278,15 +278,15 @@ export default function Home() {
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                   marginBottom: '1rem', padding: '0.25rem 0.875rem',
                   background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)',
-                  borderRadius: '100px', fontFamily: "'Sora', sans-serif",
+                  borderRadius: '100px', fontFamily: "'Nicholas', serif",
                   fontSize: '0.75rem', color: '#C4B5FD', fontWeight: 600,
                 }}>
                   Step 2
                 </div>
-                <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.25rem, 2.5vw, 1.625rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.25, marginBottom: '1rem', letterSpacing: '-0.015em' }}>
+                <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.25rem, 2.5vw, 1.625rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, marginBottom: '1rem', letterSpacing: '-0.015em' }}>
                   Then we build and run the fix.
                 </h3>
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
+                <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75 }}>
                   We design, build, and manage your entire automation stack — missed call text-back, booking reminders, review generation, lead follow-up. You don't touch a single login.
                 </p>
               </div>
@@ -299,10 +299,10 @@ export default function Home() {
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>Industries We Serve</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
                 Explore how this works{' '}<GradientText>for your business</GradientText>
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.75 }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.75 }}>
                 Every appointment-based business has the same core revenue gaps. We've built the fixes for all of them.
               </p>
             </div>
@@ -339,10 +339,10 @@ export default function Home() {
                   <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.375rem' }}>
                     {label}
                   </div>
-                  <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', lineHeight: 1.5 }}>
+                  <div style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7 }}>
                     {desc}
                   </div>
-                  <div style={{ marginTop: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#A78BFA', fontWeight: 600 }}>
+                  <div style={{ marginTop: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', color: '#A78BFA', fontWeight: 600 }}>
                     Learn more <ArrowRight size={12} />
                   </div>
                 </a>
@@ -359,10 +359,10 @@ export default function Home() {
           }} />
           <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '720px', margin: '0 auto' }}>
             <SectionBadge>Get Started Today</SectionBadge>
-            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
+            <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
               Your practice deserves a back office{' '}<GradientText>that never sleeps.</GradientText>
             </h2>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.125rem', color: '#b8b6b3', maxWidth: '500px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
+            <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', color: '#b8b6b3', maxWidth: '500px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
               30 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -373,7 +373,7 @@ export default function Home() {
                 See What You're Losing <ArrowRight size={16} />
               </a>
             </div>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3', marginTop: '1.5rem' }}>
+            <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', marginTop: '1.5rem' }}>
               No commitment. No credit card. Just a conversation.
             </p>
           </div>
