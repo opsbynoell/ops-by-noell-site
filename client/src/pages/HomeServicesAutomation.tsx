@@ -95,7 +95,7 @@ export default function HomeServicesAutomation() {
           <FadeItem delay={0.3}>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <a href={BOOKING_LINK} target="_blank" rel="noreferrer" className="btn-gradient" style={{ padding: '1rem 2rem', fontSize: '1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                Book Free 30-Minute Intro Call <ArrowRight size={16} />
+                Book a Free 30-Minute Audit <ArrowRight size={16} />
               </a>
               <a href="/services" className="btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>See Pricing</a>
             </div>
@@ -242,7 +242,7 @@ export default function HomeServicesAutomation() {
                   ))}
                 </ul>
                 <a href={BOOKING_LINK} target="_blank" rel="noreferrer" className="btn-gradient" style={{ textAlign: 'center', padding: '0.875rem 1.5rem', fontSize: '0.9375rem', display: 'block', fontWeight: 700 }}>
-                  Book Free Intro Call
+                  Book a Free 30-Minute Audit
                 </a>
               </div>
             </FadeItem>
@@ -344,7 +344,7 @@ export default function HomeServicesAutomation() {
               30 minutes. Free. No obligation. We'll show you what we'd build and what it costs.
             </p>
             <a href={BOOKING_LINK} target="_blank" rel="noreferrer" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Book Free 30-Minute Intro Call <ArrowRight size={17} />
+              Book a Free 30-Minute Audit <ArrowRight size={17} />
             </a>
           </FadeItem>
         </div>
