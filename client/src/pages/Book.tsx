@@ -87,7 +87,7 @@ export default function Book() {
               fontSize: 'clamp(2rem, 4vw, 3.25rem)',
               fontWeight: 700,
               color: '#F5F0EC',
-              lineHeight: 1.1,
+              lineHeight: 1.7,
               letterSpacing: '-0.02em',
               marginBottom: '1rem',
             }}>
@@ -96,7 +96,7 @@ export default function Book() {
           
           
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '1.0625rem',
               color: '#b8b6b3',
               lineHeight: 1.75,
@@ -144,7 +144,7 @@ export default function Book() {
               ].map((bullet, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A78BFA', flexShrink: 0, marginTop: '0.5rem' }} />
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#F5F0EC', lineHeight: 1.6, margin: 0 }}>{bullet}</p>
+                  <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', color: '#F5F0EC', lineHeight: 1.6, margin: 0 }}>{bullet}</p>
                 </div>
               ))}
             </div>
@@ -174,7 +174,7 @@ export default function Book() {
                   </div>
                   <div>
                     <h3 style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Nicholas', serif",
                       fontSize: '1.25rem',
                       fontWeight: 700,
                       color: '#F5F0EC',
@@ -182,7 +182,7 @@ export default function Book() {
                     }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7 }}>
+                    <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7 }}>
                       {item.detail}
                     </p>
                   </div>
@@ -213,7 +213,7 @@ export default function Book() {
               <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 600, color: '#ffffff', lineHeight: 1.65, marginBottom: '1.25rem', fontStyle: 'italic' }}>
                 "I used to dread Mondays because there would always be gaps I did not expect. Now I open my calendar and it is just full. The reminders go out and people show up. I do not think about it anymore."
               </p>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
                 Santa M. — Licensed Massage Therapist, Laguna Niguel CA
               </p>
             </div>
@@ -231,7 +231,7 @@ export default function Book() {
               fontSize: 'clamp(2rem, 3.5vw, 3rem)',
               fontWeight: 700,
               color: '#F5F0EC',
-              lineHeight: 1.1,
+              lineHeight: 1.7,
               marginBottom: '1.25rem',
               maxWidth: '560px',
               margin: '0 auto 1.25rem',
@@ -239,7 +239,7 @@ export default function Book() {
               The intro call answers everything. It costs nothing.
             </h2>
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '1rem',
               color: '#b8b6b3',
               lineHeight: 1.75,
