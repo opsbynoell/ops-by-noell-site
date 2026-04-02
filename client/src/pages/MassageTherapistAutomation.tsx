@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 function SectionBadge({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
-      <span style={{ display: 'inline-flex', alignItems: 'center', padding: '0.5rem 1.25rem', background: 'rgba(12,162,162,0.06)', border: '1px solid rgba(167,139,250,0.25)', borderRadius: '100px', fontFamily: "'Nicholas', serif", fontSize: '0.6875rem', fontWeight: 600, color: '#0CA2A2', letterSpacing: '0.1em', textTransform: 'uppercase' as const }}>
+      <span style={{ display: 'inline-flex', alignItems: 'center', padding: '0.5rem 1.25rem', background: '#FFFFFF', border: '1px solid #E5E5E5', borderRadius: '100px', fontFamily: "'Nicholas', serif", fontSize: '0.6875rem', fontWeight: 600, color: '#0CA2A2', letterSpacing: '0.1em', textTransform: 'uppercase' as const }}>
         {children}
       </span>
     </div>
@@ -126,7 +126,7 @@ export default function MassageTherapistAutomation() {
 
       {/* Hero */}
       <section style={{ position: 'relative', paddingTop: '80px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(120,58,237,0.2) 0%, rgba(139,92,246,0.12) 35%, #010509 72%)' }} />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(2rem, 4vw, 2.5rem)', textAlign: 'center', paddingBottom: '5.5rem' }}>
           <div style={{ marginBottom: '1.5rem' }}><SectionBadge>Massage Therapist Automation</SectionBadge></div>
           
@@ -152,7 +152,7 @@ export default function MassageTherapistAutomation() {
 
       {/* Stats strip */}
       <div className="reveal">
-      <section style={{ borderTop: '1px solid rgba(167,139,250,0.1)', borderBottom: '1px solid rgba(167,139,250,0.1)', padding: '3rem 0' }}>
+      <section style={{ borderTop: '1px solid rgba(12,162,162,0.1)', borderBottom: '1px solid rgba(12,162,162,0.1)', padding: '3rem 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '2rem', textAlign: 'center' }}>
             {heroStats.map((s, i) => (
@@ -185,8 +185,8 @@ export default function MassageTherapistAutomation() {
                 </p>
 
                 {/* Pull quote */}
-                <div style={{ position: 'relative', padding: '2rem 2rem 2rem 2.5rem', background: 'rgba(167,139,250,0.05)', border: '1px solid #E8E8E8', borderLeft: '3px solid #0CA2A2', borderRadius: '0 10px 10px 0', marginBottom: '2rem' }}>
-                  <Quote size={20} color="rgba(167,139,250,0.3)" style={{ position: 'absolute', top: '1.25rem', right: '1.25rem' }} />
+                <div style={{ position: 'relative', padding: '2rem 2rem 2rem 2.5rem', background: 'rgba(12,162,162,0.05)', border: '1px solid #E8E8E8', borderLeft: '3px solid #0CA2A2', borderRadius: '0 10px 10px 0', marginBottom: '2rem' }}>
+                  <Quote size={20} color="rgba(12,162,162,0.3)" style={{ position: 'absolute', top: '1.25rem', right: '1.25rem' }} />
                   <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', color: '#c8cdd6', lineHeight: 1.8, fontStyle: 'italic', marginBottom: '1rem' }}>
                     "I used to dread Mondays because there would always be gaps I did not expect. Now I open my calendar and it is just full. The reminders go out and people show up. I do not think about it anymore."
                   </p>
@@ -204,7 +204,7 @@ export default function MassageTherapistAutomation() {
             <div className="reveal">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {caseStudyStats.map((cs, i) => (
-                  <div key={i} style={{ padding: '1.75rem 2rem', background: i === 0 ? 'rgba(167,139,250,0.08)' : 'rgba(167,139,250,0.03)', border: '1px solid #E8E8E8', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                  <div key={i} style={{ padding: '1.75rem 2rem', background: i === 0 ? 'rgba(12,162,162,0.08)' : 'rgba(12,162,162,0.03)', border: '1px solid #E8E8E8', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                     <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: '#0CA2A2', lineHeight: 1, flexShrink: 0 }}>{cs.value}</div>
                     <div style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', color: '#c8cdd6', lineHeight: 1.7 }}>{cs.label}</div>
                   </div>
@@ -231,12 +231,12 @@ export default function MassageTherapistAutomation() {
               </p>
             </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: 'rgba(12,162,162,0.06)', borderRadius: '12px', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: '#FFFFFF', borderRadius: '12px', overflow: 'hidden' }}>
             {services.map((s, i) => (
               <div className="reveal">
-                <div style={{ background: s.highlight ? 'rgba(167,139,250,0.08)' : (i % 2 === 0 ? 'rgba(167,139,250,0.02)' : 'rgba(167,139,250,0.04)'), padding: '1.75rem 2rem', display: 'flex', alignItems: 'flex-start', gap: '1.5rem', borderLeft: s.highlight ? '2px solid #A78BFA' : 'none' }}>
-                  <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: '#E5E5E5', border: '1px solid rgba(167,139,250,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                    <Check size={14} color="#A78BFA" />
+                <div style={{ background: s.highlight ? 'rgba(12,162,162,0.08)' : (i % 2 === 0 ? 'rgba(12,162,162,0.02)' : 'rgba(12,162,162,0.04)'), padding: '1.75rem 2rem', display: 'flex', alignItems: 'flex-start', gap: '1.5rem', borderLeft: s.highlight ? '2px solid #0CA2A2' : 'none' }}>
+                  <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: '#E5E5E5', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                    <Check size={14} color="#0CA2A2" />
                   </div>
                   <div>
                     <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1A1A1A', marginBottom: '0.375rem' }}>{s.item}</h3>
@@ -294,9 +294,9 @@ export default function MassageTherapistAutomation() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', maxWidth: '1000px', margin: '0 auto' }}>
             {pricingTiers.map((tier, i) => (
               <div className="reveal">
-                <div style={{ padding: '2.25rem', background: tier.highlight ? 'rgba(167,139,250,0.08)' : 'rgba(167,139,250,0.03)', border: tier.highlight ? '1px solid rgba(167,139,250,0.35)' : '1px solid rgba(167,139,250,0.12)', borderRadius: '12px', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' as const }}>
+                <div style={{ padding: '2.25rem', background: tier.highlight ? 'rgba(12,162,162,0.08)' : 'rgba(12,162,162,0.03)', border: tier.highlight ? '1px solid rgba(12,162,162,0.35)' : '1px solid rgba(12,162,162,0.12)', borderRadius: '12px', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' as const }}>
                   {tier.highlight && (
-                    <div style={{ position: 'absolute' as const, top: '-13px', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(90deg, #A78BFA, #C4B5FD)', borderRadius: '99px', padding: '0.25rem 1rem', fontFamily: "'Nicholas', serif", fontSize: '0.6875rem', fontWeight: 600, color: '#0a0614', letterSpacing: '0.08em', textTransform: 'uppercase' as const, whiteSpace: 'nowrap' as const }}>
+                    <div style={{ position: 'absolute' as const, top: '-13px', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(90deg, #0CA2A2, #0CA2A2)', borderRadius: '99px', padding: '0.25rem 1rem', fontFamily: "'Nicholas', serif", fontSize: '0.6875rem', fontWeight: 600, color: '#0a0614', letterSpacing: '0.08em', textTransform: 'uppercase' as const, whiteSpace: 'nowrap' as const }}>
                       Most Popular
                     </div>
                   )}
@@ -312,7 +312,7 @@ export default function MassageTherapistAutomation() {
                   <div style={{ flex: 1, marginBottom: '1.75rem' }}>
                     {tier.features.map((feat, fi) => (
                       <div key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem', marginBottom: '0.625rem' }}>
-                        <Check size={14} color="#A78BFA" style={{ flexShrink: 0, marginTop: '3px' }} />
+                        <Check size={14} color="#0CA2A2" style={{ flexShrink: 0, marginTop: '3px' }} />
                         <span style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#c8cdd6', lineHeight: 1.7 }}>{feat}</span>
                       </div>
                     ))}
@@ -336,7 +336,7 @@ export default function MassageTherapistAutomation() {
       {/* CTA */}
       <div className="reveal">
       <section style={{ position: 'relative', padding: 'clamp(2.5rem, 6vw, 7rem) 0', overflow: 'hidden', textAlign: 'center' }}>
-        <div style={{ position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)', width: '800px', height: '400px', background: 'radial-gradient(ellipse, rgba(167,139,250,0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)', width: '800px', height: '400px', background: 'radial-gradient(ellipse, rgba(12,162,162,0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto' }}>
           <div className="reveal">
             <SectionBadge>Get Started</SectionBadge>
