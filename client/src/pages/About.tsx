@@ -99,7 +99,7 @@ export default function About() {
             </h1>
           </div>
           <div>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.1875rem)', color: '#868583', lineHeight: 1.75, maxWidth: '580px' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.1875rem)', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '580px' }}>
               We're Nikki and James Noell, and we put our last name on this for a reason.
             </p>
           </div>
@@ -123,10 +123,10 @@ export default function About() {
                 }}>
                   We come from operations. We build what actually works.
                 </h2>
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.8, marginBottom: '1.25rem' }}>
                   If you're reading this, you're probably a great service business owner running without a real back office. You're answering your own calls when you can, following up on leads when you remember, hoping clients show up. We've spent years watching that exact pattern cost service business owners thousands of dollars a month in preventable gaps. So we built the systems to fix it, and now we build them for you.
                 </p>
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.8, marginBottom: '2rem' }}>
+                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.8, marginBottom: '2rem' }}>
                   We're Nikki and James Noell, based in Mission Viejo, Orange County. Our name is on the door because every system we build, we stand behind.
                 </p>
 
@@ -146,7 +146,7 @@ export default function About() {
                   }}>
                     Our family name is on the door.
                   </p>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.7 }}>
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.7 }}>
                     Every system we build, we build like it's our own business on the line. Because in a way, it is.
                   </p>
                 </div>
@@ -205,7 +205,7 @@ export default function About() {
                       }}>
                         {stat.label}
                       </p>
-                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583' }}>
+                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3' }}>
                         {stat.sub}
                       </p>
                     </div>
@@ -275,7 +275,7 @@ export default function About() {
                   }}>
                     {d.title}
                   </h3>
-                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#868583', lineHeight: 1.75 }}>
+                  <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.75 }}>
                     {d.body}
                   </p>
                   {d.highlight && (
@@ -321,7 +321,7 @@ export default function About() {
             }}>
               Ready to see what we'd build for your business?
             </h2>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#868583', lineHeight: 1.75, maxWidth: '460px', margin: '0 auto 2.5rem' }}>
+            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '460px', margin: '0 auto 2.5rem' }}>
               30 minutes. Free. No obligation. We learn about your business, you learn about us, and figure out together if we're the right fit.
             </p>
             <a href="/book" className="btn-gradient" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', fontSize: '1rem', padding: '1rem 2.25rem' }}>
@@ -345,6 +345,7 @@ export default function About() {
     </div>
   );
 }
+
 
 
 
