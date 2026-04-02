@@ -1,6 +1,6 @@
 /*
  * OPS BY NOELL — Live Chat Widget
- * Design: Premium Dark — matches site theme (#0A0A0A / #141414 / #0CA2A2)
+ * Design: Light mode — matches site theme (#FFFFFF / #FAFAF8 / #0CA2A2)
  * Purpose: Capture leads who have questions before booking
  */
 
@@ -546,21 +546,21 @@ export default function ChatWidget() {
         {hasUnread && !isOpen && (
           <div
             style={{
-              backgroundColor: '#141414',
+              backgroundColor: '#FAFAF8',
               borderWidth: '1px',
               borderStyle: 'solid',
               borderColor: '#2A2A2A',
               padding: '0.875rem 1rem',
               maxWidth: '220px',
               borderRadius: '12px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
               animation: 'chatFadeIn 0.4s ease-out',
               cursor: 'pointer',
             }}
             onClick={openChat}
           >
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.8125rem',
               color: '#F5F0EC',
               lineHeight: 1.5,
@@ -569,7 +569,7 @@ export default function ChatWidget() {
               Have a question? I'm Nova, ask me anything.
             </p>
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.75rem',
               color: '#0CA2A2',
               display: 'flex',
@@ -599,7 +599,7 @@ export default function ChatWidget() {
             }}
           >
             <p style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.75rem',
               color: '#F5F0EC',
               margin: 0,
@@ -677,7 +677,7 @@ export default function ChatWidget() {
           borderStyle: 'solid',
           borderColor: '#E5E5E5',
           borderRadius: '16px',
-          boxShadow: '0 16px 64px rgba(0,0,0,0.7)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -716,7 +716,7 @@ export default function ChatWidget() {
               <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2 }}>
                 Ops by Noell
               </p>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.625rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.625rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>
                 Typically replies in minutes
               </p>
             </div>
@@ -762,7 +762,7 @@ export default function ChatWidget() {
                 borderLeft: msg.role === 'bot' ? '2px solid #E5E5E5' : 'none',
               }}>
                 <p style={{
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '0.8125rem',
                   color: msg.role === 'user' ? '#FFFFFF' : '#1A1A1A',
                   lineHeight: 1.6,
@@ -798,7 +798,7 @@ export default function ChatWidget() {
                     borderRadius: '8px',
                     padding: '0.5rem 0.75rem',
                     cursor: 'pointer',
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Nicholas', serif",
                     fontSize: '0.75rem',
                     color: '#555555',
                     lineHeight: 1.4,
@@ -845,7 +845,7 @@ export default function ChatWidget() {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '0.6875rem',
                   color: '#777777',
                   textDecoration: 'underline',
@@ -873,7 +873,7 @@ export default function ChatWidget() {
               marginTop: '0.25rem',
               animation: 'chatFadeIn 0.4s ease-out',
             }}>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', color: '#555555', marginBottom: '0.625rem', lineHeight: 1.5 }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.75rem', color: '#555555', marginBottom: '0.625rem', lineHeight: 1.5 }}>
                 Want to see exactly where your revenue is leaking?
               </p>
               <button
@@ -887,7 +887,7 @@ export default function ChatWidget() {
                   borderRadius: '6px',
                   padding: '0.5rem 0.875rem',
                   cursor: 'pointer',
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Nicholas', serif",
                   fontSize: '0.6875rem',
                   fontWeight: 600,
                   letterSpacing: '0.08em',
@@ -938,7 +938,7 @@ export default function ChatWidget() {
               borderColor: '#E5E5E5',
               borderRadius: '8px',
               padding: '0.5rem 0.75rem',
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Nicholas', serif",
               fontSize: '0.8125rem',
               color: '#1A1A1A',
               backgroundColor: '#FFFFFF',
@@ -979,7 +979,7 @@ export default function ChatWidget() {
             textAlign: 'center',
             flexShrink: 0,
           }}>
-            <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.625rem', color: '#777777', lineHeight: 1.5 }}>
+            <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.625rem', color: '#777777', lineHeight: 1.5 }}>
               By continuing, you agree to our{' '}
               <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ color: '#0CA2A2', textDecoration: 'underline' }}>Privacy Policy</a>
               {' '}and{' '}
@@ -996,7 +996,7 @@ export default function ChatWidget() {
           textAlign: 'center',
           flexShrink: 0,
         }}>
-          <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.5625rem', color: '#AAAAAA', letterSpacing: '0.08em' }}>
+          <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.5625rem', color: '#AAAAAA', letterSpacing: '0.08em' }}>
             Ops by Noell · hello@opsbynoell.com
           </p>
         </div>
