@@ -259,6 +259,7 @@ export default function ChatWidget() {
     const proactiveMessages: Record<string, string> = {
       '/services': `Hey! Trying to figure out which plan makes sense for your business? Happy to help you think it through. What type of business do you run?`,
       '/book': `Hey! If you have any questions before booking, I'm here. Nikki will walk you through exactly where your revenue gaps are on the call. Anything I can answer first?`,
+      '/nova': `You're checking out Nova — want to see what I'd actually say to someone landing on your business's website? Tell me what kind of business you run.`,
     };
 
     const message = proactiveMessages[location];
