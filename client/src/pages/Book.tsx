@@ -90,7 +90,7 @@ export default function Book() {
       <div className="reveal">
       <section style={{ paddingBottom: 'clamp(2rem, 4vw, 2.5rem)' }}>
         <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
-          <div style={{ position: 'relative', minHeight: '600px', background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E8E8E8', boxShadow: '0 0 0 1px rgba(167,139,250,0.08), 0 24px 48px rgba(0,0,0,0.4)' }}>
+          <div style={{ position: 'relative', minHeight: '600px', background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E8E8E8', boxShadow: '0 0 0 1px rgba(12,162,162,0.08), 0 24px 48px rgba(0,0,0,0.4)' }}>
             <p style={{
               position: 'absolute',
               top: '40%',
@@ -129,7 +129,7 @@ export default function Book() {
               'No obligation. If it is not the right fit, we will tell you.',
             ].map((bullet, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A78BFA', flexShrink: 0, marginTop: '0.5rem' }} />
+                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#0CA2A2', flexShrink: 0, marginTop: '0.5rem' }} />
                 <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.6, margin: 0 }}>{bullet}</p>
               </div>
             ))}
@@ -144,7 +144,7 @@ export default function Book() {
                   alignItems: 'flex-start',
                   gap: '1.25rem',
                   padding: '1.5rem 0',
-                  borderBottom: i < expectations.length - 1 ? '1px solid rgba(167,139,250,0.12)' : 'none',
+                  borderBottom: i < expectations.length - 1 ? '1px solid rgba(12,162,162,0.12)' : 'none',
                 }}
               >
                 <div style={{
@@ -156,7 +156,7 @@ export default function Book() {
                   justifyContent: 'center',
                   flexShrink: 0,
                 }}>
-                  <item.icon size={16} color="#A78BFA" />
+                  <item.icon size={16} color="#0CA2A2" />
                 </div>
                 <div>
                   <h3 style={{
@@ -185,15 +185,15 @@ export default function Book() {
         <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
           <div style={{
             background: '#FAFAF8',
-            border: '1px solid rgba(167,139,250,0.25)',
-            borderLeft: '4px solid #A78BFA',
+            border: '1px solid #E5E5E5',
+            borderLeft: '4px solid #0CA2A2',
             borderRadius: '12px',
             padding: '2.5rem 3rem',
             textAlign: 'center',
           }}>
             <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'center', marginBottom: '1.25rem' }}>
               {[1,2,3,4,5].map((i) => (
-                <svg key={i} width="15" height="15" viewBox="0 0 24 24" fill="#A78BFA" style={{ display: 'inline-block' }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg key={i} width="15" height="15" viewBox="0 0 24 24" fill="#0CA2A2" style={{ display: 'inline-block' }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               ))}
             </div>
             <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 400, fontStyle: 'italic', color: '#1A1A1A', lineHeight: 1.65, marginBottom: '1.25rem' }}>
