@@ -81,7 +81,7 @@ const PACKAGES = [
     period: '/mo · + $297 setup',
     desc: 'The fastest way to stop losing leads to voicemail. One system, done for you, live in a week. A great first step before committing to a full stack.',
     includes: ['Missed Call Text-Back', 'AI Voice Receptionist (after-hours)', 'Onboarding & setup included', 'Ongoing management & maintenance'],
-    cta: 'Book Intro Call',
+    cta: 'Book a Free 30-Minute Audit',
     featured: false,
   },
   {
@@ -91,7 +91,7 @@ const PACKAGES = [
     period: '/mo · + $997 setup',
     desc: 'The essential foundation for any local service business. Stop losing leads from missed calls and start filling your calendar automatically.',
     includes: ['Missed Call Text-Back', 'AI Booking + Reminder System', 'Onboarding & setup included', 'Ongoing management & maintenance'],
-    cta: 'Book Intro Call',
+    cta: 'Book a Free 30-Minute Audit',
     featured: false,
   },
   {
@@ -139,7 +139,7 @@ export default function DentalAutomation() {
           <FadeItem delay={0.3}>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <a href="/book" className="btn-gradient" style={{ padding: '1rem 2rem', fontSize: '1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                Book Free 30-Minute Intro Call <ArrowRight size={16} />
+                Book a Free 30-Minute Audit <ArrowRight size={16} />
               </a>
               <a href="#pricing" className="btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>See Pricing</a>
             </div>
@@ -388,7 +388,7 @@ export default function DentalAutomation() {
               30 minutes. Free. No obligation. We'll show you exactly what automation can do for your practice.
             </p>
             <a href="/book" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Book Free 30-Minute Intro Call <ArrowRight size={17} />
+              Book a Free 30-Minute Audit <ArrowRight size={17} />
             </a>
           </FadeItem>
         </div>
