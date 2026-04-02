@@ -235,7 +235,8 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/solutions" component={Services} />
         <Route path="/services" component={Services} />
-        <Route path="/case-study" component={CaseStudy} />
+        <Route path="/case-studies"><Redirect to="/case-study" /></Route>
+      <Route path="/case-study" component={CaseStudy} />
         <Route path="/about" component={About} />
         <Route path="/book" component={Book} />
         <Route path="/industries" component={Services} />
