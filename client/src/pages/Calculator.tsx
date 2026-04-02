@@ -9,7 +9,7 @@ import RevenueCalculator from '@/components/RevenueCalculator';
 
 export default function Calculator() {
   return (
-    <div style={{ backgroundColor: '#010509', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#FFFFFF', minHeight: '100vh' }}>
       <Nav />
 
       {/* Hero */}
@@ -22,14 +22,14 @@ export default function Calculator() {
       }}>
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'linear-gradient(180deg, rgba(120,58,237,0.18) 0%, rgba(139,92,246,0.12) 35%, #010509 72%)',
+          background: '#FFFFFF',
         }} />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <p style={{
-            fontFamily: "'Sora', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: '0.75rem', fontWeight: 600,
             letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: '#A78BFA', marginBottom: '1rem',
+            color: '#0CA2A2', marginBottom: '1rem',
           }}>
             Revenue Calculator
           </p>
@@ -42,8 +42,8 @@ export default function Calculator() {
             What are your operational gaps costing you?
           </h1>
           <p style={{
-            fontFamily: "'Sora', sans-serif",
-            fontSize: '1rem', color: '#868583',
+            fontFamily: "'Nicholas', serif",
+            fontSize: '1rem', color: '#555555',
             lineHeight: 1.75, maxWidth: '520px', margin: '0 auto',
           }}>
             Adjust the sliders to match your business. See exactly how much revenue slips through the cracks each month.
