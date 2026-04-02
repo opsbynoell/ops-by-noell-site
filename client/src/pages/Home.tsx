@@ -18,17 +18,17 @@ const STEPS = [
   },
   {
     number: '02',
-    title: 'Build',
+    title: 'Design',
     desc: 'We scope and design your custom automation stack based on the audit. Every component is planned, mapped, and approved before we write a single line.',
   },
   {
     number: '03',
-    title: 'Build (the system)',
+    title: 'Build',
     desc: 'We build everything: missed call text-back, booking automation, reminders, review generation, follow-up sequences. You don\'t touch a setting. We test before go-live.',
   },
   {
     number: '04',
-    title: 'Manage & Optimize',
+    title: 'Manage',
     desc: 'Your system is live and running. We monitor performance, handle maintenance, and optimize over time. You get the results. We handle the backend.',
   },
 ];
@@ -131,7 +131,7 @@ export default function Home() {
             fontWeight: 800, color: '#ffffff',
             lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '1.5rem',
           }}>
-            You're losing clients between appointments.{' '}
+            You're losing clients <span style={{ whiteSpace: 'nowrap' }}>between appointments.</span>{' '}
             <GradientText>We build the systems that stop that.</GradientText>
           </h1>
 
@@ -156,17 +156,25 @@ export default function Home() {
           </div>
 
           {/* Trust stats */}
-          <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {[
-              { value: '40+', label: 'Google reviews generated' },
-              { value: '$960', label: 'Recovered in 14 days' },
-              { value: '75%', label: 'Fewer no-shows' },
-            ].map(({ value, label }) => (
-              <div key={label} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.1 }}>{value}</div>
-                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', marginTop: '0.25rem' }}>{label}</div>
-              </div>
-            ))}
+          <div style={{
+            background: 'rgba(167,139,250,0.04)',
+            borderTop: '1px solid rgba(167,139,250,0.08)',
+            borderBottom: '1px solid rgba(167,139,250,0.08)',
+            padding: '2.5rem 0',
+            margin: '0 -1rem',
+          }}>
+            <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              {[
+                { value: '40+', label: 'Google reviews generated' },
+                { value: '$960', label: 'Recovered in 14 days' },
+                { value: '75%', label: 'Fewer no-shows' },
+              ].map(({ value, label }) => (
+                <div key={label} style={{ textAlign: 'center' }}>
+                  <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.1 }}>{value}</div>
+                  <div style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', marginTop: '0.25rem' }}>{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -246,6 +254,9 @@ export default function Home() {
               fontWeight: 600, color: '#ffffff',
               lineHeight: 1.65, marginBottom: '1.5rem',
               fontStyle: 'italic',
+              textAlign: 'left',
+              maxWidth: '600px',
+              margin: '0 auto 1.5rem',
             }}>
               "{SANTA_TESTIMONIAL.text}"
             </p>
@@ -447,3 +458,5 @@ export default function Home() {
     </>
   );
 }
+
+
