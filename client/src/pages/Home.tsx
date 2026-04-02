@@ -14,7 +14,7 @@ const STEPS = [
   {
     number: '01',
     title: 'Audit',
-    desc: 'A free 15-minute intro call followed by a deep Revenue Audit. We map every gap in your operation, quantify what each one costs you monthly, and design your complete system before you commit to anything.',
+    desc: 'A free 30-minute intro call followed by a deep Revenue Audit. We map every gap in your operation, quantify what each one costs you monthly, and design your complete system before you commit to anything.',
   },
   {
     number: '02',
@@ -163,7 +163,7 @@ export default function Home() {
           {/* CTAs */}
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
             <a href="/book" className="btn-gradient" style={{ padding: '1rem 2rem', fontSize: '1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Book Free 15-Minute Intro Call <ArrowRight size={16} />
+              Book Free 30-Minute Intro Call <ArrowRight size={16} />
             </a>
             <a href="/services" className="btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
               See How It Works
@@ -413,11 +413,11 @@ export default function Home() {
             Stop losing leads to{' '}<GradientText>slow follow-up.</GradientText>
           </h2>
           <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.125rem', color: '#868583', maxWidth: '500px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
-            15 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
+            30 minutes. Free. No obligation. We map your gaps, show you what we'd build, and tell you what it costs.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="/book" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Book Free 15-Minute Intro Call <ArrowRight size={17} />
+              Book Free 30-Minute Intro Call <ArrowRight size={17} />
             </a>
             <a href="/case-study" className="btn-outline" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem' }}>
               See Our Results
