@@ -398,7 +398,7 @@ export default function Home() {
       <section style={{ background: '#FFFFFF', padding: '4rem 0', textAlign: 'center' }}>
         <div className="container" style={{ maxWidth: '640px' }}>
           <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
             fontWeight: 600,
             fontStyle: 'italic',
@@ -476,8 +476,8 @@ export default function Home() {
 
           {/* 85% typographic callout */}
           <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <div style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 800, color: '#0CA2A2' }}>85%</div>
-            <div style={{ fontSize: '1.125rem', color: '#1A1A1A', fontWeight: 600 }}>of callers who don't get an answer will never call back.</div>
+            <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 800, color: '#0CA2A2', lineHeight: 1, marginBottom: '0.75rem' }}>85%</div>
+            <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1A1A1A' }}>of callers who don't get an answer will never call back.</div>
           </div>
 
           <p style={{
@@ -542,7 +542,7 @@ export default function Home() {
             gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '1.25rem',
           }}
-          className="who-grid"
+          className="audience-grid"
           >
             {[
               { audience: 'Massage Therapists', line: "You're in a room. Hands on a client. Your phone is at the front desk — and it's ringing." },
@@ -570,6 +570,7 @@ export default function Home() {
                   fontSize: '0.9375rem',
                   color: '#555555',
                   lineHeight: 1.6,
+                  fontStyle: 'italic',
                 }}>
                   {line}
                 </p>
@@ -1006,7 +1007,7 @@ export default function Home() {
               color: '#1A1A1A',
               lineHeight: 1.2,
             }}>
-              You don't learn software. You just show up.
+              Three steps. Then it runs while you work.
             </h2>
           </div>
 
@@ -1060,6 +1061,7 @@ export default function Home() {
                   fontSize: '0.9375rem',
                   color: '#555555',
                   lineHeight: 1.6,
+                  fontStyle: 'italic',
                 }}>
                   {desc}
                 </p>
@@ -1220,9 +1222,12 @@ export default function Home() {
 
       {/* Responsive grid overrides for mobile */}
       <style>{`
+        @media (max-width: 600px) {
+          .audience-grid { grid-template-columns: 1fr !important; }
+        }
         @media (max-width: 900px) {
           .product-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .who-grid { grid-template-columns: 1fr !important; }
+          .audience-grid { grid-template-columns: 1fr !important; }
           .nova-split, .case-split { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .cta-split { grid-template-columns: 1fr !important; }
           .steps-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
