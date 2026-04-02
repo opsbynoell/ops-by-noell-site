@@ -21,7 +21,7 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
 
 function SectionBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.375rem 1rem', borderRadius: '99px', border: '1px solid rgba(167,139,250,0.25)', background: 'rgba(167,139,250,0.08)', fontFamily: "'Sora', sans-serif", fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.375rem 1rem', borderRadius: '99px', border: '1px solid rgba(167,139,250,0.25)', background: 'rgba(167,139,250,0.08)', fontFamily: "'Nicholas', serif", fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
       <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#A78BFA', display: 'inline-block' }} />
       {children}
     </span>
@@ -127,10 +127,10 @@ export default function DentalAutomation() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(120,58,237,0.2) 0%, rgba(139,92,246,0.12) 35%, #010509 72%)' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '3rem' }}>
           <div style={{ marginBottom: '1.5rem' }}><SectionBadge>Dental Office Automation</SectionBadge></div>
-          <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.75rem, 6.5vw, 5rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem' }}>
+          <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.75rem, 6.5vw, 5rem)', fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem' }}>
             <GradientText>Cut no-shows. Automate recall.</GradientText>{' '}<span style={{ color: '#ffffff' }}>Fill your schedule.</span>
           </h1>
-          <p style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '580px', marginBottom: '2.5rem' }}>
+          <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1rem, 1.4vw, 1.125rem)', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '580px', marginBottom: '2.5rem' }}>
             Every missed call, no-show, and overdue recall patient is revenue you've already earned but haven't captured. We build the AI systems that close those gaps — and manage them so you never have to think about it.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -149,7 +149,7 @@ export default function DentalAutomation() {
             {stats.map((s, i) => (
               <div key={i}>
                 <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 800, background: 'linear-gradient(90deg, #A78BFA 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: '0.5rem' }}>{s.figure}</p>
-                <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.5 }}>{s.label}</p>
+                <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7 }}>{s.label}</p>
               </div>
             ))}
           </div>
@@ -162,7 +162,7 @@ export default function DentalAutomation() {
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <SectionBadge>What We Fix</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem' }}>
                 Every gap is costing you patients.
               </h2>
             </div>
@@ -180,7 +180,7 @@ export default function DentalAutomation() {
                         </div>
                         <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', fontWeight: 700, color: '#ffffff' }}>{p.title}</h3>
                       </div>
-                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7, paddingLeft: '2rem' }}>{p.detail}</p>
+                      <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7, paddingLeft: '2rem' }}>{p.detail}</p>
                     </div>
                   </FadeItem>
                 ))}
@@ -197,7 +197,7 @@ export default function DentalAutomation() {
                       </div>
                       <div>
                         <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.25rem' }}>{s.item}</h3>
-                        <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.65 }}>{s.detail}</p>
+                        <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.65 }}>{s.detail}</p>
                       </div>
                     </div>
                   </FadeItem>
@@ -214,10 +214,10 @@ export default function DentalAutomation() {
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <SectionBadge>What We Build For You</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Three systems. <GradientText>Immediate impact.</GradientText>
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1.0625rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
                 Every system is built for your practice, connected to your existing tools, and managed by us. You don't touch a setting.
               </p>
             </div>
@@ -235,11 +235,11 @@ export default function DentalAutomation() {
                         </div>
                         <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 700, color: '#ffffff' }}>{svc.title}</h3>
                       </div>
-                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '640px' }}>{svc.description}</p>
+                      <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', color: '#b8b6b3', lineHeight: 1.75, maxWidth: '640px' }}>{svc.description}</p>
                     </div>
                     <div style={{ flexShrink: 0, background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)', borderRadius: '10px', padding: '1rem 1.25rem', textAlign: 'center', minWidth: '180px' }}>
-                      <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', fontWeight: 600, color: '#A78BFA', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: '0.5rem' }}>Key Stat</p>
-                      <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.4 }}>{svc.stat}</p>
+                      <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 600, color: '#A78BFA', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: '0.5rem' }}>Key Stat</p>
+                      <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.9375rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.7 }}>{svc.stat}</p>
                     </div>
                   </div>
                 </FadeItem>
@@ -269,7 +269,7 @@ export default function DentalAutomation() {
               <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 600, color: '#ffffff', lineHeight: 1.65, marginBottom: '1.25rem', fontStyle: 'italic' }}>
                 "I used to dread Mondays because there would always be gaps I did not expect. Now I open my calendar and it is just full. The reminders go out and people show up. I do not think about it anymore."
               </p>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#A78BFA' }}>
                 Santa M. — Licensed Massage Therapist, Laguna Niguel CA
               </p>
             </div>
@@ -283,10 +283,10 @@ export default function DentalAutomation() {
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <SectionBadge>Pricing</SectionBadge>
-              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.15, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.875rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', marginBottom: '1rem' }}>
                 Start with what matters most. <GradientText>Scale from there.</GradientText>
               </h2>
-              <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '1.0625rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
+              <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1.0625rem', color: '#b8b6b3', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
                 Every package is 100% done-for-you. We build it, connect it to your practice, and once it's live, it runs. You don't touch a setting.
               </p>
             </div>
@@ -296,23 +296,23 @@ export default function DentalAutomation() {
               <FadeItem key={name} delay={i * 0.1}>
                 <div className={featured ? 'pricing-card featured' : 'pricing-card'} style={{ padding: '2rem', position: 'relative', display: 'flex', flexDirection: 'column', height: '100%' }}>
                   {featured && (
-                    <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', padding: '0.25rem 1rem', background: 'linear-gradient(90deg, #A78BFA, #C4B5FD)', borderRadius: '0 0 12px 12px', fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', fontWeight: 700, color: '#ffffff', whiteSpace: 'nowrap' }}>
+                    <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', padding: '0.25rem 1rem', background: 'linear-gradient(90deg, #A78BFA, #C4B5FD)', borderRadius: '0 0 12px 12px', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 700, color: '#ffffff', whiteSpace: 'nowrap' }}>
                       Most Popular
                     </div>
                   )}
                   <div style={{ marginTop: featured ? '1rem' : 0, flex: 1 }}>
                     <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.25rem' }}>{name}</h3>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.75rem', fontWeight: 600, color: '#C4B5FD', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: '1rem' }}>{subtitle}</p>
+                    <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 600, color: '#C4B5FD', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: '1rem' }}>{subtitle}</p>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.375rem', marginBottom: '0.375rem' }}>
                       <span style={{ fontFamily: "'Nicholas', serif", fontSize: '2.25rem', fontWeight: 800, color: '#ffffff' }}>{price}</span>
-                      <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#b8b6b3' }}>{period}</span>
+                      <span style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3' }}>{period}</span>
                     </div>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.6, marginBottom: '1.5rem' }}>{desc}</p>
+                    <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.6, marginBottom: '1.5rem' }}>{desc}</p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', marginBottom: '1.75rem' }}>
                       {includes.map((item) => (
                         <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem' }}>
                           <Check size={14} style={{ color: '#A78BFA', flexShrink: 0, marginTop: '3px' }} />
-                          <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3' }}>{item}</span>
+                          <span style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', color: '#b8b6b3' }}>{item}</span>
                         </div>
                       ))}
                     </div>
