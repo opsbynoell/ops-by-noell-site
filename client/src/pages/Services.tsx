@@ -189,7 +189,7 @@ const PACKAGES = [
     period: '/mo · + $297 setup',
     desc: 'The fastest way to stop losing leads to voicemail. One system, done for you, live in a week. A great first step before committing to a full stack.',
     includes: ['Missed Call Text-Back', 'AI Voice Receptionist (after-hours)', 'Onboarding & setup included', 'Ongoing management & maintenance'],
-    cta: 'Book Intro Call',
+    cta: 'Book a Free 30-Minute Audit',
     featured: false,
   },
   {
@@ -199,7 +199,7 @@ const PACKAGES = [
     period: '/mo · + $997 setup',
     desc: 'The essential foundation for any local service business. Stop losing leads from missed calls and start filling your calendar automatically.',
     includes: ['Missed Call Text-Back', 'AI Booking + Reminder System', 'Onboarding & setup included', 'Ongoing management & maintenance'],
-    cta: 'Book Intro Call',
+    cta: 'Book a Free 30-Minute Audit',
     featured: false,
   },
   {
@@ -279,7 +279,7 @@ export default function Services() {
           <FadeItem delay={0.24}>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href="/book" className="btn-gradient" style={{ padding: '1rem 2rem', fontSize: '1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                Book Free Intro Call <ArrowRight size={16} />
+                Book a Free 30-Minute Audit <ArrowRight size={16} />
               </a>
               <a href="#pricing" className="btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
                 View Pricing
@@ -489,7 +489,7 @@ export default function Services() {
             A free intro call is the lowest-risk way to find out if automation is right for your business. No pitch. No pressure. Just a real conversation.
           </p>
           <a href="/book" className="btn-gradient" style={{ padding: '1.125rem 2.25rem', fontSize: '1.0625rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-            Book Free Intro Call <ArrowRight size={17} />
+            Book a Free 30-Minute Audit <ArrowRight size={17} />
           </a>
           <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#868583', marginTop: '1.25rem' }}>No commitment. No credit card. Just a conversation.</p>
           <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#4B5563', marginTop: '0.625rem' }}>We don't sell your data. Ever. We build systems for your business, not a database for ours.</p>
