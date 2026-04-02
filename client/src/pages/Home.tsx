@@ -164,35 +164,35 @@ const products = [
     icon: Phone,
     iconBg: '#0CA2A2',
     title: 'Missed Call Recovery',
-    description: 'Every missed call gets an instant text-back. Your lead stays warm until you can follow up — or Nova books them automatically.',
+    description: "Every missed call gets an instant text-back. The lead that used to vanish now stays warm — and you never even know it happened. That's the point.",,
     link: null,
   },
   {
     icon: MessageSquare,
     iconBg: '#7C5CFC',
     title: 'Nova AI Chat',
-    description: '24/7 AI chat that qualifies leads, answers questions, and books appointments in real time — even at midnight.',
+    description: "The system that responds at midnight when someone asks 'do you have anything this week?' and has an appointment on the calendar before you wake up.",,
     link: { text: 'Also available standalone →', href: '/nova' },
   },
   {
     icon: Calendar,
     iconBg: '#E8604C',
     title: 'Appointment Confirmation',
-    description: 'Automated reminders at 48 hours and 2 hours before every appointment. No-shows drop. Your schedule holds.',
+    description: "Two reminders. One at 48 hours. One at 2 hours. Your week stops falling apart on Friday morning. Santa went from 4 no-shows a week to less than 1.",,
     link: null,
   },
   {
     icon: Star,
     iconBg: '#F5A623',
     title: 'Review Generation',
-    description: 'After every completed appointment, the perfect follow-up goes out. Santa got 40+ reviews in 8 weeks. Automatically.',
+    description: "After every session, the right message goes out at the right time. Santa went from 0 to 40+ Google reviews in 8 weeks — without asking a single client herself.",,
     link: null,
   },
   {
     icon: Filter,
     iconBg: '#3B82F6',
     title: 'Lead Pipeline',
-    description: 'Every lead — call, DM, web form — captured in one dashboard. Nothing falls through. Everything gets followed up.',
+    description: "No more checking three apps, two inboxes, and a voicemail. Every lead — call, DM, web form — one place. Nothing falls through.",,
     link: null,
   },
   {
@@ -393,6 +393,26 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ═══ FOUNDER QUOTE ══════════════════════════════════════════ */}
+      <section style={{ background: '#FFFFFF', padding: '4rem 0', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: '640px' }}>
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+            fontWeight: 600,
+            fontStyle: 'italic',
+            color: '#1A1A1A',
+            lineHeight: 1.5,
+          }}>
+            "You built this to work with clients. Not to chase them."
+          </p>
+          <p style={{ fontSize: '0.875rem', color: '#555555', marginTop: '0.75rem' }}>
+            — Nikki Noell, Founder
+          </p>
+        </div>
+      </section>
+
       {/* ═══ SECTION 3: PROBLEM / PAIN ══════════════════════════════ */}
       <section style={{
         background: '#FFFFFF',
@@ -439,11 +459,26 @@ export default function Home() {
             fontSize: '1.125rem',
             color: '#555555',
             lineHeight: 1.7,
-            fontWeight: 600,
             marginBottom: '1.25rem',
           }}>
-            85% of people who call a practice and don't get an answer will never call back.
+            You know that feeling — checking your phone between sessions, wondering who you missed. Doing the math on Sunday night. Thinking about Monday before you've finished the weekend.
           </p>
+
+          <p style={{
+            fontFamily: "'Nicholas', serif",
+            fontSize: '1.125rem',
+            color: '#555555',
+            lineHeight: 1.7,
+            marginBottom: '2rem',
+          }}>
+            It's not that you're bad at this. It's that you're doing the work of three people and the phone doesn't stop.
+          </p>
+
+          {/* 85% typographic callout */}
+          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+            <div style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 800, color: '#0CA2A2' }}>85%</div>
+            <div style={{ fontSize: '1.125rem', color: '#1A1A1A', fontWeight: 600 }}>of callers who don't get an answer will never call back.</div>
+          </div>
 
           <p style={{
             fontFamily: "'Nicholas', serif",
@@ -452,7 +487,7 @@ export default function Home() {
             lineHeight: 1.7,
             marginBottom: '2.5rem',
           }}>
-            This isn't a marketing problem. It's an operations problem.
+            This isn't a marketing problem. It's an operations problem — and it's fixable without hiring anyone.
           </p>
 
           {/* Quote block */}
@@ -479,6 +514,199 @@ export default function Home() {
             }}>
               — Practice owner, r/MedSpa
             </p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ═══ SECTION 3b: WHO THIS IS FOR ════════════════════════════ */}
+      <section style={{ background: '#FAFAF8', padding: '5rem 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
+              Who This Is For
+            </span>
+            <h2 style={{
+              fontFamily: "'Nicholas', serif",
+              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
+              fontWeight: 700,
+              color: '#1A1A1A',
+              lineHeight: 1.2,
+            }}>
+              Built for the people doing the actual work.
+            </h2>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '1.25rem',
+          }}
+          className="who-grid"
+          >
+            {[
+              { audience: 'Massage Therapists', line: "You're in a room. Hands on a client. Your phone is at the front desk — and it's ringing." },
+              { audience: 'Med Spa Owners', line: "High-value leads. Short booking windows. You can't afford 'I'll call them back later.'" },
+              { audience: 'Salon Owners', line: 'You built this so you could do hair, not return voicemails at 9 PM.' },
+              { audience: 'Dental Offices', line: 'Your front desk is overwhelmed. Your recall list is growing. Something has to give.' },
+            ].map(({ audience, line }) => (
+              <div key={audience} style={{
+                background: '#FFFFFF',
+                borderLeft: '3px solid #0CA2A2',
+                borderRadius: '0 8px 8px 0',
+                padding: '1.75rem',
+              }}>
+                <p style={{
+                  fontFamily: "'Nicholas', serif",
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  color: '#1A1A1A',
+                  marginBottom: '0.5rem',
+                }}>
+                  {audience}
+                </p>
+                <p style={{
+                  fontFamily: "'Nicholas', serif",
+                  fontSize: '0.9375rem',
+                  color: '#555555',
+                  lineHeight: 1.6,
+                }}>
+                  {line}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SECTION 7: CASE STUDY — SANTA ══════════════════════════ */}
+      <section style={{ background: '#FFFFFF', padding: '5rem 0' }}>
+        <div className="container">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '4rem',
+            alignItems: 'center',
+          }}
+          className="case-split"
+          >
+            {/* Left — narrative */}
+            <div>
+              <span className="section-label" style={{ marginBottom: '1.25rem', display: 'block' }}>
+                Client Results
+              </span>
+
+              <h2 style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
+                fontWeight: 700,
+                color: '#1A1A1A',
+                lineHeight: 1.2,
+                marginBottom: '1.75rem',
+              }}>
+                4 no-shows a week. Then none.
+              </h2>
+
+              <p style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '1.125rem',
+                color: '#555555',
+                lineHeight: 1.7,
+                marginBottom: '1.25rem',
+              }}>
+                Santa is a massage therapist in Laguna Niguel. She was doing everything herself — answering calls between sessions, sending reminder texts manually at night, chasing down cancellations.
+              </p>
+
+              <p style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '1.125rem',
+                color: '#555555',
+                lineHeight: 1.7,
+                marginBottom: '1.25rem',
+              }}>
+                In 14 days, that stopped.
+              </p>
+
+              <p style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '1.125rem',
+                color: '#555555',
+                lineHeight: 1.7,
+                marginBottom: '1.25rem',
+              }}>
+                The system ran confirmations. Reminders went out automatically. A cancellation on a Friday morning triggered a waitlist offer — and the slot was filled before she saw the notification.
+              </p>
+
+              <p style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '1.125rem',
+                color: '#555555',
+                lineHeight: 1.7,
+              }}>
+                She didn't change her services, her pricing, or her marketing. She changed what was running in the background.
+              </p>
+            </div>
+
+            {/* Right — metrics panel */}
+            <div style={{
+              background: '#FAFAF8',
+              borderRadius: '16px',
+              padding: '2rem',
+            }}>
+              <p style={{
+                fontFamily: "'Nicholas', serif",
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                color: '#AAAAAA',
+                marginBottom: '1.5rem',
+              }}>
+                Before → After (14 days)
+              </p>
+
+              {[
+                { label: 'No-shows per week', before: '4', after: '< 1' },
+                { label: 'Revenue recovered', before: '$0', after: '$960' },
+                { label: 'Google reviews', before: 'Manual', after: '40+ (8 weeks)' },
+                { label: 'Reminders', before: 'Manual', after: 'Fully automated' },
+              ].map(({ label, before, after }) => (
+                <div key={label} style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '1rem 0',
+                  borderBottom: '1px solid #E5E5E5',
+                }}>
+                  <span style={{
+                    fontFamily: "'Nicholas', serif",
+                    fontSize: '0.9375rem',
+                    color: '#555555',
+                  }}>
+                    {label}
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{
+                      fontFamily: "'Nicholas', serif",
+                      fontSize: '0.875rem',
+                      color: '#AAAAAA',
+                      textDecoration: 'line-through',
+                    }}>
+                      {before}
+                    </span>
+                    <ArrowRight size={14} color="#0CA2A2" />
+                    <span style={{
+                      fontFamily: "'Nicholas', serif",
+                      fontSize: '1rem',
+                      fontWeight: 700,
+                      color: '#0CA2A2',
+                    }}>
+                      {after}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -764,138 +992,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION 7: CASE STUDY — SANTA ══════════════════════════ */}
-      <section style={{ background: '#FFFFFF', padding: '5rem 0' }}>
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4rem',
-            alignItems: 'center',
-          }}
-          className="case-split"
-          >
-            {/* Left — narrative */}
-            <div>
-              <span className="section-label" style={{ marginBottom: '1.25rem', display: 'block' }}>
-                Client Results
-              </span>
-
-              <h2 style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-                fontWeight: 700,
-                color: '#1A1A1A',
-                lineHeight: 1.2,
-                marginBottom: '1.75rem',
-              }}>
-                4 no-shows a week. Then none.
-              </h2>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}>
-                Santa is a massage therapist in Laguna Niguel. She was doing everything herself — answering calls between sessions, sending reminder texts manually at night, chasing down cancellations.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}>
-                In 14 days, that stopped.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}>
-                The system ran confirmations. Reminders went out automatically. A cancellation on a Friday morning triggered a waitlist offer — and the slot was filled before she saw the notification.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-              }}>
-                She didn't change her services, her pricing, or her marketing. She changed what was running in the background.
-              </p>
-            </div>
-
-            {/* Right — metrics panel */}
-            <div style={{
-              background: '#FAFAF8',
-              borderRadius: '16px',
-              padding: '2rem',
-            }}>
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase' as const,
-                color: '#AAAAAA',
-                marginBottom: '1.5rem',
-              }}>
-                Before → After (14 days)
-              </p>
-
-              {[
-                { label: 'No-shows per week', before: '4', after: '< 1' },
-                { label: 'Revenue recovered', before: '$0', after: '$960' },
-                { label: 'Google reviews', before: 'Manual', after: '40+ (8 weeks)' },
-                { label: 'Reminders', before: 'Manual', after: 'Fully automated' },
-              ].map(({ label, before, after }) => (
-                <div key={label} style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: '1rem 0',
-                  borderBottom: '1px solid #E5E5E5',
-                }}>
-                  <span style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.9375rem',
-                    color: '#555555',
-                  }}>
-                    {label}
-                  </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{
-                      fontFamily: "'Nicholas', serif",
-                      fontSize: '0.875rem',
-                      color: '#AAAAAA',
-                      textDecoration: 'line-through',
-                    }}>
-                      {before}
-                    </span>
-                    <ArrowRight size={14} color="#0CA2A2" />
-                    <span style={{
-                      fontFamily: "'Nicholas', serif",
-                      fontSize: '1rem',
-                      fontWeight: 700,
-                      color: '#0CA2A2',
-                    }}>
-                      {after}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ═══ SECTION 8: HOW IT WORKS ════════════════════════════════ */}
       <section id="how-it-works" style={{ background: '#FAFAF8', padding: '5rem 0' }}>
         <div className="container">
@@ -910,7 +1006,7 @@ export default function Home() {
               color: '#1A1A1A',
               lineHeight: 1.2,
             }}>
-              Three steps. No learning curve.
+              You don't learn software. You just show up.
             </h2>
           </div>
 
@@ -1126,6 +1222,7 @@ export default function Home() {
       <style>{`
         @media (max-width: 900px) {
           .product-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .who-grid { grid-template-columns: 1fr !important; }
           .nova-split, .case-split { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .cta-split { grid-template-columns: 1fr !important; }
           .steps-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
@@ -1137,3 +1234,4 @@ export default function Home() {
     </>
   );
 }
+
