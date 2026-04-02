@@ -292,7 +292,7 @@ export default function About() {
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#C4B5FD'; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#A78BFA'; }}
                       >
-                        Book Free Intro Call <ArrowRight size={12} />
+                        Book a Free 30-Minute Audit <ArrowRight size={12} />
                       </a>
                     </div>
                   )}
@@ -326,7 +326,7 @@ export default function About() {
               30 minutes. Free. No obligation. We learn about your business, you learn about us, and figure out together if we're the right fit.
             </p>
             <a href="/book" className="btn-gradient" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', fontSize: '1rem', padding: '1rem 2.25rem' }}>
-              Book a Free 30-Minute Call <ArrowRight size={16} />
+              Book a Free 30-Minute Audit <ArrowRight size={16} />
             </a>
           </FadeItem>
         </div>
