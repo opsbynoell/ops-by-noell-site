@@ -65,9 +65,9 @@ const serviceDetails = [
 ];
 
 const stats = [
-  { num: '78%', label: 'of home service clients hire the first contractor who responds to their inquiry' },
-  { num: '40%', label: 'of inbound calls are missed by the average contractor while on job sites' },
-  { num: '20–40%', label: 'of leads recovered by automated follow-up that would otherwise go to a competitor' },
+  { num: '78%', label: 'of homeowners hire the first contractor who responds' },
+  { num: '62%', label: 'of inbound calls missed by average contractor on job sites' },
+  { num: '35%', label: 'of lost leads recovered by automated follow-up' },
 ];
 
 const BOOKING_LINK = 'https://api.leadconnectorhq.com/widget/booking/hxFAP5dMiIqvBj2gf8ld';
