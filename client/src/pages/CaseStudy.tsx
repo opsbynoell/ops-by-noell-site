@@ -48,8 +48,7 @@ export default function CaseStudy() {
       <section style={{ position: 'relative', paddingTop: '80px', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{
           position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-          background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(180deg, rgba(255,255,255,0),0.18) 0%, rgba(139,92,246,0.12) 35%, #010509 72%)',
+          background: 'none',
         }} />
         <div style={{ position: 'absolute', top: '-80px', left: '-80px', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(12,162,162,0.12) 0%, transparent 65%)', filter: 'blur(80px)', pointerEvents: 'none', zIndex: 0 }} />
         <div style={{ position: 'absolute', top: '80px', right: '-100px', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(12,162,162,0.08) 0%, transparent 65%)', filter: 'blur(80px)', pointerEvents: 'none', zIndex: 0 }} />
@@ -61,8 +60,7 @@ export default function CaseStudy() {
               <span style={{
                 fontFamily: "'Nicholas', serif", fontSize: '0.625rem', fontWeight: 700,
                 letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1A1A1A',
-                background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(135deg, #0CA2A2, #0CA2A2)',
+                background: 'none',
                 padding: '0', borderRadius: '99px',
               }}>Founding Client Partner</span>
             </div>
@@ -74,8 +72,7 @@ export default function CaseStudy() {
               fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.04em',
               maxWidth: '860px', marginBottom: '2.5rem', marginLeft: 'auto', marginRight: 'auto',
             }}>
-              <span style={{ background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>25 years of expertise.</span>{' '}
+              <span style={{ background: 'linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>25 years of expertise.</span>{' '}
               <span style={{ color: '#1A1A1A' }}>Zero infrastructure.</span>
             </h1>
 
@@ -435,8 +432,7 @@ export default function CaseStudy() {
             fontSize: 'clamp(2rem, 4vw, 3.5rem)',
             fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.03em',
             marginBottom: '1.25rem', maxWidth: '700px', margin: '0 auto 1.25rem',
-            background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)',
+            background: 'linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             display: 'block',
           }}>
