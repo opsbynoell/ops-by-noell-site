@@ -171,7 +171,7 @@ export default function DentalAutomation() {
               </h2>
             </div>
           </FadeItem>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }} className="sm:grid-cols-1">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             {/* Problems */}
             <div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
