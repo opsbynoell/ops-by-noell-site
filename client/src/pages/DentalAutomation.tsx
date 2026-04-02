@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 
 function SectionBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.25rem', borderRadius: '4px', border: '1px solid #E8E8E8', background: 'rgba(12,162,162,0.06)', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#0CA2A2' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.25rem', borderRadius: '4px', border: '1px solid #E8E8E8', background: '#FFFFFF', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#0CA2A2' }}>
       {children}
     </span>
   );
@@ -113,7 +113,7 @@ export default function DentalAutomation() {
 
       {/* ═══ HERO ═══════════════════════════════════════════════════ */}
       <section style={{ position: 'relative', paddingTop: '80px', overflow: 'hidden', textAlign: 'center' }}>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(120,58,237,0.2) 0%, rgba(139,92,246,0.12) 35%, #010509 72%)' }} />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(2rem, 5vw, 5rem)', paddingBottom: '1.5rem' }}>
           <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}><SectionBadge>Dental Office Automation</SectionBadge></div>
           <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -133,7 +133,7 @@ export default function DentalAutomation() {
 
       {/* ═══ STATS BAR ══════════════════════════════════════════════ */}
       <div className="reveal">
-      <section style={{ borderTop: '1px solid rgba(167,139,250,0.1)', borderBottom: '1px solid rgba(167,139,250,0.1)', padding: '1.5rem 0' }}>
+      <section style={{ borderTop: '1px solid rgba(12,162,162,0.1)', borderBottom: '1px solid rgba(12,162,162,0.1)', padding: '1.5rem 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', textAlign: 'center' }}>
             {stats.map((s, i) => (
@@ -178,9 +178,9 @@ export default function DentalAutomation() {
             <div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0', background: '#FAFAF8', border: '1px solid #E8E8E8', borderRadius: '12px', overflow: 'hidden' }}>
                 {solutions.map((s, i) => (
-                  <div key={i} className="reveal" style={{ padding: '1.25rem 1.5rem', borderBottom: i < solutions.length - 1 ? '1px solid rgba(167,139,250,0.08)' : 'none', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ width: '22px', height: '22px', borderRadius: '6px', background: '#E5E5E5', border: '1px solid rgba(167,139,250,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                      <Check size={11} color="#A78BFA" />
+                  <div key={i} className="reveal" style={{ padding: '1.25rem 1.5rem', borderBottom: i < solutions.length - 1 ? '1px solid rgba(12,162,162,0.08)' : 'none', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                    <div style={{ width: '22px', height: '22px', borderRadius: '6px', background: '#E5E5E5', border: '1px solid #E5E5E5', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                      <Check size={11} color="#0CA2A2" />
                     </div>
                     <div>
                       <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: '1rem', fontWeight: 700, color: '#1A1A1A', marginBottom: '0.25rem' }}>{s.item}</h3>
@@ -197,7 +197,7 @@ export default function DentalAutomation() {
 
       {/* ═══ WHAT WE BUILD ══════════════════════════════════════════ */}
       <div className="reveal">
-      <section style={{ padding: 'clamp(2rem, 4vw, 2.5rem) 0', borderTop: '1px solid #E5E5E5', background: 'rgba(167,139,250,0.015)' }}>
+      <section style={{ padding: 'clamp(2rem, 4vw, 2.5rem) 0', borderTop: '1px solid #E5E5E5', background: '#FAFAF8' }}>
         <div className="container">
           <div className="reveal" style={{ textAlign: 'center', marginBottom: 'clamp(1.25rem, 3vw, 3rem)' }}>
             <SectionBadge>What We Build For You</SectionBadge>
@@ -213,11 +213,11 @@ export default function DentalAutomation() {
               const Icon = svc.icon;
               return (
                 <div key={i} className="reveal">
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', padding: '2rem 2.5rem', background: 'rgba(167,139,250,0.03)', border: '1px solid #E8E8E8', borderRadius: '12px', alignItems: 'start', maxWidth: '100%', boxSizing: 'border-box' as const }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', padding: '2rem 2.5rem', background: 'rgba(12,162,162,0.03)', border: '1px solid #E8E8E8', borderRadius: '12px', alignItems: 'start', maxWidth: '100%', boxSizing: 'border-box' as const }}>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem', marginBottom: '0.875rem' }}>
-                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#E5E5E5', border: '1px solid rgba(167,139,250,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                          <Icon size={16} color="#A78BFA" />
+                        <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#E5E5E5', border: '1px solid #E5E5E5', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <Icon size={16} color="#0CA2A2" />
                         </div>
                         <h3 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 700, color: '#1A1A1A' }}>{svc.title}</h3>
                       </div>
@@ -242,15 +242,15 @@ export default function DentalAutomation() {
         <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
           <div className="reveal" style={{
             background: '#FAFAF8',
-            border: '1px solid rgba(167,139,250,0.25)',
-            borderLeft: '4px solid #A78BFA',
+            border: '1px solid #E5E5E5',
+            borderLeft: '4px solid #0CA2A2',
             borderRadius: '12px',
             padding: '2.5rem 3rem',
             textAlign: 'center',
           }}>
             <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'center', marginBottom: '1.25rem' }}>
               {[1,2,3,4,5].map((i) => (
-                <svg key={i} width="15" height="15" viewBox="0 0 24 24" fill="#A78BFA" style={{ display: 'inline-block' }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg key={i} width="15" height="15" viewBox="0 0 24 24" fill="#0CA2A2" style={{ display: 'inline-block' }}><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               ))}
             </div>
             <p style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', fontWeight: 600, color: '#1A1A1A', lineHeight: 1.65, marginBottom: '1.25rem', fontStyle: 'italic' }}>
@@ -282,7 +282,7 @@ export default function DentalAutomation() {
               <div key={name} className="reveal">
                 <div className={featured ? 'pricing-card featured' : 'pricing-card'} style={{ padding: '2rem', position: 'relative', display: 'flex', flexDirection: 'column', height: '100%' }}>
                   {featured && (
-                    <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', padding: '0.25rem 1rem', background: 'linear-gradient(90deg, #A78BFA, #C4B5FD)', borderRadius: '0 0 12px 12px', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 700, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
+                    <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', padding: '0.25rem 1rem', background: 'linear-gradient(90deg, #0CA2A2, #0CA2A2)', borderRadius: '0 0 12px 12px', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 700, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
                       Most Popular
                     </div>
                   )}
