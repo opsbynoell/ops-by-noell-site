@@ -371,7 +371,7 @@ export default function Nova() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section style={{ background: '#1A1A1A', padding: '6rem 0', textAlign: 'center' }}>
+      <section style={{ background: '#FAFAF8', padding: '6rem 0', textAlign: 'center' }}>
         <div className="container" style={{ maxWidth: '640px', margin: '0 auto' }}>
           <h2 style={{
             fontFamily: "'Nicholas', serif",
