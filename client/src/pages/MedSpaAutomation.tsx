@@ -8,6 +8,7 @@ import { ArrowRight, Check, Phone, X } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { useFadeIn } from '@/hooks/useFadeIn';
+import { RevealSection } from '@/components/RevealSection'
 
 function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
   const { ref, visible } = useFadeIn(0.1);
@@ -167,6 +168,7 @@ export default function MedSpaAutomation() {
       </section>
 
       {/* Stats strip */}
+      <RevealSection>
       <section style={{ borderTop: '1px solid rgba(167,139,250,0.1)', borderBottom: '1px solid rgba(167,139,250,0.1)', padding: '3rem 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '2rem', textAlign: 'center' }}>
@@ -179,8 +181,10 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* Service Detail Section */}
+      <RevealSection>
       <section style={{ padding: '7rem 0' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -211,8 +215,10 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* Med Spa Industry Stat Block */}
+      <RevealSection>
       <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)', background: 'rgba(167,139,250,0.02)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -235,8 +241,10 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* Voice AI feature callout */}
+      <RevealSection>
       <section style={{ padding: '7rem 0' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -267,8 +275,10 @@ export default function MedSpaAutomation() {
           </FadeItem>
         </div>
       </section>
+      </RevealSection>
 
       {/* Problems */}
+      <RevealSection>
       <section style={{ padding: '4rem 0 7rem' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -296,8 +306,10 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* Solutions */}
+      <RevealSection>
       <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -325,10 +337,12 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* Pricing */}
       
       {/* ─── Santa Testimonial ─── */}
+      <RevealSection>
       <section style={{ padding: '4rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
           <div style={{
@@ -353,7 +367,9 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
+      <RevealSection>
       <section id="pricing" style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
@@ -403,8 +419,10 @@ export default function MedSpaAutomation() {
           </div>
         </div>
       </section>
+      </RevealSection>
 
       {/* CTA */}
+      <RevealSection>
       <section style={{ position: 'relative', padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{ position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)', width: '800px', height: '400px', background: 'radial-gradient(ellipse, rgba(167,139,250,0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto' }}>
@@ -427,6 +445,7 @@ export default function MedSpaAutomation() {
           </FadeItem>
         </div>
       </section>
+      </RevealSection>
 
       <Footer />
     </div>
