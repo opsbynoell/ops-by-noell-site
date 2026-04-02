@@ -5,7 +5,7 @@ import { ArrowRight, Home } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ backgroundColor: '#FFFFFF', minHeight: '100vh', backgroundColor: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
       <Nav />
 
       <main style={{
@@ -21,7 +21,7 @@ export default function NotFound() {
             fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(6rem, 20vw, 12rem)',
             fontWeight: 800,
-            color: 'rgba(167,139,250,0.12)',
+            color: 'rgba(12,162,162,0.12)',
             lineHeight: 1,
             letterSpacing: '-0.04em',
             marginBottom: '-1rem',
@@ -34,7 +34,7 @@ export default function NotFound() {
             fontFamily: "'Nicholas', serif",
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             fontWeight: 800,
-            color: '#F5F0EC',
+            color: '#555555',
             lineHeight: 1.1,
             letterSpacing: '-0.03em',
             marginBottom: '1.25rem',
@@ -43,9 +43,9 @@ export default function NotFound() {
           </h1>
 
           <p style={{
-            fontFamily: "'Sora', sans-serif",
+            fontFamily: "'Nicholas', serif",
             fontSize: '1rem',
-            color: '#868583',
+            color: '#555555',
             lineHeight: 1.75,
             marginBottom: '2.5rem',
           }}>
@@ -58,9 +58,9 @@ export default function NotFound() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                backgroundColor: '#A78BFA',
-                color: '#0A0A0A',
-                fontFamily: "'Sora', sans-serif",
+                backgroundColor: '#0CA2A2',
+                color: '#1A1A1A',
+                fontFamily: "'Nicholas', serif",
                 fontSize: '0.875rem',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
@@ -80,8 +80,8 @@ export default function NotFound() {
                 alignItems: 'center',
                 gap: '0.5rem',
                 backgroundColor: 'transparent',
-                color: '#F5F0EC',
-                fontFamily: "'Sora', sans-serif",
+                color: '#555555',
+                fontFamily: "'Nicholas', serif",
                 fontSize: '0.875rem',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
