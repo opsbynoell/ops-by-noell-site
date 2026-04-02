@@ -144,7 +144,7 @@ export default function MedSpaAutomation() {
       {/* Hero */}
       <section style={{ position: 'relative', paddingTop: '80px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(120,58,237,0.2) 0%, rgba(139,92,246,0.12) 35%, #010509 72%)' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '5rem', paddingBottom: '5.5rem' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(2rem, 5vw, 5rem)', paddingBottom: '5.5rem' }}>
           <div style={{ marginBottom: '1.5rem' }}><SectionBadge>Med Spa Automation</SectionBadge></div>
           
             <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.75rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.7, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem' }}>
@@ -185,7 +185,7 @@ export default function MedSpaAutomation() {
 
       {/* Service Detail Section */}
       <RevealSection>
-      <section style={{ padding: '7rem 0' }}>
+      <section style={{ padding: 'clamp(2.5rem, 6vw, 7rem) 0' }}>
         <div className="container">
           <FadeItem delay={0}>
             <div style={{ maxWidth: '600px', marginBottom: '3.5rem' }}>
@@ -219,10 +219,10 @@ export default function MedSpaAutomation() {
 
       {/* Med Spa Industry Stat Block */}
       <RevealSection>
-      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)', background: 'rgba(167,139,250,0.02)' }}>
+      <section style={{ padding: 'clamp(2rem, 5vw, 5rem) 0', borderTop: '1px solid rgba(167,139,250,0.08)', borderBottom: '1px solid rgba(167,139,250,0.08)', background: 'rgba(167,139,250,0.02)' }}>
         <div className="container">
           <FadeItem delay={0}>
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: 'clamp(1.25rem, 3vw, 3rem)' }}>
               <SectionBadge>Med Spa Reality Check</SectionBadge>
               <h2 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, color: '#ffffff', lineHeight: 1.7, letterSpacing: '-0.02em', marginTop: '1rem', maxWidth: '600px', margin: '1rem auto 0' }}>
                 The numbers most med spa owners never see
@@ -245,7 +245,7 @@ export default function MedSpaAutomation() {
 
       {/* Voice AI feature callout */}
       <RevealSection>
-      <section style={{ padding: '7rem 0' }}>
+      <section style={{ padding: 'clamp(2.5rem, 6vw, 7rem) 0' }}>
         <div className="container">
           <FadeItem delay={0}>
             <div style={{ background: 'linear-gradient(135deg, rgba(167,139,250,0.08) 0%, rgba(167,139,250,0.03) 100%)', border: '1px solid rgba(167,139,250,0.2)', borderRadius: '16px', padding: '3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '780px', margin: '0 auto' }}>
@@ -310,7 +310,7 @@ export default function MedSpaAutomation() {
 
       {/* Solutions */}
       <RevealSection>
-      <section style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
+      <section style={{ padding: 'clamp(2.5rem, 6vw, 7rem) 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
             <div style={{ maxWidth: '600px', marginBottom: '3.5rem' }}>
@@ -370,7 +370,7 @@ export default function MedSpaAutomation() {
       </RevealSection>
 
       <RevealSection>
-      <section id="pricing" style={{ padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
+      <section id="pricing" style={{ padding: 'clamp(2.5rem, 6vw, 7rem) 0', borderTop: '1px solid rgba(167,139,250,0.08)' }}>
         <div className="container">
           <FadeItem delay={0}>
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -423,7 +423,7 @@ export default function MedSpaAutomation() {
 
       {/* CTA */}
       <RevealSection>
-      <section style={{ position: 'relative', padding: '7rem 0', borderTop: '1px solid rgba(167,139,250,0.08)', overflow: 'hidden', textAlign: 'center' }}>
+      <section style={{ position: 'relative', padding: 'clamp(2.5rem, 6vw, 7rem) 0', borderTop: '1px solid rgba(167,139,250,0.08)', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{ position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)', width: '800px', height: '400px', background: 'radial-gradient(ellipse, rgba(167,139,250,0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto' }}>
           <FadeItem delay={0}>
@@ -451,4 +451,3 @@ export default function MedSpaAutomation() {
     </div>
   );
 }
-
