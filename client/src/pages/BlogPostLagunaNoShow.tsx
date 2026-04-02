@@ -19,7 +19,7 @@ function FadeItem({ children, delay = 0, style = {} }: { children: React.ReactNo
 
 function GradientText({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ background: 'linear-gradient(90deg, #A78BFA 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+    <span style={{ background: 'linear-gradient(90deg, #0CA2A2 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
       {children}
     </span>
   );
@@ -46,7 +46,7 @@ export default function BlogPostLagunaNoShow() {
 
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '760px', margin: '0 auto' }}>
           <FadeItem delay={0}>
-            <a href="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#A78BFA', textDecoration: 'none', marginBottom: '2rem' }}>
+            <a href="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#0CA2A2', textDecoration: 'none', marginBottom: '2rem' }}>
               <ArrowLeft size={14} /> Back to Blog
             </a>
           </FadeItem>
@@ -79,7 +79,7 @@ export default function BlogPostLagunaNoShow() {
 
           <FadeItem delay={0.2}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(167,139,250,0.12)' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #A78BFA, #7C3AED)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', fontWeight: 700, color: '#ffffff', flexShrink: 0 }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #0CA2A2, #7C3AED)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', fontWeight: 700, color: '#ffffff', flexShrink: 0 }}>
                 N
               </div>
               <div>
@@ -163,11 +163,11 @@ export default function BlogPostLagunaNoShow() {
               </p>
 
               {/* Pull quote */}
-              <blockquote style={{ margin: '2.5rem 0', padding: '1.75rem 2rem', background: 'rgba(167,139,250,0.06)', borderLeft: '3px solid #A78BFA', borderRadius: '0 12px 12px 0' }}>
+              <blockquote style={{ margin: '2.5rem 0', padding: '1.75rem 2rem', background: 'rgba(167,139,250,0.06)', borderLeft: '3px solid #0CA2A2', borderRadius: '0 12px 12px 0' }}>
                 <p style={{ fontFamily: "'Nicholas', serif", fontSize: '1.25rem', fontWeight: 600, color: '#ffffff', lineHeight: 1.6, margin: '0 0 0.75rem', fontStyle: 'italic' }}>
                   "I used to dread Mondays because there would always be gaps I did not expect. Now I open my calendar and it is just full. The reminders go out and people show up. I do not think about it anymore."
                 </p>
-                <footer style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#A78BFA', fontWeight: 600 }}>
+                <footer style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#0CA2A2', fontWeight: 600 }}>
                   Santa — Licensed Massage Therapist, Laguna Niguel
                 </footer>
               </blockquote>
@@ -220,4 +220,5 @@ export default function BlogPostLagunaNoShow() {
     </div>
   );
 }
+
 
