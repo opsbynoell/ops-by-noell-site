@@ -24,7 +24,7 @@ interface SliderProps {
 function Slider({ label, sublabel, value, min, max, step, unit = '', onChange }: SliderProps) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
-    <div style={{ marginBottom: '1.5rem' }}>
+    <div style={{ marginBottom: '1rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
         <div>
           <span style={{
@@ -251,7 +251,7 @@ export default function RevenueCalculator() {
             backgroundColor: '#111111',
             border: '1px solid #2A2A2A',
             borderRadius: '0.75rem',
-            padding: '2rem',
+            padding: '1.5rem',
           }}>
             <p style={{
               fontFamily: "'Sora', sans-serif",
@@ -259,7 +259,7 @@ export default function RevenueCalculator() {
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               color: 'rgba(167,139,250,0.5)',
-              marginBottom: '1.75rem',
+              marginBottom: '1.25rem',
             }}>
               Your Business: Adjust to Match
             </p>
@@ -586,3 +586,5 @@ export default function RevenueCalculator() {
     </section>
   );
 }
+
+
