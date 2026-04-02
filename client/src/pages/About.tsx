@@ -93,9 +93,8 @@ export default function About() {
               fontWeight: 800, lineHeight: 1.0, letterSpacing: '-0.04em',
               maxWidth: '800px', marginBottom: '1.75rem', color: '#ffffff',
             }}>
-              You're losing clients to missed calls and forgotten follow-ups.{' '}
               <span style={{ background: 'linear-gradient(90deg, #A78BFA 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                We've spent years building the fix, for businesses exactly like yours.
+                We've spent years building the fix for businesses exactly like yours.
               </span>
             </h1>
           </FadeItem>
@@ -346,3 +345,5 @@ export default function About() {
     </div>
   );
 }
+
+
