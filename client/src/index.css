@@ -823,4 +823,10 @@
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
   }
+
+  /* Constrain decorative glow orbs so they don't cause horizontal overflow */
+  .hero-glow {
+    width: min(300px, 100vw) !important;
+    height: min(300px, 100vw) !important;
+  }
 }
