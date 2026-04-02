@@ -128,7 +128,7 @@ export default function DentalAutomation() {
           <FadeItem delay={0}><div style={{ marginBottom: '1.5rem' }}><SectionBadge>Dental Office Automation</SectionBadge></div></FadeItem>
           <FadeItem delay={0.1}>
             <h1 style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(2.75rem, 6.5vw, 5rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: '820px', marginBottom: '1.75rem' }}>
-              <GradientText>AI automation</GradientText>{' '}<span style={{ color: '#ffffff' }}>for dental offices. Reduce no-shows. Automate recall.</span>
+              <span style={{ color: '#ffffff' }}>Every missed call is a patient</span>{' '}<GradientText>choosing the practice that picked up.</GradientText>
             </h1>
           </FadeItem>
           <FadeItem delay={0.2}>
