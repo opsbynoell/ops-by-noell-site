@@ -788,3 +788,39 @@
 .hero-glow {
   animation: heroPulse 4s ease-in-out infinite;
 }
+
+/* ─── MOBILE TYPOGRAPHY OVERRIDE ─── */
+@media (max-width: 768px) {
+  /* Hero headlines — cap at 32px on mobile */
+  h1,
+  [style*="clamp(2"] {
+    font-size: clamp(1.75rem, 7vw, 2rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Section headings */
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 1.75rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Sub-section headings */
+  h3 {
+    font-size: clamp(1.125rem, 4vw, 1.25rem) !important;
+  }
+
+  /* Section padding — reduce all vertical spacing */
+  section,
+  [style*="padding: '5rem"],
+  [style*="padding: '6rem"],
+  [style*="padding: '7rem"] {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Container max-width */
+  .container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
