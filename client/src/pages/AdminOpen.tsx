@@ -61,7 +61,7 @@ export default function AdminOpen() {
         width: 28,
         height: 28,
         border: '2px solid rgba(167,139,250,0.2)',
-        borderTopColor: '#a78bfa',
+        borderTopColor: '#0ca2a2',
         borderRadius: '50%',
         animation: 'spin 0.7s linear infinite',
       }} />
@@ -77,3 +77,4 @@ export default function AdminOpen() {
     </div>
   );
 }
+
