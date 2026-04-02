@@ -183,7 +183,7 @@ function FaqAccordion({ items }: { items: FaqItem[] }) {
               paddingBottom: '1.375rem',
               fontFamily: "'Sora', sans-serif",
               fontSize: '0.9375rem',
-              color: '#868583',
+              color: '#b8b6b3',
               lineHeight: 1.75,
             }}>
               {item.a}
@@ -258,7 +258,7 @@ export default function Nova() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: 'clamp(1rem, 2vw, 1.175rem)',
-              color: '#868583',
+              color: '#b8b6b3',
               lineHeight: 1.75,
               maxWidth: '660px',
               margin: '0 auto 2.5rem',
@@ -272,7 +272,7 @@ export default function Nova() {
               <p style={{
                 fontFamily: "'Sora', sans-serif",
                 fontSize: '0.875rem',
-                color: '#868583',
+                color: '#b8b6b3',
               }}>
                 Then $297/month. No contracts. Cancel anytime.
               </p>
@@ -304,7 +304,7 @@ export default function Nova() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '1.0625rem',
-              color: '#868583',
+              color: '#b8b6b3',
               lineHeight: 1.8,
             }}>
               Most people who land on a service business website look around and leave. They never fill out a form. They never call. They just disappear. Nova fixes that. The moment someone lands on your site, Nova starts a conversation — asks the right questions, captures their name and contact info, and sends you an instant alert when someone is ready to book.
@@ -369,7 +369,7 @@ export default function Nova() {
                   <p style={{
                     fontFamily: "'Sora', sans-serif",
                     fontSize: '0.9rem',
-                    color: '#868583',
+                    color: '#b8b6b3',
                     lineHeight: 1.7,
                   }}>
                     {desc}
@@ -403,7 +403,7 @@ export default function Nova() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '1.0625rem',
-              color: '#868583',
+              color: '#b8b6b3',
               lineHeight: 1.8,
             }}>
               Nova is live on this site right now. Talk to her. She is the same agent we would install on your website.
@@ -464,7 +464,7 @@ export default function Nova() {
                 <div style={{
                   fontFamily: "'Sora', sans-serif",
                   fontSize: '0.875rem',
-                  color: '#868583',
+                  color: '#b8b6b3',
                 }}>
                   Licensed Massage Therapist, Laguna Niguel, CA
                 </div>
@@ -517,12 +517,12 @@ export default function Nova() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.375rem' }}>
                   <span style={{ fontFamily: "'Nicholas', serif", fontSize: '2.75rem', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>$497</span>
-                  <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9rem', color: '#868583' }}>one-time setup</span>
+                  <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.9rem', color: '#b8b6b3' }}>one-time setup</span>
                   <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.8125rem', color: '#A78BFA', marginLeft: '0.25rem', opacity: 0.7 }}>save $500</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
                   <span style={{ fontFamily: "'Nicholas', serif", fontSize: '1.625rem', fontWeight: 700, color: '#C4B5FD', lineHeight: 1 }}>$297</span>
-                  <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#868583' }}>/ month</span>
+                  <span style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3' }}>/ month</span>
                 </div>
               </div>
 
@@ -564,7 +564,7 @@ export default function Nova() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '0.8125rem',
-              color: '#868583',
+              color: '#b8b6b3',
               marginTop: '1.25rem',
             }}>
               This rate is available to the first 5 businesses who sign up. Regular price is $997 setup.
@@ -616,7 +616,7 @@ export default function Nova() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '0.875rem',
-              color: '#868583',
+              color: '#b8b6b3',
               marginTop: '1rem',
             }}>
               Then $297/month. No contracts. Cancel anytime.
@@ -629,3 +629,4 @@ export default function Nova() {
     </>
   );
 }
+
