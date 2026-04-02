@@ -231,7 +231,7 @@ export default function RevenueCalculator() {
           <p style={{
             fontFamily: "'Sora', sans-serif",
             fontSize: '0.9375rem',
-            color: '#868583',
+            color: '#b8b6b3',
             lineHeight: 1.75,
           }}>
             Adjust the sliders to match your business. The estimates update instantly. Click any cost row to see the assumption behind the number.
@@ -543,7 +543,7 @@ export default function RevenueCalculator() {
               <p style={{
                 fontFamily: "'Sora', sans-serif",
                 fontSize: '0.9375rem',
-                color: '#868583',
+                color: '#b8b6b3',
                 lineHeight: 1.75,
                 marginBottom: '1.25rem',
               }}>
@@ -586,6 +586,7 @@ export default function RevenueCalculator() {
     </section>
   );
 }
+
 
 
 
