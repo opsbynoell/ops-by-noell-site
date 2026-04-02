@@ -21,8 +21,7 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
 
 function GradientText({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+    <span style={{ background: 'linear-gradient(90deg, #0CA2A2 0%, #0DCFCF 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
       {children}
     </span>
   );
@@ -185,8 +184,7 @@ export default function Services() {
 
       {/* ═══ HERO ═══════════════════════════════════════════════════ */}
       <section style={{ position: 'relative', paddingTop: '160px', paddingBottom: '100px', textAlign: 'center', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(180deg, rgba(255,255,255,0),0.22) 0%, rgba(139,92,246,0.14) 35%, #010509 70%)' }} />
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'none' }} />
         <div style={{ position: 'absolute', top: '5%', left: '50%', transform: 'translateX(-50%)', width: '700px', height: '700px', pointerEvents: 'none', background: 'radial-gradient(ellipse at center, rgba(255,255,255,0),0.14) 0%, rgba(12,162,162,0.05) 40%, transparent 70%)' }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '820px', margin: '0 auto' }}>
@@ -358,8 +356,7 @@ export default function Services() {
               <div className="reveal">
                 <div className={featured ? 'pricing-card featured' : 'pricing-card'} style={{ padding: '2rem', position: 'relative', display: 'flex', flexDirection: 'column', height: '100%' }}>
                   {featured && (
-                    <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', padding: '0.25rem 1rem', background: '#FFFFFF', /* gradient removed */
-          /* _removed: linear-gradient(90deg, #0CA2A2, #0CA2A2)', borderRadius: '0 0 12px 12px', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 700, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
+                    <div style={{ position: 'absolute', top: '-1px', left: '50%', transform: 'translateX(-50%)', padding: '0.25rem 1rem', background: '#0CA2A2', borderRadius: '0 0 12px 12px', fontFamily: "'Nicholas', serif", fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF', whiteSpace: 'nowrap' }}>
                       Most Popular
                     </div>
                   )}
