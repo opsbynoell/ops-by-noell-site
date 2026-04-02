@@ -98,7 +98,7 @@ export default function Book() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '1.0625rem',
-              color: '#868583',
+              color: '#b8b6b3',
               lineHeight: 1.75,
             }}>
               No pitch. No slides. We listen first and show you your numbers.
@@ -182,7 +182,7 @@ export default function Book() {
                     }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#868583', lineHeight: 1.7 }}>
+                    <p style={{ fontFamily: "'Sora', sans-serif", fontSize: '0.875rem', color: '#b8b6b3', lineHeight: 1.7 }}>
                       {item.detail}
                     </p>
                   </div>
@@ -241,7 +241,7 @@ export default function Book() {
             <p style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: '1rem',
-              color: '#868583',
+              color: '#b8b6b3',
               lineHeight: 1.75,
               maxWidth: '420px',
               margin: '0 auto 2.5rem',
@@ -264,3 +264,4 @@ export default function Book() {
     </div>
   );
 }
+
