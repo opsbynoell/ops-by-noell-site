@@ -1,12 +1,5 @@
-import {
-  CogIcon,
-  FileIcon,
-  HubspotIcon,
-  HumanIcon,
-  SalesforceIcon,
-  SheetsIcon,
-} from "@/icons";
 import { cn } from "@/lib/utils";
+import { IconCalendar, IconMessage, IconPhone, IconStar } from "@tabler/icons-react";
 import { motion, useInView } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -14,39 +7,40 @@ export const SkeletonOne = () => {
   type Item = {
     title: string;
     topIcon: React.ReactNode;
+    iconBg: string;
     description: string;
-    tags: { text: string; icon: React.ReactNode }[];
+    tags: { text: string; color: string }[];
   };
 
-  const items = [
+  const items: Item[] = [
     {
-      title: "Connect Data",
-      topIcon: <FileIcon className="size-4" />,
-      description: "Link CRMs, helpdesks, and APIs to give agents secure, role-based access.",
+      title: "Missed call text-back",
+      topIcon: <IconPhone className="size-4 text-white" />,
+      iconBg: "bg-teal-500",
+      description: "Sarah called while you were with a client. Text sent in 12 seconds.",
       tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
+        { text: "Auto-sent", color: "bg-teal-50 text-teal-700 border-teal-200" },
+        { text: "Booking link included", color: "bg-neutral-100 text-neutral-600 border-neutral-200" },
       ],
     },
     {
-      title: "Define Processing Logic",
-      topIcon: <CogIcon className="size-4" />,
-      description: "Create workflows, decision points, and conditional actions for each task.",
+      title: "Appointment confirmed",
+      topIcon: <IconCalendar className="size-4 text-white" />,
+      iconBg: "bg-blue-500",
+      description: "Jennifer L. confirmed for Friday 2 PM via the booking link in her text.",
       tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
+        { text: "Booked", color: "bg-green-50 text-green-700 border-green-200" },
+        { text: "Square synced", color: "bg-neutral-100 text-neutral-600 border-neutral-200" },
       ],
     },
     {
-      title: "Human-in-the-Loop",
-      topIcon: <HumanIcon className="size-4 text-white" />,
-      description: "Add reviews, approvals and escalations without slowing work.",
+      title: "Review request sent",
+      topIcon: <IconStar className="size-4 text-white" />,
+      iconBg: "bg-amber-500",
+      description: "Maria's appointment ended 30 minutes ago. Google review request sent.",
       tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
+        { text: "5-star received", color: "bg-amber-50 text-amber-700 border-amber-200" },
+        { text: "Google", color: "bg-neutral-100 text-neutral-600 border-neutral-200" },
       ],
     },
   ];
@@ -74,7 +68,7 @@ export const SkeletonOne = () => {
       className="flex-1 rounded-t-3xl gap-2 flex flex-col bg-neutral-100 border border-neutral-200 max-w-[20rem] lg:max-w-sm mx-auto w-full h-full absolute inset-x-0 p-2"
     >
       {activeCards?.map((item) => (
-        <Card key={item?.title} {...item} />
+        <Card key={item.title} {...item} />
       ))}
     </motion.div>
   );
@@ -82,20 +76,17 @@ export const SkeletonOne = () => {
 
 const Card = ({
   topIcon,
+  iconBg,
   title,
   description,
   tags,
 }: {
   topIcon: React.ReactNode;
+  iconBg: string;
   title: string;
   description: string;
-  tags: { text: string; icon: React.ReactNode }[];
+  tags: { text: string; color: string }[];
 }) => {
-  const randomColors = [
-    "var(--color-blue-500)",
-    "var(--color-green-500)",
-    "var(--color-red-500)",
-  ];
   return (
     <motion.div
       layout
@@ -104,18 +95,15 @@ const Card = ({
       transition={{ duration: 0.2 }}
       className="p-4 shadow-black/10 gap-4 border bg-white border-transparent ring-1 rounded-[16px] ring-black/10 flex items-start"
     >
-      <div
-        className={cn("size-6 shrink-0 rounded-full bg-blue-500 flex mt-1 items-center justify-center")}
-        style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}
-      >
+      <div className={cn("size-6 shrink-0 rounded-full flex mt-1 items-center justify-center", iconBg)}>
         {topIcon}
       </div>
       <div>
-        <p className="md:text-lg font-bold text-neutral-800">{title}</p>
-        <p className="text-sm md:text-base text-neutral-600 text-balance">{description}</p>
+        <p className="md:text-base font-bold text-neutral-800">{title}</p>
+        <p className="text-xs md:text-sm text-neutral-600 text-balance mt-1">{description}</p>
         <div className="mt-2 flex flex-row flex-wrap gap-2">
-          {tags.map((tag, idx) => (
-            <Tag key={tag.text + idx} text={tag.text} icon={tag.icon} />
+          {tags.map((tag) => (
+            <Tag key={tag.text} text={tag.text} colorClass={tag.color} />
           ))}
         </div>
       </div>
@@ -123,11 +111,10 @@ const Card = ({
   );
 };
 
-const Tag = ({ text, icon }: { text: string; icon: React.ReactNode }) => {
+const Tag = ({ text, colorClass }: { text: string; colorClass: string }) => {
   return (
-    <div className="flex items-center gap-1 w-fit rounded-sm px-1 py-0.5 border border-neutral-200 text-sm">
-      {icon}
-      <p className="text-xs text-neutral-500">{text}</p>
+    <div className={cn("flex items-center gap-1 w-fit rounded-sm px-2 py-0.5 border text-xs font-medium", colorClass)}>
+      {text}
     </div>
   );
 };

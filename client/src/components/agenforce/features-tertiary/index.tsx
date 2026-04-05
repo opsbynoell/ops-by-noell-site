@@ -14,11 +14,10 @@ export const FeaturesTertiary = () => {
           <div className="md:border-r border-b border-neutral-200">
             <CardContent>
               <h2 className="text-lg font-bold text-neutral-800">
-                Audit Trail
+                Lead Pipeline
               </h2>
               <CardDescription>
-                Tracks every agent action with full input-output visibility and
-                timestamps.
+                Every inquiry that doesn't book immediately is tracked and followed up automatically. No lead slips through the cracks.
               </CardDescription>
             </CardContent>
             <CardSkeleton>
@@ -28,11 +27,10 @@ export const FeaturesTertiary = () => {
           <div className="border-b border-neutral-200">
             <CardContent>
               <h2 className="text-lg font-bold text-neutral-800">
-                Role-Based Access
+                Reactivation Campaigns
               </h2>
               <CardDescription>
-                Controls who can launch, review, or manage agents based on
-                roles.
+                Past clients who've gone quiet get a targeted re-engagement sequence. One campaign recovers 8–12 lapsed clients per send.
               </CardDescription>
             </CardContent>
             <CardSkeleton className="mask-radial-from-20%">
@@ -42,11 +40,10 @@ export const FeaturesTertiary = () => {
           <div className="md:border-r border-neutral-200">
             <CardContent>
               <h2 className="text-lg font-bold text-neutral-800">
-                Approval Queue
+                Reputation Engine
               </h2>
               <CardDescription>
-                Sends agent-generated content to human reviewers before it's
-                published.
+                Automated review requests after every completed appointment. Clients who had a great experience become your loudest advocates.
               </CardDescription>
             </CardContent>
             <CardSkeleton className="mask-radial-from-20% mask-r-from-50%">
@@ -56,10 +53,10 @@ export const FeaturesTertiary = () => {
           <div>
             <CardContent>
               <h2 className="text-lg font-bold text-neutral-800">
-                Guardrail Engine
+                Client Communication Hub
               </h2>
               <CardDescription>
-                Applies brand, tone, and policy checks before output goes live.
+                Confirmations, reminders, follow-ups, and no-show recovery — all managed and monitored, so nothing falls through.
               </CardDescription>
             </CardContent>
             <CardSkeleton>
