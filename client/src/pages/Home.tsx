@@ -16,6 +16,41 @@ import { FeaturesTertiary } from '@/components/agenforce/features-tertiary';
 import { IconPlus } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
 
+/* ─── LOGO CLOUD ────────────────────────────────────────────────── */
+function LogoCloud() {
+  const industries = [
+    { label: 'Massage Therapy', icon: '🙌' },
+    { label: 'Med Spas', icon: '✨' },
+    { label: 'Salons', icon: '✂️' },
+    { label: 'Estheticians', icon: '🌿' },
+    { label: 'Dental Practices', icon: '🦷' },
+    { label: 'Home Services', icon: '🏠' },
+  ];
+
+  return (
+    <section className="py-8 md:py-12 bg-white border-b border-neutral-100">
+      <Container>
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-6 font-inter">
+          Trusted by practices across Orange County
+        </p>
+        <div className="marquee-wrapper">
+          <div className="marquee-track">
+            {[...industries, ...industries].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2 px-5 py-2 mx-3 rounded-full border border-neutral-200 bg-neutral-50 text-sm font-medium text-neutral-600 whitespace-nowrap"
+              >
+                <span>{item.icon}</span>
+                <span className="font-inter">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 /* ─── ANIMATED NOVA CHAT MOCKUP ─────────────────────────────────── */
 function NovaChatMockup() {
   const messages = [
@@ -162,6 +197,9 @@ export default function Home() {
           </Container>
           <GradientDivider />
         </section>
+
+        {/* ── LOGO CLOUD ── */}
+        <LogoCloud />
 
         {/* ── SECTION 2: STATS ── */}
         <section id="results" className="pb-10 md:pb-20 bg-white">

@@ -5,15 +5,15 @@
  * Color System:
  *   Primary Teal:    #0CA2A2  (CTAs, links, section labels, icon accents)
  *   Nova Purple:     #7C5CFC  (Nova-specific UI only)
- *   Background:      #FFF5F0
- *   Surface:         #F7EDE8  (alternating sections)
+ *   Background:      #FFFFFF
+ *   Surface:         #F5F5F5  (alternating sections)
  *   Heading:         #1A1A1A
  *   Body:            #555555
  *   Dark CTA bg:     #1A1A1A  (footer CTA section only)
  *   Border:          #E5E5E5
  *
  * Typography:
- *   Font: Nicholas (ONLY font on the entire site)
+ *   Fonts: Inter (body), Manrope (headings)
  *   400 — body text, captions, small labels
  *   400 Italic — quotes, attributions, subtle emphasis
  *   600 — subheadings, card titles, nav
@@ -21,42 +21,7 @@
  *   800 — H1 (hero headline only)
  */
 
-/* Nicholas — licensed web font (Font Bros order #FB305745) */
-@font-face {
-  font-family: 'Nicholas';
-  src: url('/fonts/nicholas-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Nicholas';
-  src: url('/fonts/nicholas-italic.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Nicholas';
-  src: url('/fonts/nicholas-semi-bold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Nicholas';
-  src: url('/fonts/nicholas-bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Nicholas';
-  src: url('/fonts/nicholas-extra-bold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
+/* Google Fonts: Inter + Manrope loaded via <link> in index.html */
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -102,8 +67,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Brand light tokens — Ops by Noell v9 */
-  --color-brand-bg:        #FFF5F0;
-  --color-brand-surface:   #F7EDE8;
+  --color-brand-bg:        #FFFFFF;
+  --color-brand-surface:   #F5F5F5;
   --color-brand-headline:  #1A1A1A;
   --color-brand-body:      #555555;
   --color-brand-muted:     #AAAAAA;
@@ -257,9 +222,9 @@
   }
 
   body {
-    background-color: #FFF5F0;
+    background-color: #FFFFFF;
     color: #1A1A1A;
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -275,7 +240,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nicholas', serif;
+    font-family: 'Manrope', sans-serif;
     color: #1A1A1A;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -330,7 +295,7 @@
 
   /* Section label — plain small teal text, NO pills, NO badges, NO borders */
   .section-label {
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -341,7 +306,7 @@
 
   /* Eyebrow alias — keep for backward compatibility */
   .eyebrow {
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -363,7 +328,7 @@
     gap: 0.5rem;
     background-color: #0CA2A2;
     color: #FFFFFF;
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -392,7 +357,7 @@
     gap: 0.5rem;
     background-color: transparent;
     color: #0CA2A2;
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -416,7 +381,7 @@
     gap: 0.5rem;
     background-color: #7C5CFC;
     color: #FFFFFF;
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -441,7 +406,7 @@
     gap: 0.5rem;
     background-color: #0CA2A2;
     color: #FFFFFF;
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -466,7 +431,7 @@
     gap: 0.5rem;
     background-color: transparent;
     color: #0CA2A2;
-    font-family: 'Nicholas', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -505,7 +470,7 @@
   }
 
   .editorial-card {
-    background-color: #F7EDE8;
+    background-color: #F5F5F5;
     border: 1px solid #E8E8E8;
     border-radius: 0.75rem;
   }
@@ -553,7 +518,7 @@
 
   /* Stat number */
   .stat-number {
-    font-family: 'Nicholas', serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 700;
     color: #0CA2A2;
     letter-spacing: -0.03em;
@@ -572,7 +537,7 @@
 
   /* Nav — white sticky */
   .nav-light {
-    background: #FFF5F0;
+    background: #FFFFFF;
     border-bottom: 1px solid #E5E5E5;
   }
 
@@ -815,10 +780,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  background: #F7EDE8;
+  background: #F5F5F5;
   border: 1px solid #E5E5E5;
   border-radius: 100px;
-  font-family: 'Nicholas', serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: #555555;
@@ -827,7 +792,7 @@
 
 /* Section heading utility */
 .section-heading {
-  font-family: 'Nicholas', serif;
+  font-family: 'Manrope', sans-serif;
   font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   font-weight: 700;
   color: #1A1A1A;
@@ -835,14 +800,14 @@
   letter-spacing: -0.02em;
 }
 
-/* Font aliases — all point to Nicholas to ensure nothing slips through */
-.font-satoshi { font-family: 'Nicholas', serif; }
-.font-sora    { font-family: 'Nicholas', serif; }
-.font-inter   { font-family: 'Nicholas', serif; }
+/* Font aliases */
+.font-satoshi { font-family: 'Manrope', sans-serif; }
+.font-sora    { font-family: 'Manrope', sans-serif; }
+.font-inter   { font-family: 'Inter', sans-serif; }
 
 /* Step number — large numerals in How It Works */
 .step-number {
-  font-family: 'Nicholas', serif;
+  font-family: 'Manrope', sans-serif;
   font-size: clamp(4rem, 8vw, 5rem);
   font-weight: 800;
   line-height: 1;
@@ -861,13 +826,13 @@ a[class*="btn"] {
 
 /* ─── GLASS CARD ALIAS (now light surface) ───────────────────────── */
 .glass-card {
-  background: #F7EDE8;
+  background: #F5F5F5;
   border: 1px solid #E8E8E8;
   border-radius: 1rem;
 }
 
 .glass-card-violet {
-  background: #F7EDE8;
+  background: #F5F5F5;
   border: 1px solid rgba(124, 92, 252, 0.15);
   border-radius: 20px;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
@@ -880,11 +845,11 @@ a[class*="btn"] {
 
 /* ─── HERO GLOW (removed dark variant, kept class) ───────────────── */
 .hero-glow { display: none; }
-.hero-gradient-bg { background: #FFF5F0; }
+.hero-gradient-bg { background: #FFFFFF; }
 .dot-grid-bg { background: none; }
 .cta-glow-bg { background: none; }
 .nav-blur {
-  background: #FFF5F0;
+  background: #FFFFFF;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-bottom: 1px solid #E5E5E5;

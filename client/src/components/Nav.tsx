@@ -1,19 +1,19 @@
 /*
- * OPS BY NOELL — Navigation v9 (Light Theme)
+ * OPS BY NOELL — Navigation v10 (Agenforce pattern, wouter, Manrope/Inter)
  * Spec: Sticky white nav, #FFFFFF bg, 1px bottom border #E5E5E5
- * Left: Ops by Noell wordmark Nicholas 700, teal #0CA2A2
- * Center: Nav links Nicholas 600, #555555
+ * Left: "Ops by Noell" wordmark Manrope 700, teal #0CA2A2
+ * Center: Nav links Inter 600, #555555
  * Right: "Book Free Audit" teal pill button
- * Mobile: hamburger, full-width dropdown
+ * Mobile: hamburger, AnimatePresence full-screen overlay
  */
 
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const navLinks = [
   { label: 'How It Works', href: '/services#how-it-works' },
-  { label: 'Nova Support', href: '/nova' },
   { label: 'Results', href: '/#results' },
   { label: 'About', href: '/#about' },
   { label: 'Pricing', href: '/services#pricing' },
@@ -49,6 +49,12 @@ export default function Nav() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   const isIndustriesActive = industries.some(i => location === i.href);
 
   return (
@@ -69,7 +75,7 @@ export default function Nav() {
           {/* Wordmark */}
           <Link href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
             <span style={{
-              fontFamily: "'Nicholas', serif",
+              fontFamily: "'Manrope', sans-serif",
               fontSize: '1.25rem',
               fontWeight: 700,
               color: '#0CA2A2',
@@ -88,7 +94,7 @@ export default function Nav() {
                   key={link.href}
                   href={link.href}
                   style={{
-                    fontFamily: "'Nicholas', serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: '0.9375rem',
                     fontWeight: 600,
                     color: isActive ? '#0CA2A2' : '#555555',
@@ -110,7 +116,7 @@ export default function Nav() {
               <button
                 onClick={() => setIndustriesOpen(!industriesOpen)}
                 style={{
-                  fontFamily: "'Nicholas', serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: '0.9375rem',
                   fontWeight: 600,
                   color: isIndustriesActive ? '#0CA2A2' : '#555555',
@@ -131,48 +137,56 @@ export default function Nav() {
                 <ChevronDown size={14} style={{ transition: 'transform 0.2s ease', transform: industriesOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
               </button>
 
-              {industriesOpen && (
-                <div style={{
-                  position: 'absolute',
-                  top: 'calc(100% + 8px)',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: '280px',
-                  background: '#FFFFFF',
-                  border: '1px solid #E5E5E5',
-                  borderRadius: '12px',
-                  padding: '0.5rem',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                  zIndex: 200,
-                }}>
-                  {industries.map((item) => {
-                    const isItemActive = location === item.href;
-                    return (
-                      <a
-                        key={item.href}
-                        href={item.href}
-                        style={{
-                          display: 'block',
-                          padding: '0.75rem 1rem',
-                          borderRadius: '8px',
-                          textDecoration: 'none',
-                          background: isItemActive ? 'rgba(12,162,162,0.06)' : 'transparent',
-                          transition: 'background 0.15s ease',
-                        }}
-                        onMouseEnter={(e) => { if (!isItemActive) (e.currentTarget as HTMLElement).style.background = 'rgba(12,162,162,0.04)'; }}
-                        onMouseLeave={(e) => { if (!isItemActive) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
-                      >
-                        <div style={{ fontFamily: "'Nicholas', serif", fontSize: '0.875rem', fontWeight: 600, color: isItemActive ? '#0CA2A2' : '#1A1A1A', marginBottom: '0.2rem' }}>
-                          {item.label}
-                        </div>
-                        <div style={{ fontFamily: "'Nicholas', serif", fontSize: '0.75rem', color: '#555555', lineHeight: 1.5 }}>
-                          {item.desc}
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
+              <AnimatePresence>
+                {industriesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.15 }}
+                    style={{
+                      position: 'absolute',
+                      top: 'calc(100% + 8px)',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      width: '280px',
+                      background: '#FFFFFF',
+                      border: '1px solid #E5E5E5',
+                      borderRadius: '12px',
+                      padding: '0.5rem',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                      zIndex: 200,
+                    }}
+                  >
+                    {industries.map((item) => {
+                      const isItemActive = location === item.href;
+                      return (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          style={{
+                            display: 'block',
+                            padding: '0.75rem 1rem',
+                            borderRadius: '8px',
+                            textDecoration: 'none',
+                            background: isItemActive ? 'rgba(12,162,162,0.06)' : 'transparent',
+                            transition: 'background 0.15s ease',
+                          }}
+                          onMouseEnter={(e) => { if (!isItemActive) (e.currentTarget as HTMLElement).style.background = 'rgba(12,162,162,0.04)'; }}
+                          onMouseLeave={(e) => { if (!isItemActive) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
+                        >
+                          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.875rem', fontWeight: 600, color: isItemActive ? '#0CA2A2' : '#1A1A1A', marginBottom: '0.2rem' }}>
+                            {item.label}
+                          </div>
+                          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', color: '#555555', lineHeight: 1.5 }}>
+                            {item.desc}
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </nav>
 
@@ -181,7 +195,7 @@ export default function Nav() {
             <a
               href="/book"
               style={{
-                fontFamily: "'Nicholas', serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: '0.9375rem',
                 fontWeight: 600,
                 color: '#FFFFFF',
@@ -210,128 +224,160 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '72px',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: '#FFFFFF',
-            zIndex: 99,
-            display: 'flex',
-            flexDirection: 'column',
-            padding: '1.5rem',
-            borderTop: '1px solid #E5E5E5',
-            overflowY: 'auto',
-          }}
-        >
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-            {navLinks.map((link) => {
-              const isActive = location === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '1.125rem',
-                    fontWeight: 600,
-                    color: isActive ? '#0CA2A2' : '#1A1A1A',
-                    textDecoration: 'none',
-                    padding: '0.875rem 1rem',
-                    borderRadius: '0.5rem',
-                    backgroundColor: isActive ? 'rgba(12,162,162,0.06)' : 'transparent',
-                    borderLeft: isActive ? '3px solid #0CA2A2' : '3px solid transparent',
-                  }}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-
-            {/* Mobile Industries */}
-            <button
-              onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
-              style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                fontWeight: 600,
-                color: isIndustriesActive ? '#0CA2A2' : '#1A1A1A',
-                background: isIndustriesActive ? 'rgba(12,162,162,0.06)' : 'transparent',
-                border: 'none',
-                borderLeft: isIndustriesActive ? '3px solid #0CA2A2' : '3px solid transparent',
-                padding: '0.875rem 1rem',
-                borderRadius: '0.5rem',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                textAlign: 'left',
-                width: '100%',
-              }}
-            >
-              Industries
-              <ChevronDown size={16} style={{ transition: 'transform 0.2s ease', transform: mobileIndustriesOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }} />
-            </button>
-
-            {mobileIndustriesOpen && (
-              <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                {industries.map((item) => {
-                  const isItemActive = location === item.href;
-                  return (
-                    <a
-                      key={item.href}
-                      href={item.href}
+      {/* Mobile Menu — AnimatePresence full overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, backdropFilter: 'blur(15px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: '#FFFFFF',
+              zIndex: 99,
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '1.5rem',
+              paddingTop: '88px',
+              overflowY: 'auto',
+            }}
+          >
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              {navLinks.map((link, index) => {
+                const isActive = location === link.href;
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -4 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2, delay: index * 0.05 }}
+                  >
+                    <Link
+                      href={link.href}
                       style={{
-                        fontFamily: "'Nicholas', serif",
-                        fontSize: '1rem',
-                        fontWeight: isItemActive ? 600 : 400,
-                        color: isItemActive ? '#0CA2A2' : '#555555',
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: '1.125rem',
+                        fontWeight: 600,
+                        color: isActive ? '#0CA2A2' : '#1A1A1A',
                         textDecoration: 'none',
-                        padding: '0.75rem 1rem',
+                        padding: '0.875rem 1rem',
                         borderRadius: '0.5rem',
-                        backgroundColor: isItemActive ? 'rgba(12,162,162,0.06)' : 'transparent',
-                        borderLeft: isItemActive ? '3px solid #0CA2A2' : '3px solid transparent',
+                        backgroundColor: isActive ? 'rgba(12,162,162,0.06)' : 'transparent',
+                        borderLeft: isActive ? '3px solid #0CA2A2' : '3px solid transparent',
+                        display: 'block',
                       }}
                     >
-                      {item.label}
-                    </a>
-                  );
-                })}
-              </div>
-            )}
-          </nav>
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
 
-          <div style={{ marginTop: '1.5rem' }}>
-            <a
-              href="/book"
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1rem',
-                fontWeight: 600,
-                color: '#FFFFFF',
-                background: '#0CA2A2',
-                padding: '0.875rem 1.5rem',
-                borderRadius: '999px',
-                textDecoration: 'none',
-              }}
+              {/* Mobile Industries */}
+              <motion.div
+                initial={{ opacity: 0, x: -4 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}
+              >
+                <button
+                  onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '1.125rem',
+                    fontWeight: 600,
+                    color: isIndustriesActive ? '#0CA2A2' : '#1A1A1A',
+                    background: isIndustriesActive ? 'rgba(12,162,162,0.06)' : 'transparent',
+                    border: 'none',
+                    borderLeft: isIndustriesActive ? '3px solid #0CA2A2' : '3px solid transparent',
+                    padding: '0.875rem 1rem',
+                    borderRadius: '0.5rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    textAlign: 'left',
+                    width: '100%',
+                  }}
+                >
+                  Industries
+                  <ChevronDown size={16} style={{ transition: 'transform 0.2s ease', transform: mobileIndustriesOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }} />
+                </button>
+              </motion.div>
+
+              <AnimatePresence>
+                {mobileIndustriesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', overflow: 'hidden' }}
+                  >
+                    {industries.map((item) => {
+                      const isItemActive = location === item.href;
+                      return (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: '1rem',
+                            fontWeight: isItemActive ? 600 : 400,
+                            color: isItemActive ? '#0CA2A2' : '#555555',
+                            textDecoration: 'none',
+                            padding: '0.75rem 1rem',
+                            borderRadius: '0.5rem',
+                            backgroundColor: isItemActive ? 'rgba(12,162,162,0.06)' : 'transparent',
+                            borderLeft: isItemActive ? '3px solid #0CA2A2' : '3px solid transparent',
+                          }}
+                        >
+                          {item.label}
+                        </a>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </nav>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.25 }}
+              style={{ marginTop: '1.5rem' }}
             >
-              Book Free Audit
-            </a>
-          </div>
+              <a
+                href="/book"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  background: '#0CA2A2',
+                  padding: '0.875rem 1.5rem',
+                  borderRadius: '999px',
+                  textDecoration: 'none',
+                }}
+              >
+                Book Free Audit
+              </a>
+            </motion.div>
 
-          <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid #E5E5E5' }}>
-            <p style={{ fontFamily: "'Nicholas', serif", fontSize: '0.75rem', color: '#AAAAAA', letterSpacing: '0.04em' }}>
-              Based in Orange County. Built for businesses everywhere.
-            </p>
-          </div>
-        </div>
-      )}
+            <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid #E5E5E5' }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.75rem', color: '#AAAAAA', letterSpacing: '0.04em' }}>
+                Based in Orange County. Built for businesses everywhere.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,15 +1,10 @@
-import {
-  HubspotIcon,
-  SalesforceIcon,
-  SheetsIcon,
-} from "@/icons";
 import { cn } from "@/lib/utils";
 import {
-  IconClipboardData,
-  IconFeatherFilled,
-  IconFileDotsFilled,
-  IconFilter2Search,
-  IconPointerUp,
+  IconBell,
+  IconCalendarCheck,
+  IconMessage,
+  IconPhone,
+  IconStar,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
@@ -17,70 +12,59 @@ import React, { useEffect, useRef, useState } from "react";
 export const SkeletonFour = () => {
   const items = [
     {
-      title: "Brand & Style",
-      icon: <IconClipboardData className="size-4 text-blue-500" />,
-      className: "bg-blue-100 border border-blue-200",
+      title: "Missed Call Text-Back",
+      icon: <IconPhone className="size-4 text-teal-600" />,
+      className: "bg-teal-50 border border-teal-200 text-teal-700",
+      status: "Active",
+      statusClass: "bg-teal-500",
       description:
-        "Link CRMs, helpdesks, and APIs to give agents secure, role-based access.",
-      tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
-      ],
+        "Missed calls trigger an instant personalized text with a booking link. 85% of callers don't call back after voicemail.",
+      details: "Avg. response: 8 seconds · Last triggered: 4 min ago",
     },
     {
-      title: "Compliance & Policy",
-      icon: <IconFileDotsFilled className="size-4 text-green-500" />,
-      className: "bg-green-100 border border-green-200",
+      title: "Review Autopilot",
+      icon: <IconStar className="size-4 text-amber-600" />,
+      className: "bg-amber-50 border border-amber-200 text-amber-700",
+      status: "Monitoring",
+      statusClass: "bg-amber-500",
       description:
-        "Ensure your AI agents follow company policies and regulatory requirements with built-in compliance controls.",
-      tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
-      ],
+        "Timed review requests fire after every completed appointment. Happy clients become your loudest advocates on Google.",
+      details: "40+ reviews generated · Last sent: 2 hours ago",
     },
     {
-      title: "Content Safety Filters",
-      icon: <IconFeatherFilled className="size-4 text-indigo-500" />,
-      className: "bg-indigo-100 border border-indigo-200",
+      title: "No-Show Recovery",
+      icon: <IconBell className="size-4 text-rose-600" />,
+      className: "bg-rose-50 border border-rose-200 text-rose-700",
+      status: "Responding",
+      statusClass: "bg-rose-500",
       description:
-        "Protect your brand from harmful content with built-in safety filters that block sensitive or inappropriate material.",
-      tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
-      ],
+        "Automated follow-up sequences chase no-shows and offer reschedule links before they're gone for good.",
+      details: "<1 no-show/week vs. 4/week before · 78% reschedule rate",
     },
     {
-      title: "Approval Triggers",
-      icon: <IconPointerUp className="size-4 text-neutral-500" />,
-      className: "bg-neutral-100 border border-neutral-200",
+      title: "Smart Scheduling",
+      icon: <IconCalendarCheck className="size-4 text-blue-600" />,
+      className: "bg-blue-50 border border-blue-200 text-blue-700",
+      status: "Active",
+      statusClass: "bg-blue-500",
       description:
-        "Automatically trigger approvals based on predefined criteria, ensuring timely review and compliance.",
-      tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
-      ],
+        "24/7 AI that fields inquiries, answers questions, and books appointments. Works while you sleep.",
+      details: "Bookings handled overnight: 3 this week",
     },
     {
-      title: "Output Quality Checks",
-      icon: <IconFilter2Search className="size-4 text-purple-500" />,
-      className: "bg-purple-100 border border-purple-200",
+      title: "Reactivation",
+      icon: <IconMessage className="size-4 text-purple-600" />,
+      className: "bg-purple-50 border border-purple-200 text-purple-700",
+      status: "Scheduled",
+      statusClass: "bg-purple-500",
       description:
-        "Automatically trigger approvals based on predefined criteria, ensuring timely review and compliance.",
-      tags: [
-        { text: "Salesforce", icon: <SalesforceIcon className="size-3" /> },
-        { text: "Hubspot", icon: <HubspotIcon className="size-3" /> },
-        { text: "Sheets", icon: <SheetsIcon className="size-3" /> },
-      ],
+        "Targeted sequences re-engage past clients who've gone quiet. One send typically recovers 8–12 lapsed clients.",
+      details: "Next campaign: Mon 9 AM · 47 clients in queue",
     },
   ];
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentIndexRef = useRef(0);
-
   const [selected, setSelected] = useState(items[0]);
 
   useEffect(() => {
@@ -93,7 +77,7 @@ export const SkeletonFour = () => {
     intervalRef.current = setInterval(() => {
       currentIndexRef.current = (currentIndexRef.current + 1) % items.length;
       setSelected(items[currentIndexRef.current]);
-    }, 2000);
+    }, 2200);
   };
 
   const stopAutoplay = () => {
@@ -105,20 +89,20 @@ export const SkeletonFour = () => {
 
   return (
     <div>
-      <div className="flex gap-4 items-center justify-center max-w-lg mx-auto flex-wrap mb-4">
+      <div className="flex gap-2 items-center justify-center max-w-lg mx-auto flex-wrap mb-4">
         {items.map((item) => (
           <button
             key={item.title}
-            onClick={() => setSelected(item)}
+            onClick={() => { stopAutoplay(); setSelected(item); }}
             className={cn(
-              "px-2 py-1 rounded-sm relative text-xs gap-1 cursor-pointer active:scale-98 transition duration-200 flex items-center justify-center opacity-50",
+              "px-2 py-1 rounded-sm relative text-xs gap-1 cursor-pointer active:scale-98 transition duration-200 flex items-center justify-center opacity-40 font-medium",
               selected.title === item.title && "opacity-100",
               item.className
             )}
           >
             {selected.title === item.title && (
               <motion.div
-                layoutId="selected-item"
+                layoutId="selected-system"
                 className="absolute inset-0 rounded-[5px] shadow-inner"
               />
             )}
@@ -128,88 +112,83 @@ export const SkeletonFour = () => {
         ))}
       </div>
       <div className="flex-1 rounded-t-3xl gap-2 flex flex-col bg-neutral-100 border border-neutral-200 max-w-[20rem] lg:max-w-sm mx-auto w-full h-full absolute inset-x-0 p-2">
-        <Card
-          topIcon={selected.icon}
+        <SystemCard
+          icon={selected.icon}
+          iconClassName={selected.className}
           title={selected.title}
+          status={selected.status}
+          statusClass={selected.statusClass}
           description={selected.description}
-          tags={selected.tags}
-          className={selected.className}
+          details={selected.details}
         />
       </div>
     </div>
   );
 };
 
-const Card = ({
-  topIcon,
+const SystemCard = ({
+  icon,
+  iconClassName,
   title,
+  status,
+  statusClass,
   description,
-  tags,
-  className,
+  details,
 }: {
-  topIcon: React.ReactNode;
+  icon: React.ReactNode;
+  iconClassName?: string;
   title: string;
+  status: string;
+  statusClass: string;
   description: string;
-  tags: { text: string; icon: React.ReactNode }[];
-  className?: string;
+  details: string;
 }) => {
   return (
     <motion.div
       key={title}
       className="p-4 shadow-black/10 gap-4 border bg-white border-transparent ring-1 rounded-[16px] ring-black/10 flex items-start flex-col"
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between w-full">
+        <div className="flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={cn("size-7 shrink-0 rounded-lg flex items-center justify-center", iconClassName)}
+          >
+            {icon}
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ delay: 0.1 }}
+            className="text-base font-bold text-neutral-800"
+          >
+            {title}
+          </motion.p>
+        </div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className={cn(
-            "size-6 shrink-0 rounded-full flex mt-1 items-center justify-center",
-            className
-          )}
+          className="flex items-center gap-1.5"
         >
-          {topIcon}
+          <div className={cn("size-2 rounded-full", statusClass)}></div>
+          <span className="text-xs font-medium text-neutral-500">{status}</span>
         </motion.div>
-        <motion.p
-          initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          transition={{ delay: 0.1 }}
-          className="text-lg font-bold text-neutral-800"
-        >
-          {title}
-        </motion.p>
       </div>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
+        className="w-full"
       >
-        <p className="text-base text-neutral-600">Tone Guidelines</p>
-        <p className="text-sm mt-2 mb-4 text-neutral-600 rounded-sm border border-neutral-200 px-2 border-dashed py-1">
+        <p className="text-sm text-neutral-600 leading-relaxed">
           {description}
         </p>
-        <div className="mt-2 flex flex-row flex-wrap gap-2">
-          {tags.map((tag, idx) => (
-            <motion.div
-              key={tag.text + idx}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + idx * 0.1 }}
-            >
-              <Tag text={tag.text} icon={tag.icon} />
-            </motion.div>
-          ))}
-        </div>
+        <p className="text-xs text-neutral-400 mt-2 border-t border-neutral-100 pt-2">
+          {details}
+        </p>
       </motion.div>
     </motion.div>
-  );
-};
-
-const Tag = ({ text, icon }: { text: string; icon: React.ReactNode }) => {
-  return (
-    <div className="flex items-center gap-1 w-fit rounded-sm px-1 py-0.5 border border-neutral-200 text-sm">
-      {icon}
-      <p className="text-xs text-neutral-500">{text}</p>
-    </div>
   );
 };

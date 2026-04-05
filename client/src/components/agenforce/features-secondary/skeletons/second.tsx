@@ -1,13 +1,12 @@
 import { LogoIcon } from "@/components/agenforce/logo-icon";
-import {
-  SheetsIcon,
-} from "@/icons";
 import { cn } from "@/lib/utils";
 import {
-  IconBrandInstagram,
-  IconBrandMeta,
-  IconBrandSlack,
+  IconBrandGoogle,
+  IconCalendarCheck,
   IconCircleDashedCheck,
+  IconCreditCard,
+  IconMessage2,
+  IconPhone,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import React from "react";
@@ -20,33 +19,49 @@ export const SkeletonTwo = () => {
     >
       <Circle className="flex items-center justify-center border-neutral-200 shadow-sm">
         <LogoIcon className="size-10 text-neutral-400" />
-        <RevolvingCard className="bg-white">
-          <IconBrandSlack className="size-8" />
-        </RevolvingCard>
-        <RevolvingCard className="[--initial-position:80deg] [--translate-position:160px] [--orbit-duration:20s] bg-white">
-          <IconBrandMeta className="size-8 text-blue-500" />
-        </RevolvingCard>
-        <RevolvingCard className="[--initial-position:140deg] [--translate-position:180px] [--orbit-duration:15s] bg-white">
-          <IconBrandInstagram className="size-8 text-red-500" />
-        </RevolvingCard>
-        <RevolvingCard className="[--initial-position:240deg] [--translate-position:220px] [--orbit-duration:25s] bg-white">
-          <SheetsIcon className="size-8" />
+
+        {/* Google Calendar */}
+        <RevolvingCard className="[--initial-position:0deg] [--translate-position:130px] [--orbit-duration:18s] bg-white">
+          <IconCalendarCheck className="size-8 text-teal-500" />
         </RevolvingCard>
 
-        <RevolvingCard className="[--initial-position:20deg] [--translate-position:250px] [--orbit-duration:30s] size-auto ring-0 shadow-none bg-transparent w-60">
+        {/* Google Reviews */}
+        <RevolvingCard className="[--initial-position:72deg] [--translate-position:160px] [--orbit-duration:22s] bg-white">
+          <IconBrandGoogle className="size-8 text-blue-500" />
+        </RevolvingCard>
+
+        {/* Square / Payments */}
+        <RevolvingCard className="[--initial-position:144deg] [--translate-position:180px] [--orbit-duration:14s] bg-white">
+          <IconCreditCard className="size-8 text-neutral-700" />
+        </RevolvingCard>
+
+        {/* SMS / Messaging */}
+        <RevolvingCard className="[--initial-position:216deg] [--translate-position:200px] [--orbit-duration:26s] bg-white">
+          <IconMessage2 className="size-8 text-green-500" />
+        </RevolvingCard>
+
+        {/* Phone / Calls */}
+        <RevolvingCard className="[--initial-position:288deg] [--translate-position:220px] [--orbit-duration:30s] bg-white">
+          <IconPhone className="size-8 text-amber-500" />
+        </RevolvingCard>
+
+        {/* Floating card: Booking confirmed */}
+        <RevolvingCard className="[--initial-position:30deg] [--translate-position:260px] [--orbit-duration:35s] size-auto ring-0 shadow-none bg-transparent w-56">
           <SkeletonCard
-            className="absolute bottom-0 left-12 max-w-[90%] z-30 bg-white"
-            icon={<IconCircleDashedCheck className="size-4" />}
-            title="Campaign Planner"
-            description="Creates clear, ready-to-use campaign briefs using product info."
+            className="absolute bottom-0 left-8 max-w-[90%] z-30 bg-white"
+            icon={<IconCircleDashedCheck className="size-4 text-teal-500" />}
+            title="Booking confirmed"
+            description="Sarah M. · Thursday 10 AM"
           />
         </RevolvingCard>
 
-        <RevolvingCard className="[--initial-position:60deg] [--translate-position:210px] [--orbit-duration:20s] size-auto ring-0 shadow-none bg-transparent w-60">
+        {/* Floating card: Review request sent */}
+        <RevolvingCard className="[--initial-position:200deg] [--translate-position:240px] [--orbit-duration:28s] size-auto ring-0 shadow-none bg-transparent w-56">
           <SkeletonCard
-            className="absolute bottom-0 left-12 max-w-[90%] z-30 bg-white"
-            icon={<IconCircleDashedCheck className="size-4" />}
-            title="Ready made solutions"
+            className="absolute bottom-0 left-8 max-w-[90%] z-30 bg-white"
+            icon={<IconCircleDashedCheck className="size-4 text-amber-500" />}
+            title="Review request sent"
+            description="5-star received on Google"
           />
         </RevolvingCard>
       </Circle>
@@ -78,10 +93,10 @@ const SkeletonCard = ({
     >
       <div className="flex gap-3 items-center">
         {icon}
-        <p className="text-xs font-normal text-black">{title}</p>
+        <p className="text-xs font-semibold text-neutral-800">{title}</p>
       </div>
       {description && (
-        <p className="text-[10px] text-neutral-400 font-normal mt-3">{description}</p>
+        <p className="text-[10px] text-neutral-500 font-normal mt-2">{description}</p>
       )}
     </div>
   );
