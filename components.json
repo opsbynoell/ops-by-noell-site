@@ -15,5 +15,13 @@
     "ui": "@/components/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
+  },
+  "registries": {
+    "@aceternity": {
+      "url": "https://ui.aceternity.com/registry/{name}.json",
+      "headers": {
+        "Authorization": "Bearer aceternity_1939cd60ad32ccd8aeb957b74daf09e700fac69316699cfb25fbfc217db1a1fb"
+      }
+    }
   }
 }

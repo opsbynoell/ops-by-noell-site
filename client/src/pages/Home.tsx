@@ -1,29 +1,9 @@
-/*
- * OPS BY NOELL — Home Page v9 (Light Theme)
- * Spec: 10 sections per design doc, April 2, 2026
- * Section 0: Nav (component)
- * Section 1: Hero — two-column split, animated Nova chat mockup
- * Section 2: Social Proof Bar — 3 stats
- * Section 3: Problem/Pain
- * Section 4: Product Grid — 6 cards
- * Section 5: Nova Spotlight
- * Section 6: Video placeholder
- * Section 7: Case Study — Santa
- * Section 8: How It Works — 3 steps
- * Section 9: Dark CTA footer section
- * Section 10: Footer (component)
- */
-
-import { useState, useEffect } from 'react';
-import { Phone, MessageSquare, Calendar, Star, Filter, RefreshCw, ArrowRight, Check } from 'lucide-react';
+import { Phone, MessageSquare, Calendar, Star, Filter, RefreshCw, Check } from 'lucide-react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import { HoverEffect } from '@/components/ui/card-hover-effect';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
-/* ─── ANIMATED NOVA CHAT MOCKUP (Asset Placeholder 1) ─────────────
-   CSS-only animation. chatSlideIn keyframes defined in index.css.
-   Conversation loops with 2s pause after completion.
-   Phone frame #1A1A1A, client bubbles gray/right, Nova teal/left.
-   ─────────────────────────────────────────────────────────────────── */
 function NovaChatMockup() {
   const messages = [
     { from: 'client', text: 'Hi, do you have anything open this week?', delay: '0.3s' },
@@ -36,7 +16,6 @@ function NovaChatMockup() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-      {/* Phone frame */}
       <div style={{
         background: '#1A1A1A',
         borderRadius: '24px',
@@ -46,7 +25,6 @@ function NovaChatMockup() {
         boxShadow: '0 20px 60px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.1)',
         overflow: 'hidden',
       }}>
-        {/* Chat header */}
         <div style={{
           background: '#0CA2A2',
           padding: '1rem 1.25rem',
@@ -76,8 +54,6 @@ function NovaChatMockup() {
             </div>
           </div>
         </div>
-
-        {/* Messages */}
         <div style={{
           background: '#F9F9F9',
           padding: '1rem',
@@ -92,7 +68,7 @@ function NovaChatMockup() {
               style={{
                 display: 'flex',
                 justifyContent: msg.from === 'client' ? 'flex-end' : 'flex-start',
-                animation: `chatSlideIn 0.4s ease both`,
+                animation: 'chatSlideIn 0.4s ease both',
                 animationDelay: msg.delay,
                 opacity: 0,
                 animationFillMode: 'both',
@@ -101,9 +77,7 @@ function NovaChatMockup() {
               <div style={{
                 maxWidth: '75%',
                 padding: '0.5rem 0.875rem',
-                borderRadius: msg.from === 'client'
-                  ? '16px 16px 4px 16px'
-                  : '16px 16px 16px 4px',
+                borderRadius: msg.from === 'client' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
                 background: msg.from === 'client' ? '#E8E8E8' : '#0CA2A2',
                 color: msg.from === 'client' ? '#1A1A1A' : '#FFFFFF',
                 fontFamily: "'Nicholas', serif",
@@ -116,8 +90,6 @@ function NovaChatMockup() {
           ))}
         </div>
       </div>
-
-      {/* Floating booking confirmation card */}
       <div
         className="float-up"
         style={{
@@ -158,1115 +130,719 @@ function NovaChatMockup() {
   );
 }
 
-/* ─── PRODUCT CARDS DATA ─────────────────────────────────────────── */
-const products = [
-  {
-    icon: Phone,
-    iconBg: '#0CA2A2',
-    title: 'Missed Call Recovery',
-    description: "Every missed call gets an instant text-back. The lead that used to vanish now stays warm. You never even know it happened. That's the point.",
-    link: null,
-  },
-  {
-    icon: MessageSquare,
-    iconBg: '#7C5CFC',
-    title: 'Nova AI Chat',
-    description: "The system that responds at midnight when someone asks 'do you have anything this week?' and has an appointment on the calendar before you wake up.",
-    link: { text: 'Also available standalone →', href: '/nova' },
-  },
-  {
-    icon: Calendar,
-    iconBg: '#E8604C',
-    title: 'Appointment Confirmation',
-    description: "Two reminders. One at 48 hours. One at 2 hours. Your week stops falling apart on Friday morning. Santa went from 4 no-shows a week to less than 1.",
-    link: null,
-  },
-  {
-    icon: Star,
-    iconBg: '#F5A623',
-    title: 'Review Generation',
-    description: "After every session, the right message goes out at the right time. Santa went from 0 to 40+ Google reviews in 8 weeks, without asking a single client herself.",
-    link: null,
-  },
-  {
-    icon: Filter,
-    iconBg: '#3B82F6',
-    title: 'Lead Pipeline',
-    description: "No more checking three apps, two inboxes, and a voicemail. Every lead, every call, every DM, every web form. One place. Nothing falls through.",
-    link: null,
-  },
-  {
-    icon: RefreshCw,
-    iconBg: '#10B981',
-    title: 'Reactivation Campaigns',
-    description: "Automatically reach out to clients who haven't booked in 60+ days. Bring back the revenue that quietly walked away.",
-    link: null,
-  },
-];
-
-/* ─── MAIN COMPONENT ─────────────────────────────────────────────── */
 export default function Home() {
+  const whoItems = [
+    {
+      title: 'Massage Therapists',
+      description: "You're in a room. Hands on a client. Your phone is at the front desk, and it's ringing.",
+      link: '/book',
+    },
+    {
+      title: 'Med Spa Owners',
+      description: "High-value leads. Short booking windows. You can't afford 'I'll call them back later.'",
+      link: '/book',
+    },
+    {
+      title: 'Salon Owners',
+      description: 'You built this so you could do hair, not return voicemails at 9 PM.',
+      link: '/book',
+    },
+    {
+      title: 'Dental Offices',
+      description: 'Your front desk is overwhelmed. Your recall list is growing. Something has to give.',
+      link: '/book',
+    },
+  ];
+
+  const features = [
+    {
+      icon: <Phone size={24} color="#7C5CFC" />,
+      title: 'Missed Call Recovery',
+      desc: 'Someone calls, no one answers. Within 60 seconds, they get a text. Hey, sorry we missed you, can we find a time? Most people respond. Most of those book.',
+    },
+    {
+      icon: <MessageSquare size={24} color="#7C5CFC" />,
+      title: 'Nova AI Chat',
+      desc: 'Nova responds to website visitors 24/7. Books appointments, answers questions, captures leads while you sleep. Not a chatbot. A booking engine.',
+    },
+    {
+      icon: <Calendar size={24} color="#7C5CFC" />,
+      title: 'Appointment Confirmation',
+      desc: '48 hours before. 2 hours before. Two texts. That\'s it. Santa went from 4 no-shows a week to less than 1. Not because clients changed. Because the reminders did.',
+    },
+    {
+      icon: <Star size={24} color="#7C5CFC" />,
+      title: 'Review Generation',
+      desc: 'After every appointment, the right message goes out at the right time. Santa went from 12 to 52 Google reviews in 8 weeks. No awkward asks. Fully automated.',
+    },
+    {
+      icon: <Filter size={24} color="#7C5CFC" />,
+      title: 'Lead Pipeline',
+      desc: 'Every call, DM, web form, missed call in one inbox. You stop losing leads not because you got better at it. The system got better for you.',
+    },
+    {
+      icon: <RefreshCw size={24} color="#7C5CFC" />,
+      title: 'Reactivation Campaigns',
+      desc: 'Clients who haven\'t booked in 60+ days get a re-engagement sequence. Most practices have 40-100 dormant clients. This wakes them up.',
+    },
+  ];
+
+  const faqItems = [
+    {
+      q: 'Do I need any tech experience?',
+      a: 'None. We handle everything. You get a login to view your dashboard and a weekly summary. That\'s it.',
+    },
+    {
+      q: 'How long does setup take?',
+      a: 'Most practices are live within 10 to 14 days.',
+    },
+    {
+      q: 'What if I already have a CRM?',
+      a: "We work with most platforms. If yours doesn't connect, we'll tell you before you start.",
+    },
+    {
+      q: 'Is there a contract?',
+      a: 'No long-term contract. Month-to-month after the setup period.',
+    },
+    {
+      q: 'What kind of results can I expect?',
+      a: 'Most practices recover 3 to 5 missed bookings in the first 30 days. Results depend on your volume, but the system works the same day it goes live.',
+    },
+    {
+      q: "What's included in the free audit?",
+      a: 'A 30-minute call where we look at your current setup, identify where you\'re losing revenue, and show you exactly what we\'d build. No obligation.',
+    },
+  ];
+
   return (
-    <>
+    <div style={{ fontFamily: "'Inter', sans-serif" }}>
       <Nav />
 
-      {/* ═══ SECTION 1: HERO ════════════════════════════════════════ */}
-      <section style={{
-        background: '#FFF5F0',
-        paddingTop: '120px',
-        paddingBottom: '5rem',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-      }}>
-        <div className="container">
-          <div className="hero-split">
-            {/* Left column — copy */}
-            <div className="hero-text">
-              {/* Section label */}
-              <span className="section-label" style={{ marginBottom: '1.25rem', animationFillMode: 'both', animation: 'fadeIn 0.5s ease both 0s' }}>
-                Done-for-You Front Desk + Follow-Up System
-              </span>
-
-              {/* H1 */}
-              <h1 style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: 'clamp(1.75rem, 4.5vw, 4rem)',
-                fontWeight: 800,
-                color: '#1A1A1A',
-                lineHeight: 1.1,
-                letterSpacing: '-0.025em',
+      {/* SECTION 1 — HERO */}
+      <section style={{ background: '#FFFFFF', paddingTop: '120px', minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
+          <div className="home-hero-grid" style={{ display: 'grid', gridTemplateColumns: '60% 40%', gap: '4rem', alignItems: 'center' }}>
+            {/* Left column */}
+            <div>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                background: 'rgba(124,92,252,0.1)',
+                color: '#7C5CFC',
+                borderRadius: '9999px',
+                padding: '0.25rem 0.75rem',
+                fontSize: '0.75rem',
+                fontWeight: 500,
                 marginBottom: '1.5rem',
-                animation: 'fadeIn 0.5s ease both 0.2s',
-                animationFillMode: 'both',
-                opacity: 0,
+              }}>
+                Done-for-You Front Desk + Follow-Up System
+              </div>
+              <h1 style={{
+                fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+                fontWeight: 800,
+                color: '#0A0A0A',
+                letterSpacing: '-0.025em',
+                lineHeight: 1.1,
+                marginBottom: '1.5rem',
               }}>
                 By the time you call back, they've already booked somewhere else.
               </h1>
-
-              {/* Body copy */}
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.6,
-                maxWidth: '480px',
-                marginBottom: '1rem',
-                animation: 'fadeIn 0.5s ease both 0.4s',
-                animationFillMode: 'both',
-                opacity: 0,
-              }}>
+              <p style={{ fontSize: '1.125rem', color: '#6B7280', maxWidth: '520px', lineHeight: 1.7, marginBottom: '1rem' }}>
                 We build, install, and manage your entire front desk and follow-up system. Every missed call recovered. Every lead answered. Your calendar stays full. You stay focused on the client in front of you.
               </p>
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.9375rem',
-                color: '#0CA2A2',
-                fontWeight: 600,
-                lineHeight: 1.6,
-                maxWidth: '480px',
-                marginBottom: '2rem',
-                animation: 'fadeIn 0.5s ease both 0.4s',
-                animationFillMode: 'both',
-                opacity: 0,
-              }}>
+              <p style={{ fontSize: '0.875rem', color: '#9CA3AF', marginBottom: '2rem' }}>
                 Built for massage therapists, med spas, salons, dental practices, and estheticians in Orange County.
               </p>
-
-              {/* CTAs */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
-                alignItems: 'flex-start',
-                animation: 'fadeIn 0.5s ease both 0.6s',
-                animationFillMode: 'both',
-                opacity: 0,
-              }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <a
-                    href="/book"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      background: '#0CA2A2',
-                      color: '#FFFFFF',
-                      fontFamily: "'Nicholas', serif",
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      padding: '0 1.75rem',
-                      height: '48px',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      transition: 'background-color 0.15s ease',
-                    }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0A8F8F'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0CA2A2'; }}
-                  >
-                    Get Your Free Audit
-                  </a>
-                  <p style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.875rem',
-                    color: '#AAAAAA',
-                    marginTop: '0.25rem',
-                  }}>
-                    Case study: 4 no-shows/week to less than 1 in 14 days (Laguna Niguel massage practice)
-                  </p>
-                </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
                 <a
-                  href="#case-study"
-                  onClick={(e) => { e.preventDefault(); document.getElementById('case-study')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  href="/book"
                   style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.9375rem',
-                    fontWeight: 400,
-                    color: '#0CA2A2',
-                    textDecoration: 'underline',
-                    textUnderlineOffset: '3px',
-                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    background: '#7C5CFC',
+                    color: '#FFFFFF',
+                    fontWeight: 600,
+                    fontSize: '1rem',
+                    height: '48px',
+                    padding: '0 1.75rem',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    transition: 'background 0.2s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.background = '#6B4FD8')}
+                  onMouseLeave={e => (e.currentTarget.style.background = '#7C5CFC')}
+                >
+                  Get Your Free Audit
+                </a>
+                <a
+                  href="#system"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    border: '1px solid #E5E5E5',
+                    color: '#374151',
+                    fontWeight: 500,
+                    fontSize: '1rem',
+                    height: '48px',
+                    padding: '0 1.5rem',
+                    borderRadius: '8px',
+                    background: 'transparent',
+                    textDecoration: 'none',
                   }}
                 >
-                  See what you're missing
+                  See How It Works
                 </a>
               </div>
+              <p style={{ fontSize: '0.75rem', color: '#9CA3AF', marginTop: '1rem' }}>
+                Case study: 4 no-shows/week to less than 1 in 14 days.
+              </p>
             </div>
-
-            {/* Right column — Nova Chat Mockup */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Right column */}
+            <div
+              className="home-hero-right"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                transform: 'perspective(1000px) rotateY(-5deg) rotateX(2deg)',
+              }}
+            >
               <NovaChatMockup />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ SECTION 2: SOCIAL PROOF BAR ════════════════════════════ */}
-      <section style={{
-        background: '#F7EDE8',
-        padding: '5rem 0',
-        animation: 'fadeInUp 0.6s ease both 0.2s',
-        animationFillMode: 'both',
-      }}>
-        <div className="container">
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '0',
-          }}>
+      {/* SECTION 2 — STATS BAR */}
+      <section style={{ background: '#F9F5F3', padding: '4rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div className="stats-row" style={{ display: 'flex', justifyContent: 'center', alignItems: 'stretch' }}>
             {[
-              { value: '$960', label: 'Revenue recovered in 14 days' },
-              { value: '40+', label: 'Google reviews in 8 weeks' },
-              { value: '< 1', label: 'No-shows per week (was 4)' },
-            ].map(({ value, label }, i) => (
+              { number: '$960', label: 'Revenue recovered in 14 days' },
+              { number: '40+', label: 'Google reviews in 8 weeks' },
+              { number: '<1', label: 'No-shows per week (was 4)' },
+            ].map((stat, idx, arr) => (
               <div
-                key={label}
-                className="proof-item"
+                key={idx}
+                className="stat-divider"
                 style={{
+                  flex: 1,
                   textAlign: 'center',
-                  padding: '0 3rem',
-                  borderRight: i < 2 ? '1px solid #E5E5E5' : 'none',
+                  padding: '0 2rem',
+                  borderRight: idx < arr.length - 1 ? '1px solid #E5E5E5' : 'none',
                 }}
               >
-                <div style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                  fontWeight: 700,
-                  color: '#0CA2A2',
-                  lineHeight: 1.1,
-                  marginBottom: '0.5rem',
+                <span style={{
+                  display: 'block',
+                  fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                  fontWeight: 800,
+                  color: '#7C5CFC',
+                  lineHeight: 1,
                 }}>
-                  {value}
-                </div>
-                <div style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '0.9375rem',
-                  color: '#555555',
-                  fontWeight: 400,
-                }}>
-                  {label}
-                </div>
+                  {stat.number}
+                </span>
+                <span style={{ fontSize: '0.875rem', color: '#6B7280', marginTop: '0.25rem', display: 'block' }}>
+                  {stat.label}
+                </span>
               </div>
             ))}
           </div>
-
-          {/* Attribution */}
           <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '0.9375rem',
-            fontStyle: 'italic',
-            color: '#555555',
             textAlign: 'center',
             marginTop: '2rem',
+            fontSize: '0.875rem',
+            color: '#9CA3AF',
+            fontStyle: 'italic',
           }}>
             From one practice. 14 days. One system change.
           </p>
         </div>
       </section>
 
-
-      {/* ═══ FOUNDER QUOTE ══════════════════════════════════════════ */}
-      <section style={{ background: '#FFF5F0', padding: '4rem 0', textAlign: 'center' }}>
-        <div className="container" style={{ maxWidth: '640px' }}>
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
-            fontWeight: 600,
-            fontStyle: 'italic',
-            color: '#1A1A1A',
-            lineHeight: 1.5,
-          }}>
-            "You built this to work with clients. Not to chase them."
-          </p>
-          <p style={{ fontSize: '0.875rem', color: '#555555', marginTop: '0.75rem' }}>
-            — Nikki Noell, Founder
-          </p>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 3: PROBLEM / PAIN ══════════════════════════════ */}
-      <section style={{
-        background: '#FFF5F0',
-        padding: '7.5rem 0',
-      }}>
-        <div className="container" style={{ maxWidth: '720px', margin: '0 auto' }}>
-          <span className="section-label" style={{ marginBottom: '1.25rem', display: 'block' }}>
-            The Real Problem
-          </span>
-
-          <h2 style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-            fontWeight: 700,
-            color: '#1A1A1A',
-            lineHeight: 1.2,
-            marginBottom: '1.75rem',
-          }}>
-            Your marketing is working. Your response time isn't.
-          </h2>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '1.25rem',
-          }}>
-            You spend money on ads. You get Google reviews. Your website looks good.
-          </p>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '1.25rem',
-          }}>
-            And then someone calls at 2 PM on a Tuesday while you're in a room with a client. Nobody answers. They don't leave a voicemail. By the time you see the missed call, they've already booked with whoever picked up.
-          </p>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '1.25rem',
-          }}>
-            You didn't start your business to stare at your phone between appointments. You started it because you're great at what you do.
-          </p>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '1.25rem',
-          }}>
-            You know that feeling. Checking your phone between sessions, wondering who you missed. Doing the math on Sunday night. Thinking about Monday before the weekend is over.
-          </p>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '1.25rem',
-          }}>
-            No-shows aren't just annoying. They're $150 holes in your day. And the missed calls you never see are worse.
-          </p>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '2rem',
-          }}>
-            It's not that you're bad at this. It's that you're doing the work of three people and the phone doesn't stop.
-          </p>
-
-          {/* 85% typographic callout */}
-          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <div style={{ fontFamily: "'Nicholas', serif", fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 800, color: '#0CA2A2', lineHeight: 1, marginBottom: '0.75rem' }}>85%</div>
-            <div style={{ fontFamily: "'Nicholas', serif", fontSize: '1.125rem', fontWeight: 600, color: '#1A1A1A' }}>of callers who don't get an answer will never call back.</div>
-          </div>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.125rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '2.5rem',
-          }}>
-            This isn't a marketing problem. It's an operations problem. And it's fixable without hiring anyone.
-          </p>
-
-          {/* Quote block */}
-          <div style={{
-            borderLeft: '3px solid #0CA2A2',
-            background: '#F0FAFA',
-            padding: '1.5rem',
-            borderRadius: '0 8px 8px 0',
-          }}>
-            <p style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: '1.0625rem',
-              fontStyle: 'italic',
-              color: '#1A1A1A',
-              lineHeight: 1.7,
-              marginBottom: '0.75rem',
-            }}>
-              "Before pouring more money into advertising, evaluate how swiftly your current leads are being contacted. The response time is 'whenever I can manage' — that's the real issue."
-            </p>
-            <p style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: '0.875rem',
-              color: '#555555',
-            }}>
-              — Practice owner, r/MedSpa
-            </p>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ═══ SECTION 3b: WHO THIS IS FOR ════════════════════════════ */}
-      <section style={{ background: '#F7EDE8', padding: '5rem 0' }}>
-        <div className="container">
+      {/* SECTION 3 — WHO THIS IS FOR */}
+      <section id="who" style={{ background: '#FFFFFF', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
-              Who This Is For
-            </span>
-            <h2 style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-              fontWeight: 700,
-              color: '#1A1A1A',
-              lineHeight: 1.2,
-            }}>
+            <span className="section-label" style={{ color: '#7C5CFC' }}>Who This Is For</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem' }}>
               Built for the people doing the actual work.
             </h2>
           </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '1.25rem',
-          }}
-          className="audience-grid"
-          >
-            {[
-              { audience: 'Massage Therapists', line: "You're in a room. Hands on a client. Your phone is at the front desk, and it's ringing." },
-              { audience: 'Med Spa Owners', line: "High-value leads. Short booking windows. You can't afford 'I'll call them back later.'" },
-              { audience: 'Salon Owners', line: 'You built this so you could do hair, not return voicemails at 9 PM.' },
-              { audience: 'Dental Offices', line: 'Your front desk is overwhelmed. Your recall list is growing. Something has to give.' },
-            ].map(({ audience, line }) => (
-              <div key={audience} style={{
-                background: '#FFFFFF',
-                borderLeft: '3px solid #0CA2A2',
-                borderRadius: '0 8px 8px 0',
-                padding: '1.75rem',
-              }}>
-                <p style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '1rem',
-                  fontWeight: 700,
-                  color: '#1A1A1A',
-                  marginBottom: '0.5rem',
-                }}>
-                  {audience}
-                </p>
-                <p style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '0.9375rem',
-                  color: '#555555',
-                  lineHeight: 1.6,
-                  fontStyle: 'italic',
-                }}>
-                  {line}
-                </p>
-              </div>
-            ))}
-          </div>
+          <HoverEffect items={whoItems} />
         </div>
       </section>
 
-      {/* ═══ SECTION 7: CASE STUDY — SANTA ══════════════════════════ */}
-      <section id="case-study" style={{ background: '#FFF5F0', padding: '5rem 0' }}>
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4rem',
-            alignItems: 'center',
-          }}
-          className="case-split"
-          >
-            {/* Left — narrative */}
-            <div>
-              <span className="section-label" style={{ marginBottom: '1.25rem', display: 'block' }}>
-                Client Results
-              </span>
-
-              <h2 style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-                fontWeight: 700,
-                color: '#1A1A1A',
-                lineHeight: 1.2,
-                marginBottom: '1.75rem',
-              }}>
-                4 no-shows a week. Then none.
-              </h2>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}>
-                Santa is a massage therapist in Laguna Niguel. She was doing everything herself — answering calls between sessions, sending reminder texts manually at night, chasing down cancellations.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}>
-                In 14 days, that stopped.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-                marginBottom: '1.25rem',
-              }}>
-                The system ran confirmations. Reminders went out automatically. A cancellation on a Friday morning triggered a waitlist offer — and the slot was filled before she saw the notification.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#555555',
-                lineHeight: 1.7,
-              }}>
-                She didn't change her services, her pricing, or her marketing. She changed what was running in the background.
-              </p>
-            </div>
-
-            {/* Right — metrics panel */}
-            <div style={{
-              background: '#FFFFFF',
-              borderRadius: '16px',
-              padding: '2rem',
-            }}>
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase' as const,
-                color: '#AAAAAA',
-                marginBottom: '1.5rem',
-              }}>
-                Before → After (14 days)
-              </p>
-
-              {[
-                { label: 'No-shows per week', before: '4', after: '< 1' },
-                { label: 'Revenue recovered', before: '$0', after: '$960' },
-                { label: 'Google reviews', before: 'Manual', after: '40+ (8 weeks)' },
-                { label: 'Reminders', before: 'Manual', after: 'Fully automated' },
-              ].map(({ label, before, after }) => (
-                <div key={label} style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: '1rem 0',
-                  borderBottom: '1px solid #E5E5E5',
-                }}>
-                  <span style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.9375rem',
-                    color: '#555555',
-                  }}>
-                    {label}
-                  </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{
-                      fontFamily: "'Nicholas', serif",
-                      fontSize: '0.875rem',
-                      color: '#AAAAAA',
-                      textDecoration: 'line-through',
-                    }}>
-                      {before}
-                    </span>
-                    <ArrowRight size={14} color="#0CA2A2" />
-                    <span style={{
-                      fontFamily: "'Nicholas', serif",
-                      fontSize: '1rem',
-                      fontWeight: 700,
-                      color: '#0CA2A2',
-                    }}>
-                      {after}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 4: PRODUCT GRID ════════════════════════════════ */}
-      <section style={{ background: '#F7EDE8', padding: '5rem 0' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
-              The System
-            </span>
-            <h2 style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-              fontWeight: 700,
-              color: '#1A1A1A',
-              lineHeight: 1.2,
-              marginBottom: '1rem',
-            }}>
-              Everything your practice needs to stop leaking revenue.
+      {/* SECTION 4 — THE REAL PROBLEM */}
+      <section style={{ background: '#FFFFFF', padding: '5rem 0', borderTop: '1px solid #F3F4F6' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'left' }}>
+            <span className="section-label" style={{ color: '#7C5CFC' }}>The Real Problem</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem', marginBottom: '2rem' }}>
+              Your marketing is working. Your response time isn't.
             </h2>
-            <p style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: '1.0625rem',
-              color: '#555555',
-              maxWidth: '560px',
-              margin: '0 auto',
-            }}>
-              Six integrated systems. Done for you. Running while you work.
+            <p style={{ color: '#6B7280', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              You spend money on ads. You get Google reviews. Your website looks good.
+            </p>
+            <p style={{ color: '#6B7280', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              And then someone calls at 2 PM on a Tuesday while you're in a room with a client. Nobody answers. They don't leave a voicemail. By the time you see the missed call, they've already booked with whoever picked up.
+            </p>
+            <p style={{ color: '#6B7280', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              You know that feeling. Checking your phone between sessions, wondering who you missed. Doing the math on Sunday night. Thinking about Monday before the weekend is over.
+            </p>
+            <p style={{ color: '#6B7280', fontSize: '1.0625rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              It's not that you're bad at this. It's that you're doing the work of three people and the phone doesn't stop.
             </p>
           </div>
-
-          {/* 6-card grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1.25rem',
-          }}
-          className="product-grid"
-          >
-            {products.map((product, i) => {
-              const Icon = product.icon;
-              return (
-                <div
-                  key={product.title}
-                  style={{
-                    background: '#FFFFFF',
-                    border: '1px solid #E8E8E8',
-                    borderRadius: '12px',
-                    padding: '2rem',
-                    transition: 'box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease',
-                    animationDelay: `${i * 0.1}s`,
-                  }}
-                  className="card-hover"
-                >
-                  {/* Icon */}
-                  <div style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '10px',
-                    background: product.iconBg,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.25rem',
-                    flexShrink: 0,
-                  }}>
-                    <Icon size={22} color="#FFFFFF" />
-                  </div>
-
-                  <h3 style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '1.125rem',
-                    fontWeight: 600,
-                    color: '#1A1A1A',
-                    marginBottom: '0.625rem',
-                  }}>
-                    {product.title}
-                  </h3>
-
-                  <p style={{
-                    fontFamily: "'Nicholas', serif",
-                    fontSize: '0.9375rem',
-                    color: '#555555',
-                    lineHeight: 1.6,
-                    marginBottom: product.link ? '0.875rem' : 0,
-                  }}>
-                    {product.description}
-                  </p>
-
-                  {product.link && (
-                    <a
-                      href={product.link.href}
-                      style={{
-                        fontFamily: "'Nicholas', serif",
-                        fontSize: '0.875rem',
-                        color: '#0CA2A2',
-                        textDecoration: 'none',
-                        fontWeight: 600,
-                      }}
-                    >
-                      {product.link.text}
-                    </a>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 5: NOVA SPOTLIGHT ══════════════════════════════ */}
-      <section style={{ background: '#FFF5F0', padding: '5rem 0' }}>
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '5rem',
-            alignItems: 'center',
-          }}
-          className="nova-split"
-          >
-            {/* Left — copy */}
-            <div>
-              <span style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.6875rem',
-                fontWeight: 600,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase' as const,
-                color: '#7C5CFC',
-                display: 'block',
-                marginBottom: '1.25rem',
-              }}>
-                Nova Support
-              </span>
-
-              <h2 style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-                fontWeight: 700,
-                color: '#1A1A1A',
-                lineHeight: 1.2,
-                marginBottom: '1.5rem',
-              }}>
-                Your AI front desk. Available 24/7. Never has a bad day.
-              </h2>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.0625rem',
-                color: '#555555',
-                lineHeight: 1.6,
-                marginBottom: '1.25rem',
-              }}>
-                Nova is not a FAQ bot. It holds real conversations, qualifies your leads, handles objections, and books appointments, all in the tone of your practice.
-              </p>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.0625rem',
-                color: '#555555',
-                lineHeight: 1.6,
-                marginBottom: '2rem',
-              }}>
-                It's the system that responds at midnight when someone asks "do you have anything this week?" and has an appointment on the calendar before you wake up.
-              </p>
-
-              {/* Feature bullets */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
-                {[
-                  'Works in Instagram DMs, Google Business Messages, web chat, and SMS',
-                  'Learns your services, pricing, and availability, and answers like a knowledgeable front desk person',
-                ].map((bullet) => (
-                  <div key={bullet} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <Check size={16} color="#0CA2A2" style={{ flexShrink: 0, marginTop: '3px' }} />
-                    <span style={{
-                      fontFamily: "'Nicholas', serif",
-                      fontSize: '0.9375rem',
-                      color: '#555555',
-                      lineHeight: 1.6,
-                    }}>
-                      {bullet}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <a
-                href="/nova"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  background: '#7C5CFC',
-                  color: '#FFFFFF',
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  padding: '0 1.75rem',
-                  height: '48px',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                  transition: 'background-color 0.15s ease',
-                  marginBottom: '0.875rem',
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#6A4DE8'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#7C5CFC'; }}
-              >
-                Learn About Nova →
-              </a>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.875rem',
-                color: '#555555',
-              }}>
-                Nova is included in the Ops System. Standalone available on request.
-              </p>
-            </div>
-
-            {/* Right — Nova chat (reused) */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <NovaChatMockup />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 6: SEE IT IN ACTION ══════════════════════════ */}
-      <section style={{ background: '#F7EDE8', padding: '5rem 0' }}>
-        <div className="container" style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto' }}>
-          <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
-            See It In Action
-          </span>
-
-          <h2 style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-            fontWeight: 700,
-            color: '#1A1A1A',
-            lineHeight: 1.2,
-            marginBottom: '1.5rem',
-          }}>
-            Ask Nova a question right now.
-          </h2>
-
-          <p style={{
-            fontFamily: "'Nicholas', serif",
-            fontSize: '1.0625rem',
-            color: '#555555',
-            lineHeight: 1.7,
-            marginBottom: '2rem',
-          }}>
-            Demo video publishing this week. In the meantime, the chat widget in the bottom right corner is the real thing. Ask Nova anything about Ops by Noell and see exactly how it responds to your clients.
-          </p>
-
-          <a
-            href="/book"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: '#0CA2A2',
-              color: '#FFFFFF',
-              fontFamily: "'Nicholas', serif",
-              fontSize: '1rem',
-              fontWeight: 600,
-              padding: '0 1.75rem',
-              height: '48px',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              transition: 'background-color 0.15s ease',
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0A8F8F'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0CA2A2'; }}
-          >
-            Book a live walkthrough instead
-          </a>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 8: HOW IT WORKS ════════════════════════════════ */}
-      <section id="how-it-works" style={{ background: '#F7EDE8', padding: '5rem 0' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span className="section-label" style={{ marginBottom: '1rem', display: 'block' }}>
-              How It Works
+          <div style={{ textAlign: 'center', marginTop: '3rem', marginBottom: '3rem' }}>
+            <span style={{ display: 'block', fontSize: 'clamp(4rem, 10vw, 7rem)', fontWeight: 900, color: '#7C5CFC', lineHeight: 1 }}>
+              85%
             </span>
-            <h2 style={{
-              fontFamily: "'Nicholas', serif",
-              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-              fontWeight: 700,
-              color: '#1A1A1A',
-              lineHeight: 1.2,
+            <p style={{ fontSize: '1rem', color: '#6B7280', marginTop: '0.5rem' }}>
+              of callers who don't get an answer will never call back.
+            </p>
+          </div>
+          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+            <p style={{ color: '#0A0A0A', fontWeight: 600, fontSize: '1.0625rem' }}>
+              This isn't a marketing problem. It's an operations problem. And it's fixable without hiring anyone.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5 — CASE STUDY */}
+      <section style={{ background: '#F9F5F3', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div className="case-split-new" style={{ display: 'grid', gridTemplateColumns: '55% 45%', gap: '4rem', alignItems: 'center' }}>
+            {/* Left */}
+            <div>
+              <span className="section-label" style={{ color: '#7C5CFC' }}>Client Results</span>
+              <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+                4 no-shows a week. Then none.
+              </h2>
+              <p style={{ color: '#6B7280', lineHeight: 1.8, fontSize: '1.0625rem' }}>
+                Santa runs a massage practice in Orange County. She was doing everything right. Marketing. Reviews. A good website. But she was in sessions all day, and every missed call was a lost client. We installed the system in 10 days. Missed calls answered instantly. Confirmations sent automatically. A follow-up sequence that runs while she works.
+              </p>
+            </div>
+            {/* Right — before/after table */}
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
             }}>
-              Three steps. Then it runs while you work.
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ background: '#7C5CFC' }}>
+                    <th style={{ padding: '0.875rem 1.25rem', textAlign: 'left', color: '#FFFFFF', fontSize: '0.8125rem', fontWeight: 600 }}>Metric</th>
+                    <th style={{ padding: '0.875rem 1rem', textAlign: 'center', color: '#FFFFFF', fontSize: '0.8125rem', fontWeight: 600 }}>Before</th>
+                    <th style={{ padding: '0.875rem 1rem', textAlign: 'center', color: '#FFFFFF', fontSize: '0.8125rem', fontWeight: 600 }}>After (14 days)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { metric: 'No-shows', before: '4/week', after: 'Less than 1' },
+                    { metric: 'Google reviews', before: '12', after: '52' },
+                    { metric: 'Revenue recovered', before: '$0', after: '$960' },
+                    { metric: 'Hours on admin', before: '~8/week', after: '~1/week' },
+                  ].map((row, idx) => (
+                    <tr key={idx} style={{ borderBottom: idx < 3 ? '1px solid #F3F4F6' : 'none', background: idx % 2 === 0 ? '#FFFFFF' : '#FAFAFA' }}>
+                      <td style={{ padding: '0.875rem 1.25rem', fontSize: '0.875rem', color: '#0A0A0A', fontWeight: 500 }}>{row.metric}</td>
+                      <td style={{ padding: '0.875rem 1rem', textAlign: 'center', fontSize: '0.875rem', color: '#9CA3AF' }}>{row.before}</td>
+                      <td style={{ padding: '0.875rem 1rem', textAlign: 'center', fontSize: '0.875rem', color: '#7C5CFC', fontWeight: 600 }}>{row.after}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6 — THE SYSTEM */}
+      <section id="system" style={{ background: '#FFFFFF', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <span className="section-label" style={{ color: '#7C5CFC' }}>The System</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem', marginBottom: '1rem' }}>
+              Everything your practice needs to stop leaking revenue.
+            </h2>
+            <p style={{ fontSize: '1.0625rem', color: '#6B7280' }}>
+              Six systems. One flat rate. We build it, install it, and manage it.
+            </p>
+          </div>
+          {features.map((feature, idx) => (
+            <div
+              key={idx}
+              className="feature-row"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '4rem',
+                alignItems: 'center',
+                marginBottom: '4rem',
+                direction: idx % 2 === 1 ? 'rtl' : 'ltr',
+              }}
+            >
+              {/* Icon + title side */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', direction: 'ltr' }}>
+                <div style={{
+                  width: '52px',
+                  height: '52px',
+                  borderRadius: '12px',
+                  background: 'rgba(124,92,252,0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  {feature.icon}
+                </div>
+                <div style={{ direction: 'ltr' }}>
+                  <h3 style={{ fontWeight: 700, fontSize: '1.25rem', color: '#0A0A0A', margin: 0 }}>{feature.title}</h3>
+                  <div style={{ background: '#7C5CFC', width: '32px', height: '2px', marginTop: '8px' }} />
+                </div>
+              </div>
+              {/* Description side */}
+              <p style={{ color: '#6B7280', fontSize: '1.0625rem', lineHeight: 1.8, margin: 0, direction: 'ltr' }}>
+                {feature.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 7 — HOW IT WORKS */}
+      <section id="how-it-works" style={{ background: '#F9F5F3', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="section-label" style={{ color: '#7C5CFC' }}>How It Works</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem' }}>
+              Simple to start. Runs itself after that.
             </h2>
           </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '2.5rem',
-          }}
-          className="steps-grid"
-          >
+          <div className="how-it-works-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem', marginBottom: '3rem' }}>
             {[
               {
-                num: '01',
+                number: '01',
                 title: 'Audit',
-                desc: 'We look at your current setup: calls, scheduling, follow-ups. We show you exactly where revenue is leaking and how much.',
+                desc: 'We spend 30 minutes learning your practice. Where you lose leads. Where you lose clients. What\'s costing you money every week.',
               },
               {
-                num: '02',
+                number: '02',
                 title: 'Build',
-                desc: 'We configure your full system: GHL pipeline, Nova chat, confirmation sequences, review automation. Done for you. No software to learn.',
+                desc: 'We set up your entire system. Missed call recovery, booking confirmation, follow-up, review generation. You don\'t touch a setting.',
               },
               {
-                num: '03',
+                number: '03',
                 title: 'Run',
-                desc: 'It goes live. We monitor it. You show up for your clients. The system handles everything else.',
+                desc: 'We manage it. You get a system that works while you\'re in sessions. We send you a weekly report. You stay focused on clients.',
               },
-            ].map(({ num, title, desc }) => (
-              <div key={num} style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: 'clamp(3.5rem, 6vw, 5rem)',
-                  fontWeight: 800,
-                  color: '#0CA2A2',
-                  lineHeight: 1,
-                  marginBottom: '1rem',
-                  userSelect: 'none',
-                }}>
-                  {num}
+            ].map((step, idx) => (
+              <div
+                key={idx}
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: '12px',
+                  padding: '2rem',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                }}
+              >
+                <div style={{ fontSize: '3rem', fontWeight: 900, color: 'rgba(124,92,252,0.2)', lineHeight: 1 }}>
+                  {step.number}
                 </div>
-                <h3 style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '1.25rem',
-                  fontWeight: 600,
-                  color: '#1A1A1A',
-                  marginBottom: '0.75rem',
-                }}>
-                  {title}
+                <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#0A0A0A', marginTop: '1rem', marginBottom: '0.75rem' }}>
+                  {step.title}
                 </h3>
-                <p style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '0.9375rem',
-                  color: '#555555',
-                  lineHeight: 1.6,
-                  fontStyle: 'italic',
-                }}>
-                  {desc}
+                <p style={{ fontSize: '0.9375rem', color: '#6B7280', lineHeight: 1.7, margin: 0 }}>
+                  {step.desc}
                 </p>
               </div>
             ))}
           </div>
-
-          {/* CTA */}
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <div style={{ textAlign: 'center' }}>
             <a
               href="/book"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                background: '#0CA2A2',
+                background: '#7C5CFC',
                 color: '#FFFFFF',
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1rem',
                 fontWeight: 600,
-                padding: '0 1.75rem',
+                fontSize: '1rem',
                 height: '48px',
+                padding: '0 1.75rem',
                 borderRadius: '8px',
                 textDecoration: 'none',
-                transition: 'background-color 0.15s ease',
+                transition: 'background 0.2s',
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0A8F8F'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0CA2A2'; }}
+              onMouseEnter={e => (e.currentTarget.style.background = '#6B4FD8')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#7C5CFC')}
             >
-              Book your free audit →
+              Book your free audit
             </a>
           </div>
         </div>
       </section>
 
-      {/* ═══ SECTION 9: DARK CTA ════════════════════════════════════ */}
-      <section style={{ background: '#1A1A1A', padding: '6.25rem 0' }}>
-        <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr auto',
-            gap: '4rem',
-            alignItems: 'center',
-          }}
-          className="cta-split"
-          >
-            {/* Left — copy */}
-            <div>
-              <h2 style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-                fontWeight: 700,
-                color: '#FFFFFF',
-                lineHeight: 1.2,
-                marginBottom: '1rem',
-              }}>
-                Free audit. No pitch. Just your numbers.
-              </h2>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '1.125rem',
-                color: '#AAAAAA',
-                lineHeight: 1.6,
-                maxWidth: '520px',
-                marginBottom: '2rem',
-              }}>
-                In 30 minutes, you'll know how many leads you're missing, what they're costing you, and exactly what fixing it would look like. No obligation.
-              </p>
-
+      {/* SECTION 8 — PRICING */}
+      <section style={{ background: '#FFFFFF', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <span className="section-label" style={{ color: '#7C5CFC' }}>Pricing</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem' }}>
+              One flat rate. Everything included.
+            </h2>
+            <p style={{ fontSize: '1rem', color: '#6B7280', marginTop: '0.75rem' }}>
+              No per-seat fees. No surprise add-ons. We run it, you don't touch it.
+            </p>
+          </div>
+          <div className="pricing-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem', marginTop: '3rem', alignItems: 'start' }}>
+            {/* Card 1: Entry */}
+            <div style={{
+              background: '#F9F5F3',
+              border: '1px solid #E5E5E5',
+              borderRadius: '16px',
+              padding: '2.5rem 2rem',
+            }}>
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+                Entry
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.25rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900, color: '#0A0A0A', lineHeight: 1 }}>$197</span>
+                <span style={{ fontSize: '1rem', color: '#6B7280' }}>/mo</span>
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#9CA3AF', marginBottom: '1.5rem' }}>+ $497 setup</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem 0', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {['Missed call text-back', 'Basic lead capture', 'Weekly report', 'Email support'].map((f, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '0.9375rem', color: '#374151' }}>
+                    <Check size={16} color="#7C5CFC" strokeWidth={2.5} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
               <a
                 href="/book"
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  background: '#0CA2A2',
+                  display: 'block',
+                  textAlign: 'center',
+                  background: '#0A0A0A',
                   color: '#FFFFFF',
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '1rem',
                   fontWeight: 600,
-                  padding: '0 2rem',
-                  height: '52px',
+                  fontSize: '0.9375rem',
+                  height: '44px',
+                  lineHeight: '44px',
                   borderRadius: '8px',
                   textDecoration: 'none',
-                  transition: 'background-color 0.15s ease, box-shadow 0.15s ease',
-                  marginBottom: '0.875rem',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.backgroundColor = '#0A8F8F';
-                  el.style.boxShadow = '0 0 0 8px rgba(12,162,162,0)';
-                  el.style.animation = 'pulseGlow 1.5s ease-in-out';
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.backgroundColor = '#0CA2A2';
-                  el.style.boxShadow = 'none';
                 }}
               >
-                Book Free Audit →
+                Get Started
               </a>
-
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.875rem',
-                color: '#777777',
-              }}>
-                Takes 2 minutes to schedule. No commitment.
-              </p>
             </div>
 
-            {/* Right — Nikki headshot placeholder */}
-            <div style={{ textAlign: 'center', flexShrink: 0 }}>
-              {/* Placeholder: teal circle with initials NN */}
+            {/* Card 2: Starter (featured) */}
+            <div style={{
+              position: 'relative',
+              background: '#FFFFFF',
+              border: '2px solid #7C5CFC',
+              borderRadius: '16px',
+              padding: '2.5rem 2rem',
+              boxShadow: '0 8px 40px rgba(124,92,252,0.15)',
+            }}>
               <div style={{
-                width: '200px',
-                height: '200px',
-                borderRadius: '50%',
-                background: '#0CA2A2',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1rem',
-              }}>
-                <span style={{
-                  fontFamily: "'Nicholas', serif",
-                  fontSize: '2.5rem',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                }}>
-                  NN
-                </span>
-              </div>
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.9375rem',
-                fontStyle: 'italic',
+                position: 'absolute',
+                top: '-12px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: '#7C5CFC',
                 color: '#FFFFFF',
-                lineHeight: 1.5,
-                marginBottom: '0.5rem',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                padding: '0.25rem 0.75rem',
+                borderRadius: '9999px',
+                whiteSpace: 'nowrap',
               }}>
-                "You built this to work with clients.<br />Not to chase them."
-              </p>
-              <p style={{
-                fontFamily: "'Nicholas', serif",
-                fontSize: '0.875rem',
-                color: '#777777',
-              }}>
-                — Nikki Noell, Ops by Noell
-              </p>
+                Most popular
+              </div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#7C5CFC', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+                Starter
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.25rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900, color: '#0A0A0A', lineHeight: 1 }}>$797</span>
+                <span style={{ fontSize: '1rem', color: '#6B7280' }}>/mo</span>
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#9CA3AF', marginBottom: '1.5rem' }}>+ $997 setup</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem 0', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {[
+                  'Everything in Entry',
+                  'Nova AI Chat (24/7 booking)',
+                  'Appointment confirmations',
+                  'Review generation',
+                  'Lead pipeline (unified inbox)',
+                  'Monthly strategy call',
+                ].map((f, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '0.9375rem', color: '#374151' }}>
+                    <Check size={16} color="#7C5CFC" strokeWidth={2.5} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/book"
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  background: '#7C5CFC',
+                  color: '#FFFFFF',
+                  fontWeight: 600,
+                  fontSize: '0.9375rem',
+                  height: '44px',
+                  lineHeight: '44px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                }}
+              >
+                Get Started
+              </a>
+            </div>
+
+            {/* Card 3: Growth */}
+            <div style={{
+              background: '#F9F5F3',
+              border: '1px solid #E5E5E5',
+              borderRadius: '16px',
+              padding: '2.5rem 2rem',
+            }}>
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+                Growth
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.25rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900, color: '#0A0A0A', lineHeight: 1 }}>$1,497</span>
+                <span style={{ fontSize: '1rem', color: '#6B7280' }}>/mo</span>
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#9CA3AF', marginBottom: '1.5rem' }}>+ $1,497 setup</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem 0', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {[
+                  'Everything in Starter',
+                  'AI voice receptionist',
+                  'Reactivation campaigns',
+                  'Priority support (same-day response)',
+                  'Quarterly business review',
+                ].map((f, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', fontSize: '0.9375rem', color: '#374151' }}>
+                    <Check size={16} color="#7C5CFC" strokeWidth={2.5} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/book"
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  background: '#0A0A0A',
+                  color: '#FFFFFF',
+                  fontWeight: 600,
+                  fontSize: '0.9375rem',
+                  height: '44px',
+                  lineHeight: '44px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                }}
+              >
+                Get Started
+              </a>
             </div>
           </div>
         </div>
       </section>
 
+      {/* SECTION 9 — FAQ */}
+      <section style={{ background: '#F9F5F3', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+            <span className="section-label" style={{ color: '#7C5CFC' }}>FAQ</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0A0A0A', marginTop: '0.5rem' }}>
+              Questions before you start.
+            </h2>
+          </div>
+          <div style={{ maxWidth: '720px', margin: '2.5rem auto 0' }}>
+            <Accordion type="single" collapsible>
+              {faqItems.map((item, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`}>
+                  <AccordionTrigger style={{ fontSize: '1rem', fontWeight: 600, color: '#0A0A0A' }}>
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent style={{ fontSize: '0.9375rem', color: '#6B7280', lineHeight: 1.7 }}>
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10 — BOTTOM CTA */}
+      <section style={{ background: '#0A0A0A', padding: '6rem 0', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <h2 style={{
+            color: '#FFFFFF',
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontWeight: 800,
+            marginBottom: '1rem',
+          }}>
+            Stop losing clients you never knew about.
+          </h2>
+          <p style={{
+            color: '#9CA3AF',
+            fontSize: '1.125rem',
+            maxWidth: '480px',
+            margin: '0 auto 2.5rem',
+            lineHeight: 1.6,
+          }}>
+            The system runs while you work. You get the clients you were already earning.
+          </p>
+          <a
+            href="/book"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              background: '#7C5CFC',
+              color: '#FFFFFF',
+              fontWeight: 600,
+              fontSize: '1.0625rem',
+              height: '52px',
+              padding: '0 2rem',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#6B4FD8')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#7C5CFC')}
+          >
+            Get Your Free Audit
+          </a>
+        </div>
+      </section>
+
       <Footer />
 
-      {/* Responsive grid overrides for mobile */}
       <style>{`
+        @media (max-width: 768px) {
+          .feature-row { grid-template-columns: 1fr !important; direction: ltr !important; gap: 1.5rem !important; }
+          .pricing-grid { grid-template-columns: 1fr !important; }
+          .case-split-new { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .home-hero-grid { grid-template-columns: 1fr !important; }
+          .home-hero-right { display: none; }
+          .how-it-works-grid { grid-template-columns: 1fr !important; }
+          .stats-row { flex-direction: column !important; gap: 2rem !important; }
+          .stats-row .stat-divider { display: none !important; }
+        }
         @media (max-width: 600px) {
-          .audience-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 900px) {
-          .product-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .audience-grid { grid-template-columns: 1fr !important; }
-          .nova-split, .case-split { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-          .cta-split { grid-template-columns: 1fr !important; }
-          .steps-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-        }
-        @media (max-width: 580px) {
-          .product-grid { grid-template-columns: 1fr !important; }
+          .audience-grid-new { grid-template-columns: 1fr !important; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
-
