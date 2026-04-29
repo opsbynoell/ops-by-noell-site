@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import {
   IconCheck,
-  IconCircleDashedCheck,
   IconLoader2,
   IconRipple,
+  IconStar,
 } from "@tabler/icons-react";
 import React from "react";
 
@@ -18,23 +18,23 @@ export const SkeletonTwo = () => {
       )}
     >
       <div className="flex gap-3 items-center">
-        <IconCircleDashedCheck className="size-4" />
-        <p className="text-sm font-normal text-black">
-          Campaign Planner
+        <IconStar className="size-4 text-amber-500 fill-amber-400" />
+        <p className="text-sm font-semibold text-neutral-800">
+          Review Autopilot
         </p>
       </div>
       <div className="relative flex-1 bg-neutral-200 mt-4 border border-neutral-200 rounded-2xl">
         <Pattern />
         <div className="absolute rounded-2xl translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:-translate-y-0 transition-all duration-300 inset-0 bg-white h-full w-full">
-          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Fetching Data" time="10s" />
+          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Appointment completed" time="2s" />
           <GradientHr />
-          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Processing Data" time="20s" />
+          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Review request sent" time="30m" />
           <GradientHr />
-          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Performing Action" time="30s" />
+          <Row icon={<IconCheck className="size-3 stroke-white fill-amber-500" />} text="5-star review received" time="4h" variant="success" starRow />
           <GradientHr />
-          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Waiting" time="40s" />
+          <Row icon={<IconCheck className="size-3 stroke-white fill-green-500" />} text="Published to Google" time="4h" />
           <GradientHr />
-          <Row icon={<IconLoader2 className="size-3 text-white animate-spin" />} text="Generating Report" time="50s" variant="warning" />
+          <Row icon={<IconLoader2 className="size-3 text-white animate-spin" />} text="Next request queued" time="tmrw" variant="warning" />
         </div>
       </div>
     </div>
@@ -52,11 +52,13 @@ const Row = ({
   text,
   time,
   variant = "success",
+  starRow,
 }: {
   icon: React.ReactNode;
   text: string;
   time: string;
-  variant?: "success" | "warning" | "danger";
+  variant?: "success" | "warning";
+  starRow?: boolean;
 }) => {
   return (
     <div className="flex items-center justify-between px-4 py-2">
@@ -65,12 +67,19 @@ const Row = ({
           className={cn(
             "size-4 flex items-center justify-center rounded-full",
             variant === "success" && "bg-green-500",
-            variant === "warning" && "bg-yellow-500"
+            variant === "warning" && "bg-amber-500"
           )}
         >
           {icon}
         </div>
-        <p className="text-neutral-500 font-medium text-xs md:text-sm">{text}</p>
+        <p className="text-neutral-600 font-medium text-xs md:text-sm">{text}</p>
+        {starRow && (
+          <div className="flex gap-0.5">
+            {[...Array(5)].map((_, i) => (
+              <IconStar key={i} className="size-2.5 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+        )}
       </div>
       <div className="flex items-center gap-1 text-neutral-400">
         <IconRipple className="size-3" />
@@ -82,6 +91,6 @@ const Row = ({
 
 const Pattern = () => {
   return (
-    <div className="absolute inset-0 bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed"></div>
+    <div className="absolute inset-0 bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed rounded-2xl"></div>
   );
 };

@@ -1,51 +1,50 @@
 import { cn } from "@/lib/utils";
-import {
-  IconCircleDashedCheck,
-  IconClock,
-  IconExclamationCircle,
-  IconPrison,
-  IconRipple,
-} from "@tabler/icons-react";
+import { IconCalendar, IconCheck, IconClock, IconPhone } from "@tabler/icons-react";
 import React from "react";
 
 export const SkeletonOne = () => {
   return (
     <div className="perspective-distant rotate-z-15 -rotate-y-20 rotate-x-30 scale-[1.2] h-full w-full -translate-y-10 mask-radial-from-50% mask-r-from-50%">
-      <SkeletonCard
-        className="absolute bottom-0 left-12  max-w-[90%] z-30"
-        icon={<IconCircleDashedCheck className="size-4" />}
-        title="Campaign Planner"
-        description="Creates clear, ready-to-use campaign briefs using product info, audience data, and past results."
-        badge={<Badge text="120S" variant="danger" />}
+      <BookingCard
+        className="absolute bottom-0 left-12 max-w-[90%] z-30"
+        icon={<IconCalendar className="size-4 text-white" />}
+        iconBg="bg-teal-500"
+        title="New booking: Sarah M."
+        detail="Thursday 10:00 AM · 60-min massage"
+        badge={<Badge text="Confirmed" variant="success" />}
       />
-      <SkeletonCard
+      <BookingCard
         className="absolute bottom-8 left-8 z-20"
-        icon={<IconExclamationCircle className="size-4" />}
-        title="Issue Tracker"
-        description="Creates clear, ready-to-use campaign briefs using product info, audience data, and past results."
-        badge={<Badge text="10S" variant="success" />}
+        icon={<IconPhone className="size-4 text-white" />}
+        iconBg="bg-amber-500"
+        title="Missed call recovered"
+        detail="Text sent · 3 min after missed call"
+        badge={<Badge text="Replied" variant="warning" />}
       />
-      <SkeletonCard
+      <BookingCard
         className="absolute bottom-20 left-4 max-w-[80%] z-10"
-        icon={<IconPrison className="size-4" />}
-        title="Risk Analysis"
-        description="Creates clear, ready-to-use campaign briefs using product info, audience data, and past results."
-        badge={<Badge text="40s" variant="warning" />}
+        icon={<IconCheck className="size-4 text-white" />}
+        iconBg="bg-green-500"
+        title="No-show follow-up sent"
+        detail="Jennifer L. · Rescheduled for Friday"
+        badge={<Badge text="Recovered" variant="success" />}
       />
     </div>
   );
 };
 
-const SkeletonCard = ({
+const BookingCard = ({
   icon,
+  iconBg,
   title,
-  description,
+  detail,
   badge,
   className,
 }: {
   icon: React.ReactNode;
+  iconBg: string;
   title: string;
-  description: string;
+  detail: string;
   badge: React.ReactNode;
   className?: string;
 }) => {
@@ -57,28 +56,17 @@ const SkeletonCard = ({
       )}
     >
       <div className="flex gap-3 items-center">
-        {icon}
-        <p className="text-xs md:text-sm font-normal text-black">
+        <div className={cn("size-7 rounded-lg flex items-center justify-center shrink-0", iconBg)}>
+          {icon}
+        </div>
+        <p className="text-xs md:text-sm font-semibold text-neutral-800 flex-1">
           {title}
         </p>
         {badge}
       </div>
-      <p className="text-[10px] md:text-sm text-neutral-500 font-light mt-3">
-        {description}
+      <p className="text-[10px] md:text-xs text-neutral-500 font-normal mt-2 pl-10">
+        {detail}
       </p>
-      <div className="flex items-center gap-2 flex-wrap mt-4">
-        <Tag text="Google Ads" />
-        <Tag text="SaaS" />
-        <Tag text="Content" />
-      </div>
-    </div>
-  );
-};
-
-const Tag = ({ text }: { text: string }) => {
-  return (
-    <div className="px-2 text-[10px] md:text-sm py-1 rounded-sm bg-neutral-200">
-      {text}
     </div>
   );
 };
@@ -87,21 +75,19 @@ const Badge = ({
   variant = "success",
   text,
 }: {
-  variant?: "danger" | "success" | "warning";
+  variant?: "success" | "warning";
   text: string;
 }) => {
   return (
     <div
       className={cn(
-        "px-1 py-0.5 rounded-full flex border items-center gap-1 w-fit",
-        variant === "danger" && "bg-red-300/10 border-red-300 text-red-500",
-        variant === "warning" && "bg-yellow-300/10 border-yellow-300 text-yellow-500",
-        variant === "success" && "bg-green-300/10 border-green-300 text-green-500"
+        "px-2 py-0.5 rounded-full flex border items-center gap-1 w-fit text-[10px] font-bold shrink-0",
+        variant === "success" && "bg-green-50 border-green-200 text-green-600",
+        variant === "warning" && "bg-amber-50 border-amber-200 text-amber-600"
       )}
     >
-      <IconClock className={cn("size-3")} />
-      <IconRipple className="size-3" />
-      <p className="text-[10px] font-bold">{text}</p>
+      <IconClock className="size-3" />
+      {text}
     </div>
   );
 };
